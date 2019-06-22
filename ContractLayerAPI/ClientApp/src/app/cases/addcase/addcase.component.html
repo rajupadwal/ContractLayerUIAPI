@@ -1,0 +1,401 @@
+<div class="col-sm-10">
+  <div class="card">
+    <div class="card-header">
+      <strong>Add Case</strong>
+      <small>Form</small>
+    </div>
+    <div class="card-block">
+      <div class="form-group">
+        <label for="select"><strong>Court</strong></label>
+        <select id="select" name="select" class="form-control">
+          <option value="0">Please select</option>
+          <option value="1">Option #1</option>
+          <option value="2">Option #2</option>
+          <option value="3">Option #3</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="form-group ">
+        <label for="textarea-input"><strong>Court Details:</strong></label>
+        <div>
+          <span class="ui-float-label">
+            <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"></textarea>
+            <label for="float-input">Court Address etc.. </label>
+          </span>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="form-group">
+        <label for="select"><strong>Case Type</strong></label>
+        <select id="select" name="select" class="form-control">
+          <option value="0">Please select</option>
+          <option value="1">Option #1</option>
+          <option value="2">Option #2</option>
+          <option value="3">Option #3</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Case Number:</strong></label>
+            <div>
+              <span class="ui-float-label">
+                <input id="casenumber" name="casenumber" class="form-control" maxlength="100" />
+                <label for="float-input">(Please enter the case number assigned by court) </label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Case Year:</strong></label>
+            <div>
+
+              <select class="form-control" id="ccyear">
+                <option>2014</option>
+                <option>2015</option>
+                <option>2016</option>
+                <option>2017</option>
+                <option>2018</option>
+                <option>2019</option>
+                <option>2020</option>
+                <option>2021</option>
+                <option>2022</option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Date of Filing:</strong></label>
+            <div>
+              <p-calendar yearRange="1950:2050" monthNavigator="true" yearNavigator="true" showOtherMonths="false" showIcon="true" icon=" fa pi pi-calendar"></p-calendar>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Court Hall#:</strong></label>
+            <div>
+              <input type="text" pInputText id="court_hall" name="court_hall" class="form-control" rows="3">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Floor#:</strong></label>
+            <div>
+              <input type="text" pInputText id="Floor" name="floor" class="form-control" rows="3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="form-group">
+        <label for="textarea-input"><strong>Classification#:</strong></label>
+        <div>
+          <input type="text" pInputText id="classification" name="classification" class="form-control" rows="3">
+        </div>
+      </div>
+    </div>
+
+    <div class="card-block">
+      <div class="form-group">
+        <label for="textarea-input"><strong>Title:</strong></label>
+        <div>
+          <span class="ui-float-label">
+            <input type="text" pInputText id="title" name="title" class="form-control" rows="3" />
+            <label for="float-input">(Please enter the title which you can remember easily) </label>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="form-group ">
+        <label for="textarea-input"><strong>Description:</strong></label>
+        <div>
+          <span class="ui-float-label">
+            <textarea id="desciption" name="description" rows="3" class="form-control"></textarea>
+            <label for="float-input">Please enter primary details about the case, client, etc </label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-block">
+      <div class="form-group ">
+        <label for="float-input"><strong>Before Hon'ble Judge(s):</strong></label>
+        <div>
+          <span class="ui-float-label">
+            <input type="text" pInputText id="judge" name="classification" class="form-control" rows="3">
+            <label for="float-input">Judge(s)</label>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="form-group ">
+        <label for="textarea-input"><strong>Referred By:</strong></label>
+        <div>
+          <input type="text" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card-block">
+      <div class="form-group">
+        <label for="select"><strong>Priority</strong></label>
+        <select id="select" name="select" class="form-control">
+          <option value="0">Please select</option>
+          <option value="1">Option #1</option>
+          <option value="2">Option #2</option>
+          <option value="3">Option #3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-10">
+      <div class="card">
+        <div class="card-header">
+          <strong>Add Your Clients</strong>
+          <div style="width:10px">
+          </div>
+
+        </div>
+        <div class="card-block">
+          <div class="form-group">
+            <a href=""><i class="fa fa-plus-circle"></i> Add new client</a>
+            <span class="ui-float-label">
+              <p-autoComplete [suggestions]="results" [dropdown]="true" place (completeMethod)="search($event)"></p-autoComplete>
+              <label for="float-input">Select Client.. </label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <div class="card">
+        <div class="card-header">
+          <strong>Opponents</strong>
+          <div style="width:10px">
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card-block ">
+              <div class="form-group">
+                Full Name
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                Email
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+
+                  Phone
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                Action
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <input type="text" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+                  <label for="float-input">Full Name </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <input type="text" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+                  <label for="float-input">Email </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <input type="text" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+                  <label for="float-input">Phone </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                <i class="fa icon-trash" style="height:25px;width:20px;padding-top:10px;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10"></div>
+          <div class="col-sm-2">
+            <a href=""><i class="fa fa-plus-circle"></i> Add new</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <div class="card">
+        <div class="card-header">
+          <strong>Opponent Advocates</strong>
+          <div style="width:10px">
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card-block ">
+              <div class="form-group">
+                Full Name
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                Email
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+
+                  Phone
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                Action
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <input type="text" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+                  <label for="float-input">Full Name </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <input type="text" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+                  <label for="float-input">Email </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <input type="text" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+                  <label for="float-input">Phone </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                <i class="fa icon-trash" style="height:25px;width:20px;padding-top:10px;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10"></div>
+          <div class="col-sm-2">
+            <a href=""><i class="fa fa-plus-circle"></i> Add new</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-10">
+      <div class="card">
+        <div class="card-header">
+          <strong>Assign To Team Member</strong>
+          <div style="width:10px">
+          </div>
+
+        </div>
+        <div class="card-block">
+          <div class="form-group">
+            <span class="ui-float-label">
+              <p-autoComplete [suggestions]="results" [dropdown]="true" place (completeMethod)="searchTeam($event)"></p-autoComplete>
+              <label for="float-input">Select Team.. </label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-group-btn" dropdown>
+      <button type="button" class="btn btn-outline-primary" (click)="redirectToAddcase()">&nbsp; Submit </button>
+      <button type="button" class="btn btn-outline-primary" (click)="redirectToAddcase()">&nbsp; Cancel </button>
+    </div>
+  </div>
+</div>

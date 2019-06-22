@@ -1,0 +1,37 @@
+
+<div class="row">
+  <div class="col-md-6"></div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="input-group-btn" dropdown>
+        <button type="button" class="btn btn-outline-primary dropdown-toggle" dropdownToggle>
+          All
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu " *dropdownMenu>
+          <a class="dropdown-item" href="#">Running</a>
+          <a class="dropdown-item" href="#">Closed</a>
+          <div role="separator" class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Direction Needed</a>
+        </div>
+      </div>
+      <button type="button" class="btn btn-outline-primary" (click)="redirectToAddcase()"><i class="fa fa-plus-circle"></i>&nbsp; Add case </button>
+      <button type="button" class="btn btn-outline-primary" (click)="redirectToAddcase()"><i class="fa fa-share-square-o"></i>&nbsp; Export </button>
+      <button type="button" class="btn btn-outline-primary" (click)="redirectToAddcase()"><i class="fa fa-filter"></i>&nbsp; Filter </button>
+     
+    </div>
+  </div>
+</div>
+<div style="height:1px;"></div>
+<div class="row">
+  <div class="col-md-12">
+    <div style="width: 100%; min-width:500px; min-height: 100px; height:500px">
+      <ag-grid-angular class="ag-theme-balham" style="width: 100%; height: 100%;"
+                       [rowData]="rowData"
+                       [columnDefs]="columnDefs">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>
+

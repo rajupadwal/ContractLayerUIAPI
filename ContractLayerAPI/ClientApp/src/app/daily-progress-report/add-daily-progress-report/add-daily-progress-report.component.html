@@ -1,0 +1,199 @@
+
+<form [formGroup]="addDPRForm" #ngForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+
+              <div>
+                <span class="ui-float-label">
+                  <input id="DPRId" formControlName="Dprid" name="DPRId" class="form-control" disabled />
+                  <label for="float-input">DPR Number </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <div>
+                <span class="ui-float-label padding-right20">
+                  <p-autoComplete [forceSelection]="true" formControlName="ClientItemGroupDetailId" field="ItemName" appValidationBorder [suggestions]="resultList"
+                                  (completeMethod)="Search('DPRClient',$event)" [dropdown]="true" [minLength]="0"></p-autoComplete>
+                  <label for="float-input">Client Name </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+
+              <div>
+                <span class="ui-float-label padding-right20">
+                  <p-autoComplete [forceSelection]="true" formControlName="ProjectItemGroupDetailId" field="ItemName" appValidationBorder [suggestions]="resultList"
+                                  (completeMethod)="Search('Project',$event)" [dropdown]="true" [minLength]="0"></p-autoComplete>
+                  <label for="float-input">Project Name </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+
+              <div>
+                <span class="ui-float-label padding-right20">
+                  <p-autoComplete [forceSelection]="true" formControlName="DprcontractorItemGroupDetailId" field="ItemName" appValidationBorder [suggestions]="resultList"
+                                  (completeMethod)="Search('DPRContractor',$event)" [dropdown]="true" [minLength]="0"></p-autoComplete>
+                  <label for="float-input">Name of the Contractor </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+
+              <div>
+                <span class="ui-float-label padding-right20">
+                  <p-autoComplete [forceSelection]="true" formControlName="WorkNameItemGroupDetailId" field="ItemName" appValidationBorder [suggestions]="resultList"
+                                  (completeMethod)="Search('DPRWork',$event)" [dropdown]="true" [minLength]="0"></p-autoComplete>
+                  <label for="float-input">Name of The Work </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <div>
+                <span class="ui-float-label padding-right20">
+                  <p-calendar formControlName="TargetDate" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                  <label for="float-input">Target Date </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <div>
+                <span class="ui-float-label padding-right20">
+                  <p-calendar formControlName="Dprdate" [disabled]="true" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                  <label for="float-input">Submit Date </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-block">
+            <div class="form-group ">
+              <label for="textarea-input"><strong>Description:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <textarea id="desciption" formControlName="ReportText" appValidationBorder name="description" rows="3" class="form-control"></textarea>
+                  <label for="float-input">Please Enter Todays Work Details </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+
+              <div>
+                <span class="ui-float-label padding-right20">
+                  <p-autoComplete [forceSelection]="true" formControlName="DprassociateNameItemGroupDetailId" field="ItemName" appValidationBorder [suggestions]="resultList"
+                                  (completeMethod)="Search('DPRAssociateRepresentative',$event)" [dropdown]="true" [minLength]="0"></p-autoComplete>
+                  <label for="float-input">DPR Client Associate Name </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+
+              <div>
+                <span class="ui-float-label padding-right20">
+                  <p-autoComplete [forceSelection]="true" formControlName="KtrepresentativeItemGroupDetailId" field="ItemName" appValidationBorder [suggestions]="resultList"
+                                  (completeMethod)="Search('KTRepresntative',$event)" [dropdown]="true" [minLength]="0"></p-autoComplete>
+                  <label for="float-input">KT Representative Associate Name </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group-btn" dropdown>
+            <button type="submit" [disabled]="!addDPRForm.valid" class="btn btn-outline-primary">&nbsp; Submit </button>&nbsp; 
+            <button type="button" class="btn btn-outline-primary" (click)="clear()">&nbsp; Cancel </button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div style="height:10px;">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+          <div>
+            <div class="alert alert-danger" *ngIf="addDPRForm.status == 'INVALID' && ngForm.submitted">
+              Please fill all required fields
+            </div>
+
+            <div class="alert alert-danger" *ngIf="error!=''">
+              {{error}}
+            </div>
+
+            <div class="" *ngIf="success!=''">
+              {{success}}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

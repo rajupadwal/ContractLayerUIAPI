@@ -1,0 +1,30 @@
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <button type="button" class="btn btn-outline-primary" (click)="redirectToAddcase()"><i class="fa fa-plus-circle"></i>&nbsp; Add Client </button>
+      <span class="ui-float-label">
+        <input id="casenumber" name="casenumber" class="form-control" maxlength="100" />
+        <label for="float-input">Search.. </label>
+      </span>
+      <button type="button" class="btn btn-outline-primary" (click)="redirectToAddcase()"><i class="fa fa-search "></i>&nbsp; Search </button>
+      <button type="button" class="btn btn-outline-primary" (click)="redirectToAddcase()"><i class="fa fa-share-square-o"></i>&nbsp; Export </button>
+      
+
+    </div>
+  </div>
+</div>
+<div style="height:1px;"></div>
+<div class="row">
+  <div class="col-md-12">
+    <div style="width: 100%; min-width:500px; min-height: 100px; height:500px">
+      <ag-grid-angular class="ag-theme-balham" style="width: 100%; height: 100%;"
+                       [rowData]="rowData"
+                       [columnDefs]="columnDefs">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>
+

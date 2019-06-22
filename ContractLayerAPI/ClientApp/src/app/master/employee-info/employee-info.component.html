@@ -1,0 +1,281 @@
+<div style="width: 100%;height: 100%">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        Employee Master
+      </div>
+      <div class="card-body">
+        <form action="" method="post">
+          <u><b>Personal Information</b></u>
+          <div class="row">
+            <div class="form-group col-sm-7">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                <input type="text" id="employeename" name="employeename" class="form-control"
+                  placeholder="EmployeeName">
+              </div>
+            </div>
+            <div  class="form-group col-sm-5">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                <input type="text" id="mobileno" name="mobileno" class="form-control" placeholder="MobileNo">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div  class="form-group col-sm-7">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                <textarea id="textarea-input" name="textarea-input" rows="2" class="form-control"
+                  placeholder="Enter Your Address.."></textarea>
+              </div>
+            </div>
+            <div  class="form-group col-sm-5">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                <textarea id="textarea-input1 " name="textarea-input" rows="2" class="form-control"
+                  placeholder="Enter Your Education Details.."></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-12">
+              <textarea id="textarea-input" name="textarea-input" rows="2" class="form-control"
+                placeholder="Enter Your Past Working Experience.."></textarea>
+            </div>
+          </div>
+          <u><b>Identity Proof</b></u>
+          <div class="row">
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="panno" name="panno" class="form-control" placeholder="PanNo">
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="aadharno" name="aadharno" class="form-control" placeholder="AadharNo">
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="voterid" name="voterid" class="form-control" placeholder="VoterId">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="bloodgroup" name="bloodgroup" class="form-control" placeholder="BloodGroup">
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <input type="maritalstatus" id="input2-group3" name="input2-group3" class="form-control"
+                  placeholder="MaritalStatus" autocomplete="maritalstatus">
+                <div class="input-group-append" dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>SelectMaritalStatus
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu" *dropdownMenu>
+                    <a class="dropdown-item" href="#">Married</a>
+                    <a class="dropdown-item" href="#">Unmarried</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="salary" name="salary" class="form-control" placeholder="Salary">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="card-header"> -->
+          <u><b>Employee Company Profile</b></u>
+          <!-- </div> -->
+          <div class="row">
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="dateofjoining" name="dateofjoining" class="form-control"
+                  placeholder="DateOfJoining">
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="dateofleaving" name="dateofleaving" class="form-control"
+                  placeholder="DateOfLeaving">
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <input type="role" id="input2-group3" name="input2-group3" class="form-control" placeholder="Role"
+                  autocomplete="role">
+                <div class="input-group-append" dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>Select Role
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu" *dropdownMenu>
+                    <a class="dropdown-item" href="#">Admin</a>
+                    <a class="dropdown-item" href="#">Accountant</a>
+                    <a class="dropdown-item" href="#">Marketing</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <input type="location" id="input2-group3" name="input2-group3" class="form-control"
+                  placeholder="Location" autocomplete="location">
+                <div class="input-group-append" dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>Select Location
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu" *dropdownMenu>
+                    <a class="dropdown-item" href="#">Pune</a>
+                    <a class="dropdown-item" href="#">Mumbai</a>
+                    <a class="dropdown-item" href="#">Lonavala</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="userid" name="userid" class="form-control" placeholder="UserId">
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="password" name="password" class="form-control" placeholder="Password">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="companymobileno" name="companymobileno" class="form-control"
+                  placeholder="CompanyMobileNo">
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <input type="post" id="input2-group3" name="input2-group3" class="form-control" placeholder="Post"
+                  autocomplete="post">
+                <div class="input-group-append" dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>Select Post
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu" *dropdownMenu>
+                    <a class="dropdown-item" href="#">FieldIncharge</a>
+                    <a class="dropdown-item" href="#">Admin&BackOffice</a>
+                    <a class="dropdown-item" href="#">UnitManager</a>
+                    <a class="dropdown-item" href="#">Reception</a>
+                    <a class="dropdown-item" href="#">Managing Director</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" id="remarks" name="remarks" class="form-control" placeholder="Remarks">
+              </div>
+            </div>
+          </div>
+          <u><b>Work Area</b></u>
+          <div class="row">
+
+            <div  class="form-group col-sm-4">
+              <!-- <div class="col-md-12"> -->
+              <div class="input-group">
+                <input type="district" id="input2-group3" name="input2-group3" class="form-control"
+                  placeholder="District" autocomplete="email">
+                <div class="input-group-append" dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>Select District
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu" *dropdownMenu>
+                    <a class="dropdown-item" href="#">Pune</a>
+                    <a class="dropdown-item" href="#">Satara</a>
+                    <a class="dropdown-item" href="#">Sangali</a>
+                    <!-- <div role="separator" class="dropdown-divider"></div> -->
+                    <a class="dropdown-item" href="#">Kolhapur</a>
+                  </div>
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <input type="taluka" id="input2-group3" name="input2-group3" class="form-control" placeholder="Taluka"
+                  autocomplete="email">
+                <div class="input-group-append" dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>Select Taluka
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu" *dropdownMenu>
+                    <a class="dropdown-item" href="#">Maval</a>
+                    <a class="dropdown-item" href="#">Khed</a>
+                    <a class="dropdown-item" href="#">Shirur</a>
+                    <!-- <div role="separator" class="dropdown-divider"></div> -->
+                    <a class="dropdown-item" href="#">Junner</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="form-group col-sm-4">
+              <div class="input-group">
+                <input type="city" id="input2-group3" name="input2-group3" class="form-control"
+                  placeholder="City/Village" autocomplete="email">
+                <div class="input-group-append" dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>Select City
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu" *dropdownMenu>
+                    <a class="dropdown-item" href="#">Talegaon</a>
+                    <a class="dropdown-item" href="#">Vadgaon</a>
+                    <a class="dropdown-item" href="#">Lonavala</a>
+                    <!-- <div role="separator" class="dropdown-divider"></div> -->
+                    <a class="dropdown-item" href="#">Kamshet</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-actions">
+            <button type="submit" class="btn btn-sm btn-success">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

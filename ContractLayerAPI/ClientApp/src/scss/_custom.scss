@@ -1,0 +1,32 @@
+// Here you can add other styles
+.card-block {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-bottom: .70rem;
+  padding-top: .75rem;
+}
+.form-group {
+   margin-bottom: 0rem;
+}
+.ui-autocomplete-dropdown {
+  position:absolute;
+  left:98%;
+}
+.ui-autocomplete, .ui-inputtext {
+  width: 100%;
+  line-height: 30px;
+}
+
+.card-border {
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+.ui-calendar {
+  width: 100%;
+}
+.ui-calendar-bordered{
+  border:solid 1px red;
+}
