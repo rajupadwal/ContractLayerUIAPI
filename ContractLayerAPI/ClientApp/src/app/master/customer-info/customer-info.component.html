@@ -4,14 +4,14 @@
       Customer Master
     </div>
     <div class="card-body">
-      <form action="" method="post">
+      <form [formGroup]="customerForm"  (ngSubmit)="saveCustomer()">
         <div class="row">
           <div  class="form-group col-sm-7">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
               </div>
-              <input type="text" id="customername" name="customername" class="form-control" placeholder="Cutomer Name">
+              <input formControlName="CustmerName" type="text" id="customername" name="customername"  class="form-control" placeholder="Cutomer Name">
             </div>
           </div>
           <div  class="form-group col-sm-5">
@@ -19,14 +19,14 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
               </div>
-              <input type="text" id="mobileno" name="mobileno" class="form-control" placeholder="MobileNo">
+              <input formControlName="CustomerMobileNo"  type="text" id="mobileno" name="mobileno" class="form-control" placeholder="MobileNo">
             </div>
           </div>
         </div>
         <u><b>Address Details</b></u>
         <div class="form-group row">
           <div class="col-md-12">
-            <textarea id="textarea-input" name="textarea-input" rows="2" class="form-control" placeholder="Enter Your Address.."></textarea>
+            <textarea formControlName="Address" id="textarea-input" name="textarea-input" rows="2" class="form-control" placeholder="Enter Your Address.."></textarea>
           </div>
         </div>
 
@@ -34,7 +34,7 @@
           <div  class="form-group col-sm-4">
             <!-- <div class="col-md-12"> -->
             <div class="input-group">
-              <input type="state" id="input2-group3" name="input2-group3" class="form-control" placeholder="State" autocomplete="email">
+              <input type="state" formControlName="State" id="input2-group3" name="input2-group3" class="form-control" placeholder="State" autocomplete="email">
               <div class="input-group-append" dropdown>
                 <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
                   Select State
@@ -54,7 +54,7 @@
           <div  class="form-group col-sm-4">
             <!-- <div class="col-md-12"> -->
             <div class="input-group">
-              <input type="district" id="input2-group3" name="input2-group3" class="form-control" placeholder="District" autocomplete="email">
+              <input formControlName="District" id="input2-group3" name="input2-group3" class="form-control" placeholder="District" autocomplete="email">
               <div class="input-group-append" dropdown>
                 <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
                   Select District
@@ -73,7 +73,7 @@
           </div>
           <div  class="form-group col-sm-4">
             <div class="input-group">
-              <input type="taluka" id="input2-group3" name="input2-group3" class="form-control" placeholder="Taluka" autocomplete="email">
+              <input  formControlName="Taluka" id="input2-group3" name="input2-group3" class="form-control" placeholder="Taluka" autocomplete="email">
               <div class="input-group-append" dropdown>
                 <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
                   Select Taluka
@@ -94,7 +94,7 @@
 
           <div  class="form-group col-sm-4">
             <div class="input-group">
-              <input type="city" id="input2-group3" name="input2-group3" class="form-control" placeholder="City/Village" autocomplete="email">
+              <input  formControlName="City" id="input2-group3" name="input2-group3" class="form-control" placeholder="City/Village" autocomplete="email">
               <div class="input-group-append" dropdown>
                 <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
                   Select City
@@ -115,13 +115,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
               </div>
-              <input type="text" id="pincode" name="gstno" class="form-control" placeholder="PinCode">
+              <input formControlName="Pincode" type="text" id="pincode" name="gstno" class="form-control" placeholder="PinCode">
             </div>
           </div>
           <div  class="form-group col-sm-4">
             <div class="input-group">
               <div class="input-group">
-                <input type="location" id="input2-group3" name="input2-group3" class="form-control" placeholder="Location" autocomplete="email">
+                <input formControlName="Location" id="input2-group3" name="input2-group3" class="form-control" placeholder="Location" autocomplete="email">
                 <div class="input-group-append" dropdown>
                   <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
                     Select Location
@@ -142,7 +142,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
               </div>
-              <input type="text" id="gstno" name="gstno" class="form-control" placeholder="GstNo">
+              <input formControlName="GstNo" type="text" id="gstno" name="gstno" class="form-control" placeholder="GstNo">
             </div>
           </div>
           <div  class="form-group col-sm-5">
@@ -150,7 +150,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
               </div>
-              <input type="text" id="panno" name="panno" class="form-control" placeholder="PanNo">
+              <input formControlName="PanNo" type="text" id="panno" name="panno" class="form-control" placeholder="PanNo">
             </div>
           </div>
         </div>
@@ -160,21 +160,21 @@
             <div class="input-group">
               <div class="input-group-prepend">
               </div>
-              <input type="text" id="contactname" name="gstno" class="form-control" placeholder="ContactPersonName">
+              <input formControlName="ContactPerson" type="text" id="contactname" name="gstno" class="form-control" placeholder="ContactPersonName">
             </div>
           </div>
           <div  class="form-group col-sm-4">
             <div class="input-group">
               <div class="input-group-prepend">
               </div>
-              <input type="text" id="contactperno" name="contactperno" class="form-control" placeholder="ContactNo">
+              <input formControlName="ConatctPersonNo" type="text" id="contactperno" name="contactperno" class="form-control" placeholder="ContactNo">
             </div>
           </div>
           <div  class="form-group col-sm-4">
             <div class="input-group">
               <div class="input-group-prepend">
               </div>
-              <input type="text" id="designation" name="designation" class="form-control" placeholder="Designation">
+              <input formControlName="Designation" type="text" id="designation" name="designation" class="form-control" placeholder="Designation">
             </div>
           </div>
         </div>
@@ -186,14 +186,14 @@
             <div class="input-group">
               <div class="input-group-prepend">
               </div>
-              <input type="text" id="accountholdername" name="gstno" class="form-control" placeholder="AccountHolderName">
+              <input formControlName="" type="text" id="accountholdername" name="gstno" class="form-control" placeholder="AccountHolderName">
             </div>
           </div>
           <div  class="form-group col-sm-5">
             <div class="input-group">
               <div class="input-group-prepend">
               </div>
-              <input type="text" id="ifsccode" name="ifsccode" class="form-control" placeholder="IfscCode">
+              <input formControlName="IfscCode" type="text" id="ifsccode" name="ifsccode" class="form-control" placeholder="IfscCode">
             </div>
           </div>
         </div>
@@ -202,14 +202,14 @@
             <div class="input-group">
               <div class="input-group-prepend">
               </div>
-              <input type="text" id="bankname" name="bankname" class="form-control" placeholder="BankName">
+              <input formControlName="BankName"    type="text" id="bankname" name="bankname" class="form-control" placeholder="BankName">
             </div>
           </div>
           <div  class="form-group col-sm-5">
             <div class="input-group">
               <div class="input-group-prepend">
               </div>
-              <input type="text" id="accountno" name="accountno" class="form-control" placeholder="AccountNo">
+              <input formControlName="AccountNo"    type="text" id="accountno" name="accountno" class="form-control" placeholder="AccountNo">
             </div>
           </div>
         </div>
@@ -218,12 +218,12 @@
             <div class="input-group">
               <div class="input-group-prepend">
               </div>
-              <input type="text" id="accounttype" name="accounttype" class="form-control" placeholder="AccountType">
+              <input formControlName="AccountType"    type="text" id="accounttype" name="accounttype" class="form-control" placeholder="AccountType">
             </div>
           </div>
         </div>
         <div class="form-group form-actions">
-          <button type="submit" class="btn btn-sm btn-success">Submit</button>
+          <button type="submit"  class="btn btn-sm btn-success">Submit</button>
         </div>
       </form>
     </div>

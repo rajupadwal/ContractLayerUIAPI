@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ContractLayerFarm.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using ContractLayerFarm.Data.Repositories;
+using ContractLayerFarm.Data.Contract;
 
 namespace ContractLayerAPI
 {
@@ -21,6 +23,9 @@ namespace ContractLayerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ContractLayerDBContext>(options =>
             

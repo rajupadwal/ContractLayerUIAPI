@@ -7,8 +7,14 @@ using ContractLayerFarm.Data.Repositories;
 
 namespace ContractLayerFarm.Data.Repositories
 {
-    class CustomerRepository : RepositoryBase<TblCustomerMaster>, ICustomerRepository
+    public class CustomerRepository : RepositoryBase<TblCustomerMaster>, ICustomerRepository
     {
+
         public CustomerRepository(ContractLayerDBContext ktConContext) : base(ktConContext) {  }
+
+        bool ICustomerRepository.Authenticate()
+        {
+            return true;
+        }
     }
 }

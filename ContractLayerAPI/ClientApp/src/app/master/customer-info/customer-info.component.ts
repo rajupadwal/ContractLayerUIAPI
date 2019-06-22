@@ -1,75 +1,138 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from "@angular/forms";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { APP_CONSTANT } from '../../../config';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-customer-info',
   templateUrl: './customer-info.component.html',
   styleUrls: ['./customer-info.component.css']
 })
 export class CustomerInfoComponent implements OnInit {
-  addDPRForm: FormGroup;
-  resultList: any[] = [];
-  error: string = '';
-  success: string = '';
-  constructor(private formBuilder: FormBuilder ) { }
+  customerForm: FormGroup;
+  //resultList: any[] = [];
+  //error: string = '';
+  //success: string = '';
+  constructor(private formBuilder: FormBuilder, private http: HttpClient ) { }
 
   ngOnInit() {
-    let dt = new Date();
-    
-    //this.dprService.setDPRItemGroupDetails(); 
+    this.customerForm = this.formBuilder.group({
 
-    this.addDPRForm = this.formBuilder.group({
-      Dprid: [{ value: 0, disabled: true }],
-      ClientItemGroupDetailId: [{}, Validators.required],
-      ProjectItemGroupDetailId: [{}, Validators.required],
-      DprcontractorItemGroupDetailId: [{}, Validators.required],
-      WorkNameItemGroupDetailId: [{}, Validators.required],
-      TargetDate: [dt, Validators.required],
-      Dprdate: [dt, Validators.required],
-      DprassociateNameItemGroupDetailId: [{}, Validators.required],
+       CustomerId         :[],
+       CustmerName        :["ABC"],
+       CustomerMobileNo   :["ABC"],
+       Address            :["ABC"],
+       //PlantAddress       :["ABC"],
+       State              :["ABC"],
+       District           :["ABC"],
+       Taluka             :["ABC"],
+       City               :["ABC"],
+       Pincode            :["ABC"],
+       Location           :["ABC"],
+       GstNo              :["ABC"],
+       PanNo              :["ABC"],
+       ContactPerson      :["ABC"],
+       ConatctPersonNo    :["ABC"],
+       Designation        :["ABC"],
+       BankName           :["ABC"],
+       AccountNo          :["ABC"],
+       IfscCode           :["ABC"],
+       //MicrCode           :["ABC"],
+       //BranchName         :["ABC"],
+       AccountType: [""],
+       IsDeleted: [],
+
+
+      //Dprid: [{ value: 0, disabled: true }],
+      //ClientItemGroupDetailId: [{}, Validators.required],
+      //ProjectItemGroupDetailId: [{}, Validators.required],
+      //DprcontractorItemGroupDetailId: [{}, Validators.required],
+      //WorkNameItemGroupDetailId: [{}, Validators.required],
+      //TargetDate: [dt, Validators.required],
+      //Dprdate: [dt, Validators.required],
+      //DprassociateNameItemGroupDetailId: [{}, Validators.required],
      
-      KtrepresentativeItemGroupDetailId: [{}, Validators.required],
-      ReportText: ['', Validators.required],
+      //KtrepresentativeItemGroupDetailId: [{}, Validators.required],
+      //ReportText: ['', Validators.required],
     });
   }
   
-
-  public Search(groupName:string,$event) {
-    //this.resultList = this.dprService.itemGroupDetails.filter(x => x.GroupName.toUpperCase() == groupName.toUpperCase() && x.ItemName.toUpperCase().indexOf($event.query.toUpperCase())>=0);
-  }
-  onSubmit = () => {
-    if (this.addDPRForm.status == "INVALID") {
-      return;
+  saveCustomer() {
+      let httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      };
+    let customer = {
+      AccountNo: "ABC",
+      AccountType: "",
+      Address: "ABC",
+      BankName: "ABC",
+      City: "ABC",
+      ConatctPersonNo: "ABC",
+      ContactPerson: "ABC",
+      CustmerName: "ABC",
+      CustomerId: 0,
+      CustomerMobileNo: "ABC",
+      Designation: "ABC",
+      District: "ABC",
+      GstNo: "ABC",
+      IfscCode: "ABC",
+      IsDeleted: 0,
+      Location: "ABC",
+      PanNo: "ABC",
+      Pincode: "ABC",
+      State: "ABC",
+      Taluka: "ABC",
     }
-    this.saveChanges();
-  }
+    return this.http.post(APP_CONSTANT.CUSOTMER_API.ADD, customer, httpOptions)
+        .subscribe((user) => {
+          // login successful if there's a jwt token in the response
+          if (user) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            console.log('user added successfully');
+          }
+          return user;
+        });
+    }
 
-  public saveChanges() {
-   let formToSubmit={}
-   Object.keys(this.addDPRForm.controls).forEach(key => {
-     let value = this.addDPRForm.get(key).value["ItemDetailId"] ? this.addDPRForm.get(key).value["ItemDetailId"] : this.addDPRForm.get(key).value;
-     formToSubmit[key] = value
-   });
-  //  this.dprService.saveDPRDetails(JSON.stringify(formToSubmit)).subscribe((response) => {
+  
+  //public Search(groupName:string,$event) {
+  //  //this.resultList = this.dprService.itemGroupDetails.filter(x => x.GroupName.toUpperCase() == groupName.toUpperCase() && x.ItemName.toUpperCase().indexOf($event.query.toUpperCase())>=0);
+  //}
+  //onSubmit = () => {
+  //  if (this.addDPRForm.status == "INVALID") {
+  //    return;
+  //  }
+  //  this.saveChanges();
+  //}
 
-  //    this.success = 'Record Saved Sucessfully !';
-  //    this.displayMessage();
-  //  },
-  //    (error) => {
+  //public saveChanges() {
+  // let formToSubmit={}
+  // Object.keys(this.addDPRForm.controls).forEach(key => {
+  //   let value = this.addDPRForm.get(key).value["ItemDetailId"] ? this.addDPRForm.get(key).value["ItemDetailId"] : this.addDPRForm.get(key).value;
+  //   formToSubmit[key] = value
+  // });
+  ////  this.dprService.saveDPRDetails(JSON.stringify(formToSubmit)).subscribe((response) => {
 
-  //      this.error = "Get an Error while Saving the DPR..Please try again!";
-  //      this.displayMessage();
-  //    });
-  }
-  public clear = () => {
-    this.ngOnInit();
-    this.addDPRForm.markAsPristine();
-  }
+  ////    this.success = 'Record Saved Sucessfully !';
+  ////    this.displayMessage();
+  ////  },
+  ////    (error) => {
 
-  displayMessage() {
-    setTimeout(() => {
-      this.error = '';
-      this.success = '';
-    }, 5000)
-  }
+  ////      this.error = "Get an Error while Saving the DPR..Please try again!";
+  ////      this.displayMessage();
+  ////    });
+  //}
+  //public clear = () => {
+  //  this.ngOnInit();
+  //  this.addDPRForm.markAsPristine();
+  //}
+
+  //displayMessage() {
+  //  setTimeout(() => {
+  //    this.error = '';
+  //    this.success = '';
+  //  }, 5000)
+  //}
 
 }

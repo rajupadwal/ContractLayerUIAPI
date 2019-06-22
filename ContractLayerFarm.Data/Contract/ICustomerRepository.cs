@@ -8,6 +8,6 @@ namespace ContractLayerFarm.Data.Contract
     {
         //Boolean IsValidUser(UserInfo userInfo);
         //UserInfo Authenticate(string username, string password);
-
+        bool Authenticate();
     }
 }
