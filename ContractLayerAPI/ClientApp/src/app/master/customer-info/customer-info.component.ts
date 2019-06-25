@@ -19,7 +19,7 @@ export class CustomerInfoComponent implements OnInit {
   ngOnInit() {
     this.customerForm = this.formBuilder.group({
 
-       CustomerId         :[],
+       CustomerId         :[0],
        CustmerName        :["ABC"],
        CustomerMobileNo   :["ABC"],
        Address            :["ABC"],
@@ -41,7 +41,7 @@ export class CustomerInfoComponent implements OnInit {
        //MicrCode           :["ABC"],
        //BranchName         :["ABC"],
        AccountType: [""],
-       IsDeleted: [],
+       IsDeleted: [false],
 
 
       //Dprid: [{ value: 0, disabled: true }],
@@ -61,30 +61,33 @@ export class CustomerInfoComponent implements OnInit {
   saveCustomer() {
       let httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-      };
-    let customer = {
-      AccountNo: "ABC",
-      AccountType: "",
-      Address: "ABC",
-      BankName: "ABC",
-      City: "ABC",
-      ConatctPersonNo: "ABC",
-      ContactPerson: "ABC",
-      CustmerName: "ABC",
-      CustomerId: 0,
-      CustomerMobileNo: "ABC",
-      Designation: "ABC",
-      District: "ABC",
-      GstNo: "ABC",
-      IfscCode: "ABC",
-      IsDeleted: 0,
-      Location: "ABC",
-      PanNo: "ABC",
-      Pincode: "ABC",
-      State: "ABC",
-      Taluka: "ABC",
-    }
-    return this.http.post(APP_CONSTANT.CUSOTMER_API.ADD, customer, httpOptions)
+    };
+      let cusotmer = this.customerForm.value;
+    //let customer = {
+    //  AccountNo: "ABC",
+    //  AccountType: "",
+    //  Address: "ABC",
+    //  BankName: "ABC",
+    //  City: "ABC",
+    //  ConatctPersonNo: "ABC",
+    //  ContactPerson: "ABC",
+    //  CustmerName: "ABC",
+    //  CustomerId: 0,
+    //  CustomerMobileNo: "ABC",
+    //  Designation: "ABC",
+    //  District: "ABC",
+    //  GstNo: "ABC",
+    //  IfscCode: "ABC",
+    //  IsDeleted: 0,
+    //  Location: "ABC",
+    //  PanNo: "ABC",
+    //  Pincode: "ABC",
+    //  State: "ABC",
+    //  Taluka: "ABC",
+    //}
+
+
+      return this.http.post(APP_CONSTANT.CUSOTMER_API.ADD, cusotmer, httpOptions)
         .subscribe((user) => {
           // login successful if there's a jwt token in the response
           if (user) {
