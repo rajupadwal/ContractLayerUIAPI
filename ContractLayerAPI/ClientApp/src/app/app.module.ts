@@ -30,6 +30,7 @@ import { ValidationBorderModule } from './validation-border';
 
 
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -61,6 +62,7 @@ import { ValidationBorderModule } from './validation-border';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     ErrorDirective,
+    
 
 
   ],

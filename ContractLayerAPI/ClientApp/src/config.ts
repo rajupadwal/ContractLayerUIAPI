@@ -11,6 +11,9 @@ export const APP_CONSTANT={
   }
   ,
   CUSOTMER_API: {
-    ADD: API_URL + 'Customer/Add'
+    ADD: API_URL + 'Customer/Add',
+    GETALL: API_URL + 'Customer/GetAll',
+    GETByID: API_URL + 'Customer/GetAll',
+
   }
 }

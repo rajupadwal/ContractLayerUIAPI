@@ -25,6 +25,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\master\customer-view\customer.module.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ClientApp\src\app\master\customer-view\customer.module.ts">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ContractLayerFarm.Data\ContractLayerFarm.Data.csproj" />
   </ItemGroup>
 

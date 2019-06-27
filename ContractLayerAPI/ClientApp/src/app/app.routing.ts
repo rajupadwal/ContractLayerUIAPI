@@ -44,12 +44,21 @@ export const routes: Routes = [
           title: 'Master'
         },
         children: [
+
           {
 
-            path: 'CustomerInfo',
-            loadChildren: './master/customer-info/customer.info.module#CusotmerInfoModule'
+            path: 'Customerview',
+            loadChildren: './master/customer-view/customer.module#CusotmerModule'
 
           },
+
+          //{
+
+          //  path: 'Customerview',
+          //  loadChildren: './cases/cases.module#CasesModule'
+
+          //},
+
           {
 
             path: 'EmployeeInfo',

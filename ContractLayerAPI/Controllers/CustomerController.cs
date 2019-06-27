@@ -34,11 +34,12 @@ namespace ContractLayerAPI.Controllers
             return Cusotmer;
         }
         [HttpPost("Add")]
-        public bool Add(TblCustomerMaster customer)
+        public bool Add([FromBody]TblCustomerMaster customer)
         {
             try
             {
                 this._repoWrapper.Customer.Create(customer);
+                this._repoWrapper.Customer.Save();
                 return true;
             }
 

@@ -10,14 +10,14 @@ import { AddcaseComponent} from './addcase/addcase.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'addcase',
     component: CasesComponent,
     data: {
       title: 'cases'
     }
   },
   {
-    path: 'addcase',
+    path: '',
     component: AddcaseComponent,
     data: {
       title: 'add cases'

@@ -14,7 +14,7 @@ export class CasesComponent implements OnInit {
   }
 
   redirectToAddcase() {
-    this.router.navigateByUrl('/cases/addcase');
+    this.router.navigateByUrl('/Customerview/addcase');
   }
   ngOnInit() {
     this.InitializeGrid();

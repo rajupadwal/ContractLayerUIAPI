@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
+
 namespace ContractLayerFarm.Data.Repositories
 {
     public class RepositoryWrapper : IRepositoryWrapper
@@ -24,8 +25,6 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
      
-
-
         public RepositoryWrapper(ContractLayerDBContext repositoryContext)
         {
             _repoContext = repositoryContext;

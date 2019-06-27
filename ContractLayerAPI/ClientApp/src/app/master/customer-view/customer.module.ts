@@ -6,16 +6,17 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AgGridModule } from 'ag-grid-angular';
 
-import { CustomerInfoComponent } from './customer-info.component';
-
+import { CustomerViewComponent } from './customer-view.component'
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 
-import {CusotomerInfoRoutingModule} from './cusotmer.info.routing.module';
+import { CusotomerviewRoutingModule } from './cusotmer.view.routing.module'
 
 //import { DPRService } from './dpr.service';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
+import { CustomerInfoComponent } from '../customer-info/customer-info.component';
+import { CusotmerService} from './customer.service'
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -23,7 +24,7 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
     FormsModule,
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
-    CusotomerInfoRoutingModule,
+    CusotomerviewRoutingModule,
     CalendarModule,
     AutoCompleteModule,
     ReactiveFormsModule,
@@ -31,10 +32,11 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
     CommonModule
 
   ],
-  declarations: [CustomerInfoComponent]
-  
+  declarations: [CustomerViewComponent, CustomerInfoComponent],
+  providers:[CusotmerService]
+
 })
-export class CusotmerInfoModule {
- 
- }
+export class CusotmerModule {
+
+}
 //providers: [DPRService]

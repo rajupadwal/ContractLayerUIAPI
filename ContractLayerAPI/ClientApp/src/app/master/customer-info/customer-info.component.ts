@@ -3,45 +3,48 @@ import { FormGroup, FormBuilder,Validators } from "@angular/forms";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../../config';
 import { map } from 'rxjs/operators';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-customer-info',
   templateUrl: './customer-info.component.html',
   styleUrls: ['./customer-info.component.css']
 })
+
 export class CustomerInfoComponent implements OnInit {
+
   customerForm: FormGroup;
   //resultList: any[] = [];
   //error: string = '';
   //success: string = '';
-  constructor(private formBuilder: FormBuilder, private http: HttpClient ) { }
+  constructor(private router:Router,private formBuilder: FormBuilder, private http: HttpClient ) { }
 
   ngOnInit() {
     this.customerForm = this.formBuilder.group({
 
-       CustomerId         :[],
-       CustmerName        :["ABC"],
-       CustomerMobileNo   :["ABC"],
-       Address            :["ABC"],
+       CustomerId         :[0],
+       CustmerName        :[],
+       CustomerMobileNo   :[],
+       Address            :[],
        //PlantAddress       :["ABC"],
-       State              :["ABC"],
-       District           :["ABC"],
-       Taluka             :["ABC"],
-       City               :["ABC"],
-       Pincode            :["ABC"],
-       Location           :["ABC"],
-       GstNo              :["ABC"],
-       PanNo              :["ABC"],
-       ContactPerson      :["ABC"],
-       ConatctPersonNo    :["ABC"],
-       Designation        :["ABC"],
-       BankName           :["ABC"],
-       AccountNo          :["ABC"],
-       IfscCode           :["ABC"],
+       State              :[],
+       District           :[],
+       Taluka             :[],
+       City               :[],
+       Pincode            :[],
+       Location           :[],
+       GstNo              :[],
+       PanNo              :[],
+       ContactPerson      :[],
+       ConatctPersonNo    :[],
+       Designation        :[],
+       BankName           :[],
+       AccountNo          :[],
+       IfscCode           :[],
        //MicrCode           :["ABC"],
        //BranchName         :["ABC"],
-       AccountType: [""],
-       IsDeleted: [],
+       AccountType: [],
+       //IsDeleted: [],
 
 
       //Dprid: [{ value: 0, disabled: true }],
@@ -62,39 +65,23 @@ export class CustomerInfoComponent implements OnInit {
       let httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
-    let customer = {
-      AccountNo: "ABC",
-      AccountType: "",
-      Address: "ABC",
-      BankName: "ABC",
-      City: "ABC",
-      ConatctPersonNo: "ABC",
-      ContactPerson: "ABC",
-      CustmerName: "ABC",
-      CustomerId: 0,
-      CustomerMobileNo: "ABC",
-      Designation: "ABC",
-      District: "ABC",
-      GstNo: "ABC",
-      IfscCode: "ABC",
-      IsDeleted: 0,
-      Location: "ABC",
-      PanNo: "ABC",
-      Pincode: "ABC",
-      State: "ABC",
-      Taluka: "ABC",
-    }
-    return this.http.post(APP_CONSTANT.CUSOTMER_API.ADD, customer, httpOptions)
-        .subscribe((user) => {
-          // login successful if there's a jwt token in the response
-          if (user) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            console.log('user added successfully');
-          }
-          return user;
-        });
-    }
+    //let customer = this.customerForm.value;
+    let customer = this.customerForm.value;
 
+    return this.http.post(APP_CONSTANT.CUSOTMER_API.ADD, customer, httpOptions)
+      .subscribe((customer) => {
+          // login successful if there's a jwt token in the response
+        if (customer) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+          this.router.navigateByUrl('/master/Customerview');
+          }
+        return customer;
+        
+
+      });
+    
+  }
+  
   
   //public Search(groupName:string,$event) {
   //  //this.resultList = this.dprService.itemGroupDetails.filter(x => x.GroupName.toUpperCase() == groupName.toUpperCase() && x.ItemName.toUpperCase().indexOf($event.query.toUpperCase())>=0);
