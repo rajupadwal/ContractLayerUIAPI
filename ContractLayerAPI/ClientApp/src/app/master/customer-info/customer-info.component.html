@@ -1,231 +1,288 @@
 <div class="col-sm-12">
   <div class="card">
     <div class="card-header">
-      Customer Master
+      <strong>Customer Master</strong>
+      <!--<small>Form</small>-->
     </div>
-    <div class="card-body">
-      <form [formGroup]="customerForm"  (ngSubmit)="saveCustomer()">
-        <div class="row">
-          <div  class="form-group col-sm-7">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
+    <form [formGroup]="customerForm" (ngSubmit)="saveCustomer()">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Customer Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="CustomerName" type="text" pInputText id="customername" name="customername" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Customer Name </label>
+                </span>
               </div>
-              <input formControlName="CustmerName" type="text" id="customername" name="customername"  class="form-control" placeholder="Cutomer Name">
-            </div>
-          </div>
-          <div  class="form-group col-sm-5">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-              </div>
-              <input formControlName="CustomerMobileNo"  type="text" id="mobileno" name="mobileno" class="form-control" placeholder="MobileNo">
             </div>
           </div>
         </div>
-        <u><b>Address Details</b></u>
-        <div class="form-group row">
-          <div class="col-md-12">
-            <textarea formControlName="Address" id="textarea-input" name="textarea-input" rows="2" class="form-control" placeholder="Enter Your Address.."></textarea>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Customer Mobile No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="CustomerMobileNo" type="text" pInputText id="customermobileno" name="customermobileno" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Customer Mobile No </label>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="row">
-          <div  class="form-group col-sm-4">
-            <!-- <div class="col-md-12"> -->
-            <div class="input-group">
-              <input formControlName="State" id="input2-group3" name="input2-group3" class="form-control" placeholder="State" autocomplete="state">
-              <div class="input-group-append" dropdown>
-                <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
-                  Select State
-                  <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu" *dropdownMenu>
-                  <a class="dropdown-item" href="#">Maharashtra</a>
-                  <a class="dropdown-item" href="#">Goa</a>
-                  <a class="dropdown-item" href="#">Panjab</a>
-                  <!-- <div role="separator" class="dropdown-divider"></div> -->
-                  <a class="dropdown-item" href="#">Andra Pradesh</a>
-                </div>
-              </div>
-              <!-- </div> -->
-            </div>
-          </div>
-          <div  class="form-group col-sm-4">
-            <!-- <div class="col-md-12"> -->
-            <div class="input-group">
-              <input formControlName="District" id="input2-group3" name="input2-group3" class="form-control" placeholder="District" autocomplete="email">
-              <div class="input-group-append" dropdown>
-                <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
-                  Select District
-                  <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu" *dropdownMenu>
-                  <a class="dropdown-item" href="#">Pune</a>
-                  <a class="dropdown-item" href="#">Satara</a>
-                  <a class="dropdown-item" href="#">Sangali</a>
-                  <!-- <div role="separator" class="dropdown-divider"></div> -->
-                  <a class="dropdown-item" href="#">Kolhapur</a>
-                </div>
-              </div>
-              <!-- </div> -->
-            </div>
-          </div>
-          <div  class="form-group col-sm-4">
-            <div class="input-group">
-              <input  formControlName="Taluka" id="input2-group3" name="input2-group3" class="form-control" placeholder="Taluka" autocomplete="taluka">
-              <div class="input-group-append" dropdown>
-                <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
-                  Select Taluka
-                  <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu" *dropdownMenu>
-                  <a class="dropdown-item" href="#">Maval</a>
-                  <a class="dropdown-item" href="#">Khed</a>
-                  <a class="dropdown-item" href="#">Shirur</a>
-                  <!-- <div role="separator" class="dropdown-divider"></div> -->
-                  <a class="dropdown-item" href="#">Junner</a>
-                </div>
-              </div>
-            </div>
+      <div class="card-block">
+        <div class="form-group ">
+          <label for="textarea-input"><strong>Address Details:</strong></label>
+          <div>
+            <span class="ui-float-label">
+              <textarea formControlName="Address" id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
+              <label for="float-input">Enter Customer Address Details.. </label>
+            </span>
           </div>
         </div>
-        <div class="row">
+      </div>
 
-          <div  class="form-group col-sm-4">
-            <div class="input-group">
-              <input  formControlName="City" id="input2-group3" name="input2-group3" class="form-control" placeholder="City/Village" autocomplete="email">
-              <div class="input-group-append" dropdown>
-                <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
-                  Select City
-                  <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu" *dropdownMenu>
-                  <a class="dropdown-item" href="#">Talegaon</a>
-                  <a class="dropdown-item" href="#">Vadgaon</a>
-                  <a class="dropdown-item" href="#">Lonavala</a>
-                  <!-- <div role="separator" class="dropdown-divider"></div> -->
-                  <a class="dropdown-item" href="#">Kamshet</a>
-                </div>
-              </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>State :</strong></label>
+              <select formControlName="State" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
             </div>
           </div>
-          <div  class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-              </div>
-              <input formControlName="Pincode" type="text" id="pincode" name="gstno" class="form-control" placeholder="PinCode">
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>District :</strong></label>
+              <select formControlName="District" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
             </div>
           </div>
-          <div  class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group">
-                <input formControlName="Location" id="input2-group3" name="input2-group3" class="form-control" placeholder="Location" autocomplete="email">
-                <div class="input-group-append" dropdown>
-                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
-                    Select Location
-                    <span class="caret"></span>
-                  </button>
-                  <div class="dropdown-menu" *dropdownMenu>
-                    <a class="dropdown-item" href="#">Sangali</a>
-                    <a class="dropdown-item" href="#">Satara</a>
-                  </div>
-                </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Taluka :</strong></label>
+              <select formControlName="Taluka" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>City :</strong></label>
+              <select formControlName="City" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>PIN Code:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Pincode" type="text" pInputText id="pincode" name="pincode" class="form-control">
+                  <label for="float-input">Please Enter PIN Code  </label>
+                </span>
+
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div  class="form-group col-sm-7">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-              </div>
-              <input formControlName="GstNo" type="text" id="gstno" name="gstno" class="form-control" placeholder="GstNo">
-            </div>
-          </div>
-          <div  class="form-group col-sm-5">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-              </div>
-              <input formControlName="PanNo" type="text" id="panno" name="panno" class="form-control" placeholder="PanNo">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Location :</strong></label>
+              <select formControlName="Taluka" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
             </div>
           </div>
         </div>
-        <u><b>Contact Details</b></u>
-        <div class="row">
-          <div  class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>GST No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="GSTNo" type="text" pInputText id="gstno" name="gstno" class="form-control">
+                  <label for="float-input">Please Enter GST No </label>
+                </span>
               </div>
-              <input formControlName="ContactPerson" type="text" id="contactname" name="gstno" class="form-control" placeholder="ContactPersonName">
-            </div>
-          </div>
-          <div  class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input formControlName="ConatctPersonNo" type="text" id="contactperno" name="contactperno" class="form-control" placeholder="ContactNo">
-            </div>
-          </div>
-          <div  class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input formControlName="Designation" type="text" id="designation" name="designation" class="form-control" placeholder="Designation">
             </div>
           </div>
         </div>
-        <!-- <div class="card-header"> -->
-        <u><b>Bank Details</b></u>
-        <!-- </div> -->
-        <div class="row">
-          <div  class="form-group col-sm-7">
-            <div class="input-group">
-              <div class="input-group-prepend">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>PAN No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="PANNo" type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
+                  <label for="float-input">Please Enter PAN No </label>
+                </span>
               </div>
-              <input formControlName="" type="text" id="accountholdername" name="accountholdername" class="form-control" placeholder="AccountHolderName">
-            </div>
-          </div>
-          <div  class="form-group col-sm-5">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input formControlName="IfscCode" type="text" id="ifsccode" name="ifsccode" class="form-control" placeholder="IfscCode">
             </div>
           </div>
         </div>
-        <div class="row">
-          <div  class="form-group col-sm-7">
-            <div class="input-group">
-              <div class="input-group-prepend">
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Contact Person Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formcontrolName="ContactPersonName" id="contactpersoname" name="contactpersoname" class="form-control" />
+                  <label for="float-input">(Enter ContactPersonName) </label>
+                </span>
               </div>
-              <input formControlName="BankName"    type="text" id="bankname" name="bankname" class="form-control" placeholder="BankName">
-            </div>
-          </div>
-          <div  class="form-group col-sm-5">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input formControlName="AccountNo"    type="text" id="accountno" name="accountno" class="form-control" placeholder="AccountNo">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div  class="form-group col-sm-5">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input formControlName="AccountType"    type="text" id="accounttype" name="accounttype" class="form-control" placeholder="AccountType">
             </div>
           </div>
         </div>
-        <div class="form-group form-actions">
-          <button type="submit"  class="btn btn-sm btn-success">Submit</button>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Contact No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formcontrolName="ContactPersonNo" id="contactpersono" name="contactpersono" class="form-control" />
+                  <label for="float-input">(Please Enter Contact No) </label>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Designation:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formcontrolName="Designation" id="designation" name="designation" class="form-control" />
+                  <label for="float-input">(Please Enter Designation) </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>AccountHolderName:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formcontrolName="AccountHolderName" id="accountholdername" name="accountholdername" class="form-control" />
+                  <label for="float-input">(Enter AccountHolderName) </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>IFSC Code:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formcontrolName="IfscCode" id="ifsccode" name="ifsccode" class="form-control" />
+                  <label for="float-input">(Please Enter IFSC Code) </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>BankName:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formcontrolName="BankName" id="bankname" name="bankname" class="form-control" />
+                  <label for="float-input">(Enter BankName) </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Account No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formcontrolName="AccountNo" id="accountno" name="accountno" class="form-control" />
+                  <label for="float-input">(Please Enter AccountNo) </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>AccountType:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formcontrolName="AccountType" id="accounttype" name="accounttype" class="form-control" />
+                  <label for="float-input">(Enter AccountType) </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
   </div>
-  </div>
+</div>

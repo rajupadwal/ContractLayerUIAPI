@@ -23,7 +23,7 @@ export class CustomerViewComponent implements OnInit {
   columnDefs = [
     {
 
-      headerName: 'Button Col 1',
+      headerName: 'Button Col 1', 'width':100,
       cellRenderer: 'buttonRenderer',
       cellRendererParams: {
         onClick: this.onBtnClick1.bind(this),
@@ -35,16 +35,32 @@ export class CustomerViewComponent implements OnInit {
       headerName: 'CustomerId', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-       field: 'CustomerId'
+      field: 'customerId', 'width': 150
+
+      
     },
+
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' } 
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'widht': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = 'EDIT';
+        newTH.className = "glyphicon glyphicon-pencil";
+        newTH.onclick = function () {
+          alert('Win' + params.data.customerId);
+        };
+        return newTH;
+      },
     },
     //{ headerName: 'CustomerId', field: 'CustomerId' },
-    { headerName: 'CustmerName ', field: 'custmerName' },
-    { headerName: 'CustomerMobileNo', field: 'customerMobileNo' },
-    { headerName: 'Address ', field: 'Address' },
-    { headerName: 'PlantAddress    ', field: 'plantAddress' },
+    { headerName: 'CustmerName ', field: 'custmerName', 'width': 150 },
+    {
+      headerName: 'CustomerMobileNo', field: 'customerMobileNo',' width': 150 },
+    {
+        headerName: 'Address ', field: 'address' ,'width': 100},
+    {
+        headerName: 'PlantAddress    ', field: 'plantAddress','width': 100 },
     { headerName: 'State           ', field: 'state' }
     
   ];
