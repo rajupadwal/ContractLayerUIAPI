@@ -21,6 +21,7 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 @NgModule({
   imports: [
     FormsModule,
+    
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
     CusotomerInfoRoutingModule,

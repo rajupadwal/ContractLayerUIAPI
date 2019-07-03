@@ -18,10 +18,12 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 import { CustomerInfoComponent } from '../customer-info/customer-info.component';
 import { CusotmerService} from './customer.service'
 //import { AutoCompleteModule } from 'primeng';
+import { DialogModule } from '../../dialog/dialog.module';
 
 @NgModule({
   imports: [
     FormsModule,
+    DialogModule,
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
     CusotomerviewRoutingModule,

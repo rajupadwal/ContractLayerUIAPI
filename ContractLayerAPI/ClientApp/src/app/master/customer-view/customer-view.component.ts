@@ -3,7 +3,8 @@ import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../../config';
 import { CusotmerService } from './customer.service';
-
+import { CustomerInfoComponent } from '../customer-info/customer-info.component';
+import { DialogService} from '../../dialog/dialog.service';
 
 
 @Component({
@@ -25,10 +26,6 @@ export class CustomerViewComponent implements OnInit {
 
       headerName: 'Button Col 1', 'width':100,
       cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
     },
 
     {
@@ -46,9 +43,12 @@ export class CustomerViewComponent implements OnInit {
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
         newTH.innerHTML = 'EDIT';
-        newTH.className = "glyphicon glyphicon-pencil";
-        newTH.onclick = function () {
-          alert('Win' + params.data.customerId);
+        newTH.className = "pi pi- pencil";
+        newTH.onclick =  ()=> {
+          const ref = this.dialog.open(CustomerInfoComponent, { data: params.data, modalConfig: {title:'Add/Edit Customer'} });
+          ref.afterClosed.subscribe(result => {
+            console.log('Dialog closed', result);
+          });     
         };
         return newTH;
       },
@@ -69,7 +69,7 @@ export class CustomerViewComponent implements OnInit {
    
   ];
     
-  constructor(private router: Router, private http: HttpClient,private cusotmerService: CusotmerService) { }
+  constructor(private router: Router, private http: HttpClient, private cusotmerService: CusotmerService, public dialog: DialogService) { }
 
   ngOnInit() {
 
