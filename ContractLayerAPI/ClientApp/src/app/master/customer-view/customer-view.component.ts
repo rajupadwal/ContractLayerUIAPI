@@ -32,7 +32,7 @@ export class CustomerViewComponent implements OnInit {
       headerName: 'CustomerId', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'customerId', 'width': 150
+      field: 'CustomerId', 'width': 150
 
       
     },
@@ -42,32 +42,29 @@ export class CustomerViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'EDIT';
-        newTH.className = "pi pi- pencil";
+        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick =  ()=> {
           const ref = this.dialog.open(CustomerInfoComponent, { data: params.data, modalConfig: {title:'Add/Edit Customer'} });
           ref.afterClosed.subscribe(result => {
-            console.log('Dialog closed', result);
+            this.RefreshGrid();
           });     
         };
         return newTH;
       },
     },
     //{ headerName: 'CustomerId', field: 'CustomerId' },
-    { headerName: 'CustmerName ', field: 'custmerName', 'width': 150 },
+    { headerName: 'CustmerName ', field: 'CustmerName', 'width': 150 },
     {
-      headerName: 'CustomerMobileNo', field: 'customerMobileNo',' width': 150 },
+      headerName: 'CustomerMobileNo', field: 'CustomerMobileNo',' width': 150 },
     {
-        headerName: 'Address ', field: 'address' ,'width': 100},
+      headerName: 'Address ', field: 'Address' ,'width': 100},
     {
-        headerName: 'PlantAddress    ', field: 'plantAddress','width': 100 },
-    { headerName: 'State           ', field: 'state' }
+      headerName: 'PlantAddress    ', field: 'PlantAddress','width': 100 },
+    { headerName: 'State           ', field: 'State' }
     
   ];
 
-  rowData = [
-   
-  ];
+  rowData ;
     
   constructor(private router: Router, private http: HttpClient, private cusotmerService: CusotmerService, public dialog: DialogService) { }
 
@@ -85,8 +82,23 @@ export class CustomerViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    this.router.navigateByUrl('/master/Customerview/customerinfo');
+    const ref = this.dialog.open(CustomerInfoComponent, {modalConfig: { title: 'Add/Edit Customer' } });
+    ref.afterClosed.subscribe(result => {
+     // this.rowData.push(result); //TODO this should be implemented like this
+      this.RefreshGrid();
+    });     
   }
+
+  RefreshGrid = () => {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL, httpOptions)
+      .subscribe((customer: any) => {
+        this.rowData = customer;
+      });
+  }
+
   }
 
 

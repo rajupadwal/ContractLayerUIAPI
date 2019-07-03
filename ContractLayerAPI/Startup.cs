@@ -8,6 +8,7 @@ using ContractLayerFarm.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using ContractLayerFarm.Data.Repositories;
 using ContractLayerFarm.Data.Contract;
+using Newtonsoft.Json.Serialization;
 
 namespace ContractLayerAPI
 {
@@ -26,7 +27,11 @@ namespace ContractLayerAPI
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+          .AddJsonOptions(options =>
+          options.SerializerSettings.ContractResolver
+           = new DefaultContractResolver());
+
             services.AddDbContext<ContractLayerDBContext>(options =>
             
             options.UseSqlServer(Configuration.GetConnectionString("CLFDatabase")));

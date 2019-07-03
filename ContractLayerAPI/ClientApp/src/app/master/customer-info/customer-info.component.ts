@@ -4,6 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../../config';
 import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
+import { DialogConfig } from "src/app/dialog/dialog-config";
+import { DialogRef } from '../../dialog/dialog-ref';
+
 
 @Component({
   selector: 'app-customer-info',
@@ -14,53 +17,48 @@ import { Router } from "@angular/router";
 export class CustomerInfoComponent implements OnInit {
 
   customerForm: FormGroup;
-  //resultList: any[] = [];
-  //error: string = '';
-  //success: string = '';
-  constructor(private router:Router,private formBuilder: FormBuilder, private http: HttpClient ) { }
+  public isEditable:boolean = false;
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef ) { }
 
   ngOnInit() {
-    this.customerForm = this.formBuilder.group({
-
-       CustomerId         :[0],
-       CustmerName        :[],
-       CustomerMobileNo   :[],
-       Address            :[],
-       //PlantAddress       :["ABC"],
-       State              :[],
-       District           :[],
-       Taluka             :[],
-       City               :[],
-       Pincode            :[],
-       Location           :[],
-       GstNo              :[],
-       PanNo              :[],
-       ContactPerson      :[],
-       ConatctPersonNo    :[],
-       Designation        :[],
-       BankName           :[],
-       AccountNo          :[],
-       IfscCode           :[],
-       //MicrCode           :["ABC"],
-       //BranchName         :["ABC"],
-       AccountType: [],
-       //IsDeleted: [],
-
-
-      //Dprid: [{ value: 0, disabled: true }],
-      //ClientItemGroupDetailId: [{}, Validators.required],
-      //ProjectItemGroupDetailId: [{}, Validators.required],
-      //DprcontractorItemGroupDetailId: [{}, Validators.required],
-      //WorkNameItemGroupDetailId: [{}, Validators.required],
-      //TargetDate: [dt, Validators.required],
-      //Dprdate: [dt, Validators.required],
-      //DprassociateNameItemGroupDetailId: [{}, Validators.required],
-     
-      //KtrepresentativeItemGroupDetailId: [{}, Validators.required],
-      //ReportText: ['', Validators.required],
-    });
-  }
   
+    this.customerForm = this.formBuilder.group({
+          AccountType        : [], 
+          Address            : [], 
+          BankName           : [], 
+          City               : [], 
+          ConatctPersonNo    : [], 
+          ContactPerson      : ["this is sample"], 
+          CustmerName        : [], 
+          CustomerId         : [0], 
+          CustomerMobileNo   : [], 
+          Designation        : [], 
+          District           : [], 
+          GstNo              : [], 
+          IfscCode           : [], 
+          IsDeleted          : [false], 
+          Location           : [], 
+          PanNo              : [], 
+          Pincode            : [], 
+          State              : [], 
+          Taluka             : [], 
+          AccountNo: [],
+          PlantAddress: [],
+          MicrCode :[],
+          BranchName :[],
+          
+    });
+    if (this.config.data)
+    this.setDataForEdit();
+  
+  }
+
+
+
+  setDataForEdit = () => {
+    this.isEditable = true;
+    this.customerForm.setValue(this.config.data);
+  }
   saveCustomer() {
       let httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -68,12 +66,12 @@ export class CustomerInfoComponent implements OnInit {
     //let customer = this.customerForm.value;
     let customer = this.customerForm.value;
 
-    return this.http.post(APP_CONSTANT.CUSOTMER_API.ADD, customer, httpOptions)
+    return this.http.post(this.isEditable ? APP_CONSTANT.CUSOTMER_API.EDIT:APP_CONSTANT.CUSOTMER_API.ADD, customer, httpOptions)
       .subscribe((customer) => {
           // login successful if there's a jwt token in the response
         if (customer) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-          this.router.navigateByUrl('/master/Customerview');
+          this.dialog.close(customer);
           }
         return customer;
         

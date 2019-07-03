@@ -50,12 +50,13 @@ namespace ContractLayerAPI.Controllers
            
            
         }
-        [HttpPost]
-        public bool Update(TblCustomerMaster customer)
+        [HttpPost("Update")]
+        public bool Update([FromBody] TblCustomerMaster customer)
         {
             try
             {
                 this._repoWrapper.Customer.Update(customer);
+                this._repoWrapper.Customer.Save();
                 return true;
             }
 

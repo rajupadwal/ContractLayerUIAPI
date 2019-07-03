@@ -1,4 +1,4 @@
-<div class="overlay" (click)="onOverlayClicked($event)">
+<div class="overlay" style="z-index:9999" >
 
   <div style="padding:20px;background-color:aliceblue"  [style.width]="modalConfig?.width">
     <div class="row">
@@ -19,7 +19,7 @@
     
   </div>
 
-  <div class="dialog" (click)="onDialogClicked($event)" [style.height]="modalConfig?.height"[style.width]="modalConfig?.width"  >
+  <div class="dialog" [style.height]="modalConfig?.height"[style.width]="modalConfig?.width"  >
     <ng-template appInsertion>
     </ng-template>
   </div>
