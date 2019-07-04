@@ -26,8 +26,8 @@ namespace ContractLayerAPI
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
-
-            services.AddMvc()
+            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
           .AddJsonOptions(options =>
           options.SerializerSettings.ContractResolver
            = new DefaultContractResolver());

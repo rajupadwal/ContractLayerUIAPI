@@ -1,0 +1,223 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Supplier Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="supplierForm" (ngSubmit)="savesupplier()">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Supplier Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="SupplierName " type="text" pInputText id="suppliername" name="suppliername" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Supplier Name </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Mobile Number :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="SupplierMobileNo" type="text" pInputText id="suppliermobileno" name="suppliermobileno" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Mobile No</label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Address Details:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <textarea formControlName="Address" id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
+                  <label for="float-input">Enter  Address Details.. </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>State :</strong></label>
+              <select formControlName="State" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Maharashtra</option>
+                <option value="2">Goa</option>
+                <option value="3">Keral #3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>District :</strong></label>
+              <select formControlName="District" id="select" name="district" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Pune</option>
+                <option value="2">Satara</option>
+                <option value="3">Sangali</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Taluka :</strong></label>
+              <select formControlName="Taluka" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Maval </option>
+                <option value="2">Khed</option>
+                <option value="3">Mulashi #3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>City :</strong></label>
+              <select formControlName="City" id="select" name="city" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Talegaon Dabhade</option>
+                <option value="2">Lonavala</option>
+                <option value="3">Vadgaon</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Pin Code :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Pincode" type="text" pInputText id="Pincode" name="Pincode" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Pin Code</label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>GST No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="GstNo " type="text" pInputText id="gstno" name="gstno" class="form-control" rows="3">
+                  <label for="float-input">Please Enter GST No </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>PAN Number :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="PanNo" type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
+                  <label for="float-input">Please Enter PAN No</label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Bank Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="BankName " type="text" pInputText id="bankname" name="bankname" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Bank Details </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Account Number :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="AccountNo" type="text" pInputText id="accountno" name="accountno" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Account No</label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Branch Name :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="BranchName" type="text" pInputText id="branchname" name="branchname" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Branch Name</label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>IFSC  Code:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="IfscCode " type="text" pInputText id="IfscCode" name="IfscCode" class="form-control" rows="3">
+                  <label for="float-input">Please Enter IFSC Code </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Account Type :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="AccountType" type="text" pInputText id="accounttype" name="accounttype" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Account Type</label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -52,31 +52,28 @@ export const routes: Routes = [
 
           },
 
-          //{
-
-          //  path: 'Customerview',
-          //  loadChildren: './cases/cases.module#CasesModule'
-
-          //},
-
-          {
-
-            path: 'EmployeeInfo',
-            loadChildren: './master/employee-info/employee.info.module#EmployeeInfoModule'
-
-          },
-          {
-
-            path: 'PlanMaster',
-            loadChildren: './master/plan-master/plan.master.module#PalnMasterModule'
-
-          },
           {
 
             path: 'SupplierMaster',
-            loadChildren: './master/customer-info/customer.info.module#CusotmerInfoModule'
-
+            loadChildren: './master/supplier-master/supplier.master.module#SupplierMasterModule'
           },
+
+          //{
+
+          //  path: 'EmployeeInfo',
+          //  loadChildren: './master/employee-info/employee.info.module#EmployeeInfoModule'
+
+          //},
+          //{
+
+          //  path: 'PlanMaster',
+          //  loadChildren: './master/plan-master/plan.master.module#PalnMasterModule'
+
+          //},
+         
+
+
+
          
         ]
       },

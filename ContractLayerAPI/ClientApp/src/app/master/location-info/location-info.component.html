@@ -1,0 +1,101 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Location Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="locationForm" (ngSubmit)="savelocation()">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Location Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="LocationName" type="text" pInputText id="LocationName" name="LocationName" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Location Name </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Location Code :</strong></label>
+              <select formControlName="LocationCode" id="locationcode" name="locationcode" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Satara</option>
+                <option value="2">Sangali </option>
+                <option value="3">Kolhapur </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Address Details:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <textarea formControlName="Address" id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
+                  <label for="float-input">Enter  Address Details.. </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Location Pin Code:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="LocationPinCode" type="text" pInputText id="locationpincode" name="Locationpincode" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Location Pin Code </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+
+              <label for="textarea-input"><strong>Remarks:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Remarks" type="text" pInputText id="remarks" name="remarks" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Remarks  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+
+              <label for="textarea-input"><strong>Contact No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="ContactNo" type="text" pInputText id="contactno" name="contactno" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Contact No  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
+      </div>
+    </form>
+</div>
+</div>
