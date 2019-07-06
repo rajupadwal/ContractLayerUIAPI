@@ -10,21 +10,21 @@ import { SupplierMasterComponent } from '../supplier-master/supplier-master.comp
 
 
 const routes: Routes = [
-  //{
-  //  path: '',
-  //  component: SupplierViewComponent,
-  //  data: {
-  //    title: 'supplier view'
-  //  }
-  //},
+  {
+    path: '',
+    component: SupplierViewComponent,
+    data: {
+      title: 'supplier view'
+    }
+  },
 
-  // {
-  //  path: 'supplierView',
-  //   component: SupplierMasterComponent,
-  //   data: {
-  //     title: 'supplierView'
-  //   }
-  // }
+   {
+    path: 'suppliermaster',
+     component: SupplierMasterComponent,
+     data: {
+       title: 'supplier master'
+     }
+   }
 ];
 
 @NgModule({

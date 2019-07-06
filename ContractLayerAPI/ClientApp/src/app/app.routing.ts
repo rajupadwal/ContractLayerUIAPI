@@ -54,8 +54,8 @@ export const routes: Routes = [
 
           {
 
-            path: 'SupplierMaster',
-            loadChildren: './master/supplier-master/supplier.master.module#SupplierMasterModule'
+            path: 'Supplierview',
+            loadChildren: './master/supplier-view/supplier.view.module#SupplierViewModule'
           },
 
           //{

@@ -12,11 +12,15 @@ import { SupplierviewRoutingModule } from './supplier.view.routing.module';
 import { SupplierViewComponent } from './supplier-view.component';
 import { SupplierMasterComponent } from '../supplier-master/supplier-master.component';
 import { SupplierService } from './supplier.service';
+import { DialogModule } from '../../dialog/dialog.module';
+import { DialogConfig } from '../../dialog/dialog-config';
+import { DialogRef } from '../../dialog/dialog-ref';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
   imports: [
     FormsModule,
+    DialogModule,
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
     SupplierviewRoutingModule,
@@ -28,7 +32,7 @@ import { SupplierService } from './supplier.service';
 
   ],
   declarations: [SupplierViewComponent, SupplierMasterComponent],
-  providers:[SupplierService]
+  providers: [SupplierService, DialogConfig,DialogRef]
 
 })
 export class SupplierViewModule {

@@ -11,6 +11,7 @@ namespace ContractLayerFarm.Data.Repositories
         private ContractLayerDBContext _repoContext;
 
         private CustomerRepository _customer;
+        private SupplierRepository _supplier;
 
         public ICustomerRepository  Customer
         {
@@ -24,7 +25,20 @@ namespace ContractLayerFarm.Data.Repositories
                 return _customer;
             }
         }
-     
+
+        public ISupplierRepository Supplier
+        {
+            get
+            {
+                if (_supplier == null)
+                {
+                    _supplier = new SupplierRepository(_repoContext);
+                }
+
+                return _supplier;
+            }
+        }
+
         public RepositoryWrapper(ContractLayerDBContext repositoryContext)
         {
             _repoContext = repositoryContext;

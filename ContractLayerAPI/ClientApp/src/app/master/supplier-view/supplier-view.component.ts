@@ -3,7 +3,10 @@ import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../../config';
 import { SupplierService } from './supplier.service';
-
+import { DialogService } from '../../dialog/dialog.service';
+import { SupplierMasterComponent } from '../supplier-master/supplier-master.component';
+import { DialogConfig } from '../../dialog/dialog-config';
+import { DialogRef } from '../../dialog/dialog-ref';
 
 
 @Component({
@@ -35,9 +38,7 @@ export class SupplierViewComponent implements OnInit {
       headerName: 'SupplierId', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'supplierId', 'width': 150
-
-
+      field: 'SupplierId', 'width': 150
     },
 
     {
@@ -46,27 +47,45 @@ export class SupplierViewComponent implements OnInit {
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
         newTH.innerHTML = 'EDIT';
-        newTH.className = "glyphicon glyphicon-pencil";
-        newTH.onclick = function () {
-          alert('Win' + params.data.supplierId);
+        newTH.className = 'pi pi - pencil';
+        newTH.onclick = () => {
+          const ref = this.dialog.open(SupplierMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Supplier' } });
+          ref.afterClosed.subscribe(result => {
+            this.RefreshGrid();
+          });
         };
         return newTH;
       },
     },
-    //{ headerName: 'CustomerId', field: 'CustomerId' },
-    { headerName: 'SupplierName ', field: 'supplierName', 'width': 150 },
-    {
-      headerName: 'SupplierMobileNo', field: 'supplierMobileNo', ' width': 150
-    },
-    {
-      headerName: 'State ', field: 'state', 'width': 100
-    },
-    {
-      headerName: 'Address    ', field: 'address', 'width': 100
-    },
-    { headerName: 'District           ', field: 'district', 'width': 100 },
 
-    { headerName: 'Taluka           ', field: 'taluka', 'width': 100 }
+    {
+      headerName: 'Delete',  'widht': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = 'EDIT';
+        newTH.className = "pi pi-times";
+        newTH.onclick = () => {
+          this.delete(params.data);
+         
+        };
+        return newTH;
+      },
+    },
+
+    { headerName: 'SupplierName ', field: 'SupplierName', 'width': 150 },
+    {
+      headerName: 'SupplierMobileNo', field: 'SupplierMobileNo', ' width': 150
+    },
+    {
+      headerName: 'State ', field: 'State', 'width': 100
+    },
+    {
+      headerName: 'Address    ', field: 'Address', 'width': 100
+    },
+    { headerName: 'District           ', field: 'District', 'width': 100 },
+
+    { headerName: 'Taluka           ', field: 'Taluka', 'width': 100 }
 
   ];
 
@@ -74,7 +93,7 @@ export class SupplierViewComponent implements OnInit {
 
   ];
 
-  constructor(private router: Router, private http: HttpClient, private SupplierService: SupplierService) { }
+  constructor(private router: Router, private http: HttpClient, private SupplierService: SupplierService, public dialog: DialogService, private config: DialogConfig, public dialogref: DialogRef) { }
 
   ngOnInit() {
 
@@ -89,10 +108,45 @@ export class SupplierViewComponent implements OnInit {
         this.rowData = supplier;
       });
   }
-  redirectToAddNew() {
-    this.router.navigateByUrl('/master/Supplierview/suppliermaster');
+  delete(supplier) {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    //let customer = this.customerForm.value;
+    
+
+    return this.http.post( APP_CONSTANT.SUPPLIER_API.DELETE, supplier, httpOptions)
+      .subscribe((supplier) => {
+        this.RefreshGrid();
+      });
   }
+
+
+  redirectToAddNew() {
+    const ref = this.dialog.open(SupplierMasterComponent, { modalConfig: { title: 'Add/Edit Supplier' } });
+    ref.afterClosed.subscribe(result => {
+      // this.rowData.push(result); //TODO this should be implemented like this
+      this.RefreshGrid();
+    });
+  }
+
+  RefreshGrid = () => {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.get(APP_CONSTANT.SUPPLIER_API.GETALL, httpOptions)
+      .subscribe((supplier: any) => {
+        this.rowData = supplier;
+      });
+  }
+
+  dataSavedInSupplierComponent(event) {
+    alert('supplier saved');
+  }
+
 }
+
+
 
 
 

@@ -16,13 +16,7 @@ const routes: Routes = [
       title: 'supplier master'
     }
   },
-  {
-    path: 'SupplierMaster',
-    component: SupplierMasterComponent,
-    data: {
-      title: 'supplier master'
-    }
-  },
+  
 //   {
 //     path: 'adddailyprogressreport',
 //     component: AddDailyProgressReportComponent,
