@@ -5,7 +5,7 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblProductMaster
     {
-        public int Pkid { get; set; }
+        public int PkId { get; set; }
         public int ProductId { get; set; }
         public string ProductType { get; set; }
         public string Hsnsac { get; set; }

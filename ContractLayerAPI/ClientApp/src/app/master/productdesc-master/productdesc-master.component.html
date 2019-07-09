@@ -1,0 +1,25 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Product Description Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="productdescmasterForm" (ngSubmit)="saveProductdescMaster()">
+      <div class="card-block">
+        <div class="form-group">
+          <label for="textarea-input"><strong>Product Name:</strong></label>
+          <div>
+            <span class="ui-float-label">
+              <input formControlName="ProductName" type="text" pInputText id="productname" name="productname" class="form-control" rows="3">
+              <!--<label for="float-input">Please Enter Product Name </label>-->
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

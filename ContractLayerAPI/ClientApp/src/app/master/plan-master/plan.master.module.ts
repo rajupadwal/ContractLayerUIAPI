@@ -32,7 +32,7 @@ import { PlanMasterComponent } from './plan-master.component';
   declarations: [PlanMasterComponent],
   
 })
-export class PalnMasterModule {
+export class PlanMasterModule {
  
  }
 //providers: [DPRService]

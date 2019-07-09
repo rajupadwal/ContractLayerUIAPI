@@ -1,0 +1,175 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Product Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Product Name :</strong></label>
+              <select formControlName="ProductId" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Jumbo Drinker</option>
+                <option value="2">Grover</option>
+                <option value="3">Lasota 500 DOS</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Product Type :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="ProductType" type="text" pInputText id="producttype" name="producttype" class="form-control">
+                  <!--<label for="float-input">Please Enter Product Type  </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>HSNSAC Code :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Hsnsac" type="text" pInputText id="hsnsac" name="hsnsac" class="form-control">
+                  <!--<label for="float-input">Please Enter HSNSAC Code</label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Unit :</strong></label>
+              <select formControlName="Unit" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Purchase Price:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="PurchasePrice" type="text" pInputText id="purchaseprice" name="purchaseprice" class="form-control">
+                  <!--<label for="float-input">Please Enter Purchase Price  </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Selling Price:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="SellingPrice" type="text" pInputText id="sellingprice" name="sellingprice" class="form-control">
+                  <!--<label for="float-input">Please Enter Selling Price  </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>CGST :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Cgst" type="text" pInputText id="cgst" name="cgst" class="form-control">
+                  <!--<label for="float-input">Please Enter CGST  </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>SGST :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Sgst" type="text" pInputText id="sgst" name="sgst" class="form-control">
+                  <!--<label for="float-input">Please Enter SGST  </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>IGST :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Igst" type="text" pInputText id="igst" name="igst" class="form-control">
+                  <!--<label for="float-input">Please Enter IGST  </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Minimum Quantity:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="MinimumQty" id="minimumqty" name="minimumqty" class="form-control" />
+                  <!--<label for="float-input">(Enter Minimum Qty) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Opening Stock :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="OpeningStock" id="openingstock" name="openingstock" class="form-control" />
+                  <!--<label for="float-input">(Please Enter OpeningStock) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -9,6 +9,7 @@ import { DialogRef } from './dialog-ref';
   providedIn: DialogModule
 })
 export class DialogService {
+    
   dialogComponentRef: ComponentRef<DialogComponent>;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private appRef: ApplicationRef, private injector: Injector) {}

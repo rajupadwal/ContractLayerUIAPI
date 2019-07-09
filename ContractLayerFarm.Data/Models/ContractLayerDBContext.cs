@@ -109,7 +109,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Address).HasMaxLength(50);
 
-                entity.Property(e => e.CompanyLogo).HasColumnType("image");
+                entity.Property(e => e.CompanyLogo).HasMaxLength(20);
 
                 entity.Property(e => e.CompanyName).HasMaxLength(50);
 
@@ -205,7 +205,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.AccountType).HasMaxLength(20);
 
-                entity.Property(e => e.AddharId).HasMaxLength(20);
+                entity.Property(e => e.AadharId).HasMaxLength(20);
 
                 entity.Property(e => e.Address).HasMaxLength(20);
 
@@ -219,7 +219,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.CompanyMobileNo).HasMaxLength(15);
 
-                entity.Property(e => e.ContactNoPersonal).HasMaxLength(20);
+                entity.Property(e => e.PersonalContactNo).HasMaxLength(20);
 
                 entity.Property(e => e.DateOfJoining).HasColumnType("datetime");
 
@@ -229,27 +229,19 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.EducationDetails).HasMaxLength(20);
 
-                entity.Property(e => e.EmergencyConatactName).HasMaxLength(20);
+                entity.Property(e => e.EmergencyContactName).HasMaxLength(20);
 
                 entity.Property(e => e.EmergencyNo).HasMaxLength(20);
 
-                entity.Property(e => e.FirstName).HasMaxLength(20);
+                entity.Property(e => e.EmployeeName).HasMaxLength(20);
 
-                entity.Property(e => e.Ifsccode)
-                    .HasColumnName("IFSCCode")
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.LastName).HasMaxLength(20);
+                entity.Property(e => e.IfscCode).HasMaxLength(20);
 
                 entity.Property(e => e.Location).HasMaxLength(20);
 
                 entity.Property(e => e.MaritialStatus).HasMaxLength(15);
 
-                entity.Property(e => e.Micrcode)
-                    .HasColumnName("MICRCode")
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.MiddleName).HasMaxLength(20);
+                entity.Property(e => e.MicrCode).HasMaxLength(20);
 
                 entity.Property(e => e.PanCardNo).HasMaxLength(20);
 
@@ -265,9 +257,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Role).HasMaxLength(20);
 
-                entity.Property(e => e.Salary)
-                    .HasColumnName("salary")
-                    .HasMaxLength(20);
+                entity.Property(e => e.Salary).HasMaxLength(20);
 
                 entity.Property(e => e.Taluka).HasMaxLength(20);
 
@@ -501,27 +491,21 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblProductMaster>(entity =>
             {
-                entity.HasKey(e => e.Pkid);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_ProductMaster");
 
-                entity.Property(e => e.Pkid)
-                    .HasColumnName("PKId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Cgst);
 
-                entity.Property(e => e.Cgst).HasColumnName("CGST");
+                entity.Property(e => e.Hsnsac).HasMaxLength(50);
 
-                entity.Property(e => e.Hsnsac)
-                    .HasColumnName("HSNSAC")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Igst).HasColumnName("IGST");
+                entity.Property(e => e.Igst);
 
                 entity.Property(e => e.ProductType)
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Sgst).HasColumnName("SGST");
+                entity.Property(e => e.Sgst);
 
                 entity.Property(e => e.Unit).HasMaxLength(50);
             });

@@ -46,39 +46,47 @@ export const routes: Routes = [
         children: [
 
           {
-
             path: 'Customerview',
             loadChildren: './master/customer-view/customer.module#CusotmerModule'
-
           },
 
           {
-
             path: 'Supplierview',
             loadChildren: './master/supplier-view/supplier.view.module#SupplierViewModule'
           },
 
-          //{
+          {
+            path: 'Locationview',
+            loadChildren: './master/location-view/location.view.module#LocationViewModule'
+          },
 
-          //  path: 'EmployeeInfo',
-          //  loadChildren: './master/employee-info/employee.info.module#EmployeeInfoModule'
+          {
+            path: 'Planview',
+            loadChildren: './master/plan-view/plan.view.module#PlanViewModule'
+          },
 
-          //},
-          //{
+          {
+            path: 'Productdescview',
+            loadChildren: './master/productdesc-view/productdesc.view.module#ProductdescViewModule'
+          },
 
-          //  path: 'PlanMaster',
-          //  loadChildren: './master/plan-master/plan.master.module#PalnMasterModule'
-
-          //},
-         
-
-
-
+          {
+            path: 'Profileview',
+            loadChildren: './master/profile-view/profile.view.module#ProfileViewModule'
+          },
+          
+          {
+            path: 'Employeeview',
+            loadChildren: './master/employee-view/employee.view.module#EmployeeViewModule'
+          },
+          
+          {
+            path: 'Productview',
+            loadChildren: './master/product-view/product.view.module#ProductViewModule'
+          },
          
         ]
       },
-
-
 
       //{
       //  path: 'cases',

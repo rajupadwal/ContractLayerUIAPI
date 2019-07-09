@@ -12,7 +12,7 @@ namespace ContractLayerFarm.Data.Models
         public string EmailId { get; set; }
         public string MobileNo { get; set; }
         public string GstNo { get; set; }
-        public byte[] CompanyLogo { get; set; }
+        public string CompanyLogo { get; set; }
         public string ThankYouNote { get; set; }
     }
 }

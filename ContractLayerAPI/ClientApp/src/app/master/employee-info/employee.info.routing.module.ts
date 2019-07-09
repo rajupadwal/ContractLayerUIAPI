@@ -16,13 +16,7 @@ const routes: Routes = [
       title: 'Employee Info'
     }
   },
-//   {
-//     path: 'adddailyprogressreport',
-//     component: AddDailyProgressReportComponent,
-//     data: {
-//       title: 'add Progress report'
-//     }
-//   }
+ 
 ];
 
 @NgModule({

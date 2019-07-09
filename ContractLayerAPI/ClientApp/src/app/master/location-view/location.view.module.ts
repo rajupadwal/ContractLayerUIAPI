@@ -17,11 +17,16 @@ import { LocationviewRoutingModule  } from './location.view.routing.module'
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 import { LocationInfoComponent } from '../location-info/location-info.component';
 import { LocationService } from './location.service';
+import { DialogConfig } from '../../dialog/dialog-config';
+import { DialogService } from '../../dialog/dialog.service';
+import { DialogRef } from '../../dialog/dialog-ref';
+import { DialogModule } from '../../dialog/dialog.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
   imports: [
     FormsModule,
+    DialogModule,
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
     LocationviewRoutingModule,
@@ -33,7 +38,7 @@ import { LocationService } from './location.service';
 
   ],
   declarations: [LocationViewComponent, LocationInfoComponent],
-  providers:[LocationService]
+  providers: [LocationService, DialogConfig,DialogService,DialogRef]
 
 })
 export class LocationViewModule {

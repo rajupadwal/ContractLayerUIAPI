@@ -1,78 +1,133 @@
 <div class="col-sm-12">
   <div class="card">
     <div class="card-header">
-      Plan Master
+      <strong>Plan Master</strong>
+      <!--<small>Form</small>-->
     </div>
-    <div class="card-body">
-      <form action="" method="post">
-        <div class="row">
-          <div class="form-group" class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
+    <form [formGroup]="planmasterForm" (ngSubmit)="savePlanMaster()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Plan Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="PlanName" type="text" pInputText id="planname" name="planname" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Plan Name </label>-->
+                </span>
               </div>
-              <input type="text" id="planname" name="planname" class="form-control" placeholder="PlanName">
-            </div>
-          </div>
-          <div class="form-group" class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input type="text" id="chickageindays" name="chickageindays" class="form-control"
-                placeholder="ChickAgeInDays">
-            </div>
-          </div>
-          <div class="form-group" class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input type="text" id="durationindays" name="durationindays" class="form-control"
-                placeholder="DurationInDays">
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="form-group" class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Chicks Age In Days:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="ChickAgeInDays" type="text" pInputText id="chickageindays" name="chickageindays" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Chicks Age In Days </label>-->
+                </span>
               </div>
-              <input type="text" id="noofchicks" name="planname" class="form-control" placeholder="NoOfChicks">
-            </div>
-          </div>
-          <div class="form-group" class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input type="text" id="eggsreturn" name="eggsreturn" class="form-control" placeholder="EggsReturn">
-            </div>
-          </div>
-          <div class="form-group" class="form-group col-sm-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              </div>
-              <input type="text" id="chicksreturnrate" name="chicksreturnrate" class="form-control"
-                placeholder="ChicksReturnRate">
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="form-group" class="form-group col-sm-4">
-            <div class="input-group">
-              <input type="text" id="amount" name="amount" class="form-control" placeholder="Amount">
-            </div>
-          </div>
-          <div class="form-group" class="form-group col-sm-4">
-            <div class="input-group">
-              <input type="text" id="admincharges" name="admincharges" class="form-control" placeholder="AdminCharges">
-            </div>
-          </div>
-          <div class="form-group" class="form-group col-sm-4">
-              <div class="input-group">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Duration In Days:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="DurationInDays" type="text" pInputText id="durationindays" name="durationindays " class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Duration In Days </label>-->
+                </span>
               </div>
             </div>
+          </div>
         </div>
-        <div class="form-group form-actions">
-          <button type="submit" class="btn btn-sm btn-success">Submit</button>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>No Of Chicks :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="NoOfChicks" type="text" pInputText id="noofchicks" name="noofchicks" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter No Of Chicks </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Eggs Return:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="EggsReturn" type="text" pInputText id="eggsreturn" name="eggsreturn" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Eggs Return </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Chicks Return Rate :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="ChicksReturnRate" type="text" pInputText id="chicksreturnrate" name="chicksreturnrate " class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Chicks Return Rate </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Amount :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Amount" type="text" pInputText id="amount" name="amount" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Amount </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Admin Charges:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="AdminCharges" type="text" pInputText id="admincharges" name="admincharges" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Admin Charges </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
   </div>
+</div>

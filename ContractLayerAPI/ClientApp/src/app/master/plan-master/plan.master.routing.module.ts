@@ -16,13 +16,6 @@ const routes: Routes = [
             title: 'Plan master'
         }
     },
-    //   {
-    //     path: 'adddailyprogressreport',
-    //     component: AddDailyProgressReportComponent,
-    //     data: {
-    //       title: 'add Progress report'
-    //     }
-    //   }
 ];
 
 @NgModule({

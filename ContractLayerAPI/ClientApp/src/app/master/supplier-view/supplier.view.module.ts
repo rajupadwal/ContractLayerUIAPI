@@ -32,7 +32,7 @@ import { DialogRef } from '../../dialog/dialog-ref';
 
   ],
   declarations: [SupplierViewComponent, SupplierMasterComponent],
-  providers: [SupplierService, DialogConfig,DialogRef]
+  providers: [SupplierService, DialogConfig, DialogRef]
 
 })
 export class SupplierViewModule {
