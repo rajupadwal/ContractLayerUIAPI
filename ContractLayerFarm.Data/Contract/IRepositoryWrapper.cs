@@ -11,11 +11,13 @@ namespace ContractLayerFarm.Data.Contract
         ISupplierRepository Supplier { get; }
         ILocationRepository Location { get; }
         IProductdescRepository Productdesc { get; }
-
         IProductRepository Product { get; }
         IPlanRepository Plan { get; }
-       IProfileRepository Profile { get; }
+        IProfileRepository Profile { get; }
         IEmployeeRepository Employee { get; }
+        IBookingRepository Booking { get; }
+
+
         //IItemGroupDetailRepository IItemGroupDetail { get; }
         //IDPRRepository IDPRRepository { get; }
 

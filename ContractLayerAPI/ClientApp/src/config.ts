@@ -1,5 +1,5 @@
 
-export const API_URL = "http://localhost:53580/api/"
+export const API_URL = "http://localhost:49741/api/"
 export const APP_CONSTANT={
   USER_APIS : {
     LOGIN: API_URL + "user/login"
@@ -70,7 +70,13 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Employee/Delete'
   },
 
-
+  BOOKING_API: {
+    ADD: API_URL + 'Booking/Add',
+    GETALL: API_URL + 'Booking/GetAll',
+    GETByID: API_URL + 'Booking/GetAll',
+    EDIT: API_URL + 'Booking/Update',
+    DELETE: API_URL + 'Booking/Delete'
+  },
 
 
 }

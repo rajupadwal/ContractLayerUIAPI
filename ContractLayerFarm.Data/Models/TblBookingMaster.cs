@@ -14,7 +14,7 @@ namespace ContractLayerFarm.Data.Models
         public int? NoOfPlan { get; set; }
         public int? NoOfChicks { get; set; }
         public int? NoOfPlanCancel { get; set; }
-        public decimal? Amonut { get; set; }
+        public decimal? Amount { get; set; }
         public int? EmployeeId { get; set; }
         public string EnquiryRef { get; set; }
         public string Agreement { get; set; }
