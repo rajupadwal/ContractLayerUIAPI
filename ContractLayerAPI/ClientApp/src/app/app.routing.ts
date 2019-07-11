@@ -88,6 +88,21 @@ export const routes: Routes = [
         ]
       },
 
+      {
+        path: 'bookingmaster',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Booking'
+        },
+        children: [
+
+          {
+            path: 'Bookingview',
+            loadChildren: './bookingmaster/booking-view/booking.view.module#BookingViewModule'
+          },
+        ]
+      },
+
       //{
       //  path: 'cases',
       //  loadChildren: './cases/cases.module#CasesModule'

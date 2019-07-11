@@ -18,6 +18,7 @@ namespace ContractLayerFarm.Data.Repositories
         private ProductRepository _product;
         private ProfileRepository _profile;
         private EmployeeRepository _employee;
+        private BookingRepository _booking;
         public ICustomerRepository  Customer
         {
             get
@@ -31,6 +32,18 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
 
+        public IBookingRepository Booking
+        {
+            get
+            {
+                if (_booking == null)
+                {
+                    _booking = new BookingRepository(_repoContext);
+                }
+
+                return _booking;
+            }
+        }
         public IEmployeeRepository Employee
         {
             get
