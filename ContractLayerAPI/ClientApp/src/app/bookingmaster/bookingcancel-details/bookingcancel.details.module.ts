@@ -3,12 +3,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AgGridModule } from 'ag-grid-angular';
-import { EmployeeInfoComponent } from './employee-info.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
-import {EmployeeInfoRoutingModule} from './employee.info.routing.module';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 import { DialogModule } from '../../dialog/dialog.module';
+import { BookingcancelDetailsComponent } from './bookingcancel-details.component';
+import { BookingcancelDetailsRoutingModule } from './bookingcancel.details.routing.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -17,14 +17,14 @@ import { DialogModule } from '../../dialog/dialog.module';
     DialogModule,
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
-    EmployeeInfoRoutingModule,
+    BookingcancelDetailsRoutingModule,
     CalendarModule,
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [EmployeeInfoComponent],
+  declarations: [BookingcancelDetailsComponent],
 })
-export class EmployeeInfoModule {
+export class BookingcancelDetailsModule {
  }

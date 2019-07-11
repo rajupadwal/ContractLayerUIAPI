@@ -19,16 +19,18 @@ namespace ContractLayerFarm.Data.Repositories
         private ProfileRepository _profile;
         private EmployeeRepository _employee;
         private BookingRepository _booking;
-        public ICustomerRepository  Customer
+        private BookingCancelRepository _bookingcancel;
+        
+        public IBookingCancelRepository Bookingcancel
         {
             get
             {
-                if (_customer == null)
+                if (_bookingcancel == null)
                 {
-                    _customer = new CustomerRepository(_repoContext);
+                    _bookingcancel = new BookingCancelRepository(_repoContext);
                 }
 
-                return _customer;
+                return _bookingcancel;
             }
         }
 
@@ -42,6 +44,19 @@ namespace ContractLayerFarm.Data.Repositories
                 }
 
                 return _booking;
+            }
+        }
+
+        public ICustomerRepository Customer
+        {
+            get
+            {
+                if (_customer == null)
+                {
+                    _customer = new CustomerRepository(_repoContext);
+                }
+
+                return _customer;
             }
         }
         public IEmployeeRepository Employee

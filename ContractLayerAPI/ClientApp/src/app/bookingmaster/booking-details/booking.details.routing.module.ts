@@ -7,7 +7,6 @@ import {
 
 import { BookingDetailsComponent } from './booking-details.component';
 
-
 const routes: Routes = [
   {
     path: '',

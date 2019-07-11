@@ -5,14 +5,14 @@ import {
   RouterModule
 } from '@angular/router';
 
-import { EmployeeInfoComponent } from './employee-info.component';
+import { BookingcancelDetailsComponent } from './bookingcancel-details.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: EmployeeInfoComponent,
+    component: BookingcancelDetailsComponent,
     data: {
-      title: 'Employee Info'
+      title: 'Booking Cancel'
     }
   },
 ];
@@ -21,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EmployeeInfoRoutingModule { }
+export class BookingcancelDetailsRoutingModule { }

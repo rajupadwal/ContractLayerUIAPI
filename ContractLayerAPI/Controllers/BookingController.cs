@@ -33,7 +33,7 @@ namespace ContractLayerAPI.Controllers
             return Booking;
         }
         [HttpPost("Add")]
-        public bool Add([FromBody]TblBookingMaster booking)
+        public bool Add([FromBody] TblBookingMaster booking)
         {
             try
             {
@@ -46,9 +46,8 @@ namespace ContractLayerAPI.Controllers
             {
                 return false;
             }
-
-
         }
+
         [HttpPost("Update")]
         public bool Update([FromBody] TblBookingMaster booking)
         {

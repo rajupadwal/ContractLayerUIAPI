@@ -22,27 +22,27 @@ export class BookingDetailsComponent implements OnInit {
   ngOnInit() {
     this.bookingdetailsForm = this.formBuilder.group({
 
-      RecordNo: [0],
-      LocationId: [],
-      CustomerId: [],
-      BookingDate: [],
-      MobileNo: [],
-      PlanId: [],
-      NoOfPlan: [],
-      NoOfChicks: [],
-      Amount: [],
-      EmployeeId: [],
-      EnquiryRef: [],
-      Agreement: [],
-      EggsLiability: [],
-      //NoOfPlanCancel: [],
-      PaymentMethod: [],
-      ChequeNo: [],
-      PaidAmount: [],
-      //BalanceAmonut: [],
-      Narration: [],
-      //DeliveryStatus: [],
-      //IsDeleted: [false] 
+      RecordNo        : [0],
+      LocationId      : [],
+      CustomerId      : [],
+      BookingDate     : [],
+      MobileNo        : [],
+      PlanId          : [],
+      NoOfPlan        : [],
+      NoOfChicks      : [],
+      Amount          : [],
+      EmployeeId      : [],
+      EnquiryRef      : [],
+      Agreement       : [],
+      EggsLiability   : [],
+      //NoOfPlanCancel  : [],
+      PaymentMethod   : [],
+      ChequeNo        : [],
+      PaidAmount      : [],
+      //BalanceAmonut   : [],
+      Narration       : [],
+      //DeliveryStatus  : [],
+      //IsDeleted       : [false] 
     });
 
     if (this.config.data)
@@ -58,7 +58,6 @@ export class BookingDetailsComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    //let customer = this.customerForm.value;
     let booking = this.bookingdetailsForm.value;
 
     return this.http.post(this.isEditable ? APP_CONSTANT.BOOKING_API.EDIT : APP_CONSTANT.BOOKING_API.ADD, booking, httpOptions)

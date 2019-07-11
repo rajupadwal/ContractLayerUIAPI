@@ -36,7 +36,7 @@ export class ProfileViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'widht': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');

@@ -1,0 +1,85 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using ContractLayerFarm.Data.Contract;
+using ContractLayerFarm.Data.Models;
+
+namespace ContractLayerAPI.Controllers
+{
+    [Produces("application/json")]
+    [Route("api/Bookingcancel/")]
+    public class BookingcancelController : Controller
+    {
+
+        private IRepositoryWrapper _repoWrapper;
+
+        public BookingcancelController(IRepositoryWrapper repoWrapper)
+        {
+            _repoWrapper = repoWrapper;
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<TblBookingCancelMaster> GetAll()
+        {
+            var Bookingcancel = this._repoWrapper.Bookingcancel.FindAll().ToList();
+            return Bookingcancel;
+        }
+
+        [HttpGet("[action]")] 
+        public TblBookingCancelMaster GetByID(int RecordNo)
+        {
+            var Bookingcancel = this._repoWrapper.Bookingcancel.FindByCondition(x=> x.RecordNo == RecordNo).FirstOrDefault();
+            return Bookingcancel;
+        }
+
+        [HttpPost("Add")]
+        public bool Add([FromBody]TblBookingCancelMaster bookingcancel)
+        {
+            try
+            {
+                this._repoWrapper.Bookingcancel.Create(bookingcancel);
+                this._repoWrapper.Bookingcancel.Save();
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost("Update")]
+        public bool Update([FromBody] TblBookingCancelMaster bookingcancel)
+        {
+            try
+            {
+                this._repoWrapper.Bookingcancel.Update(bookingcancel);
+                this._repoWrapper.Bookingcancel.Save();
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost("Delete")]
+        public bool Delete([FromBody] TblBookingCancelMaster bookingcancel)
+        {
+            try
+            {
+                this._repoWrapper.Bookingcancel.Delete(bookingcancel);
+                this._repoWrapper.Bookingcancel.Save();
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+    }
+}

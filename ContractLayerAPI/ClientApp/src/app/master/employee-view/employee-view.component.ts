@@ -6,7 +6,6 @@ import { EmployeeService } from './employee.service';
 import { DialogService } from '../../dialog/dialog.service';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
 
-
 @Component({
   selector: 'app-employee-view',
   templateUrl: './employee-view.component.html',
@@ -39,7 +38,7 @@ export class EmployeeViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'widht': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');

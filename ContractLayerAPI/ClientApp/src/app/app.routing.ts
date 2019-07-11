@@ -100,6 +100,10 @@ export const routes: Routes = [
             path: 'Bookingview',
             loadChildren: './bookingmaster/booking-view/booking.view.module#BookingViewModule'
           },
+          {
+            path: 'Bookingcancelview',
+            loadChildren: './bookingmaster/bookingcancel-view/bookingcancel.view.module#BookingcancelViewModule'
+          },
         ]
       },
 
