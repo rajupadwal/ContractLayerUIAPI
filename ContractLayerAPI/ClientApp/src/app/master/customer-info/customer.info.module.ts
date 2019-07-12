@@ -16,12 +16,13 @@ import {CusotomerInfoRoutingModule} from './cusotmer.info.routing.module';
 
 //import { DPRService } from './dpr.service';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
+import { DialogModule } from '../../dialog/dialog.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
   imports: [
     FormsModule,
-    
+    DialogModule,
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
     CusotomerInfoRoutingModule,

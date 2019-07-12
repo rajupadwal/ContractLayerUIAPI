@@ -52,6 +52,21 @@ export class CustomerViewComponent implements OnInit {
         return newTH;
       },
     },
+
+    {
+      headerName: 'Delete', 'width': 150,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = 'Delete';
+        newTH.className = "pi pi-times";
+        newTH.onclick = () => {
+          this.delete(params.data);
+
+        };
+        return newTH;
+      },
+    },
     //{ headerName: 'CustomerId', field: 'CustomerId' },
     { headerName: 'CustmerName ', field: 'CustmerName', 'width': 150 },
     {
@@ -96,6 +111,19 @@ export class CustomerViewComponent implements OnInit {
     return this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL, httpOptions)
       .subscribe((customer: any) => {
         this.rowData = customer;
+      });
+  }
+
+  delete(customer) {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    //let customer = this.customerForm.value;
+
+
+    return this.http.post(APP_CONSTANT.CUSOTMER_API.DELETE, customer, httpOptions)
+      .subscribe((customer) => {
+        this.RefreshGrid();
       });
   }
 

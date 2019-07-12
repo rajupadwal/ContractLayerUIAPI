@@ -14,12 +14,15 @@ import { DialogRef } from '../../dialog/dialog-ref';
 })
 
 export class BookingDetailsComponent implements OnInit {
-
+  selectedCustomer
+  public customers = [];
   bookingdetailsForm: FormGroup;
   public isEditable: boolean = false;
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef) { }
 
   ngOnInit() {
+    
+    this.loadCustomer();
     this.bookingdetailsForm = this.formBuilder.group({
 
       RecordNo: [0],
@@ -35,12 +38,15 @@ export class BookingDetailsComponent implements OnInit {
       EnquiryRef: [],
       Agreement: [],
       EggsLiability: [],
-      //NoOfPlanCancel: [],
       PaymentMethod: [],
       ChequeNo: [],
       PaidAmount: [],
-      //BalanceAmonut: [],
       Narration: [],
+
+      Customer: [{}]
+
+      //BalanceAmonut: [],
+      //NoOfPlanCancel: [],
       //DeliveryStatus: [],
       //IsDeleted: [false] 
     });
@@ -49,9 +55,35 @@ export class BookingDetailsComponent implements OnInit {
       this.setDataForEdit();
   }
 
+
+  onChanges(): void {
+    this.bookingdetailsForm.valueChanges.subscribe(val => {
+      if (val.Name == "CutomerId") {
+        
+      }
+    });
+  }
+
+
+
   setDataForEdit = () => {
     this.isEditable = true;
     this.bookingdetailsForm.setValue(this.config.data);
+  }
+  loadCustomer() {
+
+
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    //let customer = this.customerForm.value;
+    //let booking = this.bookingdetailsForm.value;
+
+    return this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL, httpOptions)
+      .subscribe((customers:any) => {
+        this.customers = customers;
+      });
+
   }
 
   saveBookingDetails() {
@@ -60,6 +92,12 @@ export class BookingDetailsComponent implements OnInit {
     };
     //let customer = this.customerForm.value;
     let booking = this.bookingdetailsForm.value;
+    //let booking = {
+    //  RecordNo: 0,
+    //  LocationId: 1,
+    //  CustomerId: 1,
+    //  MobileNo: '123456'
+    //};
 
     return this.http.post(this.isEditable ? APP_CONSTANT.BOOKING_API.EDIT : APP_CONSTANT.BOOKING_API.ADD, booking, httpOptions)
       .subscribe((booking) => {

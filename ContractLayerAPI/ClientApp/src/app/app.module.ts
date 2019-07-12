@@ -29,8 +29,6 @@ import { ValidationBorderModule } from './validation-border';
 
 
 
-
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -63,7 +61,6 @@ import { ValidationBorderModule } from './validation-border';
     AsideToggleDirective,
     ErrorDirective,
     
-
 
   ],
   providers: [

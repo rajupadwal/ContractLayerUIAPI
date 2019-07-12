@@ -22,7 +22,7 @@ namespace ContractLayerFarm.Data.Models
         public string PaymentMethod { get; set; }
         public string ChequeNo { get; set; }
         public decimal? PaidAmount { get; set; }
-        public decimal? BalanceAmonut { get; set; }
+        public decimal? BalanceAmount { get; set; }
         public string Narration { get; set; }
         public string DeliveryStatus { get; set; }
         public bool? IsDeleted { get; set; }
