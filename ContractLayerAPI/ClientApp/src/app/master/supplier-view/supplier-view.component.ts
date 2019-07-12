@@ -42,7 +42,7 @@ export class SupplierViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'widht': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -59,7 +59,7 @@ export class SupplierViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete',  'widht': 50,
+      headerName: 'Delete',  'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');

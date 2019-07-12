@@ -79,6 +79,12 @@ export const APP_CONSTANT={
     EDIT: API_URL + 'Booking/Update',
     DELETE: API_URL + 'Booking/Delete'
   },
-
+  BOOKINGCANCEL_API: {
+    ADD: API_URL + 'Bookingcancel/Add',
+    GETALL: API_URL + 'Bookingcancel/GetAll',
+    GETByID: API_URL + 'Bookingcancel/GetAll',
+    EDIT: API_URL + 'Bookingcancel/Update',
+    DELETE: API_URL + 'Bookingcancel/Delete'
+  },
 
 }

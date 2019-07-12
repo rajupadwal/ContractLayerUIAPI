@@ -1,10 +1,10 @@
 <div class="col-sm-12">
   <div class="card">
     <div class="card-header">
-      <strong>Booking Order</strong>
+      <strong>Booking Cancel Order</strong>
       <!--<small>Form</small>-->
     </div>
-    <form [formGroup]="bookingdetailsForm" (ngSubmit)="saveBookingDetails()">
+    <form [formGroup]="bookingcancelForm" (ngSubmit)="saveBookingCancel()">
       <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
@@ -36,8 +36,10 @@
             <div class="form-group">
               <label for="select"><strong>Customer Name :</strong></label>
               <select formControlName="CustomerId" id="select" name="select" class="form-control">
-                <option value="">Please select</option>
-                <option *ngFor="let customer of customers" value="{{customer.CustomerId}}">{{customer.CustmerName}}</option>
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
               </select>
             </div>
           </div>
@@ -51,19 +53,7 @@
               <label for="textarea-input"><strong>Date :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="BookingDate" type="text" pInputText id="bookingdate" name="bookingdate" class="form-control" rows="3">
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="textarea-input"><strong>Mobile No :</strong></label>
-              <div>
-                <span class="ui-float-label">
-                  <input formControlName="MobileNo" type="text" pInputText id="mobileno" name="mobileno" class="form-control" rows="3">
+                  <input formControlName="BookungCancelDate" type="text" pInputText id="bookingcanceldate" name="bookingcanceldate" class="form-control" rows="3">
                 </span>
               </div>
             </div>
@@ -82,9 +72,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
@@ -97,6 +84,9 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
@@ -115,62 +105,31 @@
               <label for="textarea-input"><strong>Amount :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Amount" type="text" pInputText id="amount" name="amount" class="form-control" rows="3">
+                  <input formControlName="Amonut" type="text" pInputText id="amount" name="amount" class="form-control" rows="3">
                 </span>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-header">
+        <strong>Booking Cancellation Details</strong>
+        <!--<small>Form</small>-->
       </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
-              <label for="select"><strong>Unit Manager :</strong></label>
-              <select formControlName="EmployeeId" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="select"><strong>Enquiry Reference :</strong></label>
-              <select formControlName="EnquiryRef" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="select"><strong>Agreement :</strong></label>
-              <select formControlName="Agreement" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Yes</option>
-                <option value="2">No</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="textarea-input"><strong>Eggs Liability :</strong></label>
+              <label for="textarea-input"><strong>No Of Plan :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="EggsLiability" type="text" pInputText id="eggsliability" name="eggsliability" class="form-control">
+                  <input formControlName="CancelNoOfPlan" type="text" pInputText id="cancelnoofplan" name="cancelnoofplan" class="form-control" rows="3">
                 </span>
               </div>
             </div>
@@ -179,12 +138,23 @@
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
-              <!--<input formControlName="NoOfPlanCancel" type="text" pInputText id="noofplancancel" name="noofplancancel" class="form-control" disabled="disabled">-->
+              <label for="textarea-input"><strong>No Of Chicks :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="CancelNoOfChicks" type="text" pInputText id="cancelnoofchicks" name="cancelnoofchicks" class="form-control" rows="3">
+                </span>
+              </div>
             </div>
           </div>
-          <div class="col-sm-4">
-            <div class="card-block">
-              <div class="form-group">
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Amount :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="CancelAmount" type="text" pInputText id="cancelamount" name="cancelamount" class="form-control" rows="3">
+                </span>
               </div>
             </div>
           </div>

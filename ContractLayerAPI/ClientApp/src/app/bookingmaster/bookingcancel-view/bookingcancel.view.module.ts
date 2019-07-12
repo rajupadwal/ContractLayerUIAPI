@@ -3,13 +3,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AgGridModule } from 'ag-grid-angular';
-import { EmployeeInfoComponent } from './employee-info.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
-import {EmployeeInfoRoutingModule} from './employee.info.routing.module';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
-import { DialogModule } from '../../dialog/dialog.module';
 //import { AutoCompleteModule } from 'primeng';
+import { DialogModule } from '../../dialog/dialog.module';
+import { BookingcancelDetailsComponent } from '../bookingcancel-details/bookingcancel-details.component';
+import { BookingcancelService } from './bookingcancel.service';
+import { BookingcancelviewRoutingModule } from './bookingcancel.view.routing.module';
+import { BookingcancelViewComponent } from './bookingcancel-view.component';
 
 @NgModule({
   imports: [
@@ -17,14 +19,15 @@ import { DialogModule } from '../../dialog/dialog.module';
     DialogModule,
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
-    EmployeeInfoRoutingModule,
+    BookingcancelviewRoutingModule,
     CalendarModule,
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [EmployeeInfoComponent],
+  declarations: [BookingcancelViewComponent, BookingcancelDetailsComponent],
+  providers:[BookingcancelService]
 })
-export class EmployeeInfoModule {
- }
+export class BookingcancelViewModule {
+}

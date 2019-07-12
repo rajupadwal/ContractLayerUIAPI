@@ -17,7 +17,6 @@ const routes: Routes = [
       title: 'Employee view'
     }
   },
-
    {
     path: 'employeeinfo',
      component: EmployeeInfoComponent,

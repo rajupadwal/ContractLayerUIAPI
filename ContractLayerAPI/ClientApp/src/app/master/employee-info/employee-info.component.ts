@@ -22,39 +22,39 @@ export class EmployeeInfoComponent implements OnInit {
   ngOnInit() {
     this.employeeForm = this.formBuilder.group({
 
-      EmployeeId    : [0],
-      EmployeeName  : [],
-      PersonalContactNo : [],
-      Address       : [],
-      EducationDetails  : [],
-      PastWorkExp   : [],
-      PanCardNo     : [],
-      AadharId      : [],
-      VoterId       : [],
-      BloodGroup    : [],
-      MaritialStatus: [],
-      Salary        : [],
-      DateOfJoining : [],
-      DateOfLeaving : [],
-      Role          : [],
-      Location      : [],
-      UserId        : [],
-      Password      : [],
-      CompanyMobileNo : [],
-      Post          : [],
-      Remarks       : [],
-      District      : [],
-      Taluka        : [],
-      City          : [],
+      EmployeeId            : [0],
+      EmployeeName          : [],
+      PersonalContactNo     : [],
+      Address               : [],
+      EducationDetails      : [],
+      PastWorkExp           : [],
+      PanCardNo             : [],
+      AadharId              : [],
+      VoterId               : [],
+      BloodGroup            : [],
+      MaritialStatus        : [],
+      Salary                : [],
+      DateOfJoining         : [],
+      DateOfLeaving         : [],
+      Role                  : [],
+      Location              : [],
+      UserId                : [],
+      Password              : [],
+      CompanyMobileNo       : [],
+      Post                  : [],
+      Remarks               : [],
+      District              : [],
+      Taluka                : [],
+      City                  : [],
       EmergencyContactName  : [],
-      EmergencyNo   : [],
-      Relation      : [],
-      BankName      : [],
-      AccountNo     : [],
-      IfscCode      : [],
-      MicrCode      : [],
-      BranchName    : [],
-      AccountType   : []
+      EmergencyNo           : [],
+      Relation              : [],
+      BankName              : [],
+      AccountNo             : [],
+      IfscCode              : [],
+      MicrCode              : [],
+      BranchName            : [],
+      AccountType           : []
     });
 
     if (this.config.data)
@@ -70,7 +70,6 @@ export class EmployeeInfoComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    //let customer = this.customerForm.value;
     let employee = this.employeeForm.value;
 
     return this.http.post(this.isEditable ? APP_CONSTANT.EMPLOYEE_API.EDIT : APP_CONSTANT.EMPLOYEE_API.ADD, employee, httpOptions)

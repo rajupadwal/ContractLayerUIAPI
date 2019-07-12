@@ -90,7 +90,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.ChequeNo).HasMaxLength(20);
 
-                entity.Property(e => e.DeliveryStatus).HasMaxLength(20);
+                //entity.Property(e => e.DeliveryStatus).HasMaxLength(20);
 
                 entity.Property(e => e.EnquiryRef).HasMaxLength(20);
 

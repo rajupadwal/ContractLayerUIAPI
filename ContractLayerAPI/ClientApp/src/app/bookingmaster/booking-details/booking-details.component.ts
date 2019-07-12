@@ -90,7 +90,6 @@ export class BookingDetailsComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    //let customer = this.customerForm.value;
     let booking = this.bookingdetailsForm.value;
     //let booking = {
     //  RecordNo: 0,
