@@ -84,6 +84,15 @@ export const routes: Routes = [
             path: 'Productview',
             loadChildren: './master/product-view/product.view.module#ProductViewModule'
           },
+
+          {
+            path: 'Expencetypeview',
+            loadChildren: './master/expencetype-view/expencetype.view.module#ExpencetypeViewModule'
+          },
+          {
+            path: 'Expencedetailseview',
+            loadChildren: './master/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
+          },
          
         ]
       },

@@ -20,6 +20,8 @@ namespace ContractLayerFarm.Data.Repositories
         private EmployeeRepository _employee;
         private BookingRepository _booking;
         private BookingCancelRepository _bookingcancel;
+        private IExpencetypeRepository _expencetype;
+        private IExpencedetailsRepository _expencedetails;
         
         public IBookingCancelRepository Bookingcancel
         {
@@ -31,6 +33,32 @@ namespace ContractLayerFarm.Data.Repositories
                 }
 
                 return _bookingcancel;
+            }
+        }
+
+        public IExpencedetailsRepository Expencedetails
+        {
+            get
+            {
+                if (_expencedetails == null)
+                {
+                    _expencedetails = new ExpencedetailsRepository(_repoContext);
+                }
+
+                return _expencedetails;
+            }
+        }
+
+        public IExpencetypeRepository Expencetype
+        {
+            get
+            {
+                if (_expencetype == null)
+                {
+                    _expencetype = new ExpencetypeRepository(_repoContext);
+                }
+
+                return _expencetype;
             }
         }
 

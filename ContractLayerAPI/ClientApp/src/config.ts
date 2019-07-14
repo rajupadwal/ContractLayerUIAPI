@@ -87,4 +87,19 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Bookingcancel/Delete'
   },
 
+EXPENCETYPE_API: {
+  ADD: API_URL + 'Expencetype/Add',
+  GETALL: API_URL + 'Expencetype/GetAll',
+  GETByID: API_URL + 'Expencetype/GetAll',
+  EDIT: API_URL + 'Expencetype/Update',
+  DELETE: API_URL + 'Expencetype/Delete'
+  },
+
+EXPENCEDETAILS_API: {
+  ADD: API_URL + 'Expencedetails/Add',
+  GETALL: API_URL + 'Expencedetails/GetAll',
+  GETByID: API_URL + 'Expencedetails/GetAll',
+  EDIT: API_URL + 'Expencedetails/Update',
+  DELETE: API_URL + 'Expencedetails/Delete'
+  },
 }

@@ -16,6 +16,7 @@ import { DialogRef } from '../../dialog/dialog-ref';
 export class BookingDetailsComponent implements OnInit {
   selectedCustomer
   public customers = [];
+  public locations = [];
   bookingdetailsForm: FormGroup;
   public isEditable: boolean = false;
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef) { }
@@ -23,6 +24,7 @@ export class BookingDetailsComponent implements OnInit {
   ngOnInit() {
     
     this.loadCustomer();
+    //this.loadLocation();
     this.bookingdetailsForm = this.formBuilder.group({
 
       RecordNo: [0],
@@ -58,8 +60,7 @@ export class BookingDetailsComponent implements OnInit {
 
   onChanges(): void {
     this.bookingdetailsForm.valueChanges.subscribe(val => {
-      if (val.Name == "CutomerId") {
-        
+      if (val.Name == "CustomerId") {
       }
     });
   }

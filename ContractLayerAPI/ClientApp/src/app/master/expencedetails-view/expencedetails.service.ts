@@ -7,18 +7,16 @@ import { map } from 'rxjs/operators';
 @Injectable({
 providedIn :'root'
 })
-export class LocationService {
-  locationData
+export class ExpencedetailsService {
+  expencedetailsData
   constructor() { }
 
-  setData(locationData) {
-    this.locationData = locationData;
+  setData(expencedetailsData) {
+    this.expencedetailsData = expencedetailsData;
   }
   getData() {
-    return this.locationData;
+    return this.expencedetailsData;
   }
-
-
 
 }
 
