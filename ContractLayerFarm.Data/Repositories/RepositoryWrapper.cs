@@ -20,6 +20,13 @@ namespace ContractLayerFarm.Data.Repositories
         private EmployeeRepository _employee;
         private BookingRepository _booking;
         private BookingCancelRepository _bookingcancel;
+        private ExpencedetailsRepository _expencedetails;
+        private ExpencetypeRepository _expencetype;
+        private EggsrangeRepository _eggsrange;
+        private EmployeeAdvanceRepository _employeeadvance;
+        private IncomeRepository _income;
+        private EnquiryRepository _enquiry;
+
         
         public IBookingCancelRepository Bookingcancel
         {
@@ -34,6 +41,55 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
 
+        public IEggsrangeRepository Eggsrange
+        {
+            get
+            {
+                if (_eggsrange == null)
+                {
+                    _eggsrange = new EggsrangeRepository(_repoContext);
+                }
+
+                return _eggsrange;
+            }
+        }
+
+        public IEmployeeAdvanceRepository Employeeadvance
+        {
+            get
+            {
+                if (_employeeadvance == null)
+                {
+                    _employeeadvance = new EmployeeAdvanceRepository(_repoContext);
+                }
+
+                return _employeeadvance;
+            }
+        }
+        public IEnquiryRepository Enquiry
+        {
+            get
+            {
+                if (_enquiry == null)
+                {
+                    _enquiry = new EnquiryRepository(_repoContext);
+                }
+
+                return _enquiry;
+            }
+        }
+        public IIncomeRepository Income
+        {
+            get
+            {
+                if (_income == null)
+                {
+                    _income = new IncomeRepository(_repoContext);
+                }
+
+                return _income;
+            }
+        }
         public IExpencedetailsRepository Expencedetails
         {
             get
