@@ -35,12 +35,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Customer Name :</strong></label>
-              <select formControlName="CustomerId" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
+              <p-autoComplete formControlName="Customer" [suggestions]="customerList" (completeMethod)="searchCustomer($event)"
+                              [dropdown]="true"  (onSelect)="onSelectCustomer($event)"  [forceSelection]="true" field="CustmerName" ></p-autoComplete>
             </div>
           </div>
         </div>

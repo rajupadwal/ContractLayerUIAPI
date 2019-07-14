@@ -60,13 +60,10 @@ export class CustomerInfoComponent implements OnInit {
     this.customerForm.setValue(this.config.data);
   }
   saveCustomer() {
-      let httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-      };
-    //let customer = this.customerForm.value;
+    
     let customer = this.customerForm.value;
 
-    return this.http.post(this.isEditable ? APP_CONSTANT.CUSOTMER_API.EDIT:APP_CONSTANT.CUSOTMER_API.ADD, customer, httpOptions)
+    return this.http.post(this.isEditable ? APP_CONSTANT.CUSOTMER_API.EDIT:APP_CONSTANT.CUSOTMER_API.ADD, customer)
       .subscribe((customer) => {
           // login successful if there's a jwt token in the response
         if (customer) {

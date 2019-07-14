@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
-
+import {BookingService } from '../booking-view/booking.service';
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
@@ -17,14 +17,18 @@ export class BookingDetailsComponent implements OnInit {
 
   bookingdetailsForm: FormGroup;
   public isEditable: boolean = false;
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef) { }
+  public customerList = [];
+
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient,private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef) { }
 
   ngOnInit() {
+
     this.bookingdetailsForm = this.formBuilder.group({
 
       RecordNo        : [0],
       LocationId      : [],
-      CustomerId      : [],
+      Customer      : [],
       BookingDate     : [],
       MobileNo        : [],
       PlanId          : [],
@@ -49,25 +53,29 @@ export class BookingDetailsComponent implements OnInit {
       this.setDataForEdit();
   }
 
+  onSelectCustomer(selectedCustomer) {
+    this.bookingdetailsForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
+  }
+  searchCustomer(event) {
+    this.bookingService.searchCustomer(event.query).subscribe((data:any) => {
+      this.customerList = data;
+    });
+  }
   setDataForEdit = () => {
     this.isEditable = true;
     this.bookingdetailsForm.setValue(this.config.data);
   }
 
-  saveBookingDetails() {
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-    let booking = this.bookingdetailsForm.value;
 
-    return this.http.post(this.isEditable ? APP_CONSTANT.BOOKING_API.EDIT : APP_CONSTANT.BOOKING_API.ADD, booking, httpOptions)
-      .subscribe((booking) => {
-        // login successful if there's a jwt token in the response
-        if (booking) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          this.dialog.close(booking);
-        }
-        return booking;
-      });
+
+  saveBookingDetails() {
+    this.bookingService.saveBookingDetails(this.bookingdetailsForm.value,this.isEditable).subscribe((booking) => {
+      // login successful if there's a jwt token in the response
+      if (booking) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        this.dialog.close(booking);
+      }
+      return booking;
+    });
   }
 }

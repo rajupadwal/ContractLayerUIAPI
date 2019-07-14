@@ -22,6 +22,7 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
+    AutoCompleteModule,
     CommonModule
   ],
   declarations: [BookingDetailsComponent]

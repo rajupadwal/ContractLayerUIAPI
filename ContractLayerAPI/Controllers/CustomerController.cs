@@ -27,6 +27,12 @@ namespace ContractLayerAPI.Controllers
             var Cusotmer = this._repoWrapper.Customer.FindAll().ToList();
             return Cusotmer;
         }
+        [HttpPost("SearchCustomer")]
+        public IEnumerable<TblCustomerMaster> SearchCustomer([FromBody]string searchString)
+        {
+            var Cusotmer = this._repoWrapper.Customer.SearchCustomer(searchString).ToList();
+            return Cusotmer;
+        }
         [HttpGet("[action]")] 
         public TblCustomerMaster GetByID(int customerId)
         {
@@ -67,8 +73,8 @@ namespace ContractLayerAPI.Controllers
 
 
         }
-        [HttpPost]
-        public bool Delete(TblCustomerMaster customer)
+        [HttpPost("Delete")]
+        public bool Delete([FromBody] TblCustomerMaster customer)
         {
             try
             {

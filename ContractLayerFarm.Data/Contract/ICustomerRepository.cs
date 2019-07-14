@@ -6,8 +6,7 @@ namespace ContractLayerFarm.Data.Contract
 {
        public interface ICustomerRepository : IRepositoryBase<TblCustomerMaster>
     {
-        //Boolean IsValidUser(UserInfo userInfo);
-        //UserInfo Authenticate(string username, string password);
         bool Authenticate();
+        IEnumerable<TblCustomerMaster> SearchCustomer(string searchString);
     }
 }
