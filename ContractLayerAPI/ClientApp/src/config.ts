@@ -98,4 +98,36 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Bookingcancel/Delete'
   },
 
+  
+  EMPLOYEEADVANCE_API: {
+    ADD: API_URL + 'Employeeadvance/Add',
+    GETALL: API_URL + 'Employeeadvance/GetAll',
+    GETByID: API_URL + 'Employeeadvance/GetAll',
+    EDIT: API_URL + 'Employeeadvance/Update',
+    DELETE: API_URL + 'Employeeadvance/Delete'
+  },
+  INCOME_API: {
+    ADD: API_URL + 'Income/Add',
+    GETALL: API_URL + 'Income/GetAll',
+    GETByID: API_URL + 'Income/GetAll',
+    EDIT: API_URL + 'Income/Update',
+    DELETE: API_URL + 'Income/Delete'
+  },
+
+  EXPENCETYPE_API: {
+    ADD: API_URL + 'Expencetype/Add',
+    GETALL: API_URL + 'Expencetype/GetAll',
+    GETByID: API_URL + 'Expencetype/GetAll',
+    EDIT: API_URL + 'Expencetype/Update',
+    DELETE: API_URL + 'Expencetype/Delete'
+  },
+
+  EXPENCEDETAILS_API: {
+    ADD: API_URL + 'Expencedetails/Add',
+    GETALL: API_URL + 'Expencedetails/GetAll',
+    GETByID: API_URL + 'Expencedetails/GetAll',
+    EDIT: API_URL + 'Expencedetails/Update',
+    DELETE: API_URL + 'Expencedetails/Delete'
+  },
+
 }
