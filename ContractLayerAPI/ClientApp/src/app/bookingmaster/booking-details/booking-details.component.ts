@@ -14,7 +14,9 @@ import {BookingService } from '../booking-view/booking.service';
 })
 
 export class BookingDetailsComponent implements OnInit {
-
+  selectedCustomer
+  public customers = [];
+  public locations = [];
   bookingdetailsForm: FormGroup;
   public isEditable: boolean = false;
   public customerList = [];

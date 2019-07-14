@@ -90,7 +90,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.ChequeNo).HasMaxLength(20);
 
-                //entity.Property(e => e.DeliveryStatus).HasMaxLength(20);
+                entity.Property(e => e.DeliveryStatus).HasMaxLength(20);
 
                 entity.Property(e => e.EnquiryRef).HasMaxLength(20);
 
@@ -182,7 +182,7 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblEmployeeAdvance>(entity =>
             {
-                entity.HasKey(e => e.EmpAdvanceId);
+                entity.HasKey(e => e.RecordNo);
 
                 entity.ToTable("tbl_EmployeeAdvance");
 
@@ -201,11 +201,11 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.ToTable("tbl_EmployeeMaster");
 
+                entity.Property(e => e.AadharId).HasMaxLength(20);
+
                 entity.Property(e => e.AccountNo).HasMaxLength(20);
 
                 entity.Property(e => e.AccountType).HasMaxLength(20);
-
-                entity.Property(e => e.AadharId).HasMaxLength(20);
 
                 entity.Property(e => e.Address).HasMaxLength(20);
 
@@ -219,8 +219,6 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.CompanyMobileNo).HasMaxLength(15);
 
-                entity.Property(e => e.PersonalContactNo).HasMaxLength(20);
-
                 entity.Property(e => e.DateOfJoining).HasColumnType("datetime");
 
                 entity.Property(e => e.DateOfLeaving).HasColumnType("datetime");
@@ -233,7 +231,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.EmergencyNo).HasMaxLength(20);
 
-                entity.Property(e => e.EmployeeName).HasMaxLength(20);
+                entity.Property(e => e.EmployeeName).HasMaxLength(50);
 
                 entity.Property(e => e.IfscCode).HasMaxLength(20);
 
@@ -248,6 +246,8 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.Password).HasMaxLength(20);
 
                 entity.Property(e => e.PastWorkExp).HasMaxLength(20);
+
+                entity.Property(e => e.PersonalContactNo).HasMaxLength(20);
 
                 entity.Property(e => e.Post).HasMaxLength(20);
 
@@ -495,17 +495,11 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.ToTable("tbl_ProductMaster");
 
-                entity.Property(e => e.Cgst);
-
                 entity.Property(e => e.Hsnsac).HasMaxLength(50);
-
-                entity.Property(e => e.Igst);
 
                 entity.Property(e => e.ProductType)
                     .IsRequired()
                     .HasMaxLength(50);
-
-                entity.Property(e => e.Sgst);
 
                 entity.Property(e => e.Unit).HasMaxLength(50);
             });

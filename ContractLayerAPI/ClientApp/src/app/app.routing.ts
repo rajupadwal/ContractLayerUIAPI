@@ -44,6 +44,10 @@ export const routes: Routes = [
           title: 'Master'
         },
         children: [
+          {
+            path: 'Enquiryview',
+            loadChildren: './master/enquiry-view/enquiry.view.module#EnquiryViewModule'
+          },
 
           {
             path: 'Customerview',

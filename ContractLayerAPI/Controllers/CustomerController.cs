@@ -79,6 +79,7 @@ namespace ContractLayerAPI.Controllers
             try
             {
                 this._repoWrapper.Customer.Delete(customer);
+                this._repoWrapper.Customer.Save();
                 return true;
             }
 
