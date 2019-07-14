@@ -1,0 +1,55 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Eggs Range Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="eggsrangemasterForm" (ngSubmit)="saveEggsrangeMaster()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>No. Of Eggs From:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="EggsRangeFrom" id="eggsrangefrom" name="eggsrangefrom" class="form-control" />
+                  <!--<label for="float-input">(Enter Pan Card No) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>No. Of Eggs To:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="EggsRangeTo" id="eggsrangeto" name="eggsrangeto" class="form-control" />
+                  <!--<label for="float-input">(Enter Pan Card No) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Eggs Rate:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="EggsRate" id="eggsrate" name="eggsrate" class="form-control" />
+                  <!--<label for="float-input">(Please Enter Voter Id) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

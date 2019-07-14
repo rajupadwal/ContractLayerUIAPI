@@ -44,6 +44,10 @@ export const routes: Routes = [
           title: 'Master'
         },
         children: [
+          {
+            path: 'Enquiryview',
+            loadChildren: './master/enquiry-view/enquiry.view.module#EnquiryViewModule'
+          },
 
           {
             path: 'Customerview',
@@ -84,7 +88,21 @@ export const routes: Routes = [
             path: 'Productview',
             loadChildren: './master/product-view/product.view.module#ProductViewModule'
           },
-         
+
+          {
+            path: 'Eggsrangeview',
+            loadChildren: './master/eggsrange-view/eggsrange.view.module#EggsrangeViewModule'
+          },
+
+         {
+            path: 'Employeeadvanceview',
+           loadChildren: './master/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
+          },
+
+          {
+            path: 'Incomeview',
+            loadChildren: './master/income-view/income.view.module#IncomeViewModule'
+          },
         ]
       },
 

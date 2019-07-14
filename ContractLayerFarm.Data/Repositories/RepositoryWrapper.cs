@@ -20,7 +20,63 @@ namespace ContractLayerFarm.Data.Repositories
         private EmployeeRepository _employee;
         private BookingRepository _booking;
         private BookingCancelRepository _bookingcancel;
-        
+        private EggsrangeRepository _eggsrange;
+        private EmployeeAdvanceRepository _employeeadvance;
+        private EnquiryRepository _enquiry;
+        private IncomeRepository _income;
+
+        public IIncomeRepository Income
+        {
+            get
+            {
+                if (_income == null)
+                {
+                    _income = new IncomeRepository(_repoContext);
+                }
+
+                return _income;
+            }
+        }
+
+        public IEnquiryRepository Enquiry
+        {
+            get
+            {
+                if (_enquiry == null)
+                {
+                    _enquiry = new EnquiryRepository(_repoContext);
+                }
+
+                return _enquiry;
+            }
+        }
+
+        public IEmployeeAdvanceRepository Employeeadvance
+        {
+            get
+            {
+                if (_employeeadvance == null)
+                {
+                    _employeeadvance = new EmployeeAdvanceRepository(_repoContext);
+                }
+
+                return _employeeadvance;
+            }
+        }
+
+        public IEggsrangeRepository Eggsrange
+        {
+            get
+            {
+                if (_eggsrange == null)
+                {
+                    _eggsrange = new EggsrangeRepository(_repoContext);
+                }
+
+                return _eggsrange;
+            }
+        }
+
         public IBookingCancelRepository Bookingcancel
         {
             get
@@ -59,6 +115,7 @@ namespace ContractLayerFarm.Data.Repositories
                 return _customer;
             }
         }
+
         public IEmployeeRepository Employee
         {
             get
@@ -134,12 +191,9 @@ namespace ContractLayerFarm.Data.Repositories
                 }
 
                 return _location;
-
-
             }
-
-
         }
+
         public IPlanRepository Plan
         {
             get
@@ -152,7 +206,6 @@ namespace ContractLayerFarm.Data.Repositories
                 return _plan;
             }
         }
-
 
         public RepositoryWrapper(ContractLayerDBContext repositoryContext)
         {

@@ -13,7 +13,6 @@ namespace ContractLayerFarm.Data.Models
         public int? PlanId { get; set; }
         public int? NoOfPlan { get; set; }
         public int? NoOfChicks { get; set; }
-        
         public decimal? Amount { get; set; }
         public int? EmployeeId { get; set; }
         public string EnquiryRef { get; set; }
@@ -22,10 +21,10 @@ namespace ContractLayerFarm.Data.Models
         public string PaymentMethod { get; set; }
         public string ChequeNo { get; set; }
         public decimal? PaidAmount { get; set; }
+        public decimal? BalanceAmount { get; set; }
         public string Narration { get; set; }
-        //public string DeliveryStatus { get; set; }
-        //public bool? IsDeleted { get; set; }
-        //public int? NoOfPlanCancel { get; set; }
-        //public decimal? BalanceAmount { get; set; }
+        public string DeliveryStatus { get; set; }
+        public bool? IsDeleted { get; set; }
+        public int? NoOfPlanCancel { get; set; }
     }
 }

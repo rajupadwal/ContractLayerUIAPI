@@ -8,13 +8,21 @@ export const APP_CONSTANT={
     GETALL_ITEMGROUP_DETAILS: API_URL + "DPR/GetAllItemGroupDetails",
     SAVE_DPR_DETAILS: API_URL + "DPR/SaveDPRDetails",
     GET_ALL_DPRS: API_URL + "DPR/GetAllDPRDetails"
-  }
-  ,
+  },
+  ENQUIRY_API: {
+    ADD: API_URL + 'Enquiry/Add',
+    GETALL: API_URL + 'Enquiry/GetAll',
+    GETByID: API_URL + 'Enquiry/GetAll',
+    EDIT: API_URL + 'Enquiry/Update',
+    DELETE: API_URL + 'Enquiry/Delete'
+  },
+  
   CUSOTMER_API: {
     ADD: API_URL + 'Customer/Add',
     GETALL: API_URL + 'Customer/GetAll',
     GETByID: API_URL + 'Customer/GetAll',
     EDIT: API_URL + 'Customer/Update',
+    DELETE: API_URL + 'Customer/Delete'
   },
   LOCATION_API: {
     ADD: API_URL + 'Location/Add',
@@ -22,7 +30,6 @@ export const APP_CONSTANT={
     GETByID: API_URL + 'Location/GetAll',
     EDIT: API_URL + 'Location/Update',
     DELETE: API_URL + 'Location/Delete'
-
   },
   SUPPLIER_API: {
     ADD: API_URL + 'Supplier/Add',
@@ -30,7 +37,6 @@ export const APP_CONSTANT={
     GETByID: API_URL + 'Supplier/GetAll',
     EDIT: API_URL + 'Supplier/Update',
     DELETE: API_URL + 'Supplier/Delete'
-
   },
   PLAN_API: {
     ADD: API_URL + 'Plan/Add',
@@ -69,6 +75,13 @@ export const APP_CONSTANT={
     EDIT: API_URL + 'Employee/Update',
     DELETE: API_URL + 'Employee/Delete'
   },
+  EGGSRANGE_API: {
+    ADD: API_URL + 'Eggsrange/Add',
+    GETALL: API_URL + 'Eggsrange/GetAll',
+    GETByID: API_URL + 'Eggsrange/GetAll',
+    EDIT: API_URL + 'Eggsrange/Update',
+    DELETE: API_URL + 'Eggsrange/Delete'
+  },
 
   BOOKING_API: {
     ADD: API_URL + 'Booking/Add',
@@ -84,5 +97,18 @@ export const APP_CONSTANT={
     EDIT: API_URL + 'Bookingcancel/Update',
     DELETE: API_URL + 'Bookingcancel/Delete'
   },
-
+  EMPLOYEEADVANCE_API: {
+    ADD: API_URL + 'Employeeadvance/Add',
+    GETALL: API_URL + 'Employeeadvance/GetAll',
+    GETByID: API_URL + 'Employeeadvance/GetAll',
+    EDIT: API_URL + 'Employeeadvance/Update',
+    DELETE: API_URL + 'Employeeadvance/Delete'
+  },
+  INCOME_API: {
+    ADD: API_URL + 'Income/Add',
+    GETALL: API_URL + 'Income/GetAll',
+    GETByID: API_URL + 'Income/GetAll',
+    EDIT: API_URL + 'Income/Update',
+    DELETE: API_URL + 'Income/Delete'
+  },
 }

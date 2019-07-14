@@ -67,12 +67,13 @@ namespace ContractLayerAPI.Controllers
 
 
         }
-        [HttpPost]
-        public bool Delete(TblCustomerMaster customer)
+        [HttpPost("Delete")]
+        public bool Delete([FromBody] TblCustomerMaster customer)
         {
             try
             {
                 this._repoWrapper.Customer.Delete(customer);
+                this._repoWrapper.Customer.Save();
                 return true;
             }
 
