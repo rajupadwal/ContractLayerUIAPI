@@ -1,0 +1,210 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Enquiry Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="enquiryForm" (ngSubmit)="saveEnquiry()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Record No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="RecordNo" type="text" pInputText id="recordno" name="recordno" class="form-control" rows="3" disabled />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Date :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="Date" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Customer Name :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="CustomerName" type="text" pInputText id="customername" name="customername" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Enquiry :</strong></label>
+              <select formControlName="Enquiry" id="select" name="enquiry" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Plan</option>
+                <option value="3">xyz</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Required Qty :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="RequiredQty" type="text" pInputText id="requiredqty" name="requiredqty" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>District :</strong></label>
+              <select formControlName="District" id="select" name="district" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Pune</option>
+                <option value="2">Satara</option>
+                <option value="3">Sangali</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Taluka :</strong></label>
+              <select formControlName="Taluka" id="select" name="Taluka" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Maval </option>
+                <option value="2">Khed</option>
+                <option value="3">Mulashi #3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>City :</strong></label>
+              <select formControlName="City" id="select" name="city" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Talegaon Dabhade</option>
+                <option value="2">Lonavala</option>
+                <option value="3">Vadgaon</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Pin Code :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="PinCode" type="text" pInputText id="pincode" name="Pincode" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class=" row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Mobile No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="MobileNo" type="text" pInputText id="mobileno" name="mobileno" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Address :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Address" type="text" pInputText id="address" name="address" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Remind Date :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="RemindDate" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class=" row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Enquiry Type :</strong></label>
+              <select formControlName="EnquiryType" id="select" name="enquirytype" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Telephonic</option>
+                <option value="2">Refferal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Narration :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Narration" type="text" pInputText id="narration" name="narration" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Location Name :</strong></label>
+              <select formControlName="LocationId" id="select" name="locationid" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option1</option>
+                <option value="2">Option2</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
+      </div>
+    </form>
+  </div>
+</div>

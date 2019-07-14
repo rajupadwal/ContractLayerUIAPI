@@ -17,8 +17,6 @@ namespace ContractLayerFarm.Data.Contract
         IEmployeeRepository Employee { get; }
         IBookingRepository Booking { get; }
         IBookingCancelRepository Bookingcancel { get; }
-        IExpencetypeRepository Expencetype { get; }
-        IExpencedetailsRepository Expencedetails { get; }
         //IItemGroupDetailRepository IItemGroupDetail { get; }
         //IDPRRepository IDPRRepository { get; }
 

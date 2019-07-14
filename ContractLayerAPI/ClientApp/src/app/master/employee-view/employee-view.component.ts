@@ -16,12 +16,10 @@ export class EmployeeViewComponent implements OnInit {
   onBtnClick1 = (param) => {
     alert('i am clicked');
     console.log (param);
-  
 }
  
   columnDefs = [
     {
-
       headerName: 'Button Col 1', 'width':100,
       cellRenderer: 'buttonRenderer',
       cellRendererParams: {

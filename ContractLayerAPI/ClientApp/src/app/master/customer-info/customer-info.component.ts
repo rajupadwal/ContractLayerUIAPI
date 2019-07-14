@@ -42,10 +42,10 @@ export class CustomerInfoComponent implements OnInit {
           Pincode            : [], 
           State              : [], 
           Taluka             : [], 
-          AccountNo: [],
-          PlantAddress: [],
-          MicrCode :[],
-          BranchName :[],
+          AccountNo          : [],
+          PlantAddress       : [],
+          MicrCode           : [],
+          BranchName         : [],
           
     });
     if (this.config.data)

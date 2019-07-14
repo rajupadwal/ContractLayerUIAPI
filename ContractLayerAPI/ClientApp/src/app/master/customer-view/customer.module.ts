@@ -41,4 +41,3 @@ import { DialogModule } from '../../dialog/dialog.module';
 export class CusotmerModule {
 
 }
-//providers: [DPRService]

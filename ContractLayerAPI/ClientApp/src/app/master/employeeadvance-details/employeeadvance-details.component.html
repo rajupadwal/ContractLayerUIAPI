@@ -1,0 +1,95 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Employee Details</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="employeeadvanceForm" (ngSubmit)="saveEmployeeAdvance()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Record No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="RecordNo" id="recordno" name="recordno" class="form-control" disabled/>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Record Date:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="RecordDate" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Location Name :</strong></label>
+              <select formControlName="LocationName" id="locationname" name="locationname" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Advance :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Advance" id="advance" name="advance" class="form-control" />
+                  <!--<label for="float-input">(Enter Pan Card No) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Narration :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Narration" id="narration" name="narration" class="form-control" />
+                  <!--<label for="float-input">(Enter Pan Card No) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Employee Name :</strong></label>
+              <select formControlName="EmployeeName" id="select" name="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

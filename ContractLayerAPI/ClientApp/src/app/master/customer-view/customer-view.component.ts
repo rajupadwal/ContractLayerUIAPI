@@ -17,13 +17,10 @@ export class CustomerViewComponent implements OnInit {
   onBtnClick1 = (param) => {
     alert('i am clicked');
     console.log (param);
-  
 }
- 
 
   columnDefs = [
     {
-
       headerName: 'Button Col 1', 'width':100,
       cellRenderer: 'buttonRenderer',
     },
@@ -33,8 +30,6 @@ export class CustomerViewComponent implements OnInit {
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
       field: 'CustomerId', 'width': 150
-
-      
     },
 
     {
@@ -48,21 +43,6 @@ export class CustomerViewComponent implements OnInit {
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });     
-        };
-        return newTH;
-      },
-    },
-
-    {
-      headerName: 'Delete', 'width': 150,
-
-      cellRenderer: (params) => {
-        var newTH = document.createElement('div');
-        newTH.innerHTML = 'Delete';
-        newTH.className = "pi pi-times";
-        newTH.onclick = () => {
-          this.delete(params.data);
-
         };
         return newTH;
       },
@@ -111,19 +91,6 @@ export class CustomerViewComponent implements OnInit {
     return this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL, httpOptions)
       .subscribe((customer: any) => {
         this.rowData = customer;
-      });
-  }
-
-  delete(customer) {
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-    //let customer = this.customerForm.value;
-
-
-    return this.http.post(APP_CONSTANT.CUSOTMER_API.DELETE, customer, httpOptions)
-      .subscribe((customer) => {
-        this.RefreshGrid();
       });
   }
 

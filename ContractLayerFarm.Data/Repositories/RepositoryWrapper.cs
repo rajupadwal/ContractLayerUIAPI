@@ -20,8 +20,6 @@ namespace ContractLayerFarm.Data.Repositories
         private EmployeeRepository _employee;
         private BookingRepository _booking;
         private BookingCancelRepository _bookingcancel;
-        private IExpencetypeRepository _expencetype;
-        private IExpencedetailsRepository _expencedetails;
         
         public IBookingCancelRepository Bookingcancel
         {
@@ -87,6 +85,7 @@ namespace ContractLayerFarm.Data.Repositories
                 return _customer;
             }
         }
+
         public IEmployeeRepository Employee
         {
             get
@@ -162,12 +161,9 @@ namespace ContractLayerFarm.Data.Repositories
                 }
 
                 return _location;
-
-
             }
-
-
         }
+
         public IPlanRepository Plan
         {
             get
@@ -180,7 +176,6 @@ namespace ContractLayerFarm.Data.Repositories
                 return _plan;
             }
         }
-
 
         public RepositoryWrapper(ContractLayerDBContext repositoryContext)
         {

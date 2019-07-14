@@ -44,6 +44,10 @@ export const routes: Routes = [
           title: 'Master'
         },
         children: [
+          {
+            path: 'Enquiryview',
+            loadChildren: './master/enquiry-view/enquiry.view.module#EnquiryViewModule'
+          },
 
           {
             path: 'Customerview',
@@ -83,15 +87,6 @@ export const routes: Routes = [
           {
             path: 'Productview',
             loadChildren: './master/product-view/product.view.module#ProductViewModule'
-          },
-
-          {
-            path: 'Expencetypeview',
-            loadChildren: './master/expencetype-view/expencetype.view.module#ExpencetypeViewModule'
-          },
-          {
-            path: 'Expencedetailseview',
-            loadChildren: './master/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
           },
          
         ]
