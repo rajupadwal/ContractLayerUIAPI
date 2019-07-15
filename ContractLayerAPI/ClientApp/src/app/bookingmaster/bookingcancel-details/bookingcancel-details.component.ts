@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
+import { BookingcancelService } from '../bookingcancel-view/bookingcancel.service';
 
 @Component({
   selector: 'app-bookingcancel-details',
@@ -14,10 +15,14 @@ import { DialogRef } from '../../dialog/dialog-ref';
 })
 
 export class BookingcancelDetailsComponent implements OnInit {
-
+  selectedCustomer
+  public customers = [];
+  public customerList = [];
+  selectedPlan
+  public planList: [];
   bookingcancelForm: FormGroup;
   public isEditable: boolean = false;
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private bookingcancelService: BookingcancelService, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef) { }
 
   ngOnInit() {
     this.bookingcancelForm = this.formBuilder.group({
@@ -47,6 +52,26 @@ export class BookingcancelDetailsComponent implements OnInit {
   setDataForEdit = () => {
     this.isEditable = true;
     this.bookingcancelForm.setValue(this.config.data);
+  }
+
+  onSelectCustomer(selectedCustomer) {
+    this.bookingcancelForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
+
+  }
+  searchCustomer(event) {
+    this.bookingcancelService.searchCustomer(event.query).subscribe((data: any) => {
+      this.customerList = data;
+    });
+  }
+
+  onSelectPlan(selectedPlan) {
+    this.bookingcancelForm.patchValue({ NoOfChicks: selectedPlan.NoOfChicks, Amonut: selectedPlan.Amount});
+    //this.bookingdetailsForm.patchValue({  });
+  }
+  searchPlan(event) {
+    this.bookingcancelService.searchPlan(event.query).subscribe((data: any) => {
+      this.planList = data;
+    });
   }
 
   saveBookingCancel() {

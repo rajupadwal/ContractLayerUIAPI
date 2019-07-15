@@ -27,6 +27,12 @@ namespace ContractLayerAPI.Controllers
             return Plan;
         }
 
+        [HttpPost("SearchPlan")]
+        public IEnumerable<TblPlanMaster> SearchPlan([FromBody]string searchString)
+        {
+            var Plan = this._repoWrapper.Plan.SearchPlan(searchString).ToList();
+            return Plan;
+        }
         [HttpGet("[action]")] 
         public TblPlanMaster GetByID(int planId)
         {

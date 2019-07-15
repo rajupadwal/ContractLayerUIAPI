@@ -24,9 +24,9 @@
               <label for="select"><strong>Location :</strong></label>
               <select formControlName="LocationId" id="select" name="select" class="form-control">
                 <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
+                <option value="1">SANGALI</option>
+                <option value="2">PHALTAN</option>
+                <option value="3">KOLHAPUR</option>
               </select>
             </div>
           </div>
@@ -35,12 +35,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Customer Name :</strong></label>
-              <select formControlName="CustomerId" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
+              <p-autoComplete formControlName="Customer" [suggestions]="customerList" (completeMethod)="searchCustomer($event)"
+                [dropdown]="true" (onSelect)="onSelectCustomer($event)" [forceSelection]="true" field="CustmerName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -63,12 +59,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Plan :</strong></label>
-              <select formControlName="PlanId" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
+              <p-autoComplete formControlName="Plan" [suggestions]="planList" (completeMethod)="searchPlan($event)"
+                              [dropdown]="true" (onSelect)="onSelectPlan($event)" [forceSelection]="true" field="PlanName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -78,7 +70,7 @@
               <label for="textarea-input"><strong>No Of Plan :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="NoOfPlan" type="text" pInputText id="noofplan" name="noofplan" class="form-control" rows="3" disabled />
+                  <input formControlName="NoOfPlan" type="text" pInputText id="noofplan" name="noofplan" class="form-control" rows="3" />
                 </span>
               </div>
             </div>

@@ -16,10 +16,12 @@ import {BookingService } from '../booking-view/booking.service';
 export class BookingDetailsComponent implements OnInit {
   selectedCustomer
   public customers = [];
-  public locations = [];
+  //public locations = [];
   bookingdetailsForm: FormGroup;
   public isEditable: boolean = false;
   public customerList = [];
+  selectedPlan
+  public planList:[];
 
 
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient,private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef) { }
@@ -57,12 +59,25 @@ export class BookingDetailsComponent implements OnInit {
 
   onSelectCustomer(selectedCustomer) {
     this.bookingdetailsForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
+    
   }
   searchCustomer(event) {
     this.bookingService.searchCustomer(event.query).subscribe((data:any) => {
       this.customerList = data;
     });
   }
+
+  onSelectPlan(selectedPlan) {
+    this.bookingdetailsForm.patchValue({ NoOfChicks: selectedPlan.NoOfChicks, Amount: selectedPlan.Amount });
+    //this.bookingdetailsForm.patchValue({  });
+  }
+  searchPlan(event) {
+    this.bookingService.searchPlan(event.query).subscribe((data: any) => {
+      this.planList = data;
+    });
+  }
+
+
   setDataForEdit = () => {
     this.isEditable = true;
     this.bookingdetailsForm.setValue(this.config.data);

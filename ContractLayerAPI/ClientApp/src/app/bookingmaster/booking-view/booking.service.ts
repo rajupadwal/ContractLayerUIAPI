@@ -7,6 +7,7 @@ import { APP_CONSTANT } from '../../../config';
 providedIn :'root'
 })
 export class BookingService {
+    
   bookingData
   constructor(private http: HttpClient) { }
 
@@ -20,6 +21,9 @@ export class BookingService {
   
   searchCustomer(searchString) {
     return this.http.post(APP_CONSTANT.CUSOTMER_API.SEARCH_CUSTOMER, JSON.stringify(searchString));
+  }
+  searchPlan(searchString) {
+    return this.http.post(APP_CONSTANT.PLAN_API.SEARCH_PLAN, JSON.stringify(searchString));
   }
 
 
