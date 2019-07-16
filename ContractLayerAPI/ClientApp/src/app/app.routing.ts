@@ -36,7 +36,12 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
+      {
+        path: 'farmerInward',
+        loadChildren: './farmer-inward/farmer-inward.module#FarmerInwardModule'
+      },
 
+      
       {
         path: 'master',
         component: SimpleLayoutComponent,
