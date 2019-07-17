@@ -20,7 +20,7 @@ export const APP_CONSTANT={
   CUSOTMER_API: {
     ADD: API_URL + 'Customer/Add',
     GETALL: API_URL + 'Customer/GetAll',
-    GETByID: API_URL + 'Customer/GetAll',
+    GETByID: API_URL + 'Customer/GetByID',
     EDIT: API_URL + 'Customer/Update',
     SEARCH_CUSTOMER: API_URL + 'Customer/SearchCustomer',
   },
@@ -29,7 +29,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Location/GetAll',
     GETByID: API_URL + 'Location/GetAll',
     EDIT: API_URL + 'Location/Update',
-    DELETE: API_URL + 'Location/Delete'
+    DELETE: API_URL + 'Location/Delete',
+    SEARCH_LOCATION: API_URL + 'Location/SearchLocation',
   },
   SUPPLIER_API: {
     ADD: API_URL + 'Supplier/Add',

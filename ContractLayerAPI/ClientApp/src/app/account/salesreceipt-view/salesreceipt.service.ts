@@ -26,11 +26,18 @@ export class SalesReceiptService {
   //searchPlan(searchString) {
   //  return this.http.post(APP_CONSTANT.PLAN_API.SEARCH_PLAN, JSON.stringify(searchString));
   //}
+  searchCustomer(searchString) {
+    return this.http.post(APP_CONSTANT.CUSOTMER_API.SEARCH_CUSTOMER, JSON.stringify(searchString));
+  }
+
+  searchLocation(searchString) {
+    return this.http.post(APP_CONSTANT.LOCATION_API.SEARCH_LOCATION, JSON.stringify(searchString));
+  }
 
 
-  //saveBookingDetails(formValues: any, isEditable:boolean) {
-  //  return this.http.post(isEditable ? APP_CONSTANT.BOOKING_API.EDIT : APP_CONSTANT.BOOKING_API.ADD, formValues);
-  //}
+  saveSalereceipt(formValues: any, isEditable:boolean) {
+    return this.http.post(isEditable ? APP_CONSTANT.SALERECEIPT_API.EDIT : APP_CONSTANT.SALERECEIPT_API.ADD, formValues);
+  }
 
 
 }

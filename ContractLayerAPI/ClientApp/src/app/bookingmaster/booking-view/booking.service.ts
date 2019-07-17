@@ -22,6 +22,10 @@ export class BookingService {
   searchCustomer(searchString) {
     return this.http.post(APP_CONSTANT.CUSOTMER_API.SEARCH_CUSTOMER, JSON.stringify(searchString));
   }
+
+  searchLocation(searchString) {
+    return this.http.post(APP_CONSTANT.LOCATION_API.SEARCH_LOCATION, JSON.stringify(searchString));
+  }
   searchPlan(searchString) {
     return this.http.post(APP_CONSTANT.PLAN_API.SEARCH_PLAN, JSON.stringify(searchString));
   }

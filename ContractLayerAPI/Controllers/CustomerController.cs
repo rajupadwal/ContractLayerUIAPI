@@ -33,8 +33,8 @@ namespace ContractLayerAPI.Controllers
             var Cusotmer = this._repoWrapper.Customer.SearchCustomer(searchString).ToList();
             return Cusotmer;
         }
-        [HttpGet("[action]")] 
-        public TblCustomerMaster GetByID(int customerId)
+        [HttpPost("GetByID")] 
+        public TblCustomerMaster GetByID([FromBody] int customerId)
         {
             var Cusotmer = this._repoWrapper.Customer.FindByCondition(x=> x.CustomerId == customerId).FirstOrDefault();
             return Cusotmer;

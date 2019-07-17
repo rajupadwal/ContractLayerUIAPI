@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
 import { SalesReceiptService } from '../salesreceipt-view/salesreceipt.service';
+import { CusotmerService } from '../../master/customer-view/customer.service';
 @Component({
   selector: 'app-salesreceipt-details',
   templateUrl: './salesreceipt-details.component.html',
@@ -17,14 +18,16 @@ export class SalesReceiptDetailsComponent implements OnInit {
   //selectedCustomer
   //public customers = [];
   //public locations = [];
+  public locationList: [];
   salereceiptdetailsForm: FormGroup;
   public isEditable: boolean = false;
-  //public customerList = [];
+  public customerList = [];
  // selectedPlan
  // public planList: [];
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private salesreceiptservice: SalesReceiptService, private config: DialogConfig, public dialog: DialogRef) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private salesreceiptservice: SalesReceiptService, private config: DialogConfig, public dialog: DialogRef
+    , private cusotmerService: CusotmerService) { }
 
   ngOnInit() {
 
@@ -32,10 +35,10 @@ export class SalesReceiptDetailsComponent implements OnInit {
 
       ReceiptNo: [0],
       Date: [],
-      LocationId: [],
-      CustomerId: [],
+      Location: [{}],
+      Customer: [{}],
       PaymentType: [],
-      BillRefNo: [],
+      BillRefNo: [''],
       PaymentMethod: [],
       ChequeNo: [],
       ChequeAmount: [],
@@ -45,32 +48,52 @@ export class SalesReceiptDetailsComponent implements OnInit {
        
     });
 
-    if (this.config.data)
+    if (this.config.data) {
+      this.getCstomer(this.config.data.CustomerId);
       this.setDataForEdit();
+    }
+      
   }
 
   //onSelectCustomer(selectedCustomer) {
   //  this.bookingdetailsForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
 
   //}
-  //searchCustomer(event) {
-  //  this.bookingService.searchCustomer(event.query).subscribe((data: any) => {
-  //    this.customerList = data;
-  //  });
-  //}
-
   
 
+  
+  getCstomer(id) {
+    this.cusotmerService.getCustomerByID(id).subscribe((customer) => {
+      this.salereceiptdetailsForm.patchValue({ Customer: customer });
+    });
+  }
+
+
+  getLocation(id) {
+    this.cusotmerService.getCustomerByID(id).subscribe((location) => {
+      this.salereceiptdetailsForm.patchValue({ Customer: location });
+    });
+  }
 
   setDataForEdit = () => {
     this.isEditable = true;
     this.salereceiptdetailsForm.setValue(this.config.data);
   }
+  searchCustomer(event) {
+    this.salesreceiptservice.searchCustomer(event.query).subscribe((data: any) => {
+      this.customerList = data;
+    });
+  }
+  searchLocation(event) {
+    this.salesreceiptservice.searchLocation(event.query).subscribe((data: any) => {
+      this.locationList = data;
+    });
+  }
 
 
 
   saveSalereceipt() {
-    this.salesreceiptservice.salesreceiptData(this.salereceiptdetailsForm.value, this.isEditable).subscribe((salereceipt) => {
+    this.salesreceiptservice.saveSalereceipt(this.salereceiptdetailsForm.value, this.isEditable).subscribe((salereceipt) => {
       // login successful if there's a jwt token in the response
       if (salereceipt) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes

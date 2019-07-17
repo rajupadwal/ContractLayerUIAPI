@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
-import { BookingDetailsComponent } from '../booking-details/booking-details.component';
 import { SalesReceiptService } from './salesreceipt.service';
 import { SalesReceiptDetailsComponent } from '../salesreceipt-details/salesreceipt-details.component';
 
@@ -75,7 +74,7 @@ export class SalesreceiptViewComponent implements OnInit {
     {
       headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100
     },
-    { headerName: 'BillRefNo    ', field: 'BillRefNo' },
+    //{ headerName: 'BillRefNo    ', field: 'BillRefNo' },
     { headerName: 'PaymentMethod    ', field: 'PaymentMethod' },
     { headerName: 'ChequeNo    ', field: 'ChequeNo' },
     { headerName: 'ChequeAmount    ', field: 'ChequeAmount' },
@@ -101,7 +100,7 @@ export class SalesreceiptViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    const ref = this.dialog.open(SalesReceiptDetailsComponent, { modalConfig: { title: 'Add/Edit Booking Order' } });
+    const ref = this.dialog.open(SalesReceiptDetailsComponent, { modalConfig: { title: 'Add/Edit Sale Receipt' } });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

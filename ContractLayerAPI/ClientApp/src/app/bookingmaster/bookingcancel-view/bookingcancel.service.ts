@@ -21,12 +21,15 @@ export class BookingcancelService {
   searchCustomer(searchString) {
     return this.http.post(APP_CONSTANT.CUSOTMER_API.SEARCH_CUSTOMER, JSON.stringify(searchString));
   }
+  searchLocation(searchString) {
+    return this.http.post(APP_CONSTANT.LOCATION_API.SEARCH_LOCATION, JSON.stringify(searchString));
+  }
 
   searchPlan(searchString) {
     return this.http.post(APP_CONSTANT.PLAN_API.SEARCH_PLAN, JSON.stringify(searchString));
   }
   saveBookingCancel(formValues: any, isEditable: boolean) {
-    return this.http.post(isEditable ? APP_CONSTANT.BOOKING_API.EDIT : APP_CONSTANT.BOOKING_API.ADD, formValues);
+    return this.http.post(isEditable ? APP_CONSTANT.BOOKINGCANCEL_API.EDIT : APP_CONSTANT.BOOKINGCANCEL_API.ADD, formValues);
   }
 
   

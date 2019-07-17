@@ -27,6 +27,13 @@ namespace ContractLayerAPI.Controllers
             var Location = this._repoWrapper.Location.FindAll().ToList();
             return Location;
         }
+        [HttpPost("SearchLocation")]
+        public IEnumerable<TblLocationMaster> SearchLocation([FromBody]string searchString)
+        {
+            var Location = this._repoWrapper.Location.SearchLocation(searchString).ToList();
+            return Location;
+        }
+
         [HttpGet("[action]")] 
         public TblLocationMaster GetByID(int LocationId)
         {

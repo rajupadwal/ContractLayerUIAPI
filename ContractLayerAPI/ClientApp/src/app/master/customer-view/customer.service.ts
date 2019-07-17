@@ -15,6 +15,11 @@ export class CusotmerService {
      
   }
 
+
+  getCustomerByID(id) {
+    return this.http.post(APP_CONSTANT.CUSOTMER_API.GETByID,id);
+  }
+
 }
 
 

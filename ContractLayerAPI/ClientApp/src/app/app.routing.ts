@@ -114,28 +114,25 @@ export const routes: Routes = [
             path: 'Bookingcancelview',
             loadChildren: './bookingmaster/bookingcancel-view/bookingcancel.view.module#BookingcancelViewModule'
           },
-          {
-            path: 'Salesreceiptview',
-            loadChildren: './bookingmaster/salesreceipt-view/salesreceipt.view.module#SalesReceiptViewModule'
-          },
+          
         ]
       },
 
-      //{
-      //  path: 'account',
-      //  component: SimpleLayoutComponent,
-      //  data: {
-      //    title: 'Account'
-      //  },
-      //  children: [
+      {
+        path: 'account',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Account'
+        },
+        children: [
 
-      //    {
-      //      path: 'Salesreceiptview',
-      //      loadChildren: './account/salesreceipt-view/salesreceipt.view.module#SalesReceiptViewModule'
-      //    },
+          {
+            path: 'Salesreceiptview',
+            loadChildren: './account/salesreceipt-view/salesreceipt.view.module#SalesReceiptViewModule'
+          },
           
-      //  ]
-      //},
+        ]
+      },
 
       //{
       //  path: 'cases',

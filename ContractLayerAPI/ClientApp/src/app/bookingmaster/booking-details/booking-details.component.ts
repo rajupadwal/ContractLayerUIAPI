@@ -21,7 +21,8 @@ export class BookingDetailsComponent implements OnInit {
   public isEditable: boolean = false;
   public customerList = [];
   selectedPlan
-  public planList:[];
+  public planList: [];
+  public locationList: [];
 
 
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient,private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef) { }
@@ -61,8 +62,14 @@ export class BookingDetailsComponent implements OnInit {
     this.bookingdetailsForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
     
   }
+  searchLocation(event) {
+    this.bookingService.searchLocation(event.query).subscribe((data:any) => {
+      this.locationList = data;
+    });
+  }
+
   searchCustomer(event) {
-    this.bookingService.searchCustomer(event.query).subscribe((data:any) => {
+    this.bookingService.searchCustomer(event.query).subscribe((data: any) => {
       this.customerList = data;
     });
   }

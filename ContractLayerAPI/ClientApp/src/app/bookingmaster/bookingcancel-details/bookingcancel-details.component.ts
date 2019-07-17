@@ -18,6 +18,7 @@ export class BookingcancelDetailsComponent implements OnInit {
   selectedCustomer
   public customers = [];
   public customerList = [];
+  public locationList = [];
   selectedPlan
   public planList: [];
   bookingcancelForm: FormGroup;
@@ -64,8 +65,14 @@ export class BookingcancelDetailsComponent implements OnInit {
     });
   }
 
+  searchLocation(event) {
+    this.bookingcancelService.searchLocation(event.query).subscribe((data: any) => {
+      this.locationList = data;
+    });
+  }
+
   onSelectPlan(selectedPlan) {
-    this.bookingcancelForm.patchValue({ NoOfChicks: selectedPlan.NoOfChicks, Amonut: selectedPlan.Amount});
+    this.bookingcancelForm.patchValue({ NoOfChicks: selectedPlan.NoOfChicks, Amonut: selectedPlan.Amount, CancelNoOfChicks: selectedPlan.NoOfChicks, CancelAmount: selectedPlan.Amount});
     //this.bookingdetailsForm.patchValue({  });
   }
   searchPlan(event) {
