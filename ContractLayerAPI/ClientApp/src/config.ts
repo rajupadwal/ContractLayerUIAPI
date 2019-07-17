@@ -131,4 +131,15 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Expencedetails/Delete'
   },
 
+
+  PRODUCT_UNIT_API: {
+    GETALL: API_URL + 'Product/GetAllUnits',
+  },
+
+
+  PRODUCT_FARMER_INWARDS_API: {
+    SAVEFARMERINWARDMASTER: API_URL + 'Product/SaveFarmerInwardMaster',
+    SAVEFARMERINWARDSDETAILS: API_URL + 'Product/SaveFarmerInwardsDetails',
+  },
+
 }

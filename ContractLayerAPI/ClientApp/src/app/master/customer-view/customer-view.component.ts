@@ -71,7 +71,7 @@ export class CustomerViewComponent implements OnInit {
     
     //let customer = this.customerForm.value;
 
-    return this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL,  httpOptions)
+   this.cusotmerService.loadCustomers()
       .subscribe((customer:any) => {
         this.rowData = customer;
       });

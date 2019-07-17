@@ -4,10 +4,14 @@ using System.Text;
 using ContractLayerFarm.Data.Models;
 namespace ContractLayerFarm.Data.Contract
 {
-       public interface IProductRepository : IRepositoryBase<TblProductMaster>
+    public interface IProductRepository : IRepositoryBase<TblProductMaster>
     {
-        //Boolean IsValidUser(UserInfo userInfo);
-        //UserInfo Authenticate(string username, string password);
+
         bool Authenticate();
+
+        IEnumerable<TblUnitMaster> GetUnits();
+
+        void SaveFarmerInwardMaster(TblFarmerInwardMt master);
+        void SaveFarmerInwardDetails(TblFarmerInwardDt[] details);
     }
 }

@@ -27,6 +27,7 @@ namespace ContractLayerAPI.Controllers
             var Product = this._repoWrapper.Product.FindAll().ToList();
             return Product;
         }
+        
 
         [HttpGet("[action]")] 
         public TblProductMaster GetByID(int pKId)
@@ -73,6 +74,44 @@ namespace ContractLayerAPI.Controllers
             {
                 this._repoWrapper.Product.Delete(product);
                 this._repoWrapper.Product.Save();
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+
+        [HttpGet("[action]")]
+        public IEnumerable<TblUnitMaster> GetAllUnits()
+        {
+            var units = this._repoWrapper.Product.GetUnits().ToList();
+            return units;
+        }
+
+        [HttpPost("SaveFarmerInwardMaster")]
+        public bool SaveFarmerInwardMaster([FromBody] TblFarmerInwardMt farmerInwardMt)
+        {
+            try
+            {
+                this._repoWrapper.Product.SaveFarmerInwardMaster(farmerInwardMt);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost("SaveFarmerInwardsDetails")]
+        public bool SaveFarmerInwardsDetails([FromBody] TblFarmerInwardDt[] details)
+        {
+            try
+            {
+                this._repoWrapper.Product.SaveFarmerInwardDetails(details);
                 return true;
             }
 
