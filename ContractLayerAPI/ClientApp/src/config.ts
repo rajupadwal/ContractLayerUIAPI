@@ -130,5 +130,12 @@ export const APP_CONSTANT={
     EDIT: API_URL + 'Expencedetails/Update',
     DELETE: API_URL + 'Expencedetails/Delete'
   },
+  SALERECEIPT_API: {
+    ADD: API_URL + 'Salesreceipt/Add',
+    GETALL: API_URL + 'Salesreceipt/GetAll',
+    GETByID: API_URL + 'Salesreceipt/GetAll',
+    EDIT: API_URL + 'Salesreceipt/Update',
+    DELETE: API_URL + 'Salesreceipt/Delete'
+  },
 
 }

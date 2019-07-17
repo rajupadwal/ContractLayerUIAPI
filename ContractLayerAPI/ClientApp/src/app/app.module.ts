@@ -57,7 +57,6 @@ import { ValidationBorderModule } from './validation-border';
     AsideToggleDirective,
     ErrorDirective,
     
-    
 
 
   ],

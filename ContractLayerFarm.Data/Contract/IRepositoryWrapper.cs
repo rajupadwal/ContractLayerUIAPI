@@ -23,6 +23,7 @@ namespace ContractLayerFarm.Data.Contract
         IEmployeeAdvanceRepository Employeeadvance { get; }
         IIncomeRepository Income { get; }
         IEnquiryRepository Enquiry { get; }
+        ISalesreceiptRepository Salesreceipt { get; }
 
         //IItemGroupDetailRepository IItemGroupDetail { get; }
         //IDPRRepository IDPRRepository { get; }
