@@ -3,21 +3,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { APP_CONSTANT } from '../../../config';
 
 @Injectable({
 providedIn :'root'
 })
 export class LocationService {
-  locationData
-  constructor() { }
+  
+  constructor(private http: HttpClient) { }
 
-  setData(locationData) {
-    this.locationData = locationData;
+  loadLocations = () => {
+    return this.http.get(APP_CONSTANT.LOCATION_API.GETALL);
   }
-  getData() {
-    return this.locationData;
-  }
-
 
 
 }

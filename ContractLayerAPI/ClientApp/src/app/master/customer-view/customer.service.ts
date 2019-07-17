@@ -2,20 +2,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
+import { APP_CONSTANT } from '../../../config';
 
 @Injectable({
 providedIn :'root'
 })
 export class CusotmerService {
-  customerData
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  setData(customerData) {
-    this.customerData = customerData;
-  }
-  getData() {
-    return this.customerData;
+  loadCustomers() {
+    return this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL);
+     
   }
 
 }
