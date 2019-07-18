@@ -27,7 +27,7 @@ namespace ContractLayerFarm.Data.Repositories
         {
             master.RecordNo = this.RepositoryContext.Set<TblFarmerInwardMt>().OrderByDescending(x => x.RecordNo).FirstOrDefault().RecordNo+1;
             
-            this.RepositoryContext.Set<TblFarmerInwardMt>().Add(master);
+            this.RepositoryContext.Set<TblFarmerInwardMt>().AddRange(master);
             this.RepositoryContext.SaveChanges();
         }
         public void SaveFarmerInwardDetails(TblFarmerInwardDt[] details)
@@ -35,5 +35,34 @@ namespace ContractLayerFarm.Data.Repositories
             this.RepositoryContext.Set<TblFarmerInwardDt>().AddRange(details);
             this.RepositoryContext.SaveChanges();
         }
+
+        
+        IEnumerable<ViewFarmerInwardMaster> IProductRepository.GetAllFarmerInwardMasters()
+        {
+            return this.ktConContext.Set<ViewFarmerInwardMaster>();
+        }
+
+
+        IEnumerable<ViewFarmerInwardMaster> IProductRepository.GetAllFarmerInwardMasters1()
+        {
+
+            var entryPoint = (from ep in ktConContext.TblFarmerInwardMt
+                              join e in ktConContext.TblCustomerMaster on ep.CustomerId equals e.CustomerId
+                              join t in ktConContext.TblLocationMaster on ep.LocationId equals t.LocationId
+                              join p in ktConContext.TblPlanMaster on ep.PlanId equals p.PlanId
+                              //where e.OwnerID == user.UID
+                              select new ViewFarmerInwardMaster
+                              {
+                                  RecordNo = ep.RecordNo,
+                                  Date = ep.Date,
+                                  CustmerName=e.CustmerName,
+                                  LocationName=t.LocationName,
+                                  PlanName=p.PlanName,
+                              });
+
+            return entryPoint.ToList();
+
+        }
+
     }
 }

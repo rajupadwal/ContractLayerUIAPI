@@ -16,6 +16,9 @@ export class LocationService {
     return this.http.get(APP_CONSTANT.LOCATION_API.GETALL);
   }
 
+  getLocationByID(id) {
+    return this.http.post(APP_CONSTANT.LOCATION_API.GETByID, id);
+  }
 
 }
 

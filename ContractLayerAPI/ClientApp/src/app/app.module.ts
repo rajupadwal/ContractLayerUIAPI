@@ -58,7 +58,6 @@ import { ValidationBorderModule } from './validation-border';
     ErrorDirective,
     
 
-
   ],
   providers: [
     AuthService,

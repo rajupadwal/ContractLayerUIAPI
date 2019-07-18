@@ -34,8 +34,8 @@ namespace ContractLayerAPI.Controllers
             return Location;
         }
 
-        [HttpGet("[action]")] 
-        public TblLocationMaster GetByID(int LocationId)
+        [HttpPost("GetByID")] 
+        public TblLocationMaster GetByID([FromBody] int LocationId)
         {
             var Location = this._repoWrapper.Location.FindByCondition(x=> x.LocationId == LocationId).FirstOrDefault();
             return Location;

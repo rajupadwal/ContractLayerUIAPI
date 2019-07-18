@@ -37,8 +37,8 @@ export const routes: Routes = [
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: 'farmerInward',
-        loadChildren: './farmer-inward/farmer-inward.module#FarmerInwardModule'
+        path: 'Farmerinwardview',
+        loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
       },
       
 
@@ -129,6 +129,10 @@ export const routes: Routes = [
           {
             path: 'Salesreceiptview',
             loadChildren: './account/salesreceipt-view/salesreceipt.view.module#SalesReceiptViewModule'
+          },
+          {
+            path: 'Purchasepaymentview',
+            loadChildren: './account/purchasepayment-view/purchasepayment.view.module#PurchasePaymentViewModule'
           },
           
         ]

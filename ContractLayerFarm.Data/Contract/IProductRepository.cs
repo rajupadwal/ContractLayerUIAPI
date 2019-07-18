@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ContractLayerFarm.Data.Models;
+
 namespace ContractLayerFarm.Data.Contract
 {
     public interface IProductRepository : IRepositoryBase<TblProductMaster>
@@ -13,5 +14,8 @@ namespace ContractLayerFarm.Data.Contract
 
         void SaveFarmerInwardMaster(TblFarmerInwardMt master);
         void SaveFarmerInwardDetails(TblFarmerInwardDt[] details);
+
+        IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters();
+        IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters1();
     }
 }

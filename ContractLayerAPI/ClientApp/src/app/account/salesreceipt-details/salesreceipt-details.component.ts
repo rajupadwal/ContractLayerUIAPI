@@ -8,6 +8,7 @@ import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
 import { SalesReceiptService } from '../salesreceipt-view/salesreceipt.service';
 import { CusotmerService } from '../../master/customer-view/customer.service';
+import { LocationService } from '../../master/location-view/location.service';
 @Component({
   selector: 'app-salesreceipt-details',
   templateUrl: './salesreceipt-details.component.html',
@@ -27,7 +28,7 @@ export class SalesReceiptDetailsComponent implements OnInit {
 
 
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private salesreceiptservice: SalesReceiptService, private config: DialogConfig, public dialog: DialogRef
-    , private cusotmerService: CusotmerService) { }
+    , private cusotmerService: CusotmerService, private locationService: LocationService) { }
 
   ngOnInit() {
 
@@ -50,6 +51,7 @@ export class SalesReceiptDetailsComponent implements OnInit {
 
     if (this.config.data) {
       this.getCstomer(this.config.data.CustomerId);
+      this.getLocation(this.config.data.LocationId);
       this.setDataForEdit();
     }
       
@@ -70,8 +72,8 @@ export class SalesReceiptDetailsComponent implements OnInit {
 
 
   getLocation(id) {
-    this.cusotmerService.getCustomerByID(id).subscribe((location) => {
-      this.salereceiptdetailsForm.patchValue({ Customer: location });
+    this.locationService.getLocationByID(id).subscribe((location) => {
+      this.salereceiptdetailsForm.patchValue({ Location: location });
     });
   }
 

@@ -27,7 +27,7 @@ export const APP_CONSTANT={
   LOCATION_API: {
     ADD: API_URL + 'Location/Add',
     GETALL: API_URL + 'Location/GetAll',
-    GETByID: API_URL + 'Location/GetAll',
+    GETByID: API_URL + 'Location/GetByID',
     EDIT: API_URL + 'Location/Update',
     DELETE: API_URL + 'Location/Delete',
     SEARCH_LOCATION: API_URL + 'Location/SearchLocation',
@@ -148,6 +148,15 @@ export const APP_CONSTANT={
   PRODUCT_FARMER_INWARDS_API: {
     SAVEFARMERINWARDMASTER: API_URL + 'Product/SaveFarmerInwardMaster',
     SAVEFARMERINWARDSDETAILS: API_URL + 'Product/SaveFarmerInwardsDetails',
+    GETALLFARMERINWARDMASTERS: API_URL + 'Product/GetAllFarmerInwardMasters1',
   },
-
+  
+  PURCHASEPAYMENT_API: {
+    ADD: API_URL + 'Purchasepayment/Add',
+    GETALL: API_URL + 'Purchasepayment/GetAll',
+    GETByID: API_URL + 'Purchasepayment/GetByID',
+    EDIT: API_URL + 'Purchasepayment/Update',
+    DELETE: API_URL + 'Purchasepayment/Delete'
+  },
+                                                    
 }

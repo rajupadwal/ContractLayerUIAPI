@@ -42,6 +42,7 @@ namespace ContractLayerFarm.Data.Models
         public virtual DbSet<TblPurchaseBillMt> TblPurchaseBillMt { get; set; }
         public virtual DbSet<TblPurchaseBillReturnDt> TblPurchaseBillReturnDt { get; set; }
         public virtual DbSet<TblPurchaseBillReturnMt> TblPurchaseBillReturnMt { get; set; }
+        public virtual DbSet<TblPurchasepayment> TblPurchasepayment { get; set; }
         public virtual DbSet<TblPurchaseReturnReceipt> TblPurchaseReturnReceipt { get; set; }
         public virtual DbSet<TblSalesBillDt> TblSalesBillDt { get; set; }
         public virtual DbSet<TblSalesBillMt> TblSalesBillMt { get; set; }
@@ -321,9 +322,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.ToTable("tbl_FarmerInwardMT");
 
-                entity.Property(e => e.RecordNo)
-                    .HasMaxLength(20)
-                    .ValueGeneratedNever();
+                entity.Property(e => e.RecordNo).ValueGeneratedNever();
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
@@ -624,6 +623,25 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.TransportationGstper).HasColumnName("TransportationGSTPer");
             });
 
+            modelBuilder.Entity<TblPurchasepayment>(entity =>
+            {
+                entity.HasKey(e => e.RecordNo);
+
+                entity.ToTable("tbl_Purchasepayment");
+
+                entity.Property(e => e.BillRefNo).HasMaxLength(20);
+
+                entity.Property(e => e.ChequeNo).HasMaxLength(20);
+
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.Narration).HasMaxLength(20);
+
+                entity.Property(e => e.PaymentMethod).HasMaxLength(20);
+
+                entity.Property(e => e.PaymentType).HasMaxLength(20);
+            });
+
             modelBuilder.Entity<TblPurchaseReturnReceipt>(entity =>
             {
                 entity.HasKey(e => e.RecordNo);
@@ -824,6 +842,24 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Userpassword).HasMaxLength(50);
             });
+
+            modelBuilder.Entity<ViewFarmerInwardMaster>(entity =>
+            {
+                entity.HasKey(e => e.RecordNo);
+
+                entity.ToTable("ViewFarmerInwardMaster");
+
+                entity.Property(e => e.RecordNo).ValueGeneratedNever();
+
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.PlanId).HasColumnName("PlanID");
+                entity.Property(e => e.PlanName).HasMaxLength(50);
+                entity.Property(e => e.CustmerName).HasMaxLength(50);
+                entity.Property(e => e.LocationName).HasMaxLength(50);
+            });
+
+
         }
     }
 }

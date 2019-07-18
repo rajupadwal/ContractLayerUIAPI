@@ -120,5 +120,19 @@ namespace ContractLayerAPI.Controllers
                 return false;
             }
         }
+
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters()
+        {
+            return this._repoWrapper.Product.GetAllFarmerInwardMasters().ToList();
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters1()
+        {
+            return this._repoWrapper.Product.GetAllFarmerInwardMasters1().ToList();
+        }
+
     }
 }
