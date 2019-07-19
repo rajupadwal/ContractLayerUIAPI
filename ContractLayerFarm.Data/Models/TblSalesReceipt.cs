@@ -10,7 +10,6 @@ namespace ContractLayerFarm.Data.Models
         public int? LocationId { get; set; }
         public int? CustomerId { get; set; }
         public string PaymentType { get; set; }
-        public string BillRefNo { get; set; }
         public string PaymentMethod { get; set; }
         public string ChequeNo { get; set; }
         public decimal? ChequeAmount { get; set; }
