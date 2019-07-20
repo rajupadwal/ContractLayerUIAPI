@@ -26,5 +26,9 @@ namespace ContractLayerFarm.Data.Models
         public string Narration { get; set; }
         public string DeliveryStatus { get; set; }
         public bool? IsDeleted { get; set; }
+
+        public TblCustomerMaster Customer { get; set; }
+        public TblLocationMaster Location { get; set; }
+        public TblPlanMaster Plan { get; set; }
     }
 }

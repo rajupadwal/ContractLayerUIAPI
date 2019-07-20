@@ -5,6 +5,17 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblCustomerMaster
     {
+        public TblCustomerMaster()
+        {
+            TblBookingCancelMaster = new HashSet<TblBookingCancelMaster>();
+            TblBookingMaster = new HashSet<TblBookingMaster>();
+            TblFarmerInwardMt = new HashSet<TblFarmerInwardMt>();
+            TblFarmerOutwardMt = new HashSet<TblFarmerOutwardMt>();
+            TblMortalitywastageMt = new HashSet<TblMortalitywastageMt>();
+            TblSalesBillMt = new HashSet<TblSalesBillMt>();
+            TblSalesReceipt = new HashSet<TblSalesReceipt>();
+        }
+
         public int CustomerId { get; set; }
         public string CustmerName { get; set; }
         public string CustomerMobileNo { get; set; }
@@ -15,7 +26,7 @@ namespace ContractLayerFarm.Data.Models
         public string Taluka { get; set; }
         public string City { get; set; }
         public string Pincode { get; set; }
-        public string Location { get; set; }
+        public int? LocationId { get; set; }
         public string GstNo { get; set; }
         public string PanNo { get; set; }
         public string ContactPerson { get; set; }
@@ -28,5 +39,14 @@ namespace ContractLayerFarm.Data.Models
         public string BranchName { get; set; }
         public string AccountType { get; set; }
         public bool? IsDeleted { get; set; }
+
+        public TblLocationMaster Location { get; set; }
+        public ICollection<TblBookingCancelMaster> TblBookingCancelMaster { get; set; }
+        public ICollection<TblBookingMaster> TblBookingMaster { get; set; }
+        public ICollection<TblFarmerInwardMt> TblFarmerInwardMt { get; set; }
+        public ICollection<TblFarmerOutwardMt> TblFarmerOutwardMt { get; set; }
+        public ICollection<TblMortalitywastageMt> TblMortalitywastageMt { get; set; }
+        public ICollection<TblSalesBillMt> TblSalesBillMt { get; set; }
+        public ICollection<TblSalesReceipt> TblSalesReceipt { get; set; }
     }
 }

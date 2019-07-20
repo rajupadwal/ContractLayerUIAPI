@@ -5,7 +5,13 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblPurchaseBillMt
     {
+        public TblPurchaseBillMt()
+        {
+            TblPurchaseBillDt = new HashSet<TblPurchaseBillDt>();
+        }
+
         public int PkId { get; set; }
+        public int BillId { get; set; }
         public string BatchNo { get; set; }
         public string BillNo { get; set; }
         public DateTime? BillDate { get; set; }
@@ -25,5 +31,9 @@ namespace ContractLayerFarm.Data.Models
         public decimal? GrandTotal { get; set; }
         public string Narration { get; set; }
         public bool? IsDeleted { get; set; }
+
+        public TblLocationMaster Location { get; set; }
+        public TblSupplierMaster Supplier { get; set; }
+        public ICollection<TblPurchaseBillDt> TblPurchaseBillDt { get; set; }
     }
 }

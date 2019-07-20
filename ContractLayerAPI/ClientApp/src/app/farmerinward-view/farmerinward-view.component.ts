@@ -65,10 +65,36 @@ export class FarmerinwardViewComponent implements OnInit {
     this.farmerinwardService.loadFarmerInwardMaster().subscribe(
       (response) => {
         this.rowData = response;
+      },
+
+      (error) => {
+        console.log(error);
+
       }
     );
   }
 
+  redirectToAddNew() {
+    const ref = this.dialog.open(FarmerInwardComponent, { modalConfig: { title: 'Add/Edit Farmer Inward Master' } });
+    ref.afterClosed.subscribe(result => {
+      // this.rowData.push(result); //TODO this should be implemented like this
+      this.RefreshGrid();
+    });
+  }
 
+  RefreshGrid = () => {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    this.farmerinwardService.loadFarmerInwardMaster().subscribe(
+      (response) => {
+        this.rowData = response;
+      },
+
+      (error) => {
+        console.log(error);
+
+      });
+  }
 
 }

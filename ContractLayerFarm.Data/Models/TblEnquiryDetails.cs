@@ -21,5 +21,7 @@ namespace ContractLayerFarm.Data.Models
         public string Narration { get; set; }
         public int? LocationId { get; set; }
         public bool? IsDeleted { get; set; }
+
+        public TblLocationMaster Location { get; set; }
     }
 }

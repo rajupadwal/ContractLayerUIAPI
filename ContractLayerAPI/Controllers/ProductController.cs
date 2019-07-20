@@ -30,9 +30,9 @@ namespace ContractLayerAPI.Controllers
         
 
         [HttpGet("[action]")] 
-        public TblProductMaster GetByID(int pKId)
+        public TblProductMaster GetByID(int ProductId)
         {
-            var Product = this._repoWrapper.Product.FindByCondition(x=> x.PkId == pKId).FirstOrDefault();
+            var Product = this._repoWrapper.Product.FindByCondition(x=> x.ProductId == ProductId).FirstOrDefault();
             return Product;
         }
 
@@ -106,20 +106,20 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
-        [HttpPost("SaveFarmerInwardsDetails")]
-        public bool SaveFarmerInwardsDetails([FromBody] TblFarmerInwardDt[] details)
-        {
-            try
-            {
-                this._repoWrapper.Product.SaveFarmerInwardDetails(details);
-                return true;
-            }
+        //[HttpPost("SaveFarmerInwardsDetails")]
+        //public bool SaveFarmerInwardsDetails([FromBody] TblFarmerInwardDt[] details)
+        //{
+        //    try
+        //    {
+        //        this._repoWrapper.Product.SaveFarmerInwardDetails(details);
+        //        return true;
+        //    }
 
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+        //    catch (Exception e)
+        //    {
+        //        return false;
+        //    }
+        //}
 
 
         [HttpGet("[action]")]
@@ -128,11 +128,20 @@ namespace ContractLayerAPI.Controllers
             return this._repoWrapper.Product.GetAllFarmerInwardMasters().ToList();
         }
 
-        [HttpGet("[action]")]
-        public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters1()
+
+        [HttpPost("GetAllFarmerInwardMasteDetails")]
+        public IEnumerable<TblFarmerInwardDt> GetAllFarmerInwardMasteDetails([FromBody] TblFarmerInwardMt farmerInwardMt)
         {
-            return this._repoWrapper.Product.GetAllFarmerInwardMasters1().ToList();
+            return this._repoWrapper.Product.GetAllFarmerInwardMasteDetails(farmerInwardMt.RecordNo);
         }
+
+
+
+        //[HttpGet("[action]")]
+        //public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters1()
+        //{
+        //    return this._repoWrapper.Product.GetAllFarmerInwardMasters1().ToList();
+        //}
 
     }
 }

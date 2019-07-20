@@ -16,6 +16,8 @@ namespace ContractLayerFarm.Data.Contract
         void SaveFarmerInwardDetails(TblFarmerInwardDt[] details);
 
         IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters();
-        IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters1();
+
+        IEnumerable<TblFarmerInwardDt> GetAllFarmerInwardMasteDetails(int recordNo);
+        
     }
 }

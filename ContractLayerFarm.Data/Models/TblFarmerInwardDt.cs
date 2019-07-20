@@ -9,10 +9,8 @@ namespace ContractLayerFarm.Data.Models
         public int RecordNo { get; set; }
         public DateTime Date { get; set; }
         public int ProductId { get; set; }
-        public string UnitId { get; set; }
+        public string Unit { get; set; }
         public decimal Quantity { get; set; }
         public bool? IsDeleted { get; set; }
-
-        public TblFarmerInwardMt RecordNoNavigation { get; set; }
     }
 }

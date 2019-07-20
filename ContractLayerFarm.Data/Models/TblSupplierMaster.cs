@@ -5,6 +5,13 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblSupplierMaster
     {
+        public TblSupplierMaster()
+        {
+            TblPurchaseBillMt = new HashSet<TblPurchaseBillMt>();
+            TblPurchaseBillReturnMt = new HashSet<TblPurchaseBillReturnMt>();
+            TblPurchaseReturnReceipt = new HashSet<TblPurchaseReturnReceipt>();
+        }
+
         public int SupplierId { get; set; }
         public string SupplierName { get; set; }
         public string SupplierMobileNo { get; set; }
@@ -29,5 +36,9 @@ namespace ContractLayerFarm.Data.Models
         public string MicrCode { get; set; }
         public string BranchName { get; set; }
         public string AccountType { get; set; }
+
+        public ICollection<TblPurchaseBillMt> TblPurchaseBillMt { get; set; }
+        public ICollection<TblPurchaseBillReturnMt> TblPurchaseBillReturnMt { get; set; }
+        public ICollection<TblPurchaseReturnReceipt> TblPurchaseReturnReceipt { get; set; }
     }
 }

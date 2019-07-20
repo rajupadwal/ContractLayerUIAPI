@@ -148,7 +148,10 @@ export const APP_CONSTANT={
   PRODUCT_FARMER_INWARDS_API: {
     SAVEFARMERINWARDMASTER: API_URL + 'Product/SaveFarmerInwardMaster',
     SAVEFARMERINWARDSDETAILS: API_URL + 'Product/SaveFarmerInwardsDetails',
-    GETALLFARMERINWARDMASTERS: API_URL + 'Product/GetAllFarmerInwardMasters1',
+    GETALLFARMERINWARDMASTERS: API_URL + 'Product/GetAllFarmerInwardMasters',
+    GETALLFARMERINWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerInwardMasteDetails',
+
+
   },
   
   PURCHASEPAYMENT_API: {

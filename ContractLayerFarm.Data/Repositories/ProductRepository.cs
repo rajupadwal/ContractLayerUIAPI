@@ -25,9 +25,7 @@ namespace ContractLayerFarm.Data.Repositories
 
         public void SaveFarmerInwardMaster(TblFarmerInwardMt master)
         {
-            master.RecordNo = this.RepositoryContext.Set<TblFarmerInwardMt>().OrderByDescending(x => x.RecordNo).FirstOrDefault().RecordNo+1;
-            
-            this.RepositoryContext.Set<TblFarmerInwardMt>().AddRange(master);
+            this.RepositoryContext.Set<TblFarmerInwardMt>().Add(master);
             this.RepositoryContext.SaveChanges();
         }
         public void SaveFarmerInwardDetails(TblFarmerInwardDt[] details)
@@ -39,12 +37,9 @@ namespace ContractLayerFarm.Data.Repositories
         
         IEnumerable<ViewFarmerInwardMaster> IProductRepository.GetAllFarmerInwardMasters()
         {
-            return this.ktConContext.Set<ViewFarmerInwardMaster>();
-        }
 
 
-        IEnumerable<ViewFarmerInwardMaster> IProductRepository.GetAllFarmerInwardMasters1()
-        {
+           
 
             var entryPoint = (from ep in ktConContext.TblFarmerInwardMt
                               join e in ktConContext.TblCustomerMaster on ep.CustomerId equals e.CustomerId
@@ -55,14 +50,29 @@ namespace ContractLayerFarm.Data.Repositories
                               {
                                   RecordNo = ep.RecordNo,
                                   Date = ep.Date,
-                                  CustmerName=e.CustmerName,
-                                  LocationName=t.LocationName,
-                                  PlanName=p.PlanName,
+                                  CustmerName = e.CustmerName,
+                                  LocationName = t.LocationName,
+                                  PlanName = p.PlanName,
+                                  PlanId = ep.PlanId,
+                                  CustomerId = ep.CustomerId,
+                                  LocationId = ep.LocationId,
+                                  Customer = new TblCustomerMaster { CustomerId = e.CustomerId, CustmerName = e.CustmerName },
+                                  Plan = new TblPlanMaster { PlanId = p.PlanId, PlanName = p.PlanName },
+                                  Location = new TblLocationMaster { LocationId = t.LocationId, LocationName = t.LocationName },
+                                 
+
                               });
 
             return entryPoint.ToList();
-
         }
 
+
+
+     
+
+        IEnumerable<TblFarmerInwardDt> IProductRepository.GetAllFarmerInwardMasteDetails(int recordNo)
+        {
+            return this.ktConContext.Set<TblFarmerInwardDt>().Where(p => p.RecordNo == recordNo).ToList();
+        }
     }
 }

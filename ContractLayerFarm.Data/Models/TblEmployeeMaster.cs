@@ -5,6 +5,11 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblEmployeeMaster
     {
+        public TblEmployeeMaster()
+        {
+            TblOfficeExpencesDetails = new HashSet<TblOfficeExpencesDetails>();
+        }
+
         public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public string Address { get; set; }
@@ -20,7 +25,7 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? DateOfJoining { get; set; }
         public DateTime? DateOfLeaving { get; set; }
         public string Role { get; set; }
-        public string Location { get; set; }
+        public int? LocationId { get; set; }
         public string UserId { get; set; }
         public string Password { get; set; }
         public string CompanyMobileNo { get; set; }
@@ -38,5 +43,8 @@ namespace ContractLayerFarm.Data.Models
         public string MicrCode { get; set; }
         public string BranchName { get; set; }
         public string AccountType { get; set; }
+
+        public TblLocationMaster Location { get; set; }
+        public ICollection<TblOfficeExpencesDetails> TblOfficeExpencesDetails { get; set; }
     }
 }

@@ -20,7 +20,7 @@ export class ProductService {
   }
 
 
-  saveFarmerInwards(master,details) {
+  saveFarmerInwards(master) {
 
     this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.SAVEFARMERINWARDMASTER,  master)
       .subscribe((response) => {
@@ -28,11 +28,16 @@ export class ProductService {
       });
 
 
-    this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.SAVEFARMERINWARDSDETAILS, details)
-      .subscribe((response) => {
-        console.log("Inward master added successfully");
-      });
+    //this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.SAVEFARMERINWARDSDETAILS, details)
+    //  .subscribe((response) => {
+    //    console.log("Inward master added successfully");
+    //  });
   }
+
+  getAllFarmerinwardmastedetails = (master) => {
+    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.GETALLFARMERINWARDMASTEDETAILS, master);
+  }
+  
 }
 
 

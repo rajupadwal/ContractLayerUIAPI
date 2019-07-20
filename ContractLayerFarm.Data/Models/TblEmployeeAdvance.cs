@@ -7,9 +7,11 @@ namespace ContractLayerFarm.Data.Models
     {
         public int RecordNo { get; set; }
         public DateTime? RecordDate { get; set; }
-        public string LocationName { get; set; }
+        public int? LocationId { get; set; }
         public decimal? Advance { get; set; }
         public string Narration { get; set; }
-        public string EmployeeName { get; set; }
+        public int? EmployeeId { get; set; }
+
+        public TblLocationMaster Location { get; set; }
     }
 }

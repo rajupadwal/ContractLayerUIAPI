@@ -8,7 +8,6 @@ namespace ContractLayerFarm.Data.Models
         public TblFarmerInwardMt()
         {
             TblFarmerInwardDt = new HashSet<TblFarmerInwardDt>();
-            TblFarmerOutwardDt = new HashSet<TblFarmerOutwardDt>();
         }
 
         public int RecordNo { get; set; }
@@ -18,7 +17,9 @@ namespace ContractLayerFarm.Data.Models
         public int PlanId { get; set; }
         public bool? IsDeleted { get; set; }
 
+        public TblCustomerMaster Customer { get; set; }
+        public TblLocationMaster Location { get; set; }
+        public TblPlanMaster Plan { get; set; }
         public ICollection<TblFarmerInwardDt> TblFarmerInwardDt { get; set; }
-        public ICollection<TblFarmerOutwardDt> TblFarmerOutwardDt { get; set; }
     }
 }

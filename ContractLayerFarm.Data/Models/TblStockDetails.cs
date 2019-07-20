@@ -12,6 +12,7 @@ namespace ContractLayerFarm.Data.Models
         public string CreditNoteNo { get; set; }
         public string TranscationType { get; set; }
         public int? ProductId { get; set; }
+        public string ProductType { get; set; }
         public decimal? InwardQty { get; set; }
         public decimal? OutwardQty { get; set; }
         public DateTime? TranscationDate { get; set; }
@@ -20,5 +21,7 @@ namespace ContractLayerFarm.Data.Models
         public decimal? DebitNoteQty { get; set; }
         public string Unit { get; set; }
         public bool? IsDelete { get; set; }
+
+        public TblProductTypeMaster Product { get; set; }
     }
 }

@@ -29,15 +29,15 @@ namespace ContractLayerFarm.Data.Models
         public virtual DbSet<TblFarmerOutwardDt> TblFarmerOutwardDt { get; set; }
         public virtual DbSet<TblFarmerOutwardMt> TblFarmerOutwardMt { get; set; }
         public virtual DbSet<TblFeedSheduleMasterDt> TblFeedSheduleMasterDt { get; set; }
-        public virtual DbSet<TblFeedSheduleMasterMt> TblFeedSheduleMasterMt { get; set; }
+        public virtual DbSet<TblHatcheryMaster> TblHatcheryMaster { get; set; }
         public virtual DbSet<TblIncomeDeatils> TblIncomeDeatils { get; set; }
         public virtual DbSet<TblLocationMaster> TblLocationMaster { get; set; }
         public virtual DbSet<TblMortalitywastageDt> TblMortalitywastageDt { get; set; }
         public virtual DbSet<TblMortalitywastageMt> TblMortalitywastageMt { get; set; }
         public virtual DbSet<TblOfficeExpencesDetails> TblOfficeExpencesDetails { get; set; }
         public virtual DbSet<TblPlanMaster> TblPlanMaster { get; set; }
-        public virtual DbSet<TblProductDescriptionMaster> TblProductDescriptionMaster { get; set; }
         public virtual DbSet<TblProductMaster> TblProductMaster { get; set; }
+        public virtual DbSet<TblProductTypeMaster> TblProductTypeMaster { get; set; }
         public virtual DbSet<TblPurchaseBillDt> TblPurchaseBillDt { get; set; }
         public virtual DbSet<TblPurchaseBillMt> TblPurchaseBillMt { get; set; }
         public virtual DbSet<TblPurchaseBillReturnDt> TblPurchaseBillReturnDt { get; set; }
@@ -77,6 +77,21 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.Narration).HasMaxLength(20);
 
                 entity.Property(e => e.PaymentMethod).HasMaxLength(20);
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.TblBookingCancelMaster)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_tbl_BookingCancelMaster_tbl_Customer");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblBookingCancelMaster)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_BookingCancelMaster_tbl_Location");
+
+                entity.HasOne(d => d.Plan)
+                    .WithMany(p => p.TblBookingCancelMaster)
+                    .HasForeignKey(d => d.PlanId)
+                    .HasConstraintName("FK_tbl_BookingCancelMaster_tbl_Plan");
             });
 
             modelBuilder.Entity<TblBookingMaster>(entity =>
@@ -100,6 +115,21 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.Narration).HasMaxLength(20);
 
                 entity.Property(e => e.PaymentMethod).HasMaxLength(20);
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.TblBookingMaster)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_tbl_BookingMaster_tbl_Customer");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblBookingMaster)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_BookingMaster_tbl_Location");
+
+                entity.HasOne(d => d.Plan)
+                    .WithMany(p => p.TblBookingMaster)
+                    .HasForeignKey(d => d.PlanId)
+                    .HasConstraintName("FK_tbl_BookingMaster_tbl_Plan");
             });
 
             modelBuilder.Entity<TblCompanyProfile>(entity =>
@@ -159,8 +189,6 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.IfscCode).HasMaxLength(20);
 
-                entity.Property(e => e.Location).HasMaxLength(20);
-
                 entity.Property(e => e.MicrCode).HasMaxLength(20);
 
                 entity.Property(e => e.PanNo).HasMaxLength(20);
@@ -172,6 +200,11 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.State).HasMaxLength(20);
 
                 entity.Property(e => e.Taluka).HasMaxLength(20);
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblCustomerMaster)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_CustomerMaster_tbl_Location");
             });
 
             modelBuilder.Entity<TblEggsRangeMaster>(entity =>
@@ -187,13 +220,14 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.ToTable("tbl_EmployeeAdvance");
 
-                entity.Property(e => e.EmployeeName).HasMaxLength(20);
-
-                entity.Property(e => e.LocationName).HasMaxLength(20);
-
                 entity.Property(e => e.Narration).HasMaxLength(50);
 
                 entity.Property(e => e.RecordDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblEmployeeAdvance)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_EmployeeAdvance_tbl_Location");
             });
 
             modelBuilder.Entity<TblEmployeeMaster>(entity =>
@@ -236,8 +270,6 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.IfscCode).HasMaxLength(20);
 
-                entity.Property(e => e.Location).HasMaxLength(20);
-
                 entity.Property(e => e.MaritialStatus).HasMaxLength(15);
 
                 entity.Property(e => e.MicrCode).HasMaxLength(20);
@@ -265,6 +297,11 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.UserId).HasMaxLength(20);
 
                 entity.Property(e => e.VoterId).HasMaxLength(20);
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblEmployeeMaster)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_EmployeeMaster_tbl_Location");
             });
 
             modelBuilder.Entity<TblEnquiryDetails>(entity =>
@@ -292,6 +329,11 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.RemindDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Taluka).HasMaxLength(20);
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblEnquiryDetails)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_EnquiryDetails_tbl_Location");
             });
 
             modelBuilder.Entity<TblExpenceTypeMaster>(entity =>
@@ -311,9 +353,14 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.RecordNo).HasMaxLength(20);
+                entity.Property(e => e.Unit)
+                    .IsRequired()
+                    .HasMaxLength(20);
 
-                entity.Property(e => e.Unit).HasMaxLength(20);
+                //entity.HasOne(d => d.RecordNoNavigation)
+                //    .WithMany(p => p.TblFarmerInwardDt)
+                //    .HasForeignKey(d => d.RecordNo)
+                //    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<TblFarmerInwardMt>(entity =>
@@ -322,11 +369,26 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.ToTable("tbl_FarmerInwardMT");
 
-                entity.Property(e => e.RecordNo).ValueGeneratedNever();
-
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.Property(e => e.PlanId).HasColumnName("PlanID");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.TblFarmerInwardMt)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tbl_FarmerInwardMT_tbl_CustomerId");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblFarmerInwardMt)
+                    .HasForeignKey(d => d.LocationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tbl_FarmerInwardMT_tbl_Location_LocationId");
+
+                entity.HasOne(d => d.Plan)
+                    .WithMany(p => p.TblFarmerInwardMt)
+                    .HasForeignKey(d => d.PlanId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<TblFarmerOutwardDt>(entity =>
@@ -337,9 +399,12 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.RecordNo).HasMaxLength(20);
-
                 entity.Property(e => e.Unit).HasMaxLength(20);
+
+                entity.HasOne(d => d.RecordNoNavigation)
+                    .WithMany(p => p.TblFarmerOutwardDt)
+                    .HasForeignKey(d => d.RecordNo)
+                    .HasConstraintName("FK_tbl_FarmerOutwardDT_tbl_RecordNo");
             });
 
             modelBuilder.Entity<TblFarmerOutwardMt>(entity =>
@@ -348,13 +413,25 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.ToTable("tbl_FarmerOutwardMT");
 
-                entity.Property(e => e.RecordNo)
-                    .HasMaxLength(20)
-                    .ValueGeneratedNever();
-
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.Property(e => e.PlanId).HasColumnName("PlanID");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.TblFarmerOutwardMt)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblFarmerOutwardMt)
+                    .HasForeignKey(d => d.LocationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Plan)
+                    .WithMany(p => p.TblFarmerOutwardMt)
+                    .HasForeignKey(d => d.PlanId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tbl_FarmerOutwardMT_tbl_PlanId");
             });
 
             modelBuilder.Entity<TblFeedSheduleMasterDt>(entity =>
@@ -366,13 +443,30 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.BirdAgeInDays).HasMaxLength(20);
 
                 entity.Property(e => e.DailyFeedInGrams).HasMaxLength(20);
+
+                entity.Property(e => e.ProductType).HasMaxLength(50);
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.TblFeedSheduleMasterDt)
+                    .HasForeignKey(d => new { d.ProductId, d.ProductType })
+                    .HasConstraintName("FK_tbl_FeedSheduleMasterDT_tbl_ProductType");
             });
 
-            modelBuilder.Entity<TblFeedSheduleMasterMt>(entity =>
+            modelBuilder.Entity<TblHatcheryMaster>(entity =>
             {
                 entity.HasKey(e => e.SrNo);
 
-                entity.ToTable("tbl_FeedSheduleMasterMT");
+                entity.ToTable("tbl_HatcheryMaster");
+
+                entity.Property(e => e.Address).HasMaxLength(50);
+
+                entity.Property(e => e.ContactPersonName).HasMaxLength(50);
+
+                entity.Property(e => e.HatcheryName).HasMaxLength(50);
+
+                entity.Property(e => e.MobileNo).HasMaxLength(20);
+
+                entity.Property(e => e.Password).HasMaxLength(50);
             });
 
             modelBuilder.Entity<TblIncomeDeatils>(entity =>
@@ -392,6 +486,11 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.Title).HasMaxLength(20);
 
                 entity.Property(e => e.TypeOfIncome).HasMaxLength(20);
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblIncomeDeatils)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_IncomeDeatils_tbl_Location");
             });
 
             modelBuilder.Entity<TblLocationMaster>(entity =>
@@ -429,7 +528,19 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
+                entity.Property(e => e.ProductType).HasMaxLength(50);
+
                 entity.Property(e => e.Unit).HasMaxLength(20);
+
+                entity.HasOne(d => d.RecordNoNavigation)
+                    .WithMany(p => p.TblMortalitywastageDt)
+                    .HasForeignKey(d => d.RecordNo)
+                    .HasConstraintName("FK_tbl_MortalitywastageDT_tbl_RecordNo");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.TblMortalitywastageDt)
+                    .HasForeignKey(d => new { d.ProductId, d.ProductType })
+                    .HasConstraintName("FK_tbl_MortalitywastageDT_tbl_Product");
             });
 
             modelBuilder.Entity<TblMortalitywastageMt>(entity =>
@@ -442,11 +553,24 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Diseases).HasMaxLength(20);
 
-                entity.Property(e => e.Pmdone)
-                    .HasColumnName("PMDone")
-                    .HasMaxLength(20);
+                entity.Property(e => e.PmDone).HasMaxLength(20);
 
                 entity.Property(e => e.Reason).HasMaxLength(20);
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.TblMortalitywastageMt)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_tbl_MortalitywastageMT_tbl_Customer");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblMortalitywastageMt)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_MortalitywastageMT_tbl_Location");
+
+                entity.HasOne(d => d.Plan)
+                    .WithMany(p => p.TblMortalitywastageMt)
+                    .HasForeignKey(d => d.PlanId)
+                    .HasConstraintName("FK_tbl_MortalitywastageMT_tbl_Plan");
             });
 
             modelBuilder.Entity<TblOfficeExpencesDetails>(entity =>
@@ -462,6 +586,21 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.Narration).HasMaxLength(20);
 
                 entity.Property(e => e.PaymentMethod).HasMaxLength(20);
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.TblOfficeExpencesDetails)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .HasConstraintName("FK_tbl_OfficeExpencesDetails_tbl_Employee");
+
+                entity.HasOne(d => d.Expence)
+                    .WithMany(p => p.TblOfficeExpencesDetails)
+                    .HasForeignKey(d => d.ExpenceId)
+                    .HasConstraintName("FK_tbl_OfficeExpencesDetails_tbl_ExpenseType");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblOfficeExpencesDetails)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_OfficeExpencesDetails_tbl_Location");
             });
 
             modelBuilder.Entity<TblPlanMaster>(entity =>
@@ -479,26 +618,26 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.PlanName).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<TblProductDescriptionMaster>(entity =>
+            modelBuilder.Entity<TblProductMaster>(entity =>
             {
                 entity.HasKey(e => e.ProductId);
 
-                entity.ToTable("tbl_ProductDescriptionMaster");
+                entity.ToTable("tbl_ProductMaster");
 
                 entity.Property(e => e.ProductName).HasMaxLength(20);
             });
 
-            modelBuilder.Entity<TblProductMaster>(entity =>
+            modelBuilder.Entity<TblProductTypeMaster>(entity =>
             {
-                entity.HasKey(e => e.PkId);
+                entity.HasKey(e => new { e.ProductId, e.ProductType });
 
-                entity.ToTable("tbl_ProductMaster");
+                entity.ToTable("tbl_ProductTypeMaster");
+
+                entity.Property(e => e.ProductType).HasMaxLength(50);
 
                 entity.Property(e => e.Hsnsac).HasMaxLength(50);
 
-                entity.Property(e => e.ProductType)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.PkId).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Unit).HasMaxLength(50);
             });
@@ -515,28 +654,25 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.BillNo).HasMaxLength(20);
 
-                entity.Property(e => e.Cgstpercentage).HasColumnName("CGSTPercentage");
+                entity.Property(e => e.HsnCode).HasMaxLength(20);
 
-                entity.Property(e => e.Hsncode)
-                    .HasColumnName("HSNCode")
-                    .HasMaxLength(20);
+                entity.Property(e => e.ProductType).HasMaxLength(50);
 
-                entity.Property(e => e.Igstpercentage).HasColumnName("IGSTPercentage");
+                entity.HasOne(d => d.Bill)
+                    .WithMany(p => p.TblPurchaseBillDt)
+                    .HasForeignKey(d => d.BillId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tbl_PurchaseBillDT_tbl_BillId");
 
-                entity.Property(e => e.Mrp).HasColumnName("MRP");
-
-                entity.Property(e => e.Sgstpercentage).HasColumnName("SGSTPercentage");
-
-                entity.Property(e => e.TotalCgst).HasColumnName("TotalCGST");
-
-                entity.Property(e => e.TotalIgst).HasColumnName("TotalIGST");
-
-                entity.Property(e => e.TotalSgst).HasColumnName("TotalSGST");
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.TblPurchaseBillDt)
+                    .HasForeignKey(d => new { d.ProductId, d.ProductType })
+                    .HasConstraintName("FK_tbl_PurchaseBillDT_tbl_ProductId");
             });
 
             modelBuilder.Entity<TblPurchaseBillMt>(entity =>
             {
-                entity.HasKey(e => e.PkId);
+                entity.HasKey(e => e.BillId);
 
                 entity.ToTable("tbl_PurchaseBillMT");
 
@@ -561,6 +697,16 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.TransportationGstamt).HasColumnName("TransportationGSTAmt");
 
                 entity.Property(e => e.TransportationGstper).HasColumnName("TransportationGSTPer");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblPurchaseBillMt)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_PurchaseBillMT_tbl_Location");
+
+                entity.HasOne(d => d.Supplier)
+                    .WithMany(p => p.TblPurchaseBillMt)
+                    .HasForeignKey(d => d.SupplierId)
+                    .HasConstraintName("FK_tbl_PurchaseBillMT_tbl_Supplier");
             });
 
             modelBuilder.Entity<TblPurchaseBillReturnDt>(entity =>
@@ -575,28 +721,25 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.BillNo).HasMaxLength(20);
 
-                entity.Property(e => e.Cgstpercentage).HasColumnName("CGSTPercentage");
+                entity.Property(e => e.HsnCode).HasMaxLength(20);
 
-                entity.Property(e => e.Hsncode)
-                    .HasColumnName("HSNCode")
-                    .HasMaxLength(20);
+                entity.Property(e => e.ProductType).HasMaxLength(50);
 
-                entity.Property(e => e.Igstpercentage).HasColumnName("IGSTPercentage");
+                entity.HasOne(d => d.Bill)
+                    .WithMany(p => p.TblPurchaseBillReturnDt)
+                    .HasForeignKey(d => d.BillId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tbl_PurchaseBillReturnDT_tbl_BilId");
 
-                entity.Property(e => e.Mrp).HasColumnName("MRP");
-
-                entity.Property(e => e.Sgstpercentage).HasColumnName("SGSTPercentage");
-
-                entity.Property(e => e.TotalCgst).HasColumnName("TotalCGST");
-
-                entity.Property(e => e.TotalIgst).HasColumnName("TotalIGST");
-
-                entity.Property(e => e.TotalSgst).HasColumnName("TotalSGST");
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.TblPurchaseBillReturnDt)
+                    .HasForeignKey(d => new { d.ProductId, d.ProductType })
+                    .HasConstraintName("FK_tbl_PurchaseBillReturnDT_tbl_Producttype");
             });
 
             modelBuilder.Entity<TblPurchaseBillReturnMt>(entity =>
             {
-                entity.HasKey(e => e.PkId);
+                entity.HasKey(e => e.BillId);
 
                 entity.ToTable("tbl_PurchaseBillReturnMT");
 
@@ -612,15 +755,17 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Narration).HasMaxLength(20);
 
-                entity.Property(e => e.TotalCgstamt).HasColumnName("TotalCGSTAmt");
+                entity.Property(e => e.TotalCgstTamt).HasColumnName("TotalCgstTAmt");
 
-                entity.Property(e => e.TotalIgstamt).HasColumnName("TotalIGSTAmt");
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblPurchaseBillReturnMt)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_PurchaseBillReturnMT_tbl_LocationId");
 
-                entity.Property(e => e.TotalSgstamt).HasColumnName("TotalSGSTAmt");
-
-                entity.Property(e => e.TransportationGstamt).HasColumnName("TransportationGSTAmt");
-
-                entity.Property(e => e.TransportationGstper).HasColumnName("TransportationGSTPer");
+                entity.HasOne(d => d.Supplier)
+                    .WithMany(p => p.TblPurchaseBillReturnMt)
+                    .HasForeignKey(d => d.SupplierId)
+                    .HasConstraintName("FK_tbl_PurchaseBillReturnMT_tbl_SupplierId");
             });
 
             modelBuilder.Entity<TblPurchasepayment>(entity =>
@@ -655,6 +800,16 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.Narration).HasMaxLength(20);
 
                 entity.Property(e => e.PaymentMethod).HasMaxLength(20);
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblPurchaseReturnReceipt)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_PurchaseReturnReceipt_tbl_Location");
+
+                entity.HasOne(d => d.Supplier)
+                    .WithMany(p => p.TblPurchaseReturnReceipt)
+                    .HasForeignKey(d => d.SupplierId)
+                    .HasConstraintName("FK_tbl_PurchaseReturnReceipt_tbl_Supplier");
             });
 
             modelBuilder.Entity<TblSalesBillDt>(entity =>
@@ -666,11 +821,24 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.BillDate).HasColumnType("datetime");
 
                 entity.Property(e => e.BillNo).HasMaxLength(20);
+
+                entity.Property(e => e.ProductType).HasMaxLength(50);
+
+                entity.HasOne(d => d.Bill)
+                    .WithMany(p => p.TblSalesBillDt)
+                    .HasForeignKey(d => d.BillId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tbl_SalesBillDT_tbl_BillId");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.TblSalesBillDt)
+                    .HasForeignKey(d => new { d.ProductId, d.ProductType })
+                    .HasConstraintName("FK_tbl_SalesBillDT_tblProductId");
             });
 
             modelBuilder.Entity<TblSalesBillMt>(entity =>
             {
-                entity.HasKey(e => e.PkId);
+                entity.HasKey(e => e.BillId);
 
                 entity.ToTable("tbl_SalesBillMT");
 
@@ -680,7 +848,9 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.BillDate).HasColumnType("datetime");
 
-                entity.Property(e => e.BillNo).HasMaxLength(20);
+                entity.Property(e => e.BillNo)
+                    .IsRequired()
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.ChequeNo).HasMaxLength(20);
 
@@ -694,15 +864,21 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.PlaceOfSupply).HasMaxLength(20);
 
-                entity.Property(e => e.Tdsamount).HasColumnName("TDSAmount");
-
-                entity.Property(e => e.Tdspercentage).HasColumnName("TDSPercentage");
-
                 entity.Property(e => e.ToDate).HasColumnType("datetime");
 
                 entity.Property(e => e.TransportMode).HasMaxLength(20);
 
                 entity.Property(e => e.VehicleNo).HasMaxLength(20);
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.TblSalesBillMt)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_tbl_SalesBillMT_tbl_Customer");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblSalesBillMt)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_SalesBillMT_tbl_Location");
             });
 
             modelBuilder.Entity<TblSalesReceipt>(entity =>
@@ -722,6 +898,16 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.PaymentMethod).HasMaxLength(20);
 
                 entity.Property(e => e.PaymentType).HasMaxLength(20);
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.TblSalesReceipt)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_tbl_SalesReceipt_tbl_Customer");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.TblSalesReceipt)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_tbl_SalesReceipt_tbl_Location");
             });
 
             modelBuilder.Entity<TblShedMaster>(entity =>
@@ -753,11 +939,18 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.OutwardDocNo).HasMaxLength(20);
 
+                entity.Property(e => e.ProductType).HasMaxLength(50);
+
                 entity.Property(e => e.TranscationDate).HasColumnType("datetime");
 
                 entity.Property(e => e.TranscationType).HasMaxLength(20);
 
                 entity.Property(e => e.Unit).HasMaxLength(20);
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.TblStockDetails)
+                    .HasForeignKey(d => new { d.ProductId, d.ProductType })
+                    .HasConstraintName("FK_tbl_StockDetails_tbl_Product");
             });
 
             modelBuilder.Entity<TblSupplierMaster>(entity =>
@@ -842,24 +1035,6 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Userpassword).HasMaxLength(50);
             });
-
-            modelBuilder.Entity<ViewFarmerInwardMaster>(entity =>
-            {
-                entity.HasKey(e => e.RecordNo);
-
-                entity.ToTable("ViewFarmerInwardMaster");
-
-                entity.Property(e => e.RecordNo).ValueGeneratedNever();
-
-                entity.Property(e => e.Date).HasColumnType("datetime");
-
-                entity.Property(e => e.PlanId).HasColumnName("PlanID");
-                entity.Property(e => e.PlanName).HasMaxLength(50);
-                entity.Property(e => e.CustmerName).HasMaxLength(50);
-                entity.Property(e => e.LocationName).HasMaxLength(50);
-            });
-
-
         }
     }
 }
