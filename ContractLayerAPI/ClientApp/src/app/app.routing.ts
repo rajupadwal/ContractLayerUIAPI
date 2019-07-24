@@ -138,6 +138,23 @@ export const routes: Routes = [
         ]
       },
 
+      {
+        path: 'sale',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Sales'
+        },
+        children: [
+
+          {
+            path: 'Salechickeggbillview',
+            loadChildren: './sale/farmerchickeggsbill-view/farmerchickeggsbill.view.module#FarmerchickeggbillModule'
+          },
+          
+
+        ]
+      },
+
       //{
       //  path: 'cases',
       //  loadChildren: './cases/cases.module#CasesModule'

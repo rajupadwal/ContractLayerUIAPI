@@ -55,7 +55,9 @@ export class CustomerViewComponent implements OnInit {
       headerName: 'Address ', field: 'Address' ,'width': 100},
     {
       headerName: 'PlantAddress    ', field: 'PlantAddress','width': 100 },
-    { headerName: 'State           ', field: 'State' }
+    { headerName: 'State           ', field: 'State' },
+    { headerName: 'Location           ', field: 'Location.LocationName' }
+
     
   ];
 

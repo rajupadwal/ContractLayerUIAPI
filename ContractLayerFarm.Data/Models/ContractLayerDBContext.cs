@@ -357,10 +357,10 @@ namespace ContractLayerFarm.Data.Models
                     .IsRequired()
                     .HasMaxLength(20);
 
-                //entity.HasOne(d => d.RecordNoNavigation)
-                //    .WithMany(p => p.TblFarmerInwardDt)
-                //    .HasForeignKey(d => d.RecordNo)
-                //    .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(d => d.RecordNoNavigation)
+                    .WithMany(p => p.TblFarmerInwardDt)
+                    .HasForeignKey(d => d.RecordNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<TblFarmerInwardMt>(entity =>
@@ -824,6 +824,8 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.ProductType).HasMaxLength(50);
 
+                entity.Property(e => e.Unit).HasMaxLength(20);
+
                 entity.HasOne(d => d.Bill)
                     .WithMany(p => p.TblSalesBillDt)
                     .HasForeignKey(d => d.BillId)
@@ -864,6 +866,8 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.PlaceOfSupply).HasMaxLength(20);
 
+                entity.Property(e => e.SaleType).HasMaxLength(20);
+
                 entity.Property(e => e.ToDate).HasColumnType("datetime");
 
                 entity.Property(e => e.TransportMode).HasMaxLength(20);
@@ -879,6 +883,11 @@ namespace ContractLayerFarm.Data.Models
                     .WithMany(p => p.TblSalesBillMt)
                     .HasForeignKey(d => d.LocationId)
                     .HasConstraintName("FK_tbl_SalesBillMT_tbl_Location");
+
+                entity.HasOne(d => d.Plan)
+                    .WithMany(p => p.TblSalesBillMt)
+                    .HasForeignKey(d => d.PlanId)
+                    .HasConstraintName("FK_tbl_SalesBillMT_tbl_PlanId");
             });
 
             modelBuilder.Entity<TblSalesReceipt>(entity =>

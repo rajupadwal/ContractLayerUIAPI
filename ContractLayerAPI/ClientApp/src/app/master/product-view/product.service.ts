@@ -34,8 +34,27 @@ export class ProductService {
     //  });
   }
 
+
   getAllFarmerinwardmastedetails = (master) => {
     return this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.GETALLFARMERINWARDMASTEDETAILS, master);
+  }
+
+  getAllFarmerchickeggbilldetails = (master) => {
+    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.GETALLFARMERCHICKEGGBILLDETAILS, master);
+  }
+
+  saveFarmerChickEggBill(master) {
+
+    this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.SAVEFARMERCHICKEGGBILLMASTER, master)
+      .subscribe((response) => {
+        console.log("Bill added successfully");
+      });
+
+
+    //this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.SAVEFARMERINWARDSDETAILS, details)
+    //  .subscribe((response) => {
+    //    console.log("Inward master added successfully");
+    //  });
   }
   
 }

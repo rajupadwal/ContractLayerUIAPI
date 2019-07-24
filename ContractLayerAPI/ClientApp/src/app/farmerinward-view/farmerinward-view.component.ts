@@ -36,7 +36,7 @@ export class FarmerinwardViewComponent implements OnInit {
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerInwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Inward' } });
           ref.afterClosed.subscribe(result => {
-           //this.RefreshGrid();
+          this.RefreshGrid();
           });
         };
         return newTH;

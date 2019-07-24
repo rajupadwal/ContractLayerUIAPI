@@ -8,6 +8,7 @@ using System.Linq;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
 using ContractLayerFarm.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContractLayerFarm.Data.Repositories
 {
@@ -24,6 +25,15 @@ namespace ContractLayerFarm.Data.Repositories
             { return new List<TblCustomerMaster>(); }
 
            return this.ktConContext.Set<TblCustomerMaster>().Where(customer => customer.CustmerName.ToLower().Contains(searchString.ToLower()));
+        }
+
+        public IEnumerable<TblCustomerMaster> GetAllCustomer()
+        {
+
+            var TblCustomerMasters = this.ktConContext.TblCustomerMaster
+                       .Include(blog => blog.Location)
+                       .ToList();
+            return TblCustomerMasters;
         }
 
         bool ICustomerRepository.Authenticate()

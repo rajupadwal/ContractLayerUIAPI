@@ -12,6 +12,7 @@ namespace ContractLayerFarm.Data.Models
             TblFarmerInwardMt = new HashSet<TblFarmerInwardMt>();
             TblFarmerOutwardMt = new HashSet<TblFarmerOutwardMt>();
             TblMortalitywastageMt = new HashSet<TblMortalitywastageMt>();
+            TblSalesBillMt = new HashSet<TblSalesBillMt>();
         }
 
         public int PlanId { get; set; }
@@ -29,5 +30,6 @@ namespace ContractLayerFarm.Data.Models
         public ICollection<TblFarmerInwardMt> TblFarmerInwardMt { get; set; }
         public ICollection<TblFarmerOutwardMt> TblFarmerOutwardMt { get; set; }
         public ICollection<TblMortalitywastageMt> TblMortalitywastageMt { get; set; }
+        public ICollection<TblSalesBillMt> TblSalesBillMt { get; set; }
     }
 }

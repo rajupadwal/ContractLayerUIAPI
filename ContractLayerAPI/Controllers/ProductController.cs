@@ -106,21 +106,7 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
-        //[HttpPost("SaveFarmerInwardsDetails")]
-        //public bool SaveFarmerInwardsDetails([FromBody] TblFarmerInwardDt[] details)
-        //{
-        //    try
-        //    {
-        //        this._repoWrapper.Product.SaveFarmerInwardDetails(details);
-        //        return true;
-        //    }
-
-        //    catch (Exception e)
-        //    {
-        //        return false;
-        //    }
-        //}
-
+       
 
         [HttpGet("[action]")]
         public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters()
@@ -135,13 +121,32 @@ namespace ContractLayerAPI.Controllers
             return this._repoWrapper.Product.GetAllFarmerInwardMasteDetails(farmerInwardMt.RecordNo);
         }
 
+        [HttpPost("SaveFarmerChickEggBillMaster")]
+        public bool SaveFarmerChickEggBillMaster([FromBody] TblSalesBillMt salesBillMt)
+        {
+            try
+            {
+                this._repoWrapper.Product.SaveFarmerChickEggBillMaster(salesBillMt);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewFarmerChickEggBillMaster> GetAllFarmerChickEggBillMasters()
+        {
+            return this._repoWrapper.Product.GetAllFarmerChickEggBillMasters().ToList();
+        }
 
 
-        //[HttpGet("[action]")]
-        //public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters1()
-        //{
-        //    return this._repoWrapper.Product.GetAllFarmerInwardMasters1().ToList();
-        //}
-
+        [HttpPost("GetAllFarmerChickEggBillDetails")]
+        public IEnumerable<TblSalesBillDt> GetAllFarmerChickEggBillDetails([FromBody] TblSalesBillDt salesBillDt)
+        {
+            return this._repoWrapper.Product.GetAllFarmerChickEggBillDetails(salesBillDt.BillId);
+        }
     }
 }

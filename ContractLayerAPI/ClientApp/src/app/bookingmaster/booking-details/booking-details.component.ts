@@ -33,7 +33,7 @@ export class BookingDetailsComponent implements OnInit {
 
       RecordNo        : [0],
       LocationId      : [],
-      Customer      : [],
+      CustomerId      : [],
       BookingDate     : [],
       MobileNo        : [],
       PlanId          : [],
@@ -60,8 +60,10 @@ export class BookingDetailsComponent implements OnInit {
 
   onSelectCustomer(selectedCustomer) {
     this.bookingdetailsForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
+
     
   }
+
   searchLocation(event) {
     this.bookingService.searchLocation(event.query).subscribe((data:any) => {
       this.locationList = data;

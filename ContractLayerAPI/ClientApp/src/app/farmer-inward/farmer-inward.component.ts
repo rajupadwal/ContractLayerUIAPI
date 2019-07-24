@@ -36,13 +36,10 @@ export class FarmerInwardComponent implements OnInit {
     let detail = new FarmerInwardDetail();
     this.FarmerInwardDetailsList = [detail];
     this.FarmerInwardMaster = new FarmerInwardMaster();
-    if (!this.config.data) {
-      this.loadPlans();
-      this.loadProducts();
-      this.loadCustomers();
-      this.loadLocations();
-      this.loadUnits();
-    }
+    this.loadCustomers();
+    this.loadLocations();
+    this.loadPlans();
+    
     if (this.config.data)
       this.setDataForEdit();
 
@@ -53,7 +50,6 @@ export class FarmerInwardComponent implements OnInit {
     this.FarmerInwardMaster = this.config.data;
     this.FarmerInwardMaster.Date = moment(this.config.data.Date).toDate();
     this.getAllFarmerinwardmastedetails();
-    this.loadProducts();
   }
 
   getAllFarmerinwardmastedetails() {
@@ -117,8 +113,8 @@ export class FarmerInwardComponent implements OnInit {
     this.FarmerInwardDetailsList.push(newDetails);
   }
 
-  removeItem = () => {
-
+  removeItem = (item) => {
+    this.FarmerInwardDetailsList = this.FarmerInwardDetailsList.filter(p => p.PkId != item.PkId);
   }
   saveItems = () => {
 

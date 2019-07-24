@@ -24,7 +24,7 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblCustomerMaster> GetAll()
         {
-            var Cusotmer = this._repoWrapper.Customer.FindAll().ToList();
+            var Cusotmer = this._repoWrapper.Customer.GetAllCustomer();
             return Cusotmer;
         }
         [HttpPost("SearchCustomer")]

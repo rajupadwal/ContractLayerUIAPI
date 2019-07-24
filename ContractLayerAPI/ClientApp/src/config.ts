@@ -138,6 +138,13 @@ export const APP_CONSTANT={
     EDIT: API_URL + 'Salesreceipt/Update',
     DELETE: API_URL + 'Salesreceipt/Delete'
   },
+  FARMERCHIKEGGBILL_API: {
+    ADD: API_URL + 'Salesreceipt/Add',
+    GETALL: API_URL + 'Salesreceipt/GetAll',
+    GETByID: API_URL + 'Salesreceipt/GetAll',
+    EDIT: API_URL + 'Salesreceipt/Update',
+    DELETE: API_URL + 'Salesreceipt/Delete'
+  },
 
 
   PRODUCT_UNIT_API: {
@@ -150,6 +157,14 @@ export const APP_CONSTANT={
     SAVEFARMERINWARDSDETAILS: API_URL + 'Product/SaveFarmerInwardsDetails',
     GETALLFARMERINWARDMASTERS: API_URL + 'Product/GetAllFarmerInwardMasters',
     GETALLFARMERINWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerInwardMasteDetails',
+
+  },
+  PRODUCT_FARMER_CHICKEGGBILL_API: {
+    SAVEFARMERCHICKEGGBILLMASTER: API_URL + 'Product/SaveFarmerChickEggBillMaster',
+    SAVEFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/SaveFarmerChickEggBillDetails',
+    GETALLFARMERCHICKEGGBILLMASTERS: API_URL + 'Product/GetAllFarmerChickEggBillMasters',
+    GETALLFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/GetAllFarmerChickEggBillDetails',
+    
 
 
   },

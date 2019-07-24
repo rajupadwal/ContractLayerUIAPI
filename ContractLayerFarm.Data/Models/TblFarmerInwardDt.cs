@@ -12,5 +12,7 @@ namespace ContractLayerFarm.Data.Models
         public string Unit { get; set; }
         public decimal Quantity { get; set; }
         public bool? IsDeleted { get; set; }
+
+        public TblFarmerInwardMt RecordNoNavigation { get; set; }
     }
 }
