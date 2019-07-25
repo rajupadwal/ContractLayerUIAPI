@@ -7,22 +7,22 @@ namespace ContractLayerFarm.Data.Models
     {
         public TblLocationMaster()
         {
-            //TblBookingCancelMaster = new HashSet<TblBookingCancelMaster>();
-            //TblBookingMaster = new HashSet<TblBookingMaster>();
-            //TblCustomerMaster = new HashSet<TblCustomerMaster>();
-            //TblEmployeeAdvance = new HashSet<TblEmployeeAdvance>();
-            //TblEmployeeMaster = new HashSet<TblEmployeeMaster>();
-            //TblEnquiryDetails = new HashSet<TblEnquiryDetails>();
-            //TblFarmerInwardMt = new HashSet<TblFarmerInwardMt>();
-            //TblFarmerOutwardMt = new HashSet<TblFarmerOutwardMt>();
-            //TblIncomeDeatils = new HashSet<TblIncomeDeatils>();
-            //TblMortalitywastageMt = new HashSet<TblMortalitywastageMt>();
-            //TblOfficeExpencesDetails = new HashSet<TblOfficeExpencesDetails>();
-            //TblPurchaseBillMt = new HashSet<TblPurchaseBillMt>();
-            //TblPurchaseBillReturnMt = new HashSet<TblPurchaseBillReturnMt>();
-            //TblPurchaseReturnReceipt = new HashSet<TblPurchaseReturnReceipt>();
-            //TblSalesBillMt = new HashSet<TblSalesBillMt>();
-            //TblSalesReceipt = new HashSet<TblSalesReceipt>();
+            TblBookingCancelMaster = new HashSet<TblBookingCancelMaster>();
+            TblBookingMaster = new HashSet<TblBookingMaster>();
+            TblCustomerMaster = new HashSet<TblCustomerMaster>();
+            TblEmployeeAdvance = new HashSet<TblEmployeeAdvance>();
+            TblEmployeeMaster = new HashSet<TblEmployeeMaster>();
+            TblEnquiryDetails = new HashSet<TblEnquiryDetails>();
+            TblFarmerInwardMt = new HashSet<TblFarmerInwardMt>();
+            TblFarmerOutwardMt = new HashSet<TblFarmerOutwardMt>();
+            TblIncomeDeatils = new HashSet<TblIncomeDeatils>();
+            TblMortalitywastageMt = new HashSet<TblMortalitywastageMt>();
+            TblOfficeExpencesDetails = new HashSet<TblOfficeExpencesDetails>();
+            TblPurchaseBillMt = new HashSet<TblPurchaseBillMt>();
+            TblPurchaseBillReturnMt = new HashSet<TblPurchaseBillReturnMt>();
+            TblPurchaseReturnReceipt = new HashSet<TblPurchaseReturnReceipt>();
+            TblSalesBillMt = new HashSet<TblSalesBillMt>();
+            TblSalesReceipt = new HashSet<TblSalesReceipt>();
         }
 
         public int LocationId { get; set; }
