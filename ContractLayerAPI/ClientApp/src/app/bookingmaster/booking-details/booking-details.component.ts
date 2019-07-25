@@ -7,6 +7,9 @@ import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
 import {BookingService } from '../booking-view/booking.service';
+import { LocationService } from '../../master/location-view/location.service';
+import { CusotmerService } from '../../master/customer-view/customer.service';
+import { PlanService } from '../../master/plan-view/plan.service';
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
@@ -15,8 +18,6 @@ import {BookingService } from '../booking-view/booking.service';
 
 export class BookingDetailsComponent implements OnInit {
   selectedCustomer
-  public customers = [];
-  //public locations = [];
   bookingdetailsForm: FormGroup;
   public isEditable: boolean = false;
   public customerList = [];
@@ -25,18 +26,18 @@ export class BookingDetailsComponent implements OnInit {
   public locationList: [];
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient,private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService) { }
 
   ngOnInit() {
 
     this.bookingdetailsForm = this.formBuilder.group({
 
       RecordNo        : [0],
-      LocationId      : [],
-      CustomerId      : [],
+      Location        : [{}],
+      Customer        : [{}],
       BookingDate     : [],
       MobileNo        : [],
-      PlanId          : [],
+      Plan            : [{}],
       NoOfPlan        : [],
       NoOfChicks      : [],
       Amount          : [],
@@ -54,14 +55,35 @@ export class BookingDetailsComponent implements OnInit {
       //IsDeleted       : [false] 
     });
 
-    if (this.config.data)
+    if (this.config.data) {
+      this.getLocation(this.config.data.LocationId);
+      this.getCustomer(this.config.data.CustomerId);
+      this.getPlan(this.config.data.PlanId);
       this.setDataForEdit();
+    }
+     
+  }
+
+  getLocation(id) {
+    this.locationService.getLocationByID(id).subscribe((location) => {
+      this.bookingdetailsForm.patchValue({ Location: location });
+    });
+  }
+
+  getCustomer(id) {
+    this.cusotmerService.getCustomerByID(id).subscribe((customer) => {
+      this.bookingdetailsForm.patchValue({ Customer: customer });
+    });
+  }
+
+  getPlan(id) {
+    this.planService.getPlanByID(id).subscribe((plan) => {
+      this.bookingdetailsForm.patchValue({ Plan: plan });
+    });
   }
 
   onSelectCustomer(selectedCustomer) {
     this.bookingdetailsForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
-
-    
   }
 
   searchLocation(event) {
@@ -92,10 +114,16 @@ export class BookingDetailsComponent implements OnInit {
     this.bookingdetailsForm.setValue(this.config.data);
   }
 
-
-
   saveBookingDetails() {
-    this.bookingService.saveBookingDetails(this.bookingdetailsForm.value,this.isEditable).subscribe((booking) => {
+    let booking = {};
+    Object.assign(booking, this.bookingdetailsForm.value);
+    booking.LocationId = booking.Location.LocationId;
+    booking.CustomerId = booking.Customer.CustomerId;
+    booking.PlanId = booking.Plan.PlanId;
+    delete booking.Location;
+    delete booking.Plan;
+    delete booking.Customer;
+    this.bookingService.saveBookingDetails(booking,this.isEditable).subscribe((booking) => {
       // login successful if there's a jwt token in the response
       if (booking) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes

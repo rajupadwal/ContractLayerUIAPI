@@ -23,7 +23,7 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblBookingMaster> GetAll()
         {
-            var Booking = this._repoWrapper.Booking.FindAll().ToList();
+            var Booking = this._repoWrapper.Booking.GetAllBooking();
             return Booking;
         }
         [HttpGet("[action]")]

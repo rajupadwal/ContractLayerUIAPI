@@ -81,13 +81,12 @@ export class EnquiryViewComponent implements OnInit {
     { headerName: 'District ', field: 'District', 'width': 100 },
 
     { headerName: 'Taluka ', field: 'Taluka', 'width': 100 },
-    { headerName: 'City', field: 'City', 'width': 100 }
+    { headerName: 'City', field: 'City', 'width': 100 },
+    { headerName: 'Location', field: 'Location.LocationName' }
 
   ];
 
-  rowData = [
-
-  ];
+  rowData;
 
   constructor(private router: Router, private http: HttpClient, private enquiryService: EnquiryService, public dialog: DialogService) { }
 

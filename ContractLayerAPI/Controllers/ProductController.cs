@@ -22,7 +22,7 @@ namespace ContractLayerAPI.Controllers
 
 
         [HttpGet("[action]")]
-        public IEnumerable<TblProductMaster> GetAll()
+        public IEnumerable<TblProductTypeMaster> GetAll()
         {
             var Product = this._repoWrapper.Product.FindAll().ToList();
             return Product;
@@ -30,14 +30,14 @@ namespace ContractLayerAPI.Controllers
         
 
         [HttpGet("[action]")] 
-        public TblProductMaster GetByID(int ProductId)
+        public TblProductTypeMaster GetByID(int ProductId)
         {
             var Product = this._repoWrapper.Product.FindByCondition(x=> x.ProductId == ProductId).FirstOrDefault();
             return Product;
         }
 
         [HttpPost("Add")]
-        public bool Add([FromBody]TblProductMaster product)
+        public bool Add([FromBody]TblProductTypeMaster product)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpPost("Update")]
-        public bool Update([FromBody] TblProductMaster product)
+        public bool Update([FromBody] TblProductTypeMaster product)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace ContractLayerAPI.Controllers
             }
         }
         [HttpPost("Delete")]
-        public bool Delete([FromBody] TblProductMaster product)
+        public bool Delete([FromBody] TblProductTypeMaster product)
         {
             try
             {

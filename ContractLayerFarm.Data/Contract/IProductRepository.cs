@@ -5,7 +5,7 @@ using ContractLayerFarm.Data.Models;
 
 namespace ContractLayerFarm.Data.Contract
 {
-    public interface IProductRepository : IRepositoryBase<TblProductMaster>
+    public interface IProductRepository : IRepositoryBase<TblProductTypeMaster>
     {
 
         bool Authenticate();

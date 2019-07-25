@@ -8,6 +8,7 @@ import { ProductService } from '../../master/product-view/product.service';
 import { PlanService } from '../../master/plan-view/plan.service';
 import { DialogRef } from '../../dialog/dialog-ref';
 import { DialogConfig } from '../../dialog/dialog-config';
+import { ProductdescService } from '../../master/productdesc-view/productdesc.service';
 
 
 
@@ -31,7 +32,7 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
   isEditable: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private cusotmerService: CusotmerService,
-    private productService: ProductService, private planService: PlanService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
+    private productService: ProductService, private productdescService: ProductdescService, private planService: PlanService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
 
   ngOnInit() {
     let detail = new FarmerChickEggsBillDetail();
@@ -68,7 +69,7 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
       });
   }
   loadProducts = () => {
-    this.productService.loadProducts()
+    this.productdescService.loadProducts()
       .subscribe((products: any) => {
         this.productlist = products;
         if (this.isEditable == true && this.FarmerChickEggsBillDetailList) {

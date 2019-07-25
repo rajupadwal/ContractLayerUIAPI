@@ -192,12 +192,10 @@
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
-              <label for="select"><strong>Location Name :</strong></label>
-              <select formControlName="LocationId" id="select" name="locationid" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option1</option>
-                <option value="2">Option2</option>
-              </select>
+              <label for="select"><strong>Location :</strong></label>
+              <p-autoComplete formControlName="Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                              [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
+
             </div>
           </div>
         </div>
