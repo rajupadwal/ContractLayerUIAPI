@@ -40,7 +40,14 @@ export const routes: Routes = [
         path: 'Farmerinwardview',
         loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
       },
-      
+      {
+        path: 'Farmeroutwardview',
+        loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardModule'
+      },
+      {
+        path: 'Purchasebillview',
+        loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
+      },
 
       
       {

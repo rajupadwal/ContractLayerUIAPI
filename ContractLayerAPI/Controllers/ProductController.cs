@@ -22,7 +22,7 @@ namespace ContractLayerAPI.Controllers
 
 
         [HttpGet("[action]")]
-        public IEnumerable<TblProductMaster> GetAll()
+        public IEnumerable<TblProductTypeMaster> GetAll()
         {
             var Product = this._repoWrapper.Product.FindAll().ToList();
             return Product;
@@ -30,14 +30,14 @@ namespace ContractLayerAPI.Controllers
         
 
         [HttpGet("[action]")] 
-        public TblProductMaster GetByID(int ProductId)
+        public TblProductTypeMaster GetByID(int ProductId)
         {
             var Product = this._repoWrapper.Product.FindByCondition(x=> x.ProductId == ProductId).FirstOrDefault();
             return Product;
         }
 
         [HttpPost("Add")]
-        public bool Add([FromBody]TblProductMaster product)
+        public bool Add([FromBody]TblProductTypeMaster product)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpPost("Update")]
-        public bool Update([FromBody] TblProductMaster product)
+        public bool Update([FromBody] TblProductTypeMaster product)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace ContractLayerAPI.Controllers
             }
         }
         [HttpPost("Delete")]
-        public bool Delete([FromBody] TblProductMaster product)
+        public bool Delete([FromBody] TblProductTypeMaster product)
         {
             try
             {
@@ -106,21 +106,7 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
-        //[HttpPost("SaveFarmerInwardsDetails")]
-        //public bool SaveFarmerInwardsDetails([FromBody] TblFarmerInwardDt[] details)
-        //{
-        //    try
-        //    {
-        //        this._repoWrapper.Product.SaveFarmerInwardDetails(details);
-        //        return true;
-        //    }
-
-        //    catch (Exception e)
-        //    {
-        //        return false;
-        //    }
-        //}
-
+       
 
         [HttpGet("[action]")]
         public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters()
@@ -135,13 +121,66 @@ namespace ContractLayerAPI.Controllers
             return this._repoWrapper.Product.GetAllFarmerInwardMasteDetails(farmerInwardMt.RecordNo);
         }
 
+        //------------------Outward Details-------------
+
+        [HttpPost("SaveFarmerOutwardMaster")]
+        public bool SaveFarmerOutwardMaster([FromBody] TblFarmerOutwardMt farmerOutwardMt)
+        {
+            try
+            {
+                this._repoWrapper.Product.SaveFarmerOutwardMaster(farmerOutwardMt);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
 
 
-        //[HttpGet("[action]")]
-        //public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters1()
-        //{
-        //    return this._repoWrapper.Product.GetAllFarmerInwardMasters1().ToList();
-        //}
 
+        [HttpGet("[action]")]
+        public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerOutwardMasters()
+        {
+            return this._repoWrapper.Product.GetAllFarmerOutwardMasters().ToList();
+        }
+
+
+        [HttpPost("GetAllFarmerOutwardMasteDetails")]
+        public IEnumerable<TblFarmerOutwardDt> GetAllFarmerOutwardMasteDetails([FromBody] TblFarmerOutwardMt farmerOutwardMt)
+        {
+            return this._repoWrapper.Product.GetAllFarmerOutwardMasteDetails(farmerOutwardMt.RecordNo);
+        }
+
+        //------------------Purchase Bill Details-------------
+
+        [HttpPost("SavePurchaseBillMaster")]
+        public bool SavePurchaseBillMaster([FromBody] TblPurchaseBillMt purchaseBillMt)
+        {
+            try
+            {
+                this._repoWrapper.Product.SavePurchaseBillMaster(purchaseBillMt);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters()
+        {
+            return this._repoWrapper.Product.GetAllPurchaseBillMasters().ToList();
+        }
+
+
+        [HttpPost("GetAllPurchaseBillMasteDetails")]
+        public IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails([FromBody] TblPurchaseBillMt purchaseBillMt)
+        {
+            return this._repoWrapper.Product.GetAllPurchaseBillMasteDetails(purchaseBillMt.BillId);
+        }
     }
 }

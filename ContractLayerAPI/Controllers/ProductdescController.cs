@@ -21,19 +21,19 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<TblProductDescriptionMaster> GetAll()
+        public IEnumerable<TblProductMaster> GetAll()
         {
             var productdesc = this._repoWrapper.Productdesc.FindAll().ToList();
             return productdesc;
         }
         [HttpGet("[action]")] 
-        public TblProductDescriptionMaster GetByID(int productId)
+        public TblProductMaster GetByID(int productId)
         {
             var productdesc = this._repoWrapper.Productdesc.FindByCondition(x=> x.ProductId == productId).FirstOrDefault();
             return productdesc;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         }
         [HttpPost("Add")]
-        public bool Add([FromBody]TblProductDescriptionMaster productdesc)
+        public bool Add([FromBody]TblProductMaster productdesc)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpPost("Update")]
-        public bool Update([FromBody] TblProductDescriptionMaster productdesc)
+        public bool Update([FromBody] TblProductMaster productdesc)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace ContractLayerAPI.Controllers
             }
         }
         [HttpPost("Delete")]
-        public bool Delete([FromBody] TblProductDescriptionMaster productdesc)
+        public bool Delete([FromBody] TblProductMaster productdesc)
         {
             try
             {

@@ -8,17 +8,18 @@ import { DialogRef } from '../dialog/dialog-ref';
 import { DialogConfig } from '../dialog/dialog-config';
 
 import * as moment from 'moment';
+import { ProductdescService } from '../master/productdesc-view/productdesc.service';
 
 
 
 @Component({
-  selector: 'app-farmer-inward',
-  templateUrl: './farmer-inward.component.html',
-  styleUrls: ['./farmer-inward.component.css']
+  selector: 'app-farmer-outward',
+  templateUrl: './farmer-outward.component.html',
+  styleUrls: ['./farmer-outward.component.css']
 })
-export class FarmerInwardComponent implements OnInit {
-  FarmerInwardDetailsList: any = [];
-  FarmerInwardMaster: FarmerInwardMaster;
+export class FarmerOutwardComponent implements OnInit {
+  FarmerOutwardDetailsList: any = [];
+  FarmerOutwardMaster: FarmerOutwardMaster;
 
 
   customerList;
@@ -30,15 +31,17 @@ export class FarmerInwardComponent implements OnInit {
   isEditable: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private cusotmerService: CusotmerService,
-    private productService: ProductService, private planService: PlanService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
+    private productService: ProductService,private productdescservice: ProductdescService, private planService: PlanService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
 
   ngOnInit() {
-    let detail = new FarmerInwardDetail();
-    this.FarmerInwardDetailsList = [detail];
-    this.FarmerInwardMaster = new FarmerInwardMaster();
+    let detail = new FarmerOutwardDetail();
+    this.FarmerOutwardDetailsList = [detail];
+    this.FarmerOutwardMaster = new FarmerOutwardMaster();
     this.loadCustomers();
     this.loadLocations();
     this.loadPlans();
+    this.loadProducts();
+    this.loadUnits();
     
     if (this.config.data)
       this.setDataForEdit();
@@ -47,30 +50,32 @@ export class FarmerInwardComponent implements OnInit {
 
   setDataForEdit = () => {
     this.isEditable = true;
-    this.FarmerInwardMaster = this.config.data;
-    this.FarmerInwardMaster.Date = moment(this.config.data.Date).toDate();
-    this.getAllFarmerinwardmastedetails();
+    this.FarmerOutwardMaster = this.config.data;
+    this.FarmerOutwardMaster.Date = moment(this.config.data.Date).toDate();
+    this.getAllFarmeroutwardmastedetails();
   }
 
-  getAllFarmerinwardmastedetails() {
-    this.productService.getAllFarmerinwardmastedetails(this.config.data).subscribe((response) => {
-      this.FarmerInwardDetailsList = response;
+  getAllFarmeroutwardmastedetails() {
+    this.productService.getAllFarmeroutwardmastedetails(this.config.data).subscribe((response) => {
+      this.FarmerOutwardDetailsList = response;
       this.loadProducts();
       this.loadUnits();
     });
   }
+
   loadCustomers = () => {
     this.cusotmerService.loadCustomers()
       .subscribe((customer: any) => {
         this.customerList = customer;
       });
   }
+
   loadProducts = () => {
-    this.productService.loadProducts()
+    this.productdescservice.loadProducts()
       .subscribe((products: any) => {
         this.productlist = products;
-        if (this.isEditable == true && this.FarmerInwardDetailsList) {
-          this.FarmerInwardDetailsList.forEach((key: any, value: any) => {
+        if (this.isEditable == true && this.FarmerOutwardDetailsList) {
+          this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
           })
         }
@@ -96,50 +101,49 @@ export class FarmerInwardComponent implements OnInit {
     this.productService.loadUnits()
       .subscribe((units: any) => {
         this.unitLists = units;
-        if (this.isEditable == true && this.FarmerInwardDetailsList) {
-          this.FarmerInwardDetailsList.forEach((key: any, value: any) => {
+        if (this.isEditable == true && this.FarmerOutwardDetailsList) {
+          this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
             key.Units = this.unitLists.find(p => p.UnitDescription == key.Unit);
           })
         }
       });
   }
 
-
-
   addNewItem = () => {
-    let newDetails = new FarmerInwardDetail();
-    newDetails.RecordNo = this.FarmerInwardMaster.RecordNo;
+    let newDetails = new FarmerOutwardDetail();
+    newDetails.RecordNo = this.FarmerOutwardMaster.RecordNo;
     newDetails.Date = new Date();
-    this.FarmerInwardDetailsList.push(newDetails);
+    this.FarmerOutwardDetailsList.push(newDetails);
   }
 
   removeItem = (item) => {
-    this.FarmerInwardDetailsList = this.FarmerInwardDetailsList.filter(p => p.PkId != item.PkId);
+    this.FarmerOutwardDetailsList = this.FarmerOutwardDetailsList.filter(p => p.PkId != item.PkId);
   }
   saveItems = () => {
 
-    delete this.FarmerInwardMaster.Location;
+    delete this.FarmerOutwardMaster.Location;
 
-    delete this.FarmerInwardMaster.Plan;
-    delete this.FarmerInwardMaster.Customer;
-    this.FarmerInwardMaster.TblFarmerInwardDt = this.FarmerInwardDetailsList;
+    delete this.FarmerOutwardMaster.Plan;
+    delete this.FarmerOutwardMaster.Customer;
+    this.FarmerOutwardMaster.TblFarmerOutwardDt = this.FarmerOutwardDetailsList;
 
 
-    this.productService.saveFarmerInwards(this.FarmerInwardMaster);
+    this.productService.saveFarmerOutwards(this.FarmerOutwardMaster);
 
     // store user details and jwt token in local storage to keep user logged in between page refreshes
     this.dialog.close();
+
   }
 
   onSelectPlans = (value) => {
-    this.FarmerInwardMaster.PlanId = this.FarmerInwardMaster.Plan.PlanId;
+    this.FarmerOutwardMaster.PlanId = this.FarmerOutwardMaster.Plan.PlanId;
   };
 
   onSelectCustomers = (value) => {
-    this.FarmerInwardMaster.CustomerId = this.FarmerInwardMaster.Customer.CustomerId;
+    this.FarmerOutwardMaster.CustomerId = this.FarmerOutwardMaster.Customer.CustomerId;
   };
   onSelectLocations = (value) => {
-    this.FarmerInwardMaster.LocationId = this.FarmerInwardMaster.Location.LocationId;
+    this.FarmerOutwardMaster.LocationId = this.FarmerOutwardMaster.Location.LocationId;
   };
 
   onSelectProducts = (value, model: any) => {
@@ -149,8 +153,6 @@ export class FarmerInwardComponent implements OnInit {
     model.Unit = model.Units.UnitDescription;
   };
 
-
-
   searchCustomer = (value) => {
     this.loadCustomers();
   };
@@ -159,7 +161,6 @@ export class FarmerInwardComponent implements OnInit {
     //made Api call for search
     this.loadLocations();
   };
-
 
   searchPlan = (value) => {
     //made Api call for search
@@ -174,11 +175,9 @@ export class FarmerInwardComponent implements OnInit {
     //made Api call for search
     this.loadUnits();
   };
-
-
-
 }
-export class FarmerInwardDetail {
+
+export class FarmerOutwardDetail {
   PkId: number;
   RecordNo: number = 0;;
   Date: Date = new Date();
@@ -187,10 +186,9 @@ export class FarmerInwardDetail {
   Quantity: number;
   Units: any;
   Product: any;
-  
 }
 
-export class FarmerInwardMaster {
+export class FarmerOutwardMaster {
   RecordNo: number = 0;
   Date:Date = new Date();
   LocationId: number = 0;
@@ -201,5 +199,5 @@ export class FarmerInwardMaster {
   Location: any;
   Plan: any;
   Customer: any;
-  TblFarmerInwardDt: FarmerInwardDetail[];
+  TblFarmerOutwardDt: FarmerOutwardDetail[];
 }

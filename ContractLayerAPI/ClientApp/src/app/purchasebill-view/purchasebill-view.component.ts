@@ -3,15 +3,15 @@ import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../config';
 import { DialogService } from '../dialog/dialog.service';
-import { FarmerInwardComponent } from '../farmer-inward/farmer-inward.component';
-import { FarmerinwardService } from './farmerinward.service';
+import { PurchaseBillComponent } from '../purchase-bill/purchase-bill.component';
+import { PurchasebillService } from './purchasebill.service';
 
 @Component({
-  selector: 'app-farmerinward-view',
-  templateUrl: './farmerinward-view.component.html',
-  styleUrls: ['./farmerinward-view.component.css']
+  selector: 'app-purchasebill-view',
+  templateUrl: './purchasebill-view.component.html',
+  styleUrls: ['./purchasebill-view.component.css']
 })
-export class FarmerinwardViewComponent implements OnInit {
+export class PurchasebillViewComponent implements OnInit {
 
   columnDefs = [
     {
@@ -20,10 +20,10 @@ export class FarmerinwardViewComponent implements OnInit {
     },
 
     {
-      headerName: 'RecordNo', headerCheckboxSelection: true,
+      headerName: 'BillNo', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 150
+      field: 'BillNo', 'width': 150
     },
 
 
@@ -34,7 +34,7 @@ export class FarmerinwardViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(FarmerInwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Inward' } });
+          const ref = this.dialog.open(PurchaseBillComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Bill' } });
           ref.afterClosed.subscribe(result => {
           this.RefreshGrid();
           });
@@ -42,27 +42,25 @@ export class FarmerinwardViewComponent implements OnInit {
         return newTH;
       },
     },
-    { headerName: 'Date ', field: 'Date', 'width': 150 },
+
+    { headerName: 'Date ', field: 'BillDate', 'width': 150 },
     {
       headerName: 'Location Name', field: 'LocationName', ' width': 150
     },
     {
-      headerName: 'Customer Name ', field: 'CustmerName', 'width': 100
-    },
-    {
-      headerName: 'Plan Name ', field: 'PlanName', 'width': 100
+      headerName: 'Supplier Name ', field: 'SupplierName', 'width': 100
     },
   ];
 
   rowData;
 
 
-  constructor(private router: Router, private http: HttpClient, private farmerinwardService: FarmerinwardService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private Purchasebillservice: PurchasebillService, public dialog: DialogService) { }
 
 
   ngOnInit() {
 
-    this.farmerinwardService.loadFarmerInwardMaster().subscribe(
+    this.Purchasebillservice.loadPurchaseBillMaster().subscribe(
       (response) => {
         this.rowData = response;
       },
@@ -75,7 +73,7 @@ export class FarmerinwardViewComponent implements OnInit {
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(FarmerInwardComponent, { modalConfig: { title: 'Add/Edit Farmer Inward Master' } });
+    const ref = this.dialog.open(PurchaseBillComponent, { modalConfig: { title: 'Add/Edit Purchase Bill' } });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();
@@ -86,7 +84,7 @@ export class FarmerinwardViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.farmerinwardService.loadFarmerInwardMaster().subscribe(
+    this.Purchasebillservice.loadPurchaseBillMaster().subscribe(
       (response) => {
         this.rowData = response;
       },

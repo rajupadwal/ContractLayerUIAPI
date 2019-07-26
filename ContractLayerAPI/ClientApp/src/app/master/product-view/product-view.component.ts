@@ -45,7 +45,7 @@ export class ProductViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(ProductMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Product Master' } });
+          const ref = this.dialog.open(ProductMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Product Details Master' } });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });

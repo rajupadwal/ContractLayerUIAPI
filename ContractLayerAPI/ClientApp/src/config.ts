@@ -138,20 +138,38 @@ export const APP_CONSTANT={
     EDIT: API_URL + 'Salesreceipt/Update',
     DELETE: API_URL + 'Salesreceipt/Delete'
   },
+  FARMERCHIKEGGBILL_API: {
+    ADD: API_URL + 'Salesreceipt/Add',
+    GETALL: API_URL + 'Salesreceipt/GetAll',
+    GETByID: API_URL + 'Salesreceipt/GetAll',
+    EDIT: API_URL + 'Salesreceipt/Update',
+    DELETE: API_URL + 'Salesreceipt/Delete'
+  },
 
 
   PRODUCT_UNIT_API: {
     GETALL: API_URL + 'Product/GetAllUnits',
   },
 
-
   PRODUCT_FARMER_INWARDS_API: {
     SAVEFARMERINWARDMASTER: API_URL + 'Product/SaveFarmerInwardMaster',
     SAVEFARMERINWARDSDETAILS: API_URL + 'Product/SaveFarmerInwardsDetails',
     GETALLFARMERINWARDMASTERS: API_URL + 'Product/GetAllFarmerInwardMasters',
     GETALLFARMERINWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerInwardMasteDetails',
+  },
 
+  PRODUCT_FARMER_OUTWARDS_API: {
+    SAVEFARMEROUTWARDMASTER: API_URL + 'Product/SaveFarmerOutwardMaster',
+    SAVEFARMEROUTWARDSDETAILS: API_URL + 'Product/SaveFarmerOutwardsDetails',
+    GETALLFARMEROUTWARDMASTERS: API_URL + 'Product/GetAllFarmerOutwardMasters',
+    GETALLFARMEROUTWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerOutwardMasteDetails',
+  },
 
+  PRODUCT_PURCHASE_BILLS_API: {
+    SAVEPURCHASEBILLMASTER: API_URL + 'Product/SavePurchaseBillMaster',
+    SAVEPURCHASEBILLSDETAILS: API_URL + 'Product/SavePurchaseBillsDetails',
+    GETALLPURCHASEBILLMASTERS: API_URL + 'Product/GetAllPurchaseBillMasters',
+    GETALLPURCHASEBILLMASTEDETAILS: API_URL + 'Product/GetAllPurchaseBillMasteDetails',
   },
   
   PURCHASEPAYMENT_API: {

@@ -3,15 +3,15 @@ import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../config';
 import { DialogService } from '../dialog/dialog.service';
-import { FarmerInwardComponent } from '../farmer-inward/farmer-inward.component';
-import { FarmerinwardService } from './farmerinward.service';
+import { FarmeroutwardService } from './farmeroutward.service';
+import { FarmerOutwardComponent } from '../farmer-outward/farmer-outward.component';
 
 @Component({
-  selector: 'app-farmerinward-view',
-  templateUrl: './farmerinward-view.component.html',
-  styleUrls: ['./farmerinward-view.component.css']
+  selector: 'app-farmeroutward-view',
+  templateUrl: './farmeroutward-view.component.html',
+  styleUrls: ['./farmeroutward-view.component.css']
 })
-export class FarmerinwardViewComponent implements OnInit {
+export class FarmeroutwardViewComponent implements OnInit {
 
   columnDefs = [
     {
@@ -34,7 +34,7 @@ export class FarmerinwardViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(FarmerInwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Inward' } });
+          const ref = this.dialog.open(FarmerOutwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Outward' } });
           ref.afterClosed.subscribe(result => {
           this.RefreshGrid();
           });
@@ -42,6 +42,7 @@ export class FarmerinwardViewComponent implements OnInit {
         return newTH;
       },
     },
+
     { headerName: 'Date ', field: 'Date', 'width': 150 },
     {
       headerName: 'Location Name', field: 'LocationName', ' width': 150
@@ -57,12 +58,12 @@ export class FarmerinwardViewComponent implements OnInit {
   rowData;
 
 
-  constructor(private router: Router, private http: HttpClient, private farmerinwardService: FarmerinwardService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private farmeroutwardService: FarmeroutwardService, public dialog: DialogService) { }
 
 
   ngOnInit() {
 
-    this.farmerinwardService.loadFarmerInwardMaster().subscribe(
+    this.farmeroutwardService.loadFarmerOutwardMaster().subscribe(
       (response) => {
         this.rowData = response;
       },
@@ -75,7 +76,7 @@ export class FarmerinwardViewComponent implements OnInit {
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(FarmerInwardComponent, { modalConfig: { title: 'Add/Edit Farmer Inward Master' } });
+    const ref = this.dialog.open(FarmerOutwardComponent, { modalConfig: { title: 'Add/Edit Farmer Outward Master' } });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();
@@ -86,7 +87,7 @@ export class FarmerinwardViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.farmerinwardService.loadFarmerInwardMaster().subscribe(
+    this.farmeroutwardService.loadFarmerOutwardMaster().subscribe(
       (response) => {
         this.rowData = response;
       },
