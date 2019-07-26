@@ -75,7 +75,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Employee/GetAll',
     GETByID: API_URL + 'Employee/GetAll',
     EDIT: API_URL + 'Employee/Update',
-    DELETE: API_URL + 'Employee/Delete'
+    DELETE: API_URL + 'Employee/Delete',
+    SEARCH_EMPLOYEE: API_URL + 'Employee/SearchEmployee'
   },
   EGGSRANGE_API: {
     ADD: API_URL + 'Eggsrange/Add',

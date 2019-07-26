@@ -20,6 +20,9 @@ export class LocationService {
     return this.http.post(APP_CONSTANT.LOCATION_API.GETByID, id);
   }
 
+  searchLocation(searchString) {
+    return this.http.post(APP_CONSTANT.LOCATION_API.SEARCH_LOCATION, JSON.stringify(searchString));
+  }
 }
 
 

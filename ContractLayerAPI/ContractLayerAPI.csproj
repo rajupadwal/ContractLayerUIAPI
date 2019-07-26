@@ -26,18 +26,10 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\farmerinward-view\farmerinward.module.ts" />
-    <None Remove="ClientApp\src\app\farmeroutward-view\farmeroutward.module.ts" />
     <None Remove="ClientApp\src\app\master\customer-view\customer.module.ts" />
-    <None Remove="ClientApp\src\app\purchasebill-view\purchasebill.module.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="ClientApp\src\app\purchasebill-view\purchasebill.module.ts">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientApp\src\app\farmeroutward-view\farmeroutward.module.ts">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="ClientApp\src\app\farmerinward-view\farmerinward.module.ts">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

@@ -23,7 +23,7 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblEmployeeAdvance> GetAll()
         {
-            var Employeeadv = this._repoWrapper.Employeeadvance.FindAll().ToList();
+            var Employeeadv = this._repoWrapper.Employeeadvance.GetAllEmployeeAdvance();
             return Employeeadv;
         }
 
