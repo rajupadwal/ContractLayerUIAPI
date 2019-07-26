@@ -115,7 +115,7 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   saveBookingDetails() {
-    let booking = {};
+    let booking;
     Object.assign(booking, this.bookingdetailsForm.value);
     booking.LocationId = booking.Location.LocationId;
     booking.CustomerId = booking.Customer.CustomerId;
