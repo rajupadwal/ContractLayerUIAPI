@@ -5,7 +5,7 @@ using ContractLayerFarm.Data.Models;
 
 namespace ContractLayerFarm.Data.Contract
 {
-    public interface IProductRepository : IRepositoryBase<TblProductMaster>
+    public interface IProductRepository : IRepositoryBase<TblProductTypeMaster>
     {
 
         bool Authenticate();
@@ -18,6 +18,25 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<ViewFarmerInwardMaster> GetAllFarmerInwardMasters();
 
         IEnumerable<TblFarmerInwardDt> GetAllFarmerInwardMasteDetails(int recordNo);
-        
+
+
+        //Farmer Outward
+
+        void SaveFarmerOutwardMaster(TblFarmerOutwardMt master);
+        void SaveFarmerOutwardDetails(TblFarmerOutwardDt[] details);
+
+        IEnumerable<ViewFarmerInwardMaster> GetAllFarmerOutwardMasters();
+
+        IEnumerable<TblFarmerOutwardDt> GetAllFarmerOutwardMasteDetails(int recordNo);
+
+        //Purchase Bill
+
+        void SavePurchaseBillMaster(TblPurchaseBillMt master);
+        void SavePurchaseBillDetails(TblPurchaseBillDt[] details);
+
+        IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters();
+
+        IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails(int billId);
+
     }
 }

@@ -7,7 +7,7 @@ using ContractLayerFarm.Data.Repositories;
 
 namespace ContractLayerFarm.Data.Repositories
 {
-    public class ProductdescRepository : RepositoryBase<TblProductDescriptionMaster>, IProductdescRepository
+    public class ProductdescRepository : RepositoryBase<TblProductMaster>, IProductdescRepository
     {
 
         public ProductdescRepository(ContractLayerDBContext ktConContext) : base(ktConContext) {  }

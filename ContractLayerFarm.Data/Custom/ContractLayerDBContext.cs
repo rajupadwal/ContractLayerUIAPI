@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ContractLayerFarm.Data.Models
 {
-    public partial class ContractLayerDBContext : DbContext
+    public partial class 
+        
+        Context : DbContext
     {
         public virtual DbSet<ViewFarmerInwardMaster> ViewFarmerInwardMasters { get; set; }
 

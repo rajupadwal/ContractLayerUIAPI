@@ -58,7 +58,7 @@ namespace ContractLayerFarm.Data.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=CHINTAMANI-PC;Database=ContractLayerDB;Trusted_Connection=True;");
             }
         }
 
@@ -357,10 +357,10 @@ namespace ContractLayerFarm.Data.Models
                     .IsRequired()
                     .HasMaxLength(20);
 
-                //entity.HasOne(d => d.RecordNoNavigation)
-                //    .WithMany(p => p.TblFarmerInwardDt)
-                //    .HasForeignKey(d => d.RecordNo)
-                //    .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(d => d.RecordNoNavigation)
+                    .WithMany(p => p.TblFarmerInwardDt)
+                    .HasForeignKey(d => d.RecordNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<TblFarmerInwardMt>(entity =>
@@ -823,6 +823,8 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.BillNo).HasMaxLength(20);
 
                 entity.Property(e => e.ProductType).HasMaxLength(50);
+
+                entity.Property(e => e.Unit).HasMaxLength(20);
 
                 entity.HasOne(d => d.Bill)
                     .WithMany(p => p.TblSalesBillDt)
