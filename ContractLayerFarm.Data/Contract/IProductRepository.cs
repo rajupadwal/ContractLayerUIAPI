@@ -20,6 +20,13 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<TblFarmerInwardDt> GetAllFarmerInwardMasteDetails(int recordNo);
 
 
+        void SaveFarmerChickEggBillMaster(TblSalesBillMt master);
+        void SaveFarmerChickEggBillDetails(TblSalesBillDt[] details);
+        IEnumerable<ViewFarmerChickEggBillMaster> GetAllFarmerChickEggBillMasters();
+
+        IEnumerable<TblSalesBillDt> GetAllFarmerChickEggBillDetails(int billid);
+
+
         //Farmer Outward
 
         void SaveFarmerOutwardMaster(TblFarmerOutwardMt master);

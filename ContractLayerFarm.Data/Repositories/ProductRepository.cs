@@ -192,5 +192,77 @@ namespace ContractLayerFarm.Data.Repositories
         {
             return this.ktConContext.Set<TblPurchaseBillDt>().Where(p => p.BillId == billId).ToList();
         }
+
+
+        public void SaveFarmerChickEggBillMaster(TblSalesBillMt master)
+        {
+            if (master.BillId > 0)
+            {
+                this.RepositoryContext.Set<TblSalesBillMt>().Update(master);
+                this.RepositoryContext.SaveChanges();
+            }
+            else
+            {
+                this.RepositoryContext.Set<TblSalesBillMt>().Add(master);
+                this.RepositoryContext.SaveChanges();
+            }
+
+        }
+        public void SaveFarmerChickEggBillDetails(TblSalesBillDt[] details)
+        {
+            this.RepositoryContext.Set<TblSalesBillDt>().AddRange(details);
+            this.RepositoryContext.SaveChanges();
+        }
+
+
+        IEnumerable<ViewFarmerChickEggBillMaster> IProductRepository.GetAllFarmerChickEggBillMasters()
+        {
+
+
+
+            var entryPoint = (from ep in ktConContext.TblSalesBillMt
+                              join e in ktConContext.TblCustomerMaster on ep.CustomerId equals e.CustomerId
+                              join t in ktConContext.TblLocationMaster on ep.LocationId equals t.LocationId
+                              join p in ktConContext.TblPlanMaster on ep.PlanId equals p.PlanId
+                              //where e.OwnerID == user.UID
+                              select new ViewFarmerChickEggBillMaster
+                              {
+                                  BillNo = ep.BillNo,
+                                  SaleType=ep.SaleType,
+                                  BillDate = ep.BillDate,
+                                  CustmerName = e.CustmerName,
+                                  LocationName = t.LocationName,
+                                  PlanName = p.PlanName,
+                                  PlanId = ep.PlanId,
+                                  PlaceOfSupply = ep.PlaceOfSupply,
+                                  Address = ep.Address,
+                                  TotalAmount=ep.TotalAmount,
+                                  TdsAmount=ep.TdsAmount,
+                                  AdminChargesAmt=ep.AdminChargesAmt,
+                                  OtherCharges=ep.OtherCharges,
+                                  GrandTotal=ep.GrandTotal,
+                                  CustomerId = ep.CustomerId,
+                                  LocationId = ep.LocationId,
+                                  Customer = new TblCustomerMaster { CustomerId = e.CustomerId, CustmerName = e.CustmerName },
+                                  Plan = new TblPlanMaster { PlanId = p.PlanId, PlanName = p.PlanName },
+                                  Location = new TblLocationMaster { LocationId = t.LocationId, LocationName = t.LocationName },
+
+
+                              });
+
+            return entryPoint.ToList();
+        }
+
+
+
+
+
+        IEnumerable<TblSalesBillDt> IProductRepository.GetAllFarmerChickEggBillDetails(int billid)
+        {
+            return this.ktConContext.Set<TblSalesBillDt>().Where(p => p.BillId == billid).ToList();
+        }
+
+
+
     }
 }

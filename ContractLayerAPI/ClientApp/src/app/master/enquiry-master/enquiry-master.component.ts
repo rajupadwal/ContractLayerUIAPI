@@ -6,6 +6,9 @@ import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
+import { LocationService } from '../location-view/location.service';
+import { CusotmerService } from '../customer-view/customer.service';
+import * as moment from 'moment';
 //import { EventEmitter } from 'events';
 
 @Component({
@@ -19,9 +22,10 @@ export class EnquiryMasterComponent implements OnInit {
   //@Output() postData = new EventEmitter();
   
   enquiryForm: FormGroup;
+  public locationList: [];
   public isEditable: boolean = false;
    
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private cusotmerservice: CusotmerService) { }
 
   ngOnInit() {
     this.enquiryForm = this.formBuilder.group({
@@ -40,23 +44,40 @@ export class EnquiryMasterComponent implements OnInit {
       RemindDate	    : [],
       EnquiryType	    : [],
       Narration	      : [],
-      LocationId	    : [],
+      Location        : [{}],
       IsDeleted	      : [false],
     });
     if (this.config.data)
+      this.getLocation(this.config.data.LocationId);
       this.setDataForEdit();
 
   }
+
+  getLocation(id) {
+    this.locationService.getLocationByID(id).subscribe((location) => {
+      this.enquiryForm.patchValue({ Location: location });
+    });
+  }
+
+  searchLocation(event) {
+    this.cusotmerservice.searchLocation(event.query).subscribe((data: any) => {
+      this.locationList = data;
+    });
+  }
+
   setDataForEdit = () => {
     this.isEditable = true;
     this.enquiryForm.setValue(this.config.data);
+    //this.enquiryForm.Date= (moment(this.config.data.Date).toDate());
+    //this.enquiryForm.RemindDate= (moment(this.config.data.RemindDate).toDate());
   }
   
   saveEnquiry() {
+    let enquiry = this.enquiryForm.value;
+    enquiry.LocationId = enquiry.Location.LocationId;
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    let enquiry = this.enquiryForm.value;
 
     return this.http.post(this.isEditable ? APP_CONSTANT.ENQUIRY_API.EDIT : APP_CONSTANT.ENQUIRY_API.ADD, enquiry, httpOptions)
       .subscribe((enquiry) => {

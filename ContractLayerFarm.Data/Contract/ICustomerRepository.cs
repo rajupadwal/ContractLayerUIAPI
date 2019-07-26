@@ -8,5 +8,7 @@ namespace ContractLayerFarm.Data.Contract
     {
         bool Authenticate();
         IEnumerable<TblCustomerMaster> SearchCustomer(string searchString);
+
+        IEnumerable<TblCustomerMaster> GetAllCustomer();
     }
 }

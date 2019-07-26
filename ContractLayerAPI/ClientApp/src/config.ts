@@ -164,6 +164,14 @@ export const APP_CONSTANT={
     GETALLFARMEROUTWARDMASTERS: API_URL + 'Product/GetAllFarmerOutwardMasters',
     GETALLFARMEROUTWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerOutwardMasteDetails',
   },
+  },
+  PRODUCT_FARMER_CHICKEGGBILL_API: {
+    SAVEFARMERCHICKEGGBILLMASTER: API_URL + 'Product/SaveFarmerChickEggBillMaster',
+    SAVEFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/SaveFarmerChickEggBillDetails',
+    GETALLFARMERCHICKEGGBILLMASTERS: API_URL + 'Product/GetAllFarmerChickEggBillMasters',
+    GETALLFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/GetAllFarmerChickEggBillDetails',
+    
+
 
   PRODUCT_PURCHASE_BILLS_API: {
     SAVEPURCHASEBILLMASTER: API_URL + 'Product/SavePurchaseBillMaster',

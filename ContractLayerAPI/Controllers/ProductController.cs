@@ -137,7 +137,26 @@ namespace ContractLayerAPI.Controllers
                 return false;
             }
         }
+        [HttpPost("SaveFarmerChickEggBillMaster")]
+        public bool SaveFarmerChickEggBillMaster([FromBody] TblSalesBillMt salesBillMt)
+        {
+            try
+            {
+                this._repoWrapper.Product.SaveFarmerChickEggBillMaster(salesBillMt);
+                return true;
+            }
 
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewFarmerChickEggBillMaster> GetAllFarmerChickEggBillMasters()
+        {
+            return this._repoWrapper.Product.GetAllFarmerChickEggBillMasters().ToList();
+        }
 
 
         [HttpGet("[action]")]
@@ -177,6 +196,11 @@ namespace ContractLayerAPI.Controllers
         }
 
 
+        [HttpPost("GetAllFarmerChickEggBillDetails")]
+        public IEnumerable<TblSalesBillDt> GetAllFarmerChickEggBillDetails([FromBody] TblSalesBillDt salesBillDt)
+        {
+            return this._repoWrapper.Product.GetAllFarmerChickEggBillDetails(salesBillDt.BillId);
+        }
         [HttpPost("GetAllPurchaseBillMasteDetails")]
         public IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails([FromBody] TblPurchaseBillMt purchaseBillMt)
         {

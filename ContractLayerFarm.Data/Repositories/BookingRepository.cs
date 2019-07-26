@@ -5,13 +5,30 @@ using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
 using ContractLayerFarm.Data.Repositories;
 
+using System.Linq.Expressions;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 namespace ContractLayerFarm.Data.Repositories
 {
     public class BookingRepository : RepositoryBase<TblBookingMaster>, IBookingRepository
     {
+        private ContractLayerDBContext ktConContext;
+        public BookingRepository(ContractLayerDBContext ktConContext) : base(ktConContext)
+        {
+            this.ktConContext = ktConContext;
+        }
 
-        public BookingRepository(ContractLayerDBContext ktConContext) : base(ktConContext) {  }
+        public IEnumerable<TblBookingMaster> GetAllBooking()
+        {
 
+            var TblBookingMaster = this.ktConContext.TblBookingMaster
+                       .Include(blog => blog.Location)
+                       .Include(blog => blog.Customer)
+                       .Include(blog => blog.Plan)
+                       .ToList();
+            return TblBookingMaster;
+        }
         bool IBookingRepository.Authenticate()
         {
             return true;

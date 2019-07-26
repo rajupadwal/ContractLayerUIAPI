@@ -15,6 +15,10 @@ export class PlanService {
     return this.http.get(APP_CONSTANT.PLAN_API.GETALL);
   }
 
+  getPlanByID(id) {
+    return this.http.post(APP_CONSTANT.PLAN_API.GETByID, id);
+  }
+
 }
 
 

@@ -30,7 +30,10 @@ namespace ContractLayerAPI
             services.AddMvc()
           .AddJsonOptions(options =>
           options.SerializerSettings.ContractResolver
-           = new DefaultContractResolver());
+           = new DefaultContractResolver())
+           .AddJsonOptions(
+            options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+        );
 
             services.AddDbContext<ContractLayerDBContext>(options =>
             

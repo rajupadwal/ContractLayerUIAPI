@@ -14,7 +14,9 @@ export class CusotmerService {
     return this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL);
      
   }
-
+  searchLocation(searchString) {
+    return this.http.post(APP_CONSTANT.LOCATION_API.SEARCH_LOCATION, JSON.stringify(searchString));
+  }
 
   getCustomerByID(id) {
     return this.http.post(APP_CONSTANT.CUSOTMER_API.GETByID,id);

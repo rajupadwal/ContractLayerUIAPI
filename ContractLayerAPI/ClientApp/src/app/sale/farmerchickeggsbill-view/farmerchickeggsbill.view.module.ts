@@ -35,6 +35,6 @@ import { FarmerchikeggbillService } from './farmerchickeggsbill.service';
   providers: [FarmerchikeggbillService]
 
 })
-export class FarmerinwardModule {
+export class FarmerchickeggbillModule {
 
 }

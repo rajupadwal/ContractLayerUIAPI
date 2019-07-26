@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
+import { LocationService } from '../location-view/location.service';
+import { CusotmerService } from '../customer-view/customer.service';
 
 
 @Component({
@@ -17,8 +19,9 @@ import { DialogRef } from '../../dialog/dialog-ref';
 export class CustomerInfoComponent implements OnInit {
 
   customerForm: FormGroup;
+  public locationList: [];
   public isEditable:boolean = false;
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef ) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private cusotmerservice: CusotmerService ) { }
 
   ngOnInit() {
   
@@ -37,7 +40,8 @@ export class CustomerInfoComponent implements OnInit {
           GstNo              : [], 
           IfscCode           : [], 
           IsDeleted          : [false], 
-          Location           : [], 
+          Location: [{}],
+          //LocationId:[],
           PanNo              : [], 
           Pincode            : [], 
           State              : [], 
@@ -45,10 +49,12 @@ export class CustomerInfoComponent implements OnInit {
           AccountNo          : [],
           PlantAddress       : [],
           MicrCode           : [],
-          BranchName         : [],
+      BranchName: [],
+     // AccountHolderName:[],
           
     });
     if (this.config.data)
+      this.getLocation(this.config.data.LocationId);
     this.setDataForEdit();
   
   }
@@ -59,10 +65,22 @@ export class CustomerInfoComponent implements OnInit {
     this.isEditable = true;
     this.customerForm.setValue(this.config.data);
   }
+
+  getLocation(id) {
+    this.locationService.getLocationByID(id).subscribe((location) => {
+      this.customerForm.patchValue({ Location: location });
+    });
+  }
+
+  searchLocation(event) {
+    this.cusotmerservice.searchLocation(event.query).subscribe((data: any) => {
+      this.locationList = data;
+    });
+  }
   saveCustomer() {
     
     let customer = this.customerForm.value;
-
+    customer.LocationId = customer.Location.LocationId;
     return this.http.post(this.isEditable ? APP_CONSTANT.CUSOTMER_API.EDIT:APP_CONSTANT.CUSOTMER_API.ADD, customer)
       .subscribe((customer) => {
           // login successful if there's a jwt token in the response

@@ -67,9 +67,6 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Plan :</strong></label>
-              <!--<select formControlName="PlanId" id="select" name="select" class="form-control">-->
-                <!--<p-autoComplete formControlName="Customer" [suggestions]="customerList" (completeMethod)="searchCustomer($event)"
-                                [dropdown]="true" (onSelect)="onSelectCustomer($event)" [forceSelection]="true" field="CustmerName"></p-autoComplete>-->
                 <p-autoComplete formControlName="Plan" [suggestions]="planList" (completeMethod)="searchPlan($event)"
                                 [dropdown]="true" (onSelect)="onSelectPlan($event)" [forceSelection]="true" field="PlanName"></p-autoComplete>
 

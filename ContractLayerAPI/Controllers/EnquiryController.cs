@@ -23,7 +23,7 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblEnquiryDetails> GetAll()
         {
-            var Enquiry = this._repoWrapper.Enquiry.FindAll().ToList();
+            var Enquiry = this._repoWrapper.Enquiry.GetAllEnquiry();
             return Enquiry;
         }
 

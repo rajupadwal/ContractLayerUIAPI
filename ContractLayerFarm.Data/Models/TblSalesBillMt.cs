@@ -13,8 +13,10 @@ namespace ContractLayerFarm.Data.Models
         public int BillId { get; set; }
         public string BillNo { get; set; }
         public DateTime? BillDate { get; set; }
+        public string SaleType { get; set; }
         public int? LocationId { get; set; }
         public int? CustomerId { get; set; }
+        public int? PlanId { get; set; }
         public decimal? OutstandingAmt { get; set; }
         public string TransportMode { get; set; }
         public string VehicleNo { get; set; }
@@ -39,6 +41,7 @@ namespace ContractLayerFarm.Data.Models
 
         public TblCustomerMaster Customer { get; set; }
         public TblLocationMaster Location { get; set; }
+        public TblPlanMaster Plan { get; set; }
         public ICollection<TblSalesBillDt> TblSalesBillDt { get; set; }
     }
 }
