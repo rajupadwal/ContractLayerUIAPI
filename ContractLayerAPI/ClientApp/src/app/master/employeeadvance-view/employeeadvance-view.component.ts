@@ -65,10 +65,10 @@ export class EmployeeadvanceViewComponent implements OnInit {
       },
     },
     { headerName: 'Record Date ', field: 'RecordDate', 'width': 150 },
-    { headerName: 'LocationName ', field: 'LocationName', 'width': 150 },
+    { headerName: 'LocationName ', field: 'Location.LocationName', 'width': 150 },
     { headerName: 'Advance ', field: 'Advance', 'width': 150 },
     { headerName: 'Narration ', field: 'Narration', 'width': 150 },
-    { headerName: 'EmployeeName ', field: 'EmployeeName', 'width': 150 },
+    { headerName: 'EmployeeName ', field: 'Employee.EmployeeName', 'width': 150 },
   ];
 
   rowData = [

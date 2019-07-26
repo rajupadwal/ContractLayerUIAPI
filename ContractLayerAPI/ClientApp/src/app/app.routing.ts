@@ -94,6 +94,12 @@ export const routes: Routes = [
             path: 'Productview',
             loadChildren: './master/product-view/product.view.module#ProductViewModule'
           },
+          {
+            path: 'Employeeadvanceview',
+            loadChildren: './master/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
+          },
+
+          
          
         ]
       },

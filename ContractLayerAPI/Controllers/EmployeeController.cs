@@ -26,6 +26,12 @@ namespace ContractLayerAPI.Controllers
             var Employee = this._repoWrapper.Employee.FindAll().ToList();
             return Employee;
         }
+        [HttpPost("SearchEmployee")]
+        public IEnumerable<TblEmployeeMaster> SearchEmployee([FromBody]string searchString)
+        {
+            var Employee = this._repoWrapper.Employee.SearchEmployee(searchString).ToList();
+            return Employee;
+        }
 
         [HttpGet("[action]")] 
         public TblEmployeeMaster GetByID(int employeeId)
