@@ -14,6 +14,7 @@ namespace ContractLayerFarm.Data.Repositories
         private SupplierRepository _supplier;
         private LocationRepository _location;
         private PlanRepository _plan;
+        private UnitRepository _unit;
         private ProductdescRepository _productdesc;
         private ProductRepository _product;
         private ProfileRepository _profile;
@@ -29,7 +30,19 @@ namespace ContractLayerFarm.Data.Repositories
         private SalesreceiptRepository _salesreceipt;
         private PurchasepaymentRepository _purchasepayment;
 
-        
+        public IUnitRepository Unit
+        {
+            get
+            {
+                if (_unit == null)
+                {
+                    _unit = new UnitRepository(_repoContext);
+                }
+
+                return _unit;
+            }
+        }
+
         public IBookingCancelRepository Bookingcancel
         {
             get

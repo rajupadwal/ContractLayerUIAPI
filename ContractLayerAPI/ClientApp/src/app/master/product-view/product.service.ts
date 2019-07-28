@@ -19,6 +19,18 @@ export class ProductService {
     return this.http.get(APP_CONSTANT.PRODUCT_UNIT_API.GETALL);
   }
 
+  
+  getProductByID(id) {
+    return this.http.post(APP_CONSTANT.PRODUCT_API.GETByID, id);
+  }
+
+  getUnitByID(id) {
+    return this.http.post(APP_CONSTANT.PRODUCT_UNIT_API.GETByID, id);
+  }
+
+  searchUnit(searchString) {
+    return this.http.post(APP_CONSTANT.PRODUCT_UNIT_API.SEARCH_UNITS, JSON.stringify(searchString));
+  }
 
   saveFarmerInwards(master) {
 

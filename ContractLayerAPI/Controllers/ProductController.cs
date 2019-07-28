@@ -24,17 +24,19 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblProductTypeMaster> GetAll()
         {
-            var Product = this._repoWrapper.Product.FindAll().ToList();
+            var Product = this._repoWrapper.Product.GetAllProduct();
             return Product;
         }
-        
 
+        
         [HttpGet("[action]")] 
         public TblProductTypeMaster GetByID(int ProductId)
         {
             var Product = this._repoWrapper.Product.FindByCondition(x=> x.ProductId == ProductId).FirstOrDefault();
             return Product;
         }
+
+
 
         [HttpPost("Add")]
         public bool Add([FromBody]TblProductTypeMaster product)
@@ -90,6 +92,7 @@ namespace ContractLayerAPI.Controllers
             var units = this._repoWrapper.Product.GetUnits().ToList();
             return units;
         }
+
 
         [HttpPost("SaveFarmerInwardMaster")]
         public bool SaveFarmerInwardMaster([FromBody] TblFarmerInwardMt farmerInwardMt)

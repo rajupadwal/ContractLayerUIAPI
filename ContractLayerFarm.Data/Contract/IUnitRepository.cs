@@ -4,12 +4,12 @@ using System.Text;
 using ContractLayerFarm.Data.Models;
 namespace ContractLayerFarm.Data.Contract
 {
-       public interface IExpencetypeRepository : IRepositoryBase<TblExpenceTypeMaster>
+       public interface IUnitRepository : IRepositoryBase<TblUnitMaster>
     {
         //Boolean IsValidUser(UserInfo userInfo);
         //UserInfo Authenticate(string username, string password);
         bool Authenticate();
-        IEnumerable<TblExpenceTypeMaster> SearchExpenceType(string searchString);
-        
+
+        IEnumerable<TblUnitMaster> SearchUnit(string searchString);
     }
 }

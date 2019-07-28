@@ -9,6 +9,7 @@ namespace ContractLayerFarm.Data.Repositories
 {
     public class CommonRepository : ICommonRepository
     {
+
         protected ContractLayerDBContext RepositoryContext { get; set; }
         public CommonRepository(ContractLayerDBContext ktConContext)  {
             this.RepositoryContext = ktConContext;

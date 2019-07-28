@@ -66,8 +66,10 @@ export class EmployeeadvanceDetailsComponent implements OnInit {
 
   setDataForEdit = () => {
     this.isEditable = true;
-    //this.employeeadvanceForm.Date = moment(this.config.data.Date).toDate();
+    let employeeadvanceForm = this.config.data;
+    employeeadvanceForm.RecordDate = moment(this.config.data.RecordDate).toDate();
     this.employeeadvanceForm.setValue(this.config.data);
+
   }
 
   saveEmployeeAdvance() {
@@ -80,14 +82,23 @@ export class EmployeeadvanceDetailsComponent implements OnInit {
     employeeadvance.LocationId = employeeadvance.Location.LocationId;
     delete employeeadvance.Location;
     delete employeeadvance.Employee;
-    this.employeeadvanceService.saveEmployeeAdvance(employeeadvance, this.isEditable).subscribe((employeeadvance) => {
-      // login successful if there's a jwt token in the response
-      if (employeeadvance) {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        this.dialog.close(employeeadvance);
-      }
-      return employeeadvance;
-    });
+    //this.employeeadvanceService.saveEmployeeAdvance(employeeadvance, this.isEditable).subscribe((employeeadvance) => {
+    //  // login successful if there's a jwt token in the response
+    //  if (employeeadvance) {
+    //    // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //    this.dialog.close(employeeadvance);
+    //  }
+    //  return employeeadvance;
+    //});
+    return this.http.post(this.isEditable ? APP_CONSTANT.EMPLOYEEADVANCE_API.EDIT : APP_CONSTANT.EMPLOYEEADVANCE_API.ADD, employeeadvance, httpOptions)
+      .subscribe((employeeadvance) => {
+        // login successful if there's a jwt token in the response
+        if (employeeadvance) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          this.dialog.close(employeeadvance);
+        }
+        return employeeadvance;
+      });
     
   }
 }

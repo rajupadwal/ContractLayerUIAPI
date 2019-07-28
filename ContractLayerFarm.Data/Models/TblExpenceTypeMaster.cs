@@ -15,5 +15,7 @@ namespace ContractLayerFarm.Data.Models
         public bool? IsDeleted { get; set; }
 
         public ICollection<TblOfficeExpencesDetails> TblOfficeExpencesDetails { get; set; }
+
+        
     }
 }

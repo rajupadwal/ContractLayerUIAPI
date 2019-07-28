@@ -105,6 +105,22 @@ export const routes: Routes = [
             path: 'Employeeadvanceview',
             loadChildren: './master/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
           },
+          {
+            path: 'Expencetypeview',
+            loadChildren: './master/expencetype-view/expencetype.view.module#ExpencetypeViewModule'
+          },
+          {
+            path: 'Officeexpencedetails',
+            loadChildren: './master/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
+          },
+          {
+            path: 'Eggsrangedetails',
+            loadChildren: './master/eggsrange-view/eggsrange.view.module#EggsrangeViewModule'
+          },
+          {
+            path: 'Incomedetails',
+            loadChildren: './master/income-view/income.view.module#IncomeViewModule'
+          },
 
           
          

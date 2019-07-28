@@ -18,9 +18,9 @@ export class EmployeeadvanceService {
   getData() {
     return this.employeeadvanceData;
   }
-  saveEmployeeAdvance(formValues: any, isEditable: boolean) {
-    return this.http.post(isEditable ? APP_CONSTANT.EMPLOYEEADVANCE_API.EDIT : APP_CONSTANT.EMPLOYEEADVANCE_API.ADD, formValues);
-  }
+  //saveEmployeeAdvance(formValues: any, isEditable: boolean) {
+  //  return this.http.post(isEditable ? APP_CONSTANT.EMPLOYEEADVANCE_API.EDIT : APP_CONSTANT.EMPLOYEEADVANCE_API.ADD, formValues);
+  //}
 
 }
 

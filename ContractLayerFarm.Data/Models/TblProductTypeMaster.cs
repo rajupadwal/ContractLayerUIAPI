@@ -19,7 +19,7 @@ namespace ContractLayerFarm.Data.Models
         public int ProductId { get; set; }
         public string ProductType { get; set; }
         public string Hsnsac { get; set; }
-        public string Unit { get; set; }
+        public int? UnitId { get; set; }
         public decimal? PurchasePrice { get; set; }
         public decimal? SellingPrice { get; set; }
         public decimal? Cgst { get; set; }
@@ -34,5 +34,9 @@ namespace ContractLayerFarm.Data.Models
         public ICollection<TblPurchaseBillReturnDt> TblPurchaseBillReturnDt { get; set; }
         public ICollection<TblSalesBillDt> TblSalesBillDt { get; set; }
         public ICollection<TblStockDetails> TblStockDetails { get; set; }
+
+        public TblProductMaster Product { get; set; }
+        public TblUnitMaster Unit { get; set; }
+
     }
 }

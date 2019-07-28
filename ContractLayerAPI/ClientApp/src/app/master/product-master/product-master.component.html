@@ -11,12 +11,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Product Name :</strong></label>
-              <select formControlName="ProductId" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Jumbo Drinker</option>
-                <option value="2">Grover</option>
-                <option value="3">Lasota 500 DOS</option>
-              </select>
+              <p-autoComplete formControlName="Product" [suggestions]="productList" (completeMethod)="searchProduct($event)"
+                              [dropdown]="true" [forceSelection]="true" field="ProductName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -53,12 +49,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Unit :</strong></label>
-              <select formControlName="Unit" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
+              <p-autoComplete formControlName="Unit" [suggestions]="unitList" (completeMethod)="searchUnit($event)"
+                              [dropdown]="true" [forceSelection]="true" field="UnitDescription"></p-autoComplete>
             </div>
           </div>
         </div>

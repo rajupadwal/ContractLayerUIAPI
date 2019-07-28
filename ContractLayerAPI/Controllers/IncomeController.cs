@@ -45,7 +45,7 @@ namespace ContractLayerAPI.Controllers
             }
 
             catch (Exception e)
-            {
+{
                 return false;
             }
         }
