@@ -13,7 +13,6 @@ namespace ContractLayerFarm.Data.Models
         public int BillId { get; set; }
         public string BillNo { get; set; }
         public DateTime? BillDate { get; set; }
-        public string SaleType { get; set; }
         public int? LocationId { get; set; }
         public int? CustomerId { get; set; }
         public int? PlanId { get; set; }

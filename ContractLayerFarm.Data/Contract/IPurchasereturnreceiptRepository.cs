@@ -4,11 +4,11 @@ using System.Text;
 using ContractLayerFarm.Data.Models;
 namespace ContractLayerFarm.Data.Contract
 {
-       public interface ISupplierRepository : IRepositoryBase<TblSupplierMaster>
+       public interface IPurchasereturnreceiptRepository : IRepositoryBase<TblPurchaseReturnReceipt>
     {
         //Boolean IsValidUser(UserInfo userInfo);
         //UserInfo Authenticate(string username, string password);
         bool Authenticate();
-        IEnumerable<TblSupplierMaster> SearchSupplier(string searchString);
+        IEnumerable<TblPurchaseReturnReceipt> GetAllPurchasereturnReceipt();
     }
 }

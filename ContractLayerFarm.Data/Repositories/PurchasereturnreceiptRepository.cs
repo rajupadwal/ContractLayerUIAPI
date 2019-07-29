@@ -4,31 +4,32 @@ using System.Text;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
 using ContractLayerFarm.Data.Repositories;
+
 using System.Linq.Expressions;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContractLayerFarm.Data.Repositories
 {
-    public class BookingCancelRepository : RepositoryBase<TblBookingCancelMaster>, IBookingCancelRepository
+    public class PurchasereturnreceiptRepository : RepositoryBase<TblPurchaseReturnReceipt>, IPurchasereturnreceiptRepository
     {
         private ContractLayerDBContext ktConContext;
-        public BookingCancelRepository(ContractLayerDBContext ktConContext) : base(ktConContext)
+        public PurchasereturnreceiptRepository(ContractLayerDBContext ktConContext) : base(ktConContext)
         {
             this.ktConContext = ktConContext;
         }
 
-        public IEnumerable<TblBookingCancelMaster> GetAllBookingCancel()
+        public IEnumerable<TblPurchaseReturnReceipt> GetAllPurchasereturnReceipt()
         {
 
-            var TblBookingCancelMaster = this.ktConContext.TblBookingCancelMaster
+            var TblPurchaseReturnReceipt = this.ktConContext.TblPurchaseReturnReceipt
                        .Include(blog => blog.Location)
-                       .Include(blog => blog.Customer)
-                       .Include(blog => blog.Plan)
+                       .Include(blog => blog.Supplier)
                        .ToList();
-            return TblBookingCancelMaster;
+            return TblPurchaseReturnReceipt;
         }
-        bool IBookingCancelRepository.Authenticate()
+
+        bool IPurchasereturnreceiptRepository.Authenticate()
         {
             return true;
         }

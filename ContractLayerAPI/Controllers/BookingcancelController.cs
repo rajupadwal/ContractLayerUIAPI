@@ -23,7 +23,7 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblBookingCancelMaster> GetAll()
         {
-            var Bookingcancel = this._repoWrapper.Bookingcancel.FindAll().ToList();
+            var Bookingcancel = this._repoWrapper.Bookingcancel.GetAllBookingCancel();
             return Bookingcancel;
         }
 
@@ -43,7 +43,6 @@ namespace ContractLayerAPI.Controllers
                 this._repoWrapper.Bookingcancel.Save();
                 return true;
             }
-
             catch (Exception e)
             {
                 return false;
@@ -59,7 +58,6 @@ namespace ContractLayerAPI.Controllers
                 this._repoWrapper.Bookingcancel.Save();
                 return true;
             }
-
             catch (Exception e)
             {
                 return false;
@@ -75,7 +73,6 @@ namespace ContractLayerAPI.Controllers
                 this._repoWrapper.Bookingcancel.Save();
                 return true;
             }
-
             catch (Exception e)
             {
                 return false;

@@ -866,8 +866,6 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.PlaceOfSupply).HasMaxLength(20);
 
-                entity.Property(e => e.SaleType).HasMaxLength(20);
-
                 entity.Property(e => e.ToDate).HasColumnType("datetime");
 
                 entity.Property(e => e.TransportMode).HasMaxLength(20);

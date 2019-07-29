@@ -22,13 +22,13 @@
         <div class="col-sm-6">
           <div class="card-block">
             <div class="form-group">
-              <label for="select"><strong>Location Code :</strong></label>
-              <select formControlName="LocationCode" id="locationcode" name="locationcode" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Satara</option>
-                <option value="2">Sangali </option>
-                <option value="3">Kolhapur </option>
-              </select>
+              <label for="textarea-input"><strong>Location Code:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="LocationCode" type="text" pInputText id="locationcode" name="locationcode" class="form-control" rows="3">
+                  <label for="float-input">Please Enter Location Code </label>
+                </span>
+              </div>
             </div>
           </div>
         </div>

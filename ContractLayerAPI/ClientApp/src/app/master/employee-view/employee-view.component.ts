@@ -71,7 +71,8 @@ export class EmployeeViewComponent implements OnInit {
       headerName: 'Address ', field: 'Address' ,'width': 100},
     {
       headerName: 'EducationDetails    ', field: 'EducationDetails','width': 100 },
-    { headerName: 'PastWorkExp           ', field: 'PastWorkExp' }
+    { headerName: 'PastWorkExp           ', field: 'PastWorkExp' },
+    { headerName: 'Location           ', field: 'Location.LocationName' }
     
   ];
 

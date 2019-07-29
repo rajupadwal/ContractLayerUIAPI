@@ -25,6 +25,7 @@ namespace ContractLayerFarm.Data.Contract
         IEnquiryRepository Enquiry { get; }
         ISalesreceiptRepository Salesreceipt { get; }
         IPurchasepaymentRepository Purchasepayment { get; }
+        IPurchasereturnreceiptRepository Purchasereturnreceipt { get;  }
 
         //IItemGroupDetailRepository IItemGroupDetail { get; }
         //IDPRRepository IDPRRepository { get; }

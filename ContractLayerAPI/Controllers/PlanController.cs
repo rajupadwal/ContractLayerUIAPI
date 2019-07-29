@@ -33,8 +33,8 @@ namespace ContractLayerAPI.Controllers
             var Plan = this._repoWrapper.Plan.SearchPlan(searchString).ToList();
             return Plan;
         }
-        [HttpGet("[action]")] 
-        public TblPlanMaster GetByID(int planId)
+        [HttpPost("GetByID")]
+        public TblPlanMaster GetByID([FromBody] int planId)
         {
             var Plan = this._repoWrapper.Plan.FindByCondition(x=> x.PlanId == planId).FirstOrDefault();
             return Plan;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

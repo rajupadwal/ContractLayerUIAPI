@@ -53,12 +53,10 @@ export class CustomerViewComponent implements OnInit {
       headerName: 'CustomerMobileNo', field: 'CustomerMobileNo',' width': 150 },
     {
       headerName: 'Address ', field: 'Address' ,'width': 100},
-    {
-      headerName: 'PlantAddress    ', field: 'PlantAddress','width': 100 },
+    //{
+    //  headerName: 'PlantAddress    ', field: 'PlantAddress','width': 100 },
     { headerName: 'State           ', field: 'State' },
     { headerName: 'Location           ', field: 'Location.LocationName' }
-
-    
   ];
 
   rowData ;

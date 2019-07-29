@@ -7,6 +7,11 @@ import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
 import { BookingcancelService } from '../bookingcancel-view/bookingcancel.service';
+import { LocationService } from '../../master/location-view/location.service';
+import { CusotmerService } from '../../master/customer-view/customer.service';
+import { PlanService } from '../../master/plan-view/plan.service';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-bookingcancel-details',
@@ -16,23 +21,22 @@ import { BookingcancelService } from '../bookingcancel-view/bookingcancel.servic
 
 export class BookingcancelDetailsComponent implements OnInit {
   selectedCustomer
-  public customers = [];
   public customerList = [];
   public locationList = [];
   selectedPlan
   public planList: [];
   bookingcancelForm: FormGroup;
   public isEditable: boolean = false;
-  constructor(private router: Router, private formBuilder: FormBuilder, private bookingcancelService: BookingcancelService, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private bookingcancelService: BookingcancelService, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService) { }
 
   ngOnInit() {
     this.bookingcancelForm = this.formBuilder.group({
 
       RecordNo              : [0],
-      LocationId            : [],
-      CustomerId            : [],
+      Location              : [{}],
+      Customer              : [{}],
       BookungCancelDate     : [],
-      PlanId                : [],
+      Plan                  : [{}],
       NoOfPlan              : [],
       NoOfChicks            : [],
       Amonut                : [],
@@ -46,13 +50,39 @@ export class BookingcancelDetailsComponent implements OnInit {
       IsDeleted             : [false]
     });
 
-    if (this.config.data)
+    if (this.config.data) {
+      this.getLocation(this.config.data.LocationId);
+      this.getCustomer(this.config.data.CustomerId);
+      this.getPlan(this.config.data.PlanId);
       this.setDataForEdit();
+    }
+  }
+
+  getLocation(id) {
+    this.locationService.getLocationByID(id).subscribe((location) => {
+      this.bookingcancelForm.patchValue({ Location: location });
+    });
+  }
+
+  getCustomer(id) {
+    this.cusotmerService.getCustomerByID(id).subscribe((customer) => {
+      this.bookingcancelForm.patchValue({ Customer: customer });
+    });
+  }
+
+  getPlan(id) {
+    this.planService.getPlanByID(id).subscribe((plan) => {
+      this.bookingcancelForm.patchValue({ Plan: plan });
+    });
   }
 
   setDataForEdit = () => {
     this.isEditable = true;
+    let bookingcancelForm = this.config.data;
+    bookingcancelForm.BookungCancelDate = (moment(this.config.data.BookungCancelDate).toDate());
     this.bookingcancelForm.setValue(this.config.data);
+
+   
   }
 
   onSelectCustomer(selectedCustomer) {
@@ -82,13 +112,17 @@ export class BookingcancelDetailsComponent implements OnInit {
   }
 
   saveBookingCancel() {
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
     let bookingcancel = this.bookingcancelForm.value;
+    bookingcancel.LocationId = bookingcancel.Location.LocationId;
+    bookingcancel.CustomerId = bookingcancel.Customer.CustomerId;
+    bookingcancel.PlanId = bookingcancel.Plan.PlanId;
+    Object.assign(bookingcancel, this.bookingcancelForm.value);
 
-    return this.http.post(this.isEditable ? APP_CONSTANT.BOOKINGCANCEL_API.EDIT : APP_CONSTANT.BOOKINGCANCEL_API.ADD, bookingcancel, httpOptions)
-      .subscribe((bookingcancel) => {
+    delete bookingcancel.Location;
+    delete bookingcancel.Plan;
+    delete bookingcancel.Customer;
+
+    this.bookingcancelService.saveBookingCancel(bookingcancel, this.isEditable).subscribe((bookingcancel) => {
         // login successful if there's a jwt token in the response
         if (bookingcancel) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes

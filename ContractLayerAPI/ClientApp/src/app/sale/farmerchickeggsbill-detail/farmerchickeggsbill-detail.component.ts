@@ -210,14 +210,11 @@ export class FarmerChickEggsBillMaster {
   AdminChargesAmt: number;
   OtherCharges: number;
   GrandTotal: number;
-  //SaleType: string[] = ['Cash', 'Credit'];
-
   //TotalQty: number = 0;
   //following fields re used for selecting object in typo, User clicked on type field then below field will have customer object selected
   Location: any;
   Plan: any;
   Customer: any;
-  //Saletype: any;
   TblSalesBillDt: FarmerChickEggsBillDetail[];
 }
 

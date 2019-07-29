@@ -67,9 +67,10 @@ export class EnquiryMasterComponent implements OnInit {
 
   setDataForEdit = () => {
     this.isEditable = true;
+    let enquiryForm = this.config.data;
+    enquiryForm.Date = (moment(this.config.data.Date).toDate());
+    enquiryForm.RemindDate = (moment(this.config.data.RemindDate).toDate());
     this.enquiryForm.setValue(this.config.data);
-    //this.enquiryForm.Date= (moment(this.config.data.Date).toDate());
-    //this.enquiryForm.RemindDate= (moment(this.config.data.RemindDate).toDate());
   }
   
   saveEnquiry() {
@@ -90,7 +91,4 @@ export class EnquiryMasterComponent implements OnInit {
       });
 
   }
-
-
-
 }

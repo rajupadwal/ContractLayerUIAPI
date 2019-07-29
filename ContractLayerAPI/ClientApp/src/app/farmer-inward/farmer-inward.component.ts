@@ -104,8 +104,6 @@ export class FarmerInwardComponent implements OnInit {
       });
   }
 
-
-
   addNewItem = () => {
     let newDetails = new FarmerInwardDetail();
     newDetails.RecordNo = this.FarmerInwardMaster.RecordNo;

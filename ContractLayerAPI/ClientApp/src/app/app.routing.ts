@@ -147,7 +147,10 @@ export const routes: Routes = [
             path: 'Purchasepaymentview',
             loadChildren: './account/purchasepayment-view/purchasepayment.view.module#PurchasePaymentViewModule'
           },
-          
+          {
+            path: 'Purchasereturnreceiptview',
+            loadChildren: './account/purchasereturnreceipt-view/purchasereturnreceipt.view.module#PurchasereturnReceiptViewModule'
+          },
         ]
       },
 

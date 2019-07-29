@@ -27,12 +27,21 @@ namespace ContractLayerAPI.Controllers
             var Supplier = this._repoWrapper.Supplier.FindAll().ToList();
             return Supplier;
         }
-        [HttpGet("[action]")] 
-        public TblSupplierMaster GetByID(int SupplierId)
+        
+        [HttpPost("GetByID")]
+        public TblSupplierMaster GetByID([FromBody] int SupplierId)
         {
-            var Supplier = this._repoWrapper.Supplier.FindByCondition(x=> x.SupplierId == SupplierId).FirstOrDefault();
+            var Supplier = this._repoWrapper.Supplier.FindByCondition(x => x.SupplierId == SupplierId).FirstOrDefault();
             return Supplier;
         }
+
+        [HttpPost("SearchSupplier")]
+        public IEnumerable<TblSupplierMaster> SearchSupplier([FromBody]string searchString)
+        {
+            var Supplier = this._repoWrapper.Supplier.SearchSupplier(searchString).ToList();
+            return Supplier;
+        }
+
         [HttpPost("Add")]
         public bool Add([FromBody]TblSupplierMaster supplier)
         {

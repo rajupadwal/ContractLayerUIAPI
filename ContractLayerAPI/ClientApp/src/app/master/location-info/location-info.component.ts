@@ -59,12 +59,6 @@ export class LocationInfoComponent implements OnInit {
           this.dialog.close(location);
         }
         return location;
-
-
       });
-
   }
-
- 
-
 }

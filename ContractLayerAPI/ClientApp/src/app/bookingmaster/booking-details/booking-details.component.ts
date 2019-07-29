@@ -10,6 +10,7 @@ import {BookingService } from '../booking-view/booking.service';
 import { LocationService } from '../../master/location-view/location.service';
 import { CusotmerService } from '../../master/customer-view/customer.service';
 import { PlanService } from '../../master/plan-view/plan.service';
+import * as moment from 'moment';
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
@@ -61,7 +62,6 @@ export class BookingDetailsComponent implements OnInit {
       this.getPlan(this.config.data.PlanId);
       this.setDataForEdit();
     }
-     
   }
 
   getLocation(id) {
@@ -111,15 +111,18 @@ export class BookingDetailsComponent implements OnInit {
 
   setDataForEdit = () => {
     this.isEditable = true;
+    //let bookingdetailsForm;
+    //bookingdetailsForm.BookingDate = moment(this.config.data.BookingDate).toDate();
     this.bookingdetailsForm.setValue(this.config.data);
   }
 
   saveBookingDetails() {
-    let booking;
-    Object.assign(booking, this.bookingdetailsForm.value);
+    let booking= this.bookingdetailsForm.value;
     booking.LocationId = booking.Location.LocationId;
     booking.CustomerId = booking.Customer.CustomerId;
     booking.PlanId = booking.Plan.PlanId;
+    Object.assign(booking, this.bookingdetailsForm.value);
+    
     delete booking.Location;
     delete booking.Plan;
     delete booking.Customer;

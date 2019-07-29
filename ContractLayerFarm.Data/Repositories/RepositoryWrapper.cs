@@ -28,7 +28,20 @@ namespace ContractLayerFarm.Data.Repositories
         private EnquiryRepository _enquiry;
         private SalesreceiptRepository _salesreceipt;
         private PurchasepaymentRepository _purchasepayment;
+        private PurchasereturnreceiptRepository _purchasereturnreceipt;
 
+
+        public IPurchasereturnreceiptRepository Purchasereturnreceipt
+        {
+            get
+            {
+                if(_purchasereturnreceipt==null)
+                {
+                    _purchasereturnreceipt = new PurchasereturnreceiptRepository(_repoContext);
+                }
+                return _purchasereturnreceipt;
+            }
+        }
         
         public IBookingCancelRepository Bookingcancel
         {
@@ -42,6 +55,8 @@ namespace ContractLayerFarm.Data.Repositories
                 return _bookingcancel;
             }
         }
+
+       
         public IPurchasepaymentRepository Purchasepayment
         {
             get

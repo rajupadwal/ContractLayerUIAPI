@@ -31,7 +31,7 @@ export class CustomerInfoComponent implements OnInit {
           BankName           : [], 
           City               : [], 
           ConatctPersonNo    : [], 
-          ContactPerson      : ["this is sample"], 
+          ContactPerson      : [], 
           CustmerName        : [], 
           CustomerId         : [0], 
           CustomerMobileNo   : [], 
@@ -40,7 +40,7 @@ export class CustomerInfoComponent implements OnInit {
           GstNo              : [], 
           IfscCode           : [], 
           IsDeleted          : [false], 
-          Location: [{}],
+          Location            : [{}],
           //LocationId:[],
           PanNo              : [], 
           Pincode            : [], 
@@ -49,17 +49,14 @@ export class CustomerInfoComponent implements OnInit {
           AccountNo          : [],
           PlantAddress       : [],
           MicrCode           : [],
-      BranchName: [],
+          BranchName: [],
      // AccountHolderName:[],
           
     });
     if (this.config.data)
       this.getLocation(this.config.data.LocationId);
     this.setDataForEdit();
-  
   }
-
-
 
   setDataForEdit = () => {
     this.isEditable = true;
@@ -77,6 +74,7 @@ export class CustomerInfoComponent implements OnInit {
       this.locationList = data;
     });
   }
+
   saveCustomer() {
     
     let customer = this.customerForm.value;

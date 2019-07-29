@@ -228,7 +228,6 @@ namespace ContractLayerFarm.Data.Repositories
                               select new ViewFarmerChickEggBillMaster
                               {
                                   BillNo = ep.BillNo,
-                                  SaleType=ep.SaleType,
                                   BillDate = ep.BillDate,
                                   CustmerName = e.CustmerName,
                                   LocationName = t.LocationName,
@@ -252,9 +251,6 @@ namespace ContractLayerFarm.Data.Repositories
 
             return entryPoint.ToList();
         }
-
-
-
 
 
         IEnumerable<TblSalesBillDt> IProductRepository.GetAllFarmerChickEggBillDetails(int billid)

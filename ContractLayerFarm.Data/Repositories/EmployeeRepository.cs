@@ -6,6 +6,9 @@ using ContractLayerFarm.Data.Models;
 using ContractLayerFarm.Data.Repositories;
 using System.Linq;
 
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+
 namespace ContractLayerFarm.Data.Repositories
 {
     public class EmployeeRepository : RepositoryBase<TblEmployeeMaster>, IEmployeeRepository
@@ -23,6 +26,15 @@ namespace ContractLayerFarm.Data.Repositories
             { return new List<TblEmployeeMaster>(); }
 
             return this.ktConContext.Set<TblEmployeeMaster>().Where(employee => employee.EmployeeName.ToLower().Contains(searchString.ToLower()));
+        }
+
+        public IEnumerable<TblEmployeeMaster> GetAllEmployee()
+        {
+
+            var TblEmployeeMaster = this.ktConContext.TblEmployeeMaster
+                       .Include(blog => blog.Location)
+                       .ToList();
+            return TblEmployeeMaster;
         }
         bool IEmployeeRepository.Authenticate()
         {

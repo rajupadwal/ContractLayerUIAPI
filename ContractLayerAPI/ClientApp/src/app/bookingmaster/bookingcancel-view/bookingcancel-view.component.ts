@@ -63,15 +63,15 @@ export class BookingcancelViewComponent implements OnInit {
         return newTH;
       },
     },
-    { headerName: 'Location Name ', field: 'LocationId', 'width': 150 },
+    { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150 },
     {
-      headerName: 'Customer Name', field: 'CustomerId', ' width': 150
+      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150
     },
     {
       headerName: 'BookingDate ', field: 'BookungCancelDate', 'width': 100
     },
     {
-      headerName: 'Plan    ', field: 'PlanId', 'width': 100
+      headerName: 'Plan    ', field: 'Plan.PlanName', 'width': 100
     },
     { headerName: 'NoOfPlan    ', field: 'NoOfPlan' },
     { headerName: 'NoOfChicks    ', field: 'NoOfChicks' },
@@ -79,9 +79,7 @@ export class BookingcancelViewComponent implements OnInit {
     
   ];
 
-  rowData = [
-   
-  ];
+  rowData;
     
   constructor(private router: Router, private http: HttpClient, private bookingcancelService: BookingcancelService, public dialog: DialogService) { }
 

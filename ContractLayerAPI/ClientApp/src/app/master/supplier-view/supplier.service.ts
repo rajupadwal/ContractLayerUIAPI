@@ -24,6 +24,14 @@ export class SupplierService {
 
   }
 
+  getSupplierByID(id) {
+    return this.http.post(APP_CONSTANT.SUPPLIER_API.GETByID, id);
+  }
+
+  searchSupplier(searchString) {
+    return this.http.post(APP_CONSTANT.SUPPLIER_API.SEARCH_SUPPLIER, JSON.stringify(searchString));
+  }
+
 }
 
 

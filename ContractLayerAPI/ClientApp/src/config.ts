@@ -12,7 +12,7 @@ export const APP_CONSTANT={
   ENQUIRY_API: {
     ADD: API_URL + 'Enquiry/Add',
     GETALL: API_URL + 'Enquiry/GetAll',
-    GETByID: API_URL + 'Enquiry/GetAll',
+    GETByID: API_URL + 'Enquiry/GetByID',
     EDIT: API_URL + 'Enquiry/Update',
     DELETE: API_URL + 'Enquiry/Delete'
   },
@@ -35,14 +35,15 @@ export const APP_CONSTANT={
   SUPPLIER_API: {
     ADD: API_URL + 'Supplier/Add',
     GETALL: API_URL + 'Supplier/GetAll',
-    GETByID: API_URL + 'Supplier/GetAll',
+    GETByID: API_URL + 'Supplier/GetByID',
     EDIT: API_URL + 'Supplier/Update',
-    DELETE: API_URL + 'Supplier/Delete'
+    DELETE: API_URL + 'Supplier/Delete',
+    SEARCH_SUPPLIER: API_URL + 'Supplier/SearchSupplier',
   },
   PLAN_API: {
     ADD: API_URL + 'Plan/Add',
     GETALL: API_URL + 'Plan/GetAll',
-    GETByID: API_URL + 'Plan/GetAll',
+    GETByID: API_URL + 'Plan/GetByID',
     EDIT: API_URL + 'Plan/Update',
     DELETE: API_URL + 'Plan/Delete',
     SEARCH_PLAN: API_URL + 'Plan/SearchPlan'
@@ -50,7 +51,7 @@ export const APP_CONSTANT={
   PRODUCTDESC_API: {
     ADD: API_URL + 'Productdesc/Add',
     GETALL: API_URL + 'Productdesc/GetAll',
-    GETByID: API_URL + 'Productdesc/GetAll',
+    GETByID: API_URL + 'Productdesc/GetByID',
     EDIT: API_URL + 'Productdesc/Update',
     DELETE: API_URL + 'Productdesc/Delete'
   },
@@ -58,7 +59,7 @@ export const APP_CONSTANT={
   PRODUCT_API: {
     ADD: API_URL + 'Product/Add',
     GETALL: API_URL + 'Product/GetAll',
-    GETByID: API_URL + 'Product/GetAll',
+    GETByID: API_URL + 'Product/GetByID',
     EDIT: API_URL + 'Product/Update',
     DELETE: API_URL + 'Product/Delete'
   },
@@ -66,14 +67,14 @@ export const APP_CONSTANT={
   PROFILE_API: {
     ADD: API_URL + 'Profile/Add',
     GETALL: API_URL + 'Profile/GetAll',
-    GETByID: API_URL + 'Profile/GetAll',
+    GETByID: API_URL + 'Profile/GetByID',
     EDIT: API_URL + 'Profile/Update',
     DELETE: API_URL + 'Profile/Delete'
   },
   EMPLOYEE_API: {
     ADD: API_URL + 'Employee/Add',
     GETALL: API_URL + 'Employee/GetAll',
-    GETByID: API_URL + 'Employee/GetAll',
+    GETByID: API_URL + 'Employee/GetByID',
     EDIT: API_URL + 'Employee/Update',
     DELETE: API_URL + 'Employee/Delete',
     SEARCH_EMPLOYEE: API_URL + 'Employee/SearchEmployee'
@@ -81,7 +82,7 @@ export const APP_CONSTANT={
   EGGSRANGE_API: {
     ADD: API_URL + 'Eggsrange/Add',
     GETALL: API_URL + 'Eggsrange/GetAll',
-    GETByID: API_URL + 'Eggsrange/GetAll',
+    GETByID: API_URL + 'Eggsrange/GetByID',
     EDIT: API_URL + 'Eggsrange/Update',
     DELETE: API_URL + 'Eggsrange/Delete'
   },
@@ -89,14 +90,14 @@ export const APP_CONSTANT={
   BOOKING_API: {
     ADD: API_URL + 'Booking/Add',
     GETALL: API_URL + 'Booking/GetAll',
-    GETByID: API_URL + 'Booking/GetAll',
+    GETByID: API_URL + 'Booking/GetByID',
     EDIT: API_URL + 'Booking/Update',
     DELETE: API_URL + 'Booking/Delete'
   },
   BOOKINGCANCEL_API: {
     ADD: API_URL + 'Bookingcancel/Add',
     GETALL: API_URL + 'Bookingcancel/GetAll',
-    GETByID: API_URL + 'Bookingcancel/GetAll',
+    GETByID: API_URL + 'Bookingcancel/GetByID',
     EDIT: API_URL + 'Bookingcancel/Update',
     DELETE: API_URL + 'Bookingcancel/Delete'
   },
@@ -112,7 +113,7 @@ export const APP_CONSTANT={
   INCOME_API: {
     ADD: API_URL + 'Income/Add',
     GETALL: API_URL + 'Income/GetAll',
-    GETByID: API_URL + 'Income/GetAll',
+    GETByID: API_URL + 'Income/GetByID',
     EDIT: API_URL + 'Income/Update',
     DELETE: API_URL + 'Income/Delete'
   },
@@ -120,7 +121,7 @@ export const APP_CONSTANT={
   EXPENCETYPE_API: {
     ADD: API_URL + 'Expencetype/Add',
     GETALL: API_URL + 'Expencetype/GetAll',
-    GETByID: API_URL + 'Expencetype/GetAll',
+    GETByID: API_URL + 'Expencetype/GetByID',
     EDIT: API_URL + 'Expencetype/Update',
     DELETE: API_URL + 'Expencetype/Delete'
   },
@@ -128,21 +129,21 @@ export const APP_CONSTANT={
   EXPENCEDETAILS_API: {
     ADD: API_URL + 'Expencedetails/Add',
     GETALL: API_URL + 'Expencedetails/GetAll',
-    GETByID: API_URL + 'Expencedetails/GetAll',
+    GETByID: API_URL + 'Expencedetails/GetByID',
     EDIT: API_URL + 'Expencedetails/Update',
     DELETE: API_URL + 'Expencedetails/Delete'
   },
   SALERECEIPT_API: {
     ADD: API_URL + 'Salesreceipt/Add',
     GETALL: API_URL + 'Salesreceipt/GetAll',
-    GETByID: API_URL + 'Salesreceipt/GetAll',
+    GETByID: API_URL + 'Salesreceipt/GetByID',
     EDIT: API_URL + 'Salesreceipt/Update',
     DELETE: API_URL + 'Salesreceipt/Delete'
   },
   FARMERCHIKEGGBILL_API: {
     ADD: API_URL + 'Salesreceipt/Add',
     GETALL: API_URL + 'Salesreceipt/GetAll',
-    GETByID: API_URL + 'Salesreceipt/GetAll',
+    GETByID: API_URL + 'Salesreceipt/GetByID',
     EDIT: API_URL + 'Salesreceipt/Update',
     DELETE: API_URL + 'Salesreceipt/Delete'
   },
@@ -186,6 +187,14 @@ export const APP_CONSTANT={
     GETByID: API_URL + 'Purchasepayment/GetByID',
     EDIT: API_URL + 'Purchasepayment/Update',
     DELETE: API_URL + 'Purchasepayment/Delete'
+  },
+
+  PURCHASERETURNRECEIPT_API: {
+    ADD: API_URL + 'Purchasereturnreceipt/Add',
+    GETALL: API_URL + 'Purchasereturnreceipt/GetAll',
+    GETByID: API_URL + 'Purchasereturnreceipt/GetByID',
+    EDIT: API_URL + 'Purchasereturnreceipt/Update',
+    DELETE: API_URL + 'Purchasereturnreceipt/Delete'
   },
                                                     
 }
