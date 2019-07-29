@@ -8,6 +8,7 @@ namespace ContractLayerFarm.Data.Contract
     public interface IRepositoryWrapper
     {
         ICustomerRepository Customer { get; }
+        IUnitRepository Unit { get; }
         ISupplierRepository Supplier { get; }
         ILocationRepository Location { get; }
         IProductdescRepository Productdesc { get; }
@@ -25,6 +26,7 @@ namespace ContractLayerFarm.Data.Contract
         IEnquiryRepository Enquiry { get; }
         ISalesreceiptRepository Salesreceipt { get; }
         IPurchasepaymentRepository Purchasepayment { get; }
+        IIncometypeRepository Incometype { get; }
         IPurchasereturnreceiptRepository Purchasereturnreceipt { get;  }
 
         //IItemGroupDetailRepository IItemGroupDetail { get; }

@@ -4,12 +4,12 @@ using System.Text;
 using ContractLayerFarm.Data.Models;
 namespace ContractLayerFarm.Data.Contract
 {
-       public interface IIncomeRepository : IRepositoryBase<TblIncomeDeatils>
+       public interface IIncometypeRepository : IRepositoryBase<TblIncomeType>
     {
         //Boolean IsValidUser(UserInfo userInfo);
         //UserInfo Authenticate(string username, string password);
         bool Authenticate();
-        IEnumerable<TblIncomeDeatils> GetAllIncometype();
 
+        IEnumerable<TblIncomeType> SearchIncometype(string searchString);
     }
 }

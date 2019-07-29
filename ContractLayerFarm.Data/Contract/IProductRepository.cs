@@ -10,7 +10,9 @@ namespace ContractLayerFarm.Data.Contract
 
         bool Authenticate();
 
+       // IEnumerable<TblProductTypeMaster> SearchProduct(string searchString);
         IEnumerable<TblUnitMaster> GetUnits();
+        IEnumerable<TblProductTypeMaster> GetAllProduct();
 
         void SaveFarmerInwardMaster(TblFarmerInwardMt master);
         void SaveFarmerInwardDetails(TblFarmerInwardDt[] details);

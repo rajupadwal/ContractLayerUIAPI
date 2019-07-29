@@ -75,13 +75,13 @@ export class ExpencedetailsViewComponent implements OnInit {
 
     { headerName: 'Date ', field: 'Date', 'width': 150 },
     {
-      headerName: 'ExpenceId', field: 'ExpenceId', ' width': 150
+      headerName: 'Expence Type', field: 'Expence.ExpenceType', ' width': 150
     },
     {
-      headerName: 'LocationId ', field: 'LocationId', 'width': 100
+      headerName: 'Location Name ', field: 'Location.LocationName', 'width': 100
     },
     {
-      headerName: 'EmployeeId    ', field: 'EmployeeId', 'width': 100
+      headerName: 'Employee Name    ', field: 'Employee.EmployeeName', 'width': 100
     },
     { headerName: 'PaymentMethod           ', field: 'PaymentMethod', 'width': 100 },
 

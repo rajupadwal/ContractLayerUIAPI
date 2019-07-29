@@ -53,15 +53,29 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Productdesc/GetAll',
     GETByID: API_URL + 'Productdesc/GetByID',
     EDIT: API_URL + 'Productdesc/Update',
-    DELETE: API_URL + 'Productdesc/Delete'
+    DELETE: API_URL + 'Productdesc/Delete',
+    SEARCH_PRODUCTDES: API_URL + 'Productdesc/SearchProduct',
   },
 
   PRODUCT_API: {
     ADD: API_URL + 'Product/Add',
     GETALL: API_URL + 'Product/GetAll',
-    GETByID: API_URL + 'Product/GetByID',
+    GETByID: API_URL + 'Product/GetByIdAll',
     EDIT: API_URL + 'Product/Update',
-    DELETE: API_URL + 'Product/Delete'
+    DELETE: API_URL + 'Product/Delete',
+    
+  },
+
+  PRODUCT_UNIT_API: {
+    GETALL: API_URL + 'Unit/GetAll',
+    GETByID: API_URL + 'Unit/GetByIdAll',
+    SEARCH_UNITS: API_URL + 'Unit/SearchUnit',
+  },
+
+  INCOMETYPE_API: {
+    GETALL: API_URL + 'Incometype/GetAll',
+    GETByID: API_URL + 'Incometype/GetById',
+    SEARCH_INCOMETYPE: API_URL + 'Incometype/SearchIncometype',
   },
 
   PROFILE_API: {
@@ -103,10 +117,10 @@ export const APP_CONSTANT={
   },
 
   
-  EMPLOYEEADVANCE_API: {
+    EMPLOYEEADVANCE_API: {
     ADD: API_URL + 'Employeeadvance/Add',
     GETALL: API_URL + 'Employeeadvance/GetAll',
-    GETByID: API_URL + 'Employeeadvance/GetAll',
+    GETByID: API_URL + 'Employeeadvance/GetByID',
     EDIT: API_URL + 'Employeeadvance/Update',
     DELETE: API_URL + 'Employeeadvance/Delete'
   },
@@ -123,7 +137,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Expencetype/GetAll',
     GETByID: API_URL + 'Expencetype/GetByID',
     EDIT: API_URL + 'Expencetype/Update',
-    DELETE: API_URL + 'Expencetype/Delete'
+    DELETE: API_URL + 'Expencetype/Delete',
+    SEARCH_EXPENCETYPE: API_URL + 'Expencetype/SearchExpenceType'
   },
 
   EXPENCEDETAILS_API: {
@@ -149,9 +164,7 @@ export const APP_CONSTANT={
   },
 
 
-  PRODUCT_UNIT_API: {
-    GETALL: API_URL + 'Product/GetAllUnits',
-  },
+  
 
   PRODUCT_FARMER_INWARDS_API: {
     SAVEFARMERINWARDMASTER: API_URL + 'Product/SaveFarmerInwardMaster',

@@ -218,3 +218,21 @@ export class FarmerChickEggsBillMaster {
   TblSalesBillDt: FarmerChickEggsBillDetail[];
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

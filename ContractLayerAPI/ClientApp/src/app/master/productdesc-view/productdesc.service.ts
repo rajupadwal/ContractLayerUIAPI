@@ -22,6 +22,18 @@ export class ProductdescService {
   loadProducts = () => {
     return this.http.get(APP_CONSTANT.PRODUCTDESC_API.GETALL);
   }
+  searchProduct(searchString) {
+    return this.http.post(APP_CONSTANT.PRODUCTDESC_API.SEARCH_PRODUCTDES, JSON.stringify(searchString));
+  }
+
+  getProductByID(id) {
+    return this.http.post(APP_CONSTANT.PRODUCTDESC_API.GETByID, id);
+  }
+
+
+  loadProducts = () => {
+    return this.http.get(APP_CONSTANT.PRODUCTDESC_API.GETALL);
+  }
 }
 
 

@@ -33,12 +33,14 @@ namespace ContractLayerAPI.Controllers
             return Employee;
         }
 
-        [HttpGet("[action]")] 
-        public TblEmployeeMaster GetByID(int employeeId)
+        [HttpPost("GetByID")] 
+        public TblEmployeeMaster GetByID([FromBody] int employeeId)
         {
             var Employee = this._repoWrapper.Employee.FindByCondition(x=> x.EmployeeId == employeeId).FirstOrDefault();
             return Employee;
         }
+
+        
 
         [HttpPost("Add")]
         public bool Add([FromBody]TblEmployeeMaster employee)

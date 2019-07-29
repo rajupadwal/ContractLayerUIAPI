@@ -24,15 +24,16 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblOfficeExpencesDetails> GetAll()
         {
-            var Expencedetails = this._repoWrapper.Expencedetails.FindAll().ToList();
+            var Expencedetails = this._repoWrapper.Expencedetails.GetAllExpenceType();
             return Expencedetails;
         }
-        [HttpGet("[action]")] 
-        public TblOfficeExpencesDetails GetByID(int ExpencesNo)
+        [HttpPost("GetByID")]
+        public TblOfficeExpencesDetails GetByID([FromBody] int ExpenceId)
         {
-            var Expencedetails = this._repoWrapper.Expencedetails.FindByCondition(x=> x.ExpencesNo == ExpencesNo).FirstOrDefault();
+            var Expencedetails = this._repoWrapper.Expencedetails.FindByCondition(x => x.ExpencesNo == ExpenceId).FirstOrDefault();
             return Expencedetails;
         }
+
         [HttpPost("Add")]
         public bool Add([FromBody]TblOfficeExpencesDetails ExpencesNo)
         {

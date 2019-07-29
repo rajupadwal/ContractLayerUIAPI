@@ -67,13 +67,13 @@ export class ProductViewComponent implements OnInit {
         return newTH;
       },
     },
-    { headerName: 'ProductId ', field: 'ProductId', 'width': 150 },
+    { headerName: 'Product Name ', field: 'Product.ProductName', 'width': 150 },
     {
       headerName: 'ProductType', field: 'ProductType',' width': 150 },
     {
       headerName: 'HSNSAC ', field: 'Hsnsac' ,'width': 100},
     {
-      headerName: 'Unit ', field: 'Unit', 'width': 100},
+      headerName: 'Unit ', field: 'Unit.UnitDescription', 'width': 100},
 
     { headerName: 'PurchasePrice', field: 'PurchasePrice', 'width': 100 },
     {

@@ -21,10 +21,10 @@
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
-              <label for="textarea-input"><strong>Date :</strong></label>
+              <label for="textarea-input"><strong>Date:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Date" type="text" pInputText id="date" name="date" class="form-control" rows="3">
+                  <p-calendar formControlName="Date" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
                 </span>
               </div>
             </div>
@@ -34,12 +34,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Expence Type :</strong></label>
-              <select formControlName="ExpenceId" id="expenceid" name="expenceid" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Diesel Expences</option>
-                <option value="2">Tea Food expences  </option>
-                <option value="3">Employee Advance </option>
-              </select>
+              <p-autoComplete formControlName="Expence" [suggestions]="expencetypeList" (completeMethod)="searchExpenceType($event)"
+                              [dropdown]="true" [forceSelection]="true" field="ExpenceType"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -49,12 +45,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Location Name :</strong></label>
-              <select formControlName="LocationId" id="locationid" name="locationid" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Sangali</option>
-                <option value="2">Satara</option>
-                <option value="3">Kolhapur</option>
-              </select>
+              <p-autoComplete formControlName="Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                              [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -63,12 +55,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Employee Name :</strong></label>
-              <select formControlName="EmployeeId" id="employeeid" name="employeeid" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Raju m Padwal</option>
-                <option value="2">Navnath B Bhangare</option>
-                <option value="3">Pravin Bapu Sonar</option>
-              </select>
+              <p-autoComplete formControlName="Employee" [suggestions]="employeeList" (completeMethod)="searchEmployee($event)"
+                              [dropdown]="true" [forceSelection]="true" field="EmployeeName"></p-autoComplete>
             </div>
           </div>
         </div>

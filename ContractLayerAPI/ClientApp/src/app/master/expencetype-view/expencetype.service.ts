@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { APP_CONSTANT } from '../../../config';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ providedIn :'root'
 })
 export class ExpencetypeService {
   expencetypeData
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   setData(expencetypeData) {
     this.expencetypeData = expencetypeData;
@@ -17,7 +18,13 @@ export class ExpencetypeService {
   getData() {
     return this.expencetypeData;
   }
+  getExpencetypeByID(id) {
+    return this.http.post(APP_CONSTANT.EXPENCETYPE_API.GETByID, id);
+  }
 
+  searchExpenceType(searchString) {
+    return this.http.post(APP_CONSTANT.EXPENCETYPE_API.SEARCH_EXPENCETYPE, JSON.stringify(searchString));
+  }
 }
 
 

@@ -23,7 +23,7 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblIncomeDeatils> GetAll()
         {
-            var Income = this._repoWrapper.Income.FindAll().ToList();
+            var Income = this._repoWrapper.Income.GetAllIncometype();
             return Income;
         }
 
@@ -45,7 +45,7 @@ namespace ContractLayerAPI.Controllers
             }
 
             catch (Exception e)
-            {
+{
                 return false;
             }
         }

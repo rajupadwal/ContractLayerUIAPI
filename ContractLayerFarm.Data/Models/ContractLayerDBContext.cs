@@ -31,6 +31,7 @@ namespace ContractLayerFarm.Data.Models
         public virtual DbSet<TblFeedSheduleMasterDt> TblFeedSheduleMasterDt { get; set; }
         public virtual DbSet<TblHatcheryMaster> TblHatcheryMaster { get; set; }
         public virtual DbSet<TblIncomeDeatils> TblIncomeDeatils { get; set; }
+        public virtual DbSet<TblIncomeType> TblIncomeType { get; set; }
         public virtual DbSet<TblLocationMaster> TblLocationMaster { get; set; }
         public virtual DbSet<TblMortalitywastageDt> TblMortalitywastageDt { get; set; }
         public virtual DbSet<TblMortalitywastageMt> TblMortalitywastageMt { get; set; }
@@ -58,7 +59,7 @@ namespace ContractLayerFarm.Data.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=CHINTAMANI-PC;Database=ContractLayerDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;Trusted_Connection=True;");
             }
         }
 
@@ -485,12 +486,24 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Title).HasMaxLength(20);
 
-                entity.Property(e => e.TypeOfIncome).HasMaxLength(20);
+                entity.HasOne(d => d.Income)
+                    .WithMany(p => p.TblIncomeDeatils)
+                    .HasForeignKey(d => d.IncomeId)
+                    .HasConstraintName("FK_tbl_IncomeDeatils_tbl_Incomeid");
 
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.TblIncomeDeatils)
                     .HasForeignKey(d => d.LocationId)
                     .HasConstraintName("FK_tbl_IncomeDeatils_tbl_Location");
+            });
+
+            modelBuilder.Entity<TblIncomeType>(entity =>
+            {
+                entity.HasKey(e => e.IncomeId);
+
+                entity.ToTable("tbl_IncomeType");
+
+                entity.Property(e => e.IncomeType).HasMaxLength(20);
             });
 
             modelBuilder.Entity<TblLocationMaster>(entity =>
@@ -638,8 +651,6 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.Hsnsac).HasMaxLength(50);
 
                 entity.Property(e => e.PkId).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.Unit).HasMaxLength(50);
             });
 
             modelBuilder.Entity<TblPurchaseBillDt>(entity =>

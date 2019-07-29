@@ -5,6 +5,7 @@ using System.Text;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
 using ContractLayerFarm.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContractLayerFarm.Data.Repositories
 {
@@ -12,6 +13,23 @@ namespace ContractLayerFarm.Data.Repositories
     {
         private ContractLayerDBContext ktConContext;
         public ProductRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext;  }
+
+        //public IEnumerable<TblProductTypeMaster> SearchProduct(string searchString)
+        //{
+        //    if (string.IsNullOrEmpty(searchString))
+        //    { return new List<TblProductTypeMaster>(); }
+
+        //   // return this.ktConContext.Set<TblProductTypeMaster>().Where(product => product.ProductName.ToLower().Contains(searchString.ToLower()));
+        //}
+        public IEnumerable<TblProductTypeMaster> GetAllProduct()
+        {
+
+            var TblProductTypeMaster = this.ktConContext.TblProductTypeMaster
+                       .Include(blog => blog.Product)
+                       .Include(blog=>blog.Unit)
+                       .ToList();
+            return TblProductTypeMaster;
+        }
 
         bool IProductRepository.Authenticate()
         {

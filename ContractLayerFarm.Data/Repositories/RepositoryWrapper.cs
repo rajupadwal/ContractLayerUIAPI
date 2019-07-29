@@ -14,6 +14,7 @@ namespace ContractLayerFarm.Data.Repositories
         private SupplierRepository _supplier;
         private LocationRepository _location;
         private PlanRepository _plan;
+        private UnitRepository _unit;
         private ProductdescRepository _productdesc;
         private ProductRepository _product;
         private ProfileRepository _profile;
@@ -29,6 +30,28 @@ namespace ContractLayerFarm.Data.Repositories
         private SalesreceiptRepository _salesreceipt;
         private PurchasepaymentRepository _purchasepayment;
         private PurchasereturnreceiptRepository _purchasereturnreceipt;
+        private IncometypeRepository _incometype;
+
+        public IUnitRepository Unit
+        {
+            get
+            {
+                if (_unit == null)
+                {
+                    _unit = new UnitRepository(_repoContext);
+                }
+
+                return _unit;
+            }
+        }
+        public IIncometypeRepository Incometype
+        {
+            get
+            {
+                if (_incometype == null)
+                {
+                    _incometype = new IncometypeRepository(_repoContext);
+                }
 
 
         public IPurchasereturnreceiptRepository Purchasereturnreceipt
@@ -43,6 +66,10 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
         
+                return _incometype;
+            }
+        }
+
         public IBookingCancelRepository Bookingcancel
         {
             get

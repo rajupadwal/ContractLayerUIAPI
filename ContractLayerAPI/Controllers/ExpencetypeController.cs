@@ -26,12 +26,19 @@ namespace ContractLayerAPI.Controllers
             var Expencetype = this._repoWrapper.Expencetype.FindAll().ToList();
             return Expencetype;
         }
-
-        [HttpGet("[action]")] 
-        public TblExpenceTypeMaster GetByID(int ExpenceId)
+        [HttpPost("SearchExpenceType")]
+        public IEnumerable<TblExpenceTypeMaster> SearchExpenceType([FromBody]string searchString)
         {
-            var Expencetype = this._repoWrapper.Expencetype.FindByCondition(x=> x.ExpenceId == ExpenceId).FirstOrDefault();
-            return Expencetype;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+            var Expencetype = this._repoWrapper.Expencetype.SearchExpenceType(searchString).ToList();
+            return Expencetype;
+        }
+
+
+        [HttpPost("GetByID")]
+        public TblExpenceTypeMaster GetByID([FromBody] int ExpenceId)
+        {
+            var Expence = this._repoWrapper.Expencetype.FindByCondition(x => x.ExpenceId == ExpenceId).FirstOrDefault();
+            return Expence;
         }
 
         [HttpPost("Add")]
