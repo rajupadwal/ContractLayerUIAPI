@@ -183,8 +183,9 @@ export const APP_CONSTANT={
     SAVEFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/SaveFarmerChickEggBillDetails',
     GETALLFARMERCHICKEGGBILLMASTERS: API_URL + 'Product/GetAllFarmerChickEggBillMasters',
     GETALLFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/GetAllFarmerChickEggBillDetails',
-   }, 
-      
+  },
+
+
   PRODUCT_PURCHASE_BILLS_API: {
     SAVEPURCHASEBILLMASTER: API_URL + 'Product/SavePurchaseBillMaster',
     SAVEPURCHASEBILLSDETAILS: API_URL + 'Product/SavePurchaseBillsDetails',
