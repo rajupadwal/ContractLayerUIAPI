@@ -63,12 +63,12 @@ export class IncomeViewComponent implements OnInit {
         return newTH;
       },
     },
-    { headerName: 'Location Name ', field: 'LocationId', 'width': 150 },
+    { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150 },
     {
       headerName: 'Date ', field: 'Date', 'width': 100
     },
     {
-      headerName: 'Type Of Income', field: 'TypeOfIncome', ' width': 150
+      headerName: 'Type Of Income', field: 'Income.IncomeType', ' width': 150
     },
     {
       headerName: 'Title    ', field: 'Title', 'width': 100

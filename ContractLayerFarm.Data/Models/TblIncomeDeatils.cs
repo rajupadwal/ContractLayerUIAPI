@@ -8,7 +8,7 @@ namespace ContractLayerFarm.Data.Models
         public int RecordNo { get; set; }
         public DateTime? Date { get; set; }
         public int? LocationId { get; set; }
-        public string TypeOfIncome { get; set; }
+        public int? IncomeId { get; set; }
         public string Title { get; set; }
         public string PaymentMethod { get; set; }
         public string ChequeNo { get; set; }
@@ -16,6 +16,7 @@ namespace ContractLayerFarm.Data.Models
         public string Narration { get; set; }
         public bool? IsDeleted { get; set; }
 
+        public TblIncomeType Income { get; set; }
         public TblLocationMaster Location { get; set; }
     }
 }

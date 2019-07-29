@@ -29,6 +29,7 @@ namespace ContractLayerFarm.Data.Repositories
         private EnquiryRepository _enquiry;
         private SalesreceiptRepository _salesreceipt;
         private PurchasepaymentRepository _purchasepayment;
+        private IncometypeRepository _incometype;
 
         public IUnitRepository Unit
         {
@@ -40,6 +41,18 @@ namespace ContractLayerFarm.Data.Repositories
                 }
 
                 return _unit;
+            }
+        }
+        public IIncometypeRepository Incometype
+        {
+            get
+            {
+                if (_incometype == null)
+                {
+                    _incometype = new IncometypeRepository(_repoContext);
+                }
+
+                return _incometype;
             }
         }
 

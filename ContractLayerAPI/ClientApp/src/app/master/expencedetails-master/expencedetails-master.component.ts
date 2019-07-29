@@ -11,6 +11,7 @@ import { LocationService } from '../location-view/location.service';
 import { EmployeeService } from '../employee-view/employee.service';
 import { ExpencetypeMasterComponent } from '../expencetype-master/expencetype-master.component';
 import { ExpencetypeService } from '../expencetype-view/expencetype.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-expencedetails-master',
@@ -91,6 +92,8 @@ export class ExpencedetailsMasterComponent implements OnInit {
     
   setDataForEdit = () => {
     this.isEditable = true;
+    let expencedetailsForm = this.config.data;
+    expencedetailsForm.Date = moment(this.config.data.Date).toDate();
     this.expencedetailsForm.setValue(this.config.data);
   }
 

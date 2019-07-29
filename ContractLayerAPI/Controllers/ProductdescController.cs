@@ -32,8 +32,8 @@ namespace ContractLayerAPI.Controllers
             var Product = this._repoWrapper.Productdesc.SearchProduct(searchString).ToList();
             return Product;
         }
-        [HttpGet("[action]")] 
-        public TblProductMaster GetByID(int productId)
+        [HttpPost("GetByID")]
+        public TblProductMaster GetByID([FromBody] int productId)
         {
             var productdesc = this._repoWrapper.Productdesc.FindByCondition(x=> x.ProductId == productId).FirstOrDefault();
             return productdesc;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

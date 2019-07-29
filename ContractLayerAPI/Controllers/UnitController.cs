@@ -33,8 +33,8 @@ namespace ContractLayerAPI.Controllers
             var Unit = this._repoWrapper.Unit.SearchUnit(searchString).ToList();
             return Unit;
         }
-        [HttpGet("[action]")] 
-        public TblUnitMaster GetByIdAll(int UnitId)
+        [HttpPost("GetByIdAll")]
+        public TblUnitMaster GetByIdAll([FromBody] int UnitId)
         {
             var Unit = this._repoWrapper.Unit.FindByCondition(x=> x.UnitId == UnitId).FirstOrDefault();
             return Unit;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

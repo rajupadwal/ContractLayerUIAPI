@@ -37,6 +37,5 @@ namespace ContractLayerFarm.Data.Models
 
         public TblProductMaster Product { get; set; }
         public TblUnitMaster Unit { get; set; }
-
     }
 }

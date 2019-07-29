@@ -50,7 +50,7 @@ export const APP_CONSTANT={
   PRODUCTDESC_API: {
     ADD: API_URL + 'Productdesc/Add',
     GETALL: API_URL + 'Productdesc/GetAll',
-    GETByID: API_URL + 'Productdesc/GetAll',
+    GETByID: API_URL + 'Productdesc/GetByID',
     EDIT: API_URL + 'Productdesc/Update',
     DELETE: API_URL + 'Productdesc/Delete',
     SEARCH_PRODUCTDES: API_URL + 'Productdesc/SearchProduct',
@@ -66,9 +66,15 @@ export const APP_CONSTANT={
   },
 
   PRODUCT_UNIT_API: {
-    GETALL: API_URL + 'Unit/GetAllUnits',
+    GETALL: API_URL + 'Unit/GetAll',
     GETByID: API_URL + 'Unit/GetByIdAll',
     SEARCH_UNITS: API_URL + 'Unit/SearchUnit',
+  },
+
+  INCOMETYPE_API: {
+    GETALL: API_URL + 'Incometype/GetAll',
+    GETByID: API_URL + 'Incometype/GetById',
+    SEARCH_INCOMETYPE: API_URL + 'Incometype/SearchIncometype',
   },
 
   PROFILE_API: {
