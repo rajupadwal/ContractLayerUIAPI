@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>Customer Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="CustmerName" type="text" pInputText id="customername" name="customername" class="form-control" rows="3">
+                  <input formControlName="CustmerName" appValidationBorder type="text" pInputText id="customername" name="customername" class="form-control" rows="3">
                   
                 </span>
               </div>
@@ -25,7 +25,7 @@
               <label for="textarea-input"><strong>Customer Mobile No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="CustomerMobileNo" type="text" pInputText id="customermobileno" name="customermobileno" class="form-control" rows="3">
+                  <input formControlName="CustomerMobileNo" appValidationBorder type="text" pInputText id="customermobileno" name="customermobileno" class="form-control" rows="3">
                   
                 </span>
               </div>
@@ -39,7 +39,7 @@
           <label for="textarea-input"><strong>Address Details:</strong></label>
           <div>
             <span class="ui-float-label">
-              <textarea formControlName="Address" id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
+              <textarea formControlName="Address" appValidationBorder id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
               
             </span>
           </div>
@@ -135,7 +135,7 @@
               <label for="textarea-input"><strong>GST No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="GstNo" type="text" pInputText id="gstno" name="gstno" class="form-control">
+                  <input formControlName="GstNo" appValidationBorder type="text" pInputText id="gstno" name="gstno" class="form-control">
                   
                 </span>
               </div>
@@ -148,7 +148,7 @@
               <label for="textarea-input"><strong>PAN No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PanNo" type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
+                  <input formControlName="PanNo" appValidationBorder type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
                   
                 </span>
               </div>
@@ -164,7 +164,7 @@
               <label for="textarea-input"><strong>Contact Person Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ContactPerson" id="ContactPerson" name="ContactPerson" class="form-control" />
+                  <input formControlName="ContactPerson" appValidationBorder id="ContactPerson" name="ContactPerson" class="form-control" />
                   
                 </span>
               </div>
@@ -177,7 +177,7 @@
               <label for="textarea-input"><strong>Contact No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ConatctPersonNo" id="ConatctPersonNo" name="ConatctPersonNo" class="form-control" />
+                  <input formControlName="ConatctPersonNo" appValidationBorder id="ConatctPersonNo" name="ConatctPersonNo" class="form-control" />
                   
                 </span>
               </div>
@@ -190,7 +190,7 @@
               <label for="textarea-input"><strong>Designation:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Designation" id="designation" name="designation" class="form-control" />
+                  <input formControlName="Designation" appValidationBorder id="designation" name="designation" class="form-control" />
                   
                 </span>
               </div>
@@ -257,7 +257,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit"  [disabled]="!customerForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

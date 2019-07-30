@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder,Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../../config';
 import { map } from 'rxjs/operators';
@@ -20,38 +20,38 @@ export class CustomerInfoComponent implements OnInit {
 
   customerForm: FormGroup;
   public locationList: [];
-  public isEditable:boolean = false;
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private cusotmerservice: CusotmerService ) { }
+  public isEditable: boolean = false;
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private cusotmerservice: CusotmerService) { }
 
   ngOnInit() {
-  
+
     this.customerForm = this.formBuilder.group({
-          AccountType        : [], 
-          Address            : [], 
-          BankName           : [], 
-          City               : [], 
-          ConatctPersonNo    : [], 
-          ContactPerson      : [], 
-          CustmerName        : [], 
-          CustomerId         : [0], 
-          CustomerMobileNo   : [], 
-          Designation        : [], 
-          District           : [], 
-          GstNo              : [], 
-          IfscCode           : [], 
-          IsDeleted          : [false], 
-          Location            : [{}],
-          //LocationId:[],
-          PanNo              : [], 
-          Pincode            : [], 
-          State              : [], 
-          Taluka             : [], 
-          AccountNo          : [],
-          PlantAddress       : [],
-          MicrCode           : [],
-          BranchName: [],
-     // AccountHolderName:[],
-          
+      AccountType: [],
+      Address: ["", Validators.required],
+      BankName: ["", Validators.required],
+      City: ["", Validators.required],
+      ConatctPersonNo: ["", Validators.required],
+      ContactPerson: ["", Validators.required],
+      CustmerName: ["", Validators.required],
+      CustomerId: [0],
+      CustomerMobileNo: ["", Validators.required],
+      Designation: ["", Validators.required],
+      District: [],
+      GstNo: [],
+      IfscCode: [],
+      IsDeleted: [false],
+      Location: [{}],
+      //LocationId:[],
+      PanNo: [],
+      Pincode: [],
+      State: [],
+      Taluka: [],
+      AccountNo: [],
+      PlantAddress: [],
+      MicrCode: [],
+      BranchName: [],
+      // AccountHolderName:[],
+
     });
     if (this.config.data)
       this.getLocation(this.config.data.LocationId);
@@ -76,24 +76,24 @@ export class CustomerInfoComponent implements OnInit {
   }
 
   saveCustomer() {
-    
+
     let customer = this.customerForm.value;
     customer.LocationId = customer.Location.LocationId;
-    return this.http.post(this.isEditable ? APP_CONSTANT.CUSOTMER_API.EDIT:APP_CONSTANT.CUSOTMER_API.ADD, customer)
+    return this.http.post(this.isEditable ? APP_CONSTANT.CUSOTMER_API.EDIT : APP_CONSTANT.CUSOTMER_API.ADD, customer)
       .subscribe((customer) => {
-          // login successful if there's a jwt token in the response
+        // login successful if there's a jwt token in the response
         if (customer) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.dialog.close(customer);
-          }
+        }
         return customer;
-        
+
 
       });
-    
+
   }
-  
-  
+
+
   //public Search(groupName:string,$event) {
   //  //this.resultList = this.dprService.itemGroupDetails.filter(x => x.GroupName.toUpperCase() == groupName.toUpperCase() && x.ItemName.toUpperCase().indexOf($event.query.toUpperCase())>=0);
   //}
