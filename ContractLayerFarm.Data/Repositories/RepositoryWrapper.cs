@@ -53,6 +53,9 @@ namespace ContractLayerFarm.Data.Repositories
                     _incometype = new IncometypeRepository(_repoContext);
                 }
 
+                return _incometype;
+            }
+        }
 
         public IPurchasereturnreceiptRepository Purchasereturnreceipt
         {
@@ -66,9 +69,6 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
         
-                return _incometype;
-            }
-        }
 
         public IBookingCancelRepository Bookingcancel
         {
