@@ -31,9 +31,7 @@ export class ProductdescService {
   }
 
 
-  loadProducts = () => {
-    return this.http.get(APP_CONSTANT.PRODUCTDESC_API.GETALL);
-  }
+  
 }
 
 

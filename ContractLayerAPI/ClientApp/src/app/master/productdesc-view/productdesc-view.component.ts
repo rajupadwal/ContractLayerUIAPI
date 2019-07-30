@@ -20,24 +20,17 @@ export class ProductdescViewComponent implements OnInit {
 }
  
   columnDefs = [
-    {
-      headerName: 'Button Col 1', 'width':100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
+    //{
+    //  headerName: 'Button Col 1', 'width':100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
 
     {
-      headerName: 'ProductId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'ProductId', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -53,7 +46,7 @@ export class ProductdescViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -66,7 +59,16 @@ export class ProductdescViewComponent implements OnInit {
         return newTH;
       },
     },
-    { headerName: 'ProductName ', field: 'ProductName', 'width': 150 }
+
+    {
+      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'ProductId', 'width': 100
+    },
+
+    
+    { headerName: 'Product Name ', field: 'ProductName', 'width': 100 }
      
   ];
 

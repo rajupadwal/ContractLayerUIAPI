@@ -20,28 +20,20 @@ export class EnquiryViewComponent implements OnInit {
   }
 
   columnDefs = [
+    //{
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
     {
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
-
-    {
-      headerName: 'RecordNo', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'RecordNo', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'EDIT';
+        newTH.innerHTML = 'Edit';
         newTH.className = 'pi pi - pencil';
         newTH.onclick = () => {
           const ref = this.dialog.open(EnquiryMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Enquiry' } });
@@ -54,23 +46,33 @@ export class EnquiryViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete',  'width': 50,
+      headerName: 'Delete', 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'EDIT';
+        newTH.innerHTML = 'Edit';
         newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);
-         
+
         };
         return newTH;
       },
     },
-
-    { headerName: 'Date ', field: 'Date', 'width': 150 },
     {
-      headerName: 'CustomerName', field: 'CustomerName', ' width': 150
+      headerName: 'RecordNo', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'RecordNo', 'width': 150
+    },
+
+    
+
+    
+
+    { headerName: 'Date ', field: 'Date', 'width': 100 },
+    {
+      headerName: 'Customer Name', field: 'CustomerName', ' width': 100
     },
     {
       headerName: 'Enquiry ', field: 'Enquiry', 'width': 100

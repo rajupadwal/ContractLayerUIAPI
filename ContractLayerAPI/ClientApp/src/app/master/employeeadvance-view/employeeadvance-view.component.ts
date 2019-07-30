@@ -19,24 +19,18 @@ export class EmployeeadvanceViewComponent implements OnInit {
 }
  
   columnDefs = [
-    {
-      headerName: 'Button Col 1', 'width':100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
+    //{
+    //  headerName: 'Button Col 1', 'width':100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
+
 
     {
-      headerName: 'Record No', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'RecordNo', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -52,7 +46,7 @@ export class EmployeeadvanceViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -64,6 +58,14 @@ export class EmployeeadvanceViewComponent implements OnInit {
         return newTH;
       },
     },
+    {
+      headerName: 'Record No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'RecordNo', 'width': 150
+    },
+
+    
     { headerName: 'Record Date ', field: 'RecordDate', 'width': 150 },
     { headerName: 'LocationName ', field: 'Location.LocationName', 'width': 150 },
     { headerName: 'Advance ', field: 'Advance', 'width': 150 },

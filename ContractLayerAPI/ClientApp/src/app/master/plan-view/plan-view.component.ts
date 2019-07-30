@@ -20,24 +20,17 @@ export class PlanViewComponent implements OnInit {
 }
  
   columnDefs = [
-    {
-      headerName: 'Button Col 1', 'width':100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
+    //{
+    //  headerName: 'Button Col 1', 'width':100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
 
     {
-      headerName: 'PlanId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'PlanId', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -52,7 +45,7 @@ export class PlanViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -66,17 +59,26 @@ export class PlanViewComponent implements OnInit {
       },
     },
 
-    { headerName: 'PlanName ', field: 'PlanName', 'width': 150 },
     {
-      headerName: 'ChickAgeInDays', field: 'ChickAgeInDays',' width': 150 },
-    {
-      headerName: 'DurationInDays ', field: 'DurationInDays' ,'width': 100},
-    {
-      headerName: 'NoOfChicks    ', field: 'NoOfChicks', 'width': 100},
+      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'PlanId', 'width': 100
+    },
 
-    { headerName: 'EggsReturn           ', field: 'EggsReturn' , 'width': 100 },
+    
+
+    { headerName: 'Plan Name ', field: 'PlanName', 'width': 150 },
     {
-      headerName: 'ChicksReturnRate ', field: 'ChicksReturnRate', 'width': 100
+      headerName: 'Chick Age In Days', field: 'ChickAgeInDays',' width': 150 },
+    {
+      headerName: 'Duration In Days ', field: 'DurationInDays' ,'width': 100},
+    {
+      headerName: 'No Of Chicks    ', field: 'NoOfChicks', 'width': 100},
+
+    { headerName: 'Eggs Return           ', field: 'EggsReturn' , 'width': 100 },
+    {
+      headerName: 'Chicks Return Rate ', field: 'ChicksReturnRate', 'width': 100
     },
     {
       headerName: 'Amount    ', field: 'Amount', 'width': 100
