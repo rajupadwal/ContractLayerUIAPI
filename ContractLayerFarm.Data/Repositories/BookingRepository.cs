@@ -26,6 +26,7 @@ namespace ContractLayerFarm.Data.Repositories
                        .Include(blog => blog.Location)
                        .Include(blog => blog.Customer)
                        .Include(blog => blog.Plan)
+                       .Include(blog=>blog.Employee)
                        .ToList();
             return TblBookingMaster;
         }

@@ -51,6 +51,18 @@
             </div>
           </div>
         </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Bill Reference No :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="BillRefNo" type="text" pInputText id="billrefno" name="billrefno" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="card-header">
@@ -63,10 +75,10 @@
             <div class="form-group">
               <label for="select"><strong>Payment Method :</strong></label>
               <select formControlName="PaymentMethod" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Cash</option>
-                <option value="2">Cheque</option>
-                <option value="3">Card</option>
+                <option value="Please select">Please select</option>
+                <option value="Cash">Cash</option>
+                <option value="Cheque">Cheque</option>
+                <option value="Card">Card</option>
               </select>
             </div>
           </div>
@@ -112,7 +124,8 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button pButton type="submit" label="SUBMIT" class="btn btn-outline-primary"> </button>
+        <!--<p-button label="SUBMIT"></p-button>-->
       </div>
     </form>
   </div>

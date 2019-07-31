@@ -11,6 +11,7 @@ import { LocationService } from '../../master/location-view/location.service';
 import { CusotmerService } from '../../master/customer-view/customer.service';
 import { PlanService } from '../../master/plan-view/plan.service';
 import * as moment from 'moment';
+import { EmployeeService } from '../../master/employee-view/employee.service';
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
@@ -25,9 +26,10 @@ export class BookingDetailsComponent implements OnInit {
   selectedPlan
   public planList: [];
   public locationList: [];
+  public employeeList: [];
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService, private employeeService: EmployeeService) { }
 
   ngOnInit() {
 
@@ -42,7 +44,7 @@ export class BookingDetailsComponent implements OnInit {
       NoOfPlan        : [],
       NoOfChicks      : [],
       Amount          : [],
-      EmployeeId      : [],
+      Employee        : [{}],
       EnquiryRef      : [],
       Agreement       : [],
       EggsLiability   : [],
@@ -60,8 +62,21 @@ export class BookingDetailsComponent implements OnInit {
       this.getLocation(this.config.data.LocationId);
       this.getCustomer(this.config.data.CustomerId);
       this.getPlan(this.config.data.PlanId);
+      this.getEmployee(this.config.data.EmployeeId);
       this.setDataForEdit();
     }
+  }
+
+  getEmployee(id) {
+    this.employeeService.getEmployeeByID(id).subscribe((employee) => {
+      this.bookingdetailsForm.patchValue({ Employee: employee });
+    });
+  }
+
+  searchEmployee(event) {
+    this.employeeService.searchEmployee(event.query).subscribe((data: any) => {
+      this.employeeList = data;
+    });
   }
 
   getLocation(id) {
@@ -117,7 +132,8 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   saveBookingDetails() {
-    let booking= this.bookingdetailsForm.value;
+    let booking = this.bookingdetailsForm.value;
+    booking.EmployeeId = booking.Employee.EmployeeId;
     booking.LocationId = booking.Location.LocationId;
     booking.CustomerId = booking.Customer.CustomerId;
     booking.PlanId = booking.Plan.PlanId;
@@ -126,6 +142,7 @@ export class BookingDetailsComponent implements OnInit {
     delete booking.Location;
     delete booking.Plan;
     delete booking.Customer;
+    delete booking.Employee;
     this.bookingService.saveBookingDetails(booking,this.isEditable).subscribe((booking) => {
       // login successful if there's a jwt token in the response
       if (booking) {

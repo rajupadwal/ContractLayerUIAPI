@@ -23,7 +23,7 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblSalesReceipt> GetAll()
         {
-            var Salesreceipt = this._repoWrapper.Salesreceipt.FindAll().ToList();
+            var Salesreceipt = this._repoWrapper.Salesreceipt.GetAllSaleReceipts();
             return Salesreceipt;
         }
         [HttpGet("[action]")]

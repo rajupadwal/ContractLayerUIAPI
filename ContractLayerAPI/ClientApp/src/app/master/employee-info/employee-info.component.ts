@@ -8,7 +8,7 @@ import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
 import { LocationService } from '../location-view/location.service';
 import { CusotmerService } from '../customer-view/customer.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-employee-info',
   templateUrl: './employee-info.component.html',
@@ -80,8 +80,8 @@ export class EmployeeInfoComponent implements OnInit {
   setDataForEdit = () => {
     this.isEditable = true;
     let employeeForm = this.config.data;
-    employeeForm.DateOfJoining=(this.config.data.DateOfJoining);
-    employeeForm.DateOfLeaving=(this.config.data.DateOfLeaving);
+    employeeForm.DateOfJoining =  moment(this.config.data.DateOfJoining).toDate();
+    employeeForm.DateOfLeaving = moment(this.config.data.DateOfLeaving).toDate();
 
     this.employeeForm.setValue(this.config.data);
   }

@@ -804,6 +804,8 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.ToTable("tbl_PurchaseReturnReceipt");
 
+                entity.Property(e => e.BillRefNo).HasMaxLength(20);
+
                 entity.Property(e => e.ChequeNo).HasMaxLength(20);
 
                 entity.Property(e => e.Date).HasColumnType("datetime");

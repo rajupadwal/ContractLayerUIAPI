@@ -47,7 +47,7 @@
             <div class="form-group">
               <label for="select"><strong>Customer Name :</strong></label>
               <p-autoComplete formControlName="Customer" [suggestions]="customerList" (completeMethod)="searchCustomer($event)"
-                              [dropdown]="true"  [forceSelection]="true" field="CustmerName"></p-autoComplete>
+                              [dropdown]="true" [forceSelection]="true" field="CustmerName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -57,23 +57,24 @@
             <div class="form-group">
               <label for="select"><strong>Payment Type :</strong></label>
               <select formControlName="PaymentType" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Against Bill</option>
-                <option value="2">Against Advance</option>
-                <option value="3">Aganist Sale Return</option>
+                <option value="Please select">Please select</option>
+                <option value="Against Bill">Against Bill</option>
+                <option value="Against Advance">Against Advance</option>
+                <option value="Aganist Sale Return">Aganist Sale Return</option>
               </select>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card-block">
-          <div class="form-group">
-            <label for="textarea-input"><strong>Bill Reference No :</strong></label>
-            <div>
-              <span class="ui-float-label">
-                <input formControlName="BillRefNo" type="text" pInputText id="billrefno" name="billrefno" class="form-control" rows="3">
-              </span>
+
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Bill Reference No :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="BillRefNo" type="text" pInputText id="billrefno" name="billrefno" class="form-control" rows="3">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -89,10 +90,10 @@
             <div class="form-group">
               <label for="select"><strong>Payment Method :</strong></label>
               <select formControlName="PaymentMethod" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Cash</option>
-                <option value="2">Cheque</option>
-                <option value="3">Card</option>
+                <option value="Please select">Please select</option>
+                <option value="Cash">Cash</option>
+                <option value="Cheque">Cheque</option>
+                <option value="Card">Card</option>
               </select>
             </div>
           </div>

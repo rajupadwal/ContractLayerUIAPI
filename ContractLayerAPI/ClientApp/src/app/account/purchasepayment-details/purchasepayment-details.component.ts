@@ -7,6 +7,8 @@ import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
 import { PurchasePayemntService } from '../purchasepayment-view/purchasepayment.service';
+import { LocationService } from '../../master/location-view/location.service';
+import { SupplierService } from '../../master/supplier-view/supplier.service';
 @Component({
   selector: 'app-purchasepayment-details',
   templateUrl: './purchasepayment-details.component.html',
@@ -17,61 +19,76 @@ export class PurchasepaymentDetailsComponent implements OnInit {
   
   purchasepaymentdetailsForm: FormGroup;
   public isEditable: boolean = false;
-  
+  public locationList: [];
+  public supplierList = [];
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private purchasepayemntservice: PurchasePayemntService, private config: DialogConfig, public dialog: DialogRef) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private purchasepayemntservice: PurchasePayemntService, private config: DialogConfig, public dialog: DialogRef, private supplierService: SupplierService, private locationService: LocationService) { }
 
   ngOnInit() {
 
     this.purchasepaymentdetailsForm = this.formBuilder.group({
 
-      RecordNo: [0],
-      Date: [],
-      LocationId: [],
-      SupplierId: [],
-      PaymentType: [''],
-      BillRefNo: [],
-      PaymentMethod: [],
-      ChequeNo: [],
-      AmountPaid: [],
-      Narration: [],
-      IsDeleted: [false]
-
+      RecordNo        : [0],
+      Date            : [],
+      Location        : [{}],
+      Supplier        : [{}],
+      PaymentType     : [],
+      BillRefNo       : [],
+      PaymentMethod   : [],
+      ChequeNo        : [],
+      AmountPaid      : [],
+      Narration       : [],
+      IsDeleted       : [false]
     });
 
     if (this.config.data) {
-      
+      this.getSupplier(this.config.data.SupplierId);
+      this.getLocation(this.config.data.LocationId);
       this.setDataForEdit();
     }
-
   }
 
-  //onSelectCustomer(selectedCustomer) {
-  //  this.bookingdetailsForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
+  getSupplier(id) {
+    this.supplierService.getSupplierByID(id).subscribe((supplier) => {
+      this.purchasepaymentdetailsForm.patchValue({ Supplier: supplier });
+    });
+  }
 
-  //}
+  getLocation(id) {
+    this.locationService.getLocationByID(id).subscribe((location) => {
+      this.purchasepaymentdetailsForm.patchValue({ Location: location });
+    });
+  }
 
-    
-
-
+  searchSupplier(event) {
+    this.supplierService.searchSupplier(event.query).subscribe((data: any) => {
+      this.supplierList = data;
+    });
+  }
+  searchLocation(event) {
+    this.locationService.searchLocation(event.query).subscribe((data: any) => {
+      this.locationList = data;
+    });
+  }
   
   setDataForEdit = () => {
     this.isEditable = true;
     this.purchasepaymentdetailsForm.setValue(this.config.data);
   }
   
-  
-
-
-
   savePurchasepayment() {
-    this.purchasepayemntservice.savePurchasepayment(this.purchasepaymentdetailsForm.value, this.isEditable).subscribe((purchasepayment) => {
+    let purchasepayementdetails = this.purchasepaymentdetailsForm.value;
+    purchasepayementdetails.LocationId = purchasepayementdetails.Location.LocationId;
+    purchasepayementdetails.SupplierId = purchasepayementdetails.Supplier.SupplierId;
+    delete purchasepayementdetails.Location;
+    delete purchasepayementdetails.Supplier;
+    this.purchasepayemntservice.savePurchasepayment(purchasepayementdetails, this.isEditable).subscribe((purchasepayementdetails) => {
       // login successful if there's a jwt token in the response
-      if (purchasepayment) {
+      if (purchasepayementdetails) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        this.dialog.close(purchasepayment);
+        this.dialog.close(purchasepayementdetails);
       }
-      return purchasepayment;
+      return purchasepayementdetails;
     });
   }
 }

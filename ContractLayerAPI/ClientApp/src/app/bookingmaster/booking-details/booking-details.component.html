@@ -119,12 +119,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Unit Manager :</strong></label>
-              <select formControlName="EmployeeId" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
+              <p-autoComplete formControlName="Employee" [suggestions]="employeeList" (completeMethod)="searchEmployee($event)"
+                              [dropdown]="true" [forceSelection]="true" field="EmployeeName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -146,9 +142,9 @@
             <div class="form-group">
               <label for="select"><strong>Agreement :</strong></label>
               <select formControlName="Agreement" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Yes</option>
-                <option value="2">No</option>
+                <option value="Please select">Please select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
             </div>
           </div>
@@ -192,10 +188,10 @@
             <div class="form-group">
               <label for="select"><strong>Payment Method :</strong></label>
               <select formControlName="PaymentMethod" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Cash</option>
-                <option value="2">Cheque</option>
-                <option value="3">Card</option>
+                <option value="Please select">Please select</option>
+                <option value="Cash">Cash</option>
+                <option value="Cheque">Cheque</option>
+                <option value="Card">Card</option>
               </select>
             </div>
           </div>

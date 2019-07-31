@@ -9,6 +9,8 @@ import { DialogRef } from '../../dialog/dialog-ref';
 import { SalesReceiptService } from '../salesreceipt-view/salesreceipt.service';
 import { CusotmerService } from '../../master/customer-view/customer.service';
 import { LocationService } from '../../master/location-view/location.service';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-salesreceipt-details',
   templateUrl: './salesreceipt-details.component.html',
@@ -16,16 +18,10 @@ import { LocationService } from '../../master/location-view/location.service';
 })
 
 export class SalesReceiptDetailsComponent implements OnInit {
-  //selectedCustomer
-  //public customers = [];
-  //public locations = [];
   public locationList: [];
   salereceiptdetailsForm: FormGroup;
   public isEditable: boolean = false;
   public customerList = [];
- // selectedPlan
- // public planList: [];
-
 
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private salesreceiptservice: SalesReceiptService, private config: DialogConfig, public dialog: DialogRef
     , private cusotmerService: CusotmerService, private locationService: LocationService) { }
@@ -39,14 +35,13 @@ export class SalesReceiptDetailsComponent implements OnInit {
       Location: [{}],
       Customer: [{}],
       PaymentType: [],
-      BillRefNo: [''],
+      BillRefNo: [],
       PaymentMethod: [],
       ChequeNo: [],
       ChequeAmount: [],
       CashAmount: [],
       Narration: [],
       IsDeleted: [false]
-       
     });
 
     if (this.config.data) {
@@ -54,22 +49,13 @@ export class SalesReceiptDetailsComponent implements OnInit {
       this.getLocation(this.config.data.LocationId);
       this.setDataForEdit();
     }
-      
   }
-
-  //onSelectCustomer(selectedCustomer) {
-  //  this.bookingdetailsForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
-
-  //}
-  
-
   
   getCstomer(id) {
     this.cusotmerService.getCustomerByID(id).subscribe((customer) => {
       this.salereceiptdetailsForm.patchValue({ Customer: customer });
     });
   }
-
 
   getLocation(id) {
     this.locationService.getLocationByID(id).subscribe((location) => {
@@ -79,6 +65,8 @@ export class SalesReceiptDetailsComponent implements OnInit {
 
   setDataForEdit = () => {
     this.isEditable = true;
+    let salereceiptdetails = this.config.data;
+    salereceiptdetails.Date = (moment(this.config.data.Date).toDate());
     this.salereceiptdetailsForm.setValue(this.config.data);
   }
   searchCustomer(event) {
@@ -92,16 +80,19 @@ export class SalesReceiptDetailsComponent implements OnInit {
     });
   }
 
-
-
   saveSalereceipt() {
-    this.salesreceiptservice.saveSalereceipt(this.salereceiptdetailsForm.value, this.isEditable).subscribe((salereceipt) => {
+    let salereceiptdetails = this.salereceiptdetailsForm.value;
+    salereceiptdetails.LocationId = salereceiptdetails.Location.LocationId;
+    salereceiptdetails.CustomerId = salereceiptdetails.Customer.CustomerId;
+    delete salereceiptdetails.Location;
+    delete salereceiptdetails.Customer;
+    this.salesreceiptservice.saveSalereceipt(salereceiptdetails, this.isEditable).subscribe((salereceiptdetails) => {
       // login successful if there's a jwt token in the response
-      if (salereceipt) {
+      if (salereceiptdetails) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        this.dialog.close(salereceipt);
+        this.dialog.close(salereceiptdetails);
       }
-      return salereceipt;
+      return salereceiptdetails;
     });
   }
 }
