@@ -25,27 +25,17 @@ export class LocationViewComponent implements OnInit {
 
 
   columnDefs = [
+    //{
+
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
     {
-
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
-
-    {
-      headerName: 'LocationId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'LocationId', 'width': 150
-
-
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -61,7 +51,7 @@ export class LocationViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -74,13 +64,24 @@ export class LocationViewComponent implements OnInit {
         return newTH;
       },
     },
-    //{ headerName: 'CustomerId', field: 'CustomerId' },
-    { headerName: 'LocationName', field: 'LocationName', 'width': 150 },
+
     {
-      headerName: 'LocationCode', field: 'LocationCode', ' width': 150
+      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'LocationId', 'width': 100
+
+
+    },
+
+    
+    //{ headerName: 'CustomerId', field: 'CustomerId' },
+    { headerName: 'Location Name', field: 'LocationName', 'width': 100 },
+    {
+      headerName: 'Location Code', field: 'LocationCode', ' width': 100
     },
     {
-      headerName: 'PinCode ', field: 'PinCode', 'width': 100
+      headerName: 'Pin Code ', field: 'PinCode', 'width': 100
     },
     {
       headerName: 'Address    ', field: 'Address', 'width': 100

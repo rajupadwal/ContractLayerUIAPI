@@ -20,37 +20,54 @@ export class CustomerViewComponent implements OnInit {
 }
 
   columnDefs = [
-    {
-      headerName: 'Button Col 1', 'width':100,
-      cellRenderer: 'buttonRenderer',
-    },
+    //{
+    //  headerName: 'Button Col 1', 'width':100,
+    //  cellRenderer: 'buttonRenderer',
+    //},
+
 
     {
-      headerName: 'CustomerId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'CustomerId', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 120,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
-        newTH.onclick =  ()=> {
-          const ref = this.dialog.open(CustomerInfoComponent, { data: params.data, modalConfig: {title:'Add/Edit Customer'} });
+        newTH.onclick = () => {
+          const ref = this.dialog.open(CustomerInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Customer' } });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
-          });     
+          });
         };
         return newTH;
       },
     },
-    //{ headerName: 'CustomerId', field: 'CustomerId' },
-    { headerName: 'CustmerName ', field: 'CustmerName', 'width': 150 },
+
     {
-      headerName: 'CustomerMobileNo', field: 'CustomerMobileNo',' width': 150 },
+      headerName: 'Delete', 'width': 100,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = 'Delete';
+        newTH.className = "pi pi-times";
+        newTH.onclick = () => {
+          this.delete(params.data);
+
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'CustomerId', 'width': 100
+    },
+
+    
+    //{ headerName: 'CustomerId', field: 'CustomerId' },
+    { headerName: 'CustmerName ', field: 'CustmerName', 'width': 100 },
+    {
+      headerName: 'CustomerMobileNo', field: 'CustomerMobileNo',' width': 80 },
     {
       headerName: 'Address ', field: 'Address' ,'width': 100},
     //{
@@ -91,6 +108,16 @@ export class CustomerViewComponent implements OnInit {
     return this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL, httpOptions)
       .subscribe((customer: any) => {
         this.rowData = customer;
+      });
+  }
+  delete(customer) {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post(APP_CONSTANT.CUSOTMER_API.DELETE, customer, httpOptions)
+      .subscribe((customer) => {
+        this.RefreshGrid();
       });
   }
 

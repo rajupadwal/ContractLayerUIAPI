@@ -16,30 +16,24 @@ export class ProductViewComponent implements OnInit {
 
   onBtnClick1 = (param) => {
     alert('i am clicked');
-    console.log (param);
-  
-}
+    console.log(param);
+
+  }
 
   columnDefs = [
-    {
+    //{
 
-      headerName: 'Button Col 1', 'width':100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
+    //  headerName: 'Button Col 1', 'width':100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
 
-    {
-      headerName: 'SrNo', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'PkId', 'width': 150
-    },
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -53,8 +47,9 @@ export class ProductViewComponent implements OnInit {
         return newTH;
       },
     },
+
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -67,9 +62,16 @@ export class ProductViewComponent implements OnInit {
         return newTH;
       },
     },
-    { headerName: 'Product Name ', field: 'Product.ProductName', 'width': 150 },
     {
-      headerName: 'ProductType', field: 'ProductType',' width': 150 },
+      headerName: 'SrNo', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'PkId', 'width': 50
+    },
+
+    { headerName: 'Product Name ', field: 'Product.ProductName', 'width': 100 },
+    {
+      headerName: 'ProductType', field: 'ProductType',' width': 100 },
     {
       headerName: 'HSNSAC ', field: 'Hsnsac' ,'width': 100},
     {

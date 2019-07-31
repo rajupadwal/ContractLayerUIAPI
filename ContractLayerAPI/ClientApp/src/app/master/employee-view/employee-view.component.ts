@@ -19,24 +19,16 @@ export class EmployeeViewComponent implements OnInit {
 }
  
   columnDefs = [
+    //{
+    //  headerName: 'Button Col 1', 'width':100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
     {
-      headerName: 'Button Col 1', 'width':100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
-
-    {
-      headerName: 'EmployeeId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'EmployeeId', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -51,7 +43,7 @@ export class EmployeeViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -64,14 +56,22 @@ export class EmployeeViewComponent implements OnInit {
         return newTH;
       },
     },
+    {
+      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'EmployeeId', 'width': 100
+    },
+
+    
     { headerName: 'Employee Name ', field: 'EmployeeName', 'width': 150 },
     {
       headerName: 'Mobile No', field: 'PersonalContactNo',' width': 150 },
     {
       headerName: 'Address ', field: 'Address' ,'width': 100},
     {
-      headerName: 'EducationDetails    ', field: 'EducationDetails','width': 100 },
-    { headerName: 'PastWorkExp           ', field: 'PastWorkExp' },
+      headerName: 'Education Details    ', field: 'EducationDetails','width': 100 },
+    { headerName: 'Past Work Exp           ', field: 'PastWorkExp' },
     { headerName: 'Location           ', field: 'Location.LocationName' }
     
   ];

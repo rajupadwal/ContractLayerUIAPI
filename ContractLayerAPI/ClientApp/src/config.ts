@@ -22,6 +22,7 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Customer/GetAll',
     GETByID: API_URL + 'Customer/GetByID',
     EDIT: API_URL + 'Customer/Update',
+    DELETE: API_URL + 'Customer/Delete',
     SEARCH_CUSTOMER: API_URL + 'Customer/SearchCustomer',
   },
   LOCATION_API: {

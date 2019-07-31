@@ -24,25 +24,19 @@ export class SupplierViewComponent implements OnInit {
 
 
   columnDefs = [
-    {
+    //{
 
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
 
-    {
-      headerName: 'SupplierId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'SupplierId', 'width': 150
-    },
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -59,7 +53,7 @@ export class SupplierViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete',  'width': 50,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -67,15 +61,26 @@ export class SupplierViewComponent implements OnInit {
         newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);
-         
+
         };
         return newTH;
       },
     },
 
-    { headerName: 'SupplierName ', field: 'SupplierName', 'width': 150 },
     {
-      headerName: 'SupplierMobileNo', field: 'SupplierMobileNo', ' width': 150
+      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'SupplierId', 'width': 150
+    },
+
+    
+
+    
+
+    { headerName: 'Supplier Name ', field: 'SupplierName', 'width': 150 },
+    {
+      headerName: 'Supplier Mobile No', field: 'SupplierMobileNo', ' width': 150
     },
     {
       headerName: 'State ', field: 'State', 'width': 100
