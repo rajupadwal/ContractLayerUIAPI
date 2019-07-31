@@ -812,8 +812,6 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Narration).HasMaxLength(20);
 
-                entity.Property(e => e.BillRefNo).HasMaxLength(20);
-
                 entity.Property(e => e.PaymentMethod).HasMaxLength(20);
 
                 entity.HasOne(d => d.Location)
@@ -950,8 +948,6 @@ namespace ContractLayerFarm.Data.Models
                 entity.HasKey(e => e.StockId);
 
                 entity.ToTable("tbl_StockDetails");
-
-                entity.Property(e => e.StockId).ValueGeneratedNever();
 
                 entity.Property(e => e.CreditNoteNo).HasMaxLength(20);
 

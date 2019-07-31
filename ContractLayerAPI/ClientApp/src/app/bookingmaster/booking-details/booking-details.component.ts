@@ -53,7 +53,11 @@ export class BookingDetailsComponent implements OnInit {
       ChequeNo        : [],
       PaidAmount      : [],
       //BalanceAmonut   : [],
-      Narration       : [],
+      Narration: [],
+      LocationId: [],
+      CustomerId: [],
+      PlanId: [],
+      EmployeeId: []
       //DeliveryStatus  : [],
       //IsDeleted       : [false] 
     });
@@ -137,7 +141,7 @@ export class BookingDetailsComponent implements OnInit {
     booking.LocationId = booking.Location.LocationId;
     booking.CustomerId = booking.Customer.CustomerId;
     booking.PlanId = booking.Plan.PlanId;
-    Object.assign(booking, this.bookingdetailsForm.value);
+    //Object.assign(booking, this.bookingdetailsForm.value);
     
     delete booking.Location;
     delete booking.Plan;

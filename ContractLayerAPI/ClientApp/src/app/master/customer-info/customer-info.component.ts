@@ -50,6 +50,7 @@ export class CustomerInfoComponent implements OnInit {
       PlantAddress: [],
       MicrCode: [],
       BranchName: [],
+      LocationId:[]
       // AccountHolderName:[],
 
     });

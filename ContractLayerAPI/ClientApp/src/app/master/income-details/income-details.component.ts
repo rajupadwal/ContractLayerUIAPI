@@ -36,7 +36,9 @@ export class IncomeDetailsComponent implements OnInit {
       ChequeNo              : [],
       Amount            : [],
       Narration             : [],
-      IsDeleted             : [false]
+      IsDeleted: [false],
+      LocationId: [],
+      IncomeId: []
     });
 
     if (this.config.data)

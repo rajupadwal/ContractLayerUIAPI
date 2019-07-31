@@ -22,7 +22,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblUnitMaster>SearchUnit(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
-            { return new List<TblUnitMaster>(); }
+            { return this.ktConContext.Set<TblUnitMaster>(); }
 
             return this.ktConContext.Set<TblUnitMaster>().Where(unit => unit.UnitDescription.ToLower().Contains(searchString.ToLower()));
         }

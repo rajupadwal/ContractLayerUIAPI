@@ -161,13 +161,40 @@ namespace ContractLayerFarm.Data.Repositories
 
         public void SavePurchaseBillMaster(TblPurchaseBillMt master)
         {
+            List<TblStockDetails> stockList = new List<TblStockDetails>();
+
+            foreach(var details in master.TblPurchaseBillDt)
+            {
+                stockList.Add(new TblStockDetails()
+                {
+                    InwardDocNo = master.BillId.ToString(),
+                    OutwardDocNo = "",
+                    DebitNoteNo = "",
+                    CreditNoteNo = "",
+                    TranscationType = typeof(TblPurchaseBillMt).ToString(),
+                    ProductId = details.ProductId,
+                    ProductType = details.ProductType,
+                    InwardQty = details.Quantity,
+                    OutwardQty =0,
+                    TranscationDate = master.BillDate,
+                    OpeningStock =0,
+                    CreditNoteQty =0,
+                    DebitNoteQty =0,
+                    Unit = "",
+                           });
+            }
             if (master.BillId > 0)
             {
+                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s=>s.InwardDocNo==master.BillId.ToString());
+                RepositoryContext.RemoveRange(toBeDeleteStock);
+                this.RepositoryContext.SaveChanges();
+                this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
                 this.RepositoryContext.Set<TblPurchaseBillMt>().Update(master);
                 this.RepositoryContext.SaveChanges();
             }
             else
             {
+                this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
                 this.RepositoryContext.Set<TblPurchaseBillMt>().Add(master);
                 this.RepositoryContext.SaveChanges();
             }
@@ -176,9 +203,14 @@ namespace ContractLayerFarm.Data.Repositories
         public void SavePurchaseBillDetails(TblPurchaseBillDt[] details)
         {
             this.RepositoryContext.Set<TblPurchaseBillDt>().AddRange(details);
+
+            // Adding new entry for stock
+          
+
             this.RepositoryContext.SaveChanges();
         }
 
+        
 
         IEnumerable<ViewPurchaseBillMaster> IProductRepository.GetAllPurchaseBillMasters()
         {

@@ -22,7 +22,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblPlanMaster> SearchPlan(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
-            { return new List<TblPlanMaster>(); }
+            { return this.ktConContext.Set<TblPlanMaster>(); }
 
             return this.ktConContext.Set<TblPlanMaster>().Where(plan => plan.PlanName.ToLower().Contains(searchString.ToLower()));
         }

@@ -22,7 +22,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblCustomerMaster> SearchCustomer(string searchString)
         {
             if(string.IsNullOrEmpty(searchString))
-            { return new List<TblCustomerMaster>(); }
+            { return this.ktConContext.Set<TblCustomerMaster>(); }
 
            return this.ktConContext.Set<TblCustomerMaster>().Where(customer => customer.CustmerName.ToLower().Contains(searchString.ToLower()));
         }

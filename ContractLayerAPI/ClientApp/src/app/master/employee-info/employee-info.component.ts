@@ -57,7 +57,8 @@ export class EmployeeInfoComponent implements OnInit {
       IfscCode              : [],
       MicrCode              : [],
       BranchName            : [],
-      AccountType           : []
+      AccountType: [],
+      LocationId:[]
     });
 
     if (this.config.data)

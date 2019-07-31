@@ -18,14 +18,11 @@ import { SupplierService } from '../master/supplier-view/supplier.service';
 export class PurchaseBillComponent implements OnInit {
   PurchaseBillDetailsList: any = [];
   PurchaseBillMaster: PurchaseBillMaster;
-
   supplierList;
   locationList;
-
   productlist;
   unitLists;
   isEditable: boolean = false;
-
   constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService,
     private productService: ProductService,private productdescservice: ProductdescService,  private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
 
@@ -42,9 +39,37 @@ export class PurchaseBillComponent implements OnInit {
       this.setDataForEdit();
   }
 
+
+  calculatePurchase = () => {
+
+    this.PurchaseBillMaster.BeforeTaxAmt = 0;
+    this.PurchaseBillMaster.TransportationCost     = 0;
+    this.PurchaseBillMaster.TransportationGSTPer   = 0;
+    this.PurchaseBillMaster.TransportationGSTAmt   = 0;
+    this.PurchaseBillMaster.TotalTransportAmt      = 0;
+    this.PurchaseBillMaster.TotalCGSTAmt           = 0;
+    this.PurchaseBillMaster.TotalSGSTAmt           = 0;
+    this.PurchaseBillMaster.TotalIGSTAmt           = 0;
+    this.PurchaseBillMaster.OtherCharges           = 0;
+    this.PurchaseBillMaster.Roundoff               = 0;
+    this.PurchaseBillMaster.GrandTotal         = 0;
+
+    this.PurchaseBillDetailsList.forEach((key, value) => {
+      this.PurchaseBillMaster.BeforeTaxAmt += key.TaxableAmt;
+
+    })
+  }
+
+  calculateTaxableAmount(event,item) {
+    item.TaxableAmt = parseFloat(item.Quantity) * parseFloat(item.Rate);
+    item.TotalAmount = item.TaxableAmt + (parseFloat(item.TaxableAmt) * (parseFloat(item.CgstPercentage) / 100))
+      + (parseFloat(item.TaxableAmt) * (parseFloat(item.SgstPercentage) / 100));
+    this.calculatePurchase();
+  }
   setDataForEdit = () => {
     this.isEditable = true;
     this.PurchaseBillMaster = this.config.data;
+    this.PurchaseBillMaster.deletedDetailsList = [];
     this.PurchaseBillMaster.BillDate = moment(this.config.data.Date).toDate();
     this.PurchaseBillMaster.GRNDate = moment(this.config.data.Date).toDate();
     this.getAllPurchasebillmastedetails();
@@ -66,9 +91,14 @@ export class PurchaseBillComponent implements OnInit {
   }
 
   loadProducts = () => {
-    this.productdescservice.loadProducts()
+    this.productService.loadProducts()
       .subscribe((products: any) => {
         this.productlist = products;
+        this.productlist.forEach((key: any, value: any) => {
+          key.ProductTypeName = key.Product.ProductName + '-' + key.ProductType;
+        })
+
+
         if (this.isEditable == true && this.PurchaseBillDetailsList) {
           this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
@@ -98,24 +128,32 @@ export class PurchaseBillComponent implements OnInit {
 
   addNewItem = () => {
     let newDetails = new PurchaseBillDetail();
+    newDetails.PkId = Date.now();
     newDetails.BillNo = this.PurchaseBillMaster.BillNo;
     newDetails.BillDate = new Date();
     newDetails.BillId = this.PurchaseBillMaster.BillId,
     newDetails.BatchNo = this.PurchaseBillMaster.BatchNo;
     this.PurchaseBillDetailsList.push(newDetails);
+    this.calculatePurchase();
   }
 
   removeItem = (item) => {
+    this.PurchaseBillMaster.deletedDetailsList.push(this.PurchaseBillDetailsList.find(p => p.PkId == item.PkId));
     this.PurchaseBillDetailsList = this.PurchaseBillDetailsList.filter(p => p.PkId != item.PkId);
+    this.calculatePurchase();
   }
   saveItems = () => {
-
     delete this.PurchaseBillMaster.Location;
-
     delete this.PurchaseBillMaster.Supplier;
     this.PurchaseBillMaster.TblPurchaseBillDt = this.PurchaseBillDetailsList;
 
+    this.PurchaseBillMaster.TblPurchaseBillDt.forEach((key: any, value: any) => {
+      key.Product = null;
+      key.PkId = 0;
 
+    })
+
+    //adding deleted records List
     this.productService.savePurchaseBills(this.PurchaseBillMaster);
 
     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -132,6 +170,7 @@ export class PurchaseBillComponent implements OnInit {
 
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
+    model.ProductType = model.Product.ProductType;
   };
   onSelectUnits = (value, model: any) => {
     model.Unit = model.Units.UnitDescription;
@@ -162,7 +201,7 @@ export class PurchaseBillDetail {
   BillNo: string = '';
   BillDate: Date = new Date();
   ProductId: number = 0;
-  ProductType: string = 'Jumbo Auto Drinker';
+  ProductType: string = '';
   Unit: string = '';
   HsnCode: string = '';
   Quantity: number=0;
@@ -174,9 +213,10 @@ export class PurchaseBillDetail {
   SgstPercentage: number = 0;
   IgstPercentage: number = 0;
   TotalAmount: number = 0;
-
+  PkId: number = 0;
   Units: any;
   Product: any;
+ 
 }
 
 export class PurchaseBillMaster {
@@ -203,4 +243,5 @@ export class PurchaseBillMaster {
   Location: any;
   Supplier: any;
   TblPurchaseBillDt: PurchaseBillDetail[];
+  deletedDetailsList: any[] = [];
 }

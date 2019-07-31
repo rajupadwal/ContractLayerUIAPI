@@ -45,7 +45,8 @@ export class EnquiryMasterComponent implements OnInit {
       EnquiryType	    : [],
       Narration	      : [],
       Location        : [{}],
-      IsDeleted	      : [false],
+      IsDeleted: [false],
+      LocationId:[]
     });
     if (this.config.data)
       this.getLocation(this.config.data.LocationId);

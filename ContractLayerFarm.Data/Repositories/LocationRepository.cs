@@ -21,7 +21,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblLocationMaster> SearchLocation(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
-            { return new List<TblLocationMaster>(); }
+            { return this.ktConContext.Set<TblLocationMaster>(); }
 
             return this.ktConContext.Set<TblLocationMaster>().Where(location => location.LocationName.ToLower().Contains(searchString.ToLower()));
         }

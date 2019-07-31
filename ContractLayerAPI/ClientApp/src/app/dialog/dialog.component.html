@@ -19,10 +19,10 @@
     
   </div>
 
-  <div class="dialog" [style.height]="modalConfig?.height"[style.width]="modalConfig?.width"  >
+  <div class="dialog" [style.height]="modalConfig?.height" [style.max-width]="modalConfig?.width"  [style.width]="modalConfig?.width"  >
     <ng-template appInsertion>
     </ng-template>
   </div>
-  <div style="padding:5px;background-color:aliceblue" [style.width]="modalConfig?.width">
+  <div style="padding:5px;background-color:aliceblue" [style.max-width]="modalConfig?.width" [style.width]="modalConfig?.width">
   </div>
 </div>

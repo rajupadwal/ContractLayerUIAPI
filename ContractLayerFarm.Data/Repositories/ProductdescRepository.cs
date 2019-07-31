@@ -19,7 +19,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblProductMaster> SearchProduct(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
-            { return new List<TblProductMaster>(); }
+            { return this.ktConContext.Set<TblProductMaster>(); }
 
             return this.ktConContext.Set<TblProductMaster>().Where(product => product.ProductName.ToLower().Contains(searchString.ToLower()));
         }

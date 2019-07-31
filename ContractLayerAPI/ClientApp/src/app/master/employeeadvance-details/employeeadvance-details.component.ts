@@ -32,7 +32,9 @@ export class EmployeeadvanceDetailsComponent implements OnInit {
       Location        : [{}],
       Advance         : [],
       Narration       : [],
-      Employee        : [{}],
+      Employee: [{}],
+      LocationId: [],
+      EmployeeId:[]
     });
     if (this.config.data)
       this.getLocation(this.config.data.LocationId);
@@ -76,8 +78,8 @@ export class EmployeeadvanceDetailsComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    let employeeadvance;
-    Object.assign(employeeadvance, this.employeeadvanceForm.value);
+    let employeeadvance = this.employeeadvanceForm.value;
+    //Object.assign(employeeadvance, this.employeeadvanceForm.value);
     employeeadvance.EmployeeId = employeeadvance.Employee.EmployeeId;
     employeeadvance.LocationId = employeeadvance.Location.LocationId;
     delete employeeadvance.Location;

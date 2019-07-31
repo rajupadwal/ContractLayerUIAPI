@@ -39,7 +39,8 @@ export class ProductMasterComponent implements OnInit {
       Igst         :  [],
       MinimumQty   :  [],
       OpeningStock: [],
-
+      ProductId: [],
+      UnitId:[]
     });
     if (this.config.data)
       this.getProduct(this.config.data.ProductId);

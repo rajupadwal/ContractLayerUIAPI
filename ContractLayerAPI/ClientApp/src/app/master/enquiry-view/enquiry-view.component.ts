@@ -50,7 +50,7 @@ export class EnquiryViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'Edit';
+        newTH.innerHTML = 'Delete';
         newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);

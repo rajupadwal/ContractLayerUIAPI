@@ -46,6 +46,9 @@ export class ExpencedetailsMasterComponent implements OnInit {
       Amount: [],
       Narration: [],
       IsDeleted: [false],
+      LocationId: [],
+      EmployeeId: [],
+      ExpenceId:[]
     });
     if (this.config.data) {
       this.getLocation(this.config.data.LocationId);
