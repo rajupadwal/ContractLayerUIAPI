@@ -24,30 +24,22 @@ export class ExpencedetailsViewComponent implements OnInit {
 
 
   columnDefs = [
-    {
+    //{
 
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
-
-    {
-      headerName: 'ExpencesNo', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'ExpencesNo', 'width': 150
-    },
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 150,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'EDIT';
-        newTH.className = 'pi pi - pencil';
+        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(ExpencedetailsMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Expence Details' } });
           ref.afterClosed.subscribe(result => {
@@ -59,7 +51,7 @@ export class ExpencedetailsViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -73,9 +65,18 @@ export class ExpencedetailsViewComponent implements OnInit {
       },
     },
 
-    { headerName: 'Date ', field: 'Date', 'width': 150 },
+
     {
-      headerName: 'Expence Type', field: 'Expence.ExpenceType', ' width': 150
+      headerName: 'Expence No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'ExpencesNo', 'width': 150
+    },
+
+    
+    { headerName: 'Date ', field: 'Date', 'width': 130 },
+    {
+      headerName: 'Expence Type', field: 'Expence.ExpenceType', ' width': 80
     },
     {
       headerName: 'Location Name ', field: 'Location.LocationName', 'width': 100

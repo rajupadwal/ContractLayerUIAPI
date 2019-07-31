@@ -20,24 +20,17 @@ export class EggsrangeViewComponent implements OnInit {
 }
  
   columnDefs = [
-    {
-      headerName: 'Button Col 1', 'width':100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
+    //{
+    //  headerName: 'Button Col 1', 'width':100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
 
     {
-      headerName: 'Sr No', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'EggsRangeCode', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -53,7 +46,7 @@ export class EggsrangeViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -65,6 +58,15 @@ export class EggsrangeViewComponent implements OnInit {
         return newTH;
       },
     },
+
+    {
+      headerName: 'Sr No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'EggsRangeCode', 'width': 150
+    },
+
+    
     { headerName: 'EggsRangeFrom ', field: 'EggsRangeFrom', 'width': 150 },
     { headerName: 'EggsRangeTo ', field: 'EggsRangeTo', 'width': 150 },
     { headerName: 'EggsRate ', field: 'EggsRate', 'width': 150 },

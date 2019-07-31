@@ -11,6 +11,7 @@ namespace ContractLayerFarm.Data.Models
         public int? SupplierId { get; set; }
         public string PaymentMethod { get; set; }
         public string ChequeNo { get; set; }
+        public string BillRefNo { get; set; }
         public decimal? AmountReceived { get; set; }
         public string Narration { get; set; }
         public bool? IsDeleted { get; set; }

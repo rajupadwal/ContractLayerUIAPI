@@ -8,6 +8,7 @@ import { DialogRef } from '../dialog/dialog-ref';
 import { DialogConfig } from '../dialog/dialog-config';
 
 import * as moment from 'moment';
+import { ProductdescService } from '../master/productdesc-view/productdesc.service';
 
 
 
@@ -30,7 +31,7 @@ export class FarmerInwardComponent implements OnInit {
   isEditable: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private cusotmerService: CusotmerService,
-    private productService: ProductService, private planService: PlanService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
+    private productService: ProductService, private planService: PlanService, private locationService: LocationService, private productdescService: ProductdescService, public dialog: DialogRef, private config: DialogConfig, ) { }
 
   ngOnInit() {
     let detail = new FarmerInwardDetail();
@@ -66,7 +67,7 @@ export class FarmerInwardComponent implements OnInit {
       });
   }
   loadProducts = () => {
-    this.productService.loadProducts()
+    this.productdescService.loadProducts()
       .subscribe((products: any) => {
         this.productlist = products;
         if (this.isEditable == true && this.FarmerInwardDetailsList) {

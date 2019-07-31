@@ -20,24 +20,18 @@ export class ExpencetypeViewComponent implements OnInit {
   }
 
   columnDefs = [
-    {
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
+    //{
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
+
 
     {
-      headerName: 'ExpenceId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'ExpenceId', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -52,7 +46,7 @@ export class ExpencetypeViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -65,8 +59,16 @@ export class ExpencetypeViewComponent implements OnInit {
         return newTH;
       },
     },
+    {
+      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'ExpenceId', 'width': 150
+    },
 
-    { headerName: 'ExpenceType ', field: 'ExpenceType', 'width': 150 }
+    
+
+    { headerName: 'Expence Type ', field: 'ExpenceType', 'width': 400 }
     
   ];
 
