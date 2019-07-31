@@ -74,16 +74,14 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
     //{
     //  headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100
     //},
-    //{ headerName: 'BillRefNo    ', field: 'BillRefNo' },
+    { headerName: 'BillRefNo    ', field: 'BillRefNo' },
     { headerName: 'PaymentMethod    ', field: 'PaymentMethod' },
     { headerName: 'ChequeNo    ', field: 'ChequeNo' },
     { headerName: 'AmountReceived    ', field: 'AmountReceived' },
     { headerName: 'Narration    ', field: 'Narration' }
   ];
 
-  rowData = [
-
-  ];
+  rowData;
 
   constructor(private router: Router, private http: HttpClient, private purchasereturnreceiptService: PurchasereturnReceiptService, public dialog: DialogService) { }
 
@@ -120,11 +118,13 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
+    if (confirm("Are you sure do you want to delete record?")) {
 
-    return this.http.post(APP_CONSTANT.PURCHASERETURNRECEIPT_API.DELETE, purchasereturnreceipt, httpOptions)
-      .subscribe((purchasereturnreceipt) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.PURCHASERETURNRECEIPT_API.DELETE, purchasereturnreceipt, httpOptions)
+        .subscribe((purchasereturnreceipt) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 

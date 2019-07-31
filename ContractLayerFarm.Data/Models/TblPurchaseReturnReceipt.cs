@@ -9,6 +9,7 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? Date { get; set; }
         public int? LocationId { get; set; }
         public int? SupplierId { get; set; }
+        public string BillRefNo { get; set; }
         public string PaymentMethod { get; set; }
         public string ChequeNo { get; set; }
         public string BillRefNo { get; set; }

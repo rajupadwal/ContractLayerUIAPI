@@ -35,7 +35,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Location :</strong></label>
-              <input formControlName="LocationId" type="text" pInputText id="LocationId" name="LocationId" class="form-control" rows="3">
+              <p-autoComplete formControlName="Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                  [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -45,7 +46,8 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Supplier Name :</strong></label>
-              <input formControlName="SupplierId" type="text" pInputText id="supplierid" name="supplierid" class="form-control" rows="3">
+              <p-autoComplete formControlName="Supplier" [suggestions]="supplierList" (completeMethod)="searchSupplier($event)"
+                              [dropdown]="true" [forceSelection]="true" field="SupplierName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -55,10 +57,10 @@
             <div class="form-group">
               <label for="select"><strong>Payment Type :</strong></label>
               <select formControlName="PaymentType" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Against Bill</option>
-                <option value="2">Against Advance</option>
-                <option value="3">Aganist Sale Return</option>
+                <option value="Please select">Please select</option>
+                <option value="Against Bill">Against Bill</option>
+                <option value="Against Advance">Against Advance</option>
+                <option value="Aganist Sale Return">Aganist Sale Return</option>
               </select>
             </div>
           </div>
@@ -66,7 +68,7 @@
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
-              <label for="textarea-input"><strong>Bill Reference No :</strong></label>
+              <label for="textarea-input"><strong>Purchase Bill No :</strong></label>
               <div>
                 <span class="ui-float-label">
                   <input formControlName="BillRefNo" type="text" pInputText id="billrefno" name="billrefno" class="form-control" rows="3">
@@ -76,6 +78,7 @@
           </div>
         </div>
       </div>
+
       <div class="card-header">
         <strong>Payment Details</strong>
         <!--<small>Form</small>-->
@@ -86,10 +89,10 @@
             <div class="form-group">
               <label for="select"><strong>Payment Method :</strong></label>
               <select formControlName="PaymentMethod" id="select" name="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Cash</option>
-                <option value="2">Cheque</option>
-                <option value="3">Card</option>
+                <option value="Please select">Please select</option>
+                <option value="Cash">Cash</option>
+                <option value="Cheque">Cheque</option>
+                <option value="Card">Card</option>
               </select>
             </div>
           </div>
@@ -120,7 +123,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-4">
+         <div class="col-sm-6">
           <div class="card-block">
             <div class="form-group">
               <label for="textarea-input"><strong>Narration :</strong></label>
@@ -132,14 +135,14 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+         <div class="col-sm-6">
           <div class="card-block">
             <div class="form-group">
             </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="input-group-btn" dropdown>
+       <div class="input-group-btn" dropdown>
         <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>

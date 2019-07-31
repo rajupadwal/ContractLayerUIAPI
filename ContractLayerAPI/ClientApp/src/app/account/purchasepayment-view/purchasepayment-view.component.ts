@@ -66,10 +66,10 @@ export class PurchasepaymentViewComponent implements OnInit {
     },
     { headerName: 'Date ', field: 'Date', 'width': 150 },
     {
-      headerName: 'LocationId', field: 'LocationId', ' width': 150
+      headerName: 'Location Name', field: 'Location.LocationName', ' width': 150
     },
     {
-      headerName: 'SupplierId ', field: 'SupplierId', 'width': 100
+      headerName: 'Supplier Name ', field: 'Supplier.SupplierName', 'width': 100
     },
     {
       headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100

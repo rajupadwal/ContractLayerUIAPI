@@ -74,6 +74,9 @@ export class BookingViewComponent implements OnInit {
     {
       headerName: 'Plan Name   ', field: 'Plan.PlanName', 'width': 100
     },
+    {
+      headerName: 'Unit Manager', field: 'Employee.EmployeeName', 'width': 100
+    },
     { headerName: 'NoOfPlan    ', field: 'NoOfPlan' },
     { headerName: 'NoOfChicks    ', field: 'NoOfChicks' },
     { headerName: 'Amount    ', field: 'Amount' }

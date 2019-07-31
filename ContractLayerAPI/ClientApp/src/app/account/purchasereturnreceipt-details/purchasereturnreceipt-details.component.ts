@@ -34,6 +34,7 @@ export class PurchasereturnreceiptDetailsComponent implements OnInit {
       Date: [],
       Location: [{}],
       Supplier: [{}],
+      BillRefNo: [],
       PaymentMethod: [],
       ChequeNo: [],
       AmountReceived: [],

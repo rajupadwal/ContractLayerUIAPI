@@ -30,5 +30,6 @@ namespace ContractLayerFarm.Data.Models
         public TblCustomerMaster Customer { get; set; }
         public TblLocationMaster Location { get; set; }
         public TblPlanMaster Plan { get; set; }
+        public TblEmployeeMaster Employee { get; set; }
     }
 }

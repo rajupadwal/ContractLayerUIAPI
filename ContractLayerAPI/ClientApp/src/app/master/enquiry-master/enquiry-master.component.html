@@ -49,10 +49,9 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Enquiry :</strong></label>
-              <select formControlName="Enquiry" id="select" name="enquiry" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Plan</option>
-                <option value="3">xyz</option>
+              <select formControlName="Enquiry" id="select" name="enquiry" class="form-control" >
+                <option value="Please select">Please select</option>
+                <option value="Plan">Plan</option>
               </select>
             </div>
           </div>
@@ -74,26 +73,26 @@
             <div class="form-group">
               <label for="select"><strong>District :</strong></label>
               <select formControlName="District" id="select" name="district" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Pune</option>
-                <option value="2">Satara</option>
-                <option value="3">Sangali</option>
+                <option value="Please select">Please select</option>
+                <option value="Pune">Pune</option>
+                <option value="Satara">Satara</option>
+                <option value="Sangali">Sangali</option>
               </select>
             </div>
           </div>
         </div>
-
       </div>
+
       <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Taluka :</strong></label>
               <select formControlName="Taluka" id="select" name="Taluka" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Maval </option>
-                <option value="2">Khed</option>
-                <option value="3">Mulashi #3</option>
+                <option value="Please select">Please select</option>
+                <option value="Maval">Maval </option>
+                <option value="Khed">Khed</option>
+                <option value="Mulashi">Mulashi</option>
               </select>
             </div>
           </div>
@@ -103,10 +102,10 @@
             <div class="form-group">
               <label for="select"><strong>City :</strong></label>
               <select formControlName="City" id="select" name="city" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Talegaon Dabhade</option>
-                <option value="2">Lonavala</option>
-                <option value="3">Vadgaon</option>
+                <option value="Please select">Please select</option>
+                <option value="Talegaon Dabhade">Talegaon Dabhade</option>
+                <option value="Lonavala">Lonavala</option>
+                <option value="Vadgaon">Vadgaon</option>
               </select>
             </div>
           </div>
@@ -170,9 +169,9 @@
             <div class="form-group">
               <label for="select"><strong>Enquiry Type :</strong></label>
               <select formControlName="EnquiryType" id="select" name="enquirytype" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Telephonic</option>
-                <option value="2">Refferal</option>
+                <option value="Please select">Please select</option>
+                <option value="Telephonic">Telephonic</option>
+                <option value="Refferal">Refferal</option>
               </select>
             </div>
           </div>
@@ -195,13 +194,12 @@
               <label for="select"><strong>Location :</strong></label>
               <p-autoComplete formControlName="Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
                               [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
-
             </div>
           </div>
         </div>
       </div>
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
+        <button type="submit" class="btn btn-outline-primary" >&nbsp; SAVE </button>
       </div>
     </form>
   </div>

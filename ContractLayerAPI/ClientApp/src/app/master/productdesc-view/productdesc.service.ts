@@ -29,9 +29,6 @@ export class ProductdescService {
   getProductByID(id) {
     return this.http.post(APP_CONSTANT.PRODUCTDESC_API.GETByID, id);
   }
-
-
-  
 }
 
 

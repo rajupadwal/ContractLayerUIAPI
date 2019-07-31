@@ -66,10 +66,10 @@ export class SalesreceiptViewComponent implements OnInit {
     },
     { headerName: 'Date ', field: 'Date', 'width': 150 },
     {
-      headerName: 'LocationId', field: 'LocationId', ' width': 150
+      headerName: 'Location Name', field: 'Location.LocationName', ' width': 150
     },
     {
-      headerName: 'CustomerId ', field: 'CustomerId', 'width': 100
+      headerName: 'Customer Name ', field: 'Customer.CustmerName', 'width': 100
     },
     {
       headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100

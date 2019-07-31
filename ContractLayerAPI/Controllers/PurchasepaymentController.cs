@@ -23,7 +23,7 @@ namespace ContractLayerAPI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<TblPurchasepayment> GetAll()
         {
-            var Purchasepayment = this._repoWrapper.Purchasepayment.FindAll().ToList();
+            var Purchasepayment = this._repoWrapper.Purchasepayment.GetAllPurchasepayment();
             return Purchasepayment;
         }
         [HttpGet("[action]")]

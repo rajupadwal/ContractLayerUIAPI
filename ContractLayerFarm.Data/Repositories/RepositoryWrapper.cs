@@ -56,7 +56,6 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
 
-
         public IPurchasereturnreceiptRepository Purchasereturnreceipt
         {
             get
@@ -69,7 +68,8 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
         
-             
+                
+
         public IBookingCancelRepository Bookingcancel
         {
             get
