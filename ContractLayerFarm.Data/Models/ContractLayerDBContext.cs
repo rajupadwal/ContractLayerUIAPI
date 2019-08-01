@@ -963,7 +963,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.TranscationType).HasMaxLength(20);
 
-                entity.Property(e => e.Unit).HasMaxLength(20);
+                entity.Property(e => e.UnitId).HasMaxLength(20);
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.TblStockDetails)

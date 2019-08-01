@@ -45,7 +45,7 @@ namespace ContractLayerFarm.Data.Contract
 
         IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters();
 
-        IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails(int billId);
+        IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails(int billid);
 
     }
 }

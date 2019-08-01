@@ -34,6 +34,18 @@ export class PurchaseBillComponent implements OnInit {
     this.loadLocations();
     this.loadProducts();
     this.loadUnits();
+
+    this.PurchaseBillMaster.BeforeTaxAmt = 0;
+    this.PurchaseBillMaster.TransportationCost = 0;
+    this.PurchaseBillMaster.TransportationGSTPer = 0;
+    this.PurchaseBillMaster.TransportationGSTAmt = 0;
+    this.PurchaseBillMaster.TotalTransportAmt = 0;
+    this.PurchaseBillMaster.TotalCGSTAmt = 0;
+    this.PurchaseBillMaster.TotalSGSTAmt = 0;
+    this.PurchaseBillMaster.TotalIGSTAmt = 0;
+    this.PurchaseBillMaster.OtherCharges = 0;
+    this.PurchaseBillMaster.Roundoff = 0;
+    this.PurchaseBillMaster.GrandTotal = 0;
     
     if (this.config.data)
       this.setDataForEdit();
@@ -41,31 +53,46 @@ export class PurchaseBillComponent implements OnInit {
 
 
   calculatePurchase = () => {
-
     this.PurchaseBillMaster.BeforeTaxAmt = 0;
-    this.PurchaseBillMaster.TransportationCost     = 0;
-    this.PurchaseBillMaster.TransportationGSTPer   = 0;
-    this.PurchaseBillMaster.TransportationGSTAmt   = 0;
-    this.PurchaseBillMaster.TotalTransportAmt      = 0;
-    this.PurchaseBillMaster.TotalCGSTAmt           = 0;
-    this.PurchaseBillMaster.TotalSGSTAmt           = 0;
-    this.PurchaseBillMaster.TotalIGSTAmt           = 0;
-    this.PurchaseBillMaster.OtherCharges           = 0;
-    this.PurchaseBillMaster.Roundoff               = 0;
-    this.PurchaseBillMaster.GrandTotal         = 0;
-
+    this.PurchaseBillMaster.TotalCGSTAmt = 0;
+    this.PurchaseBillMaster.TotalSGSTAmt = 0;
+    
     this.PurchaseBillDetailsList.forEach((key, value) => {
       this.PurchaseBillMaster.BeforeTaxAmt += key.TaxableAmt;
-
     })
+
+      this.PurchaseBillDetailsList.forEach((key, value) => {
+        this.PurchaseBillMaster.GrandTotal += key.TotalAmount;
+    })
+
+    this.PurchaseBillDetailsList.forEach((key, value) => {
+      this.PurchaseBillMaster.TotalCGSTAmt += (parseFloat(key.TaxableAmt) * (parseFloat(key.CgstPercentage) / 100));
+    })
+
+    this.PurchaseBillDetailsList.forEach((key, value) => {
+      this.PurchaseBillMaster.TotalSGSTAmt += (parseFloat(key.TaxableAmt) * (parseFloat(key.SgstPercentage) / 100));
+    })
+
+    //this.PurchaseBillDetailsList.forEach((key, value) => {
+    //  this.PurchaseBillMaster.TotalIGSTAmt += (parseFloat(key.TaxableAmt) * (parseFloat(key.IgstPercentage) / 100));
+    //})
+    this.calculateTransportAmount(event);
   }
 
   calculateTaxableAmount(event,item) {
     item.TaxableAmt = parseFloat(item.Quantity) * parseFloat(item.Rate);
     item.TotalAmount = item.TaxableAmt + (parseFloat(item.TaxableAmt) * (parseFloat(item.CgstPercentage) / 100))
       + (parseFloat(item.TaxableAmt) * (parseFloat(item.SgstPercentage) / 100));
+    
     this.calculatePurchase();
   }
+
+  calculateTransportAmount(event) {
+    this.PurchaseBillMaster.TransportationGSTAmt = parseFloat(this.PurchaseBillMaster.TransportationCost.toString()) * (parseFloat(this.PurchaseBillMaster.TransportationGSTPer.toString()) / 100);
+    this.PurchaseBillMaster.TotalTransportAmt = parseFloat(this.PurchaseBillMaster.TransportationGSTAmt.toString()) + parseFloat(this.PurchaseBillMaster.TransportationCost.toString());
+    this.PurchaseBillMaster.GrandTotal = parseFloat(this.PurchaseBillMaster.OtherCharges.toString()) + parseFloat(this.PurchaseBillMaster.BeforeTaxAmt.toString()) + parseFloat(this.PurchaseBillMaster.TotalCGSTAmt.toString()) + parseFloat(this.PurchaseBillMaster.TotalSGSTAmt.toString()) + parseFloat(this.PurchaseBillMaster.TransportationGSTAmt.toString()) + parseFloat(this.PurchaseBillMaster.TransportationCost.toString());
+  }
+
   setDataForEdit = () => {
     this.isEditable = true;
     this.PurchaseBillMaster = this.config.data;
@@ -109,8 +136,8 @@ export class PurchaseBillComponent implements OnInit {
 
   loadLocations = () => {
     this.locationService.loadLocations()
-      .subscribe((locaions: any) => {
-        this.locationList = locaions;
+      .subscribe((locations: any) => {
+        this.locationList = locations;
       });
   }
 
@@ -120,7 +147,7 @@ export class PurchaseBillComponent implements OnInit {
         this.unitLists = units;
         if (this.isEditable == true && this.PurchaseBillDetailsList) {
           this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
-            key.Units = this.unitLists.find(p => p.UnitDescription == key.Unit);
+            key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
           })
         }
       });
@@ -171,9 +198,14 @@ export class PurchaseBillComponent implements OnInit {
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
     model.ProductType = model.Product.ProductType;
+    model.Rate = model.Product.SellingPrice;
+    model.CgstPercentage = model.Product.Cgst;
+    model.SgstPercentage = model.Product.Sgst;
+    
   };
+
   onSelectUnits = (value, model: any) => {
-    model.Unit = model.Units.UnitDescription;
+    model.UnitId = model.Units.UnitId;
   };
 
   searchSupplier = (value) => {
@@ -202,7 +234,7 @@ export class PurchaseBillDetail {
   BillDate: Date = new Date();
   ProductId: number = 0;
   ProductType: string = '';
-  Unit: string = '';
+  UnitId: number = 0;
   HsnCode: string = '';
   Quantity: number=0;
   Rate: number = 0;

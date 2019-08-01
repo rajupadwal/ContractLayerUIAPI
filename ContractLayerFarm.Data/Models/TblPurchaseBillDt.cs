@@ -12,6 +12,7 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? BillDate { get; set; }
         public int? ProductId { get; set; }
         public string ProductType { get; set; }
+        public int UnitId { get; set; }
         public string HsnCode { get; set; }
         public decimal? Quantity { get; set; }
         public decimal? Rate { get; set; }
@@ -29,5 +30,7 @@ namespace ContractLayerFarm.Data.Models
 
         public TblPurchaseBillMt Bill { get; set; }
         public TblProductTypeMaster Product { get; set; }
+
+        public TblUnitMaster Units { get; set; }
     }
 }

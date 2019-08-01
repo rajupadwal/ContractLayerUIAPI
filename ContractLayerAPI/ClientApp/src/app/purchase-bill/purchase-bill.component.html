@@ -277,7 +277,7 @@
             <div class="card-block">
               <div class="form-group">
                 
-                  <input type="text" [(ngModel)]="item.CgstPercentage" pInputText id="cgstpercentage" name="cgstpercentage" class="form-control" rows="3">
+                  <input type="text" [(ngModel)]="item.CgstPercentage" (change)="calculateTaxableAmount($event,item)" pInputText id="cgstpercentage" name="cgstpercentage" class="form-control" rows="3">
                  
               </div>
             </div>
@@ -286,7 +286,7 @@
             <div class="card-block">
               <div class="form-group">
                 
-                  <input type="text" [(ngModel)]="item.SgstPercentage" pInputText id="sgstpercentage" name="sgstpercentage" class="form-control" rows="3">
+                  <input type="text" [(ngModel)]="item.SgstPercentage" (change)="calculateTaxableAmount($event,item)" pInputText id="sgstpercentage" name="sgstpercentage" class="form-control" rows="3">
                  
               </div>
             </div>
@@ -373,7 +373,7 @@
             <label for="textarea-input"><strong>Transportation Cost:</strong></label>
             <div>
               
-                <input [(ngModel)]="PurchaseBillMaster.TransportationCost" type="text" pInputText id="transportationcost" name="transportationcost" class="form-control" rows="3">
+                <input [(ngModel)]="PurchaseBillMaster.TransportationCost" (change)="calculateTransportAmount($event)" type="text" pInputText id="transportationcost" name="transportationcost" class="form-control" rows="3">
                
             </div>
           </div>
@@ -385,7 +385,7 @@
             <label for="textarea-input"><strong>Transportation GST:</strong></label>
             <div>
               
-                <input [(ngModel)]="PurchaseBillMaster.TransportationGSTPer" type="text" pInputText id="transportationgstPer" name="transportationgstPer" class="form-control" rows="3">
+                <input [(ngModel)]="PurchaseBillMaster.TransportationGSTPer" (change)="calculateTransportAmount($event)" type="text" pInputText id="transportationgstPer" name="transportationgstPer" class="form-control" rows="3">
                
             </div>
           </div>
@@ -471,7 +471,7 @@
             <label for="textarea-input"><strong>Other Charges:</strong></label>
             <div>
               
-                <input [(ngModel)]="PurchaseBillMaster.OtherCharges" type="text" pInputText id="othercharges" name="othercharges" class="form-control" rows="3">
+                <input [(ngModel)]="PurchaseBillMaster.OtherCharges" (change)="calculateTransportAmount($event)" type="text" pInputText id="othercharges" name="othercharges" class="form-control" rows="3">
                
             </div>
           </div>

@@ -167,7 +167,7 @@ namespace ContractLayerFarm.Data.Repositories
             {
                 stockList.Add(new TblStockDetails()
                 {
-                    InwardDocNo = master.BillId.ToString(),
+                    InwardDocNo = master.BatchNo.ToString(),
                     OutwardDocNo = "",
                     DebitNoteNo = "",
                     CreditNoteNo = "",
@@ -175,17 +175,17 @@ namespace ContractLayerFarm.Data.Repositories
                     ProductId = details.ProductId,
                     ProductType = details.ProductType,
                     InwardQty = details.Quantity,
-                    OutwardQty =0,
+                    OutwardQty = 0,
                     TranscationDate = master.BillDate,
-                    OpeningStock =0,
-                    CreditNoteQty =0,
-                    DebitNoteQty =0,
-                    Unit = "",
+                    OpeningStock = 0,
+                    CreditNoteQty = 0,
+                    DebitNoteQty = 0,
+                    UnitId = details.UnitId,
                            });
             }
             if (master.BillId > 0)
             {
-                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s=>s.InwardDocNo==master.BillId.ToString());
+                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s=>s.InwardDocNo==master.BatchNo.ToString());
                 RepositoryContext.RemoveRange(toBeDeleteStock);
                 this.RepositoryContext.SaveChanges();
                 this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
@@ -194,8 +194,8 @@ namespace ContractLayerFarm.Data.Repositories
             }
             else
             {
-                this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
                 this.RepositoryContext.Set<TblPurchaseBillMt>().Add(master);
+                this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
                 this.RepositoryContext.SaveChanges();
             }
 
@@ -229,6 +229,18 @@ namespace ContractLayerFarm.Data.Repositories
                                   BatchNo=ep.BatchNo,
                                   SupplierName = e.SupplierName,
                                   LocationName = t.LocationName,
+                                  BeforeTaxAmt            =ep.BeforeTaxAmt          ,
+                                  TransportationCost      =ep.TransportationCost    ,
+                                  TransportationGSTPer    =ep.TransportationGstper  ,
+                                  TransportationGSTAmt    =ep.TransportationGstamt  ,
+                                  TotalTransportAmt       =ep.TotalTransportAmt     ,
+                                  TotalCGSTAmt            =ep.TotalCgstamt          ,
+                                  TotalSGSTAmt            =ep.TotalSgstamt          ,
+                                  TotalIGSTAmt            =ep.TotalIgstamt          ,
+                                  OtherCharges            =ep.OtherCharges          ,
+                                  Roundoff                =ep.Roundoff              ,
+                                  GrandTotal              =ep.GrandTotal            ,
+                                  Narration               =ep.Narration             ,
                                   SupplierId = ep.SupplierId,
                                   LocationId = ep.LocationId,
                                   Supplier = new TblSupplierMaster { SupplierId = e.SupplierId, SupplierName = e.SupplierName },
