@@ -177,6 +177,7 @@ export class PurchaseBillComponent implements OnInit {
     this.PurchaseBillMaster.TblPurchaseBillDt.forEach((key: any, value: any) => {
       key.Product = null;
       key.PkId = 0;
+      key.Units = null;
 
     })
 

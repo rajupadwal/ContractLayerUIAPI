@@ -19,24 +19,17 @@ export class SalesreceiptViewComponent implements OnInit {
   }
 
   columnDefs = [
-    {
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
+    //{
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
 
     {
-      headerName: 'ReceiptNo', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'ReceiptNo', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -51,11 +44,11 @@ export class SalesreceiptViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 150,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'Delete';
+        //newTH.innerHTML = 'Delete';
         newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);
@@ -64,21 +57,30 @@ export class SalesreceiptViewComponent implements OnInit {
         return newTH;
       },
     },
-    { headerName: 'Date ', field: 'Date', 'width': 150 },
+
     {
-      headerName: 'Location Name', field: 'Location.LocationName', ' width': 150
+      headerName: 'Receipt No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'ReceiptNo', 'width': 130
+    },
+
+    
+    { headerName: 'Date ', field: 'Date', 'width': 100 },
+    {
+      headerName: 'Location Name', field: 'Location.LocationName', ' width': 100
     },
     {
       headerName: 'Customer Name ', field: 'Customer.CustmerName', 'width': 100
     },
     {
-      headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100
+      headerName: 'Payment Type    ', field: 'PaymentType', 'width': 100
     },
     //{ headerName: 'BillRefNo    ', field: 'BillRefNo' },
-    { headerName: 'PaymentMethod    ', field: 'PaymentMethod' },
-    { headerName: 'ChequeNo    ', field: 'ChequeNo' },
-    { headerName: 'ChequeAmount    ', field: 'ChequeAmount' },
-    { headerName: 'CashAmount    ', field: 'CashAmount' },
+    { headerName: 'Payment Method    ', field: 'PaymentMethod' },
+    { headerName: 'Cheque No    ', field: 'ChequeNo' },
+    { headerName: 'Cheque Amount    ', field: 'ChequeAmount' },
+    { headerName: 'Cash Amount    ', field: 'CashAmount' },
     { headerName: 'Narration    ', field: 'Narration' }
   ];
 

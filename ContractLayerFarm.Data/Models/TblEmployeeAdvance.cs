@@ -13,6 +13,7 @@ namespace ContractLayerFarm.Data.Models
         public int? EmployeeId { get; set; }
 
         public TblLocationMaster Location { get; set; }
+
         public TblEmployeeMaster Employee { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace ContractLayerFarm.Data.Models
         public decimal? AmountPaid { get; set; }
         public string Narration { get; set; }
         public bool? IsDeleted { get; set; }
-
         public TblLocationMaster Location { get; set; }
         public TblSupplierMaster Supplier { get; set; }
     }
