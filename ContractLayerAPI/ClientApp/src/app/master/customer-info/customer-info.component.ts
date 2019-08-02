@@ -71,7 +71,7 @@ export class CustomerInfoComponent implements OnInit {
   }
 
   searchLocation(event) {
-    this.cusotmerservice.searchLocation(event.query).subscribe((data: any) => {
+    this.locationService.searchLocation(event.query).subscribe((data: any) => {
       this.locationList = data;
     });
   }

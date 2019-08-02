@@ -19,7 +19,7 @@ namespace ContractLayerFarm.Data.Models
         public decimal? OpeningStock { get; set; }
         public decimal? CreditNoteQty { get; set; }
         public decimal? DebitNoteQty { get; set; }
-        public int? UnitId { get; set; }
+        public int UnitId { get; set; }
         public bool? IsDelete { get; set; }
 
         public TblProductTypeMaster Product { get; set; }

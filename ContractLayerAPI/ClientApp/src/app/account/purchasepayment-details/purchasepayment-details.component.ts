@@ -9,7 +9,6 @@ import { DialogRef } from '../../dialog/dialog-ref';
 import { PurchasePayemntService } from '../purchasepayment-view/purchasepayment.service';
 import { LocationService } from '../../master/location-view/location.service';
 import { SupplierService } from '../../master/supplier-view/supplier.service';
-import * as moment from 'moment';
 @Component({
   selector: 'app-purchasepayment-details',
   templateUrl: './purchasepayment-details.component.html',
@@ -39,9 +38,7 @@ export class PurchasepaymentDetailsComponent implements OnInit {
       ChequeNo        : [],
       AmountPaid      : [],
       Narration       : [],
-      IsDeleted: [false],
-      LocationId: [],
-      SupplierId: []
+      IsDeleted       : [false]
     });
 
     if (this.config.data) {
@@ -76,8 +73,6 @@ export class PurchasepaymentDetailsComponent implements OnInit {
   
   setDataForEdit = () => {
     this.isEditable = true;
-    let  PurchasepaymentdetailsForm = this.config.data;
-    PurchasepaymentdetailsForm.Date = moment(this.config.data.Date).toDate();
     this.purchasepaymentdetailsForm.setValue(this.config.data);
   }
   

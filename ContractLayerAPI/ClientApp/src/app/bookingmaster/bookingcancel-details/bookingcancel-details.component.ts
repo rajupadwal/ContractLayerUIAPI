@@ -47,11 +47,7 @@ export class BookingcancelDetailsComponent implements OnInit {
       ChequeNo              : [],
       PaidAmount            : [],
       Narration             : [],
-      IsDeleted: [false],
-      LocationId: [],
-      CustomerId: [],
-      PlanId: []
-
+      IsDeleted             : [false]
     });
 
     if (this.config.data) {

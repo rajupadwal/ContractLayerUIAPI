@@ -19,7 +19,6 @@ namespace ContractLayerFarm.Data.Models
         public virtual DbSet<TblBookingMaster> TblBookingMaster { get; set; }
         public virtual DbSet<TblCompanyProfile> TblCompanyProfile { get; set; }
         public virtual DbSet<TblCustomerMaster> TblCustomerMaster { get; set; }
-        public virtual DbSet<TblCustomerTransaction> TblCustomerTransaction { get; set; }
         public virtual DbSet<TblEggsRangeMaster> TblEggsRangeMaster { get; set; }
         public virtual DbSet<TblEmployeeAdvance> TblEmployeeAdvance { get; set; }
         public virtual DbSet<TblEmployeeMaster> TblEmployeeMaster { get; set; }
@@ -59,8 +58,8 @@ namespace ContractLayerFarm.Data.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;Trusted_Connection=True;");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;Trusted_Connection=True;");
             }
         }
 
@@ -108,13 +107,13 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.ChequeNo).HasMaxLength(20);
 
-                entity.Property(e => e.DeliveryStatus).HasMaxLength(50);
+                entity.Property(e => e.DeliveryStatus).HasMaxLength(20);
 
                 entity.Property(e => e.EnquiryRef).HasMaxLength(20);
 
                 entity.Property(e => e.MobileNo).HasMaxLength(20);
 
-                entity.Property(e => e.Narration).HasMaxLength(80);
+                entity.Property(e => e.Narration).HasMaxLength(20);
 
                 entity.Property(e => e.PaymentMethod).HasMaxLength(20);
 
@@ -207,21 +206,6 @@ namespace ContractLayerFarm.Data.Models
                     .WithMany(p => p.TblCustomerMaster)
                     .HasForeignKey(d => d.LocationId)
                     .HasConstraintName("FK_tbl_CustomerMaster_tbl_Location");
-            });
-
-            modelBuilder.Entity<TblCustomerTransaction>(entity =>
-            {
-                entity.HasKey(e => e.PkId);
-
-                entity.ToTable("tbl_CustomerTransaction");
-
-                entity.Property(e => e.Narration).HasMaxLength(50);
-
-                entity.Property(e => e.PaymentType).HasMaxLength(50);
-
-                entity.Property(e => e.TransactionDate).HasColumnType("datetime");
-
-                entity.Property(e => e.TransactionType).HasMaxLength(200);
             });
 
             modelBuilder.Entity<TblEggsRangeMaster>(entity =>
@@ -853,7 +837,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.ProductType).HasMaxLength(50);
 
-                entity.Property(e => e.UnitId).HasMaxLength(20);
+                entity.Property(e => e.UnitId);
 
                 entity.HasOne(d => d.Bill)
                     .WithMany(p => p.TblSalesBillDt)
@@ -977,7 +961,9 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.TranscationDate).HasColumnType("datetime");
 
-                entity.Property(e => e.TranscationType).HasMaxLength(200);
+                entity.Property(e => e.TranscationType).HasMaxLength(20);
+
+                entity.Property(e => e.UnitId).HasMaxLength(20);
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.TblStockDetails)

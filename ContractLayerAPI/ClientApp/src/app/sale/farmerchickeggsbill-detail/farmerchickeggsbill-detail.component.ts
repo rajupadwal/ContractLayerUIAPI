@@ -68,18 +68,23 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
         this.customerList = customer;
       });
   }
+
   loadProducts = () => {
-    this.productdescService.loadProducts()
+    this.productService.loadProducts()
       .subscribe((products: any) => {
         this.productlist = products;
+        this.productlist.forEach((key: any, value: any) => {
+          key.ProductTypeName = key.Product.ProductName + '-' + key.ProductType;
+        })
+
         if (this.isEditable == true && this.FarmerChickEggsBillDetailList) {
           this.FarmerChickEggsBillDetailList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
           })
         }
-
       });
   }
+
 
   loadLocations = () => {
     this.locationService.loadLocations()
@@ -101,13 +106,30 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
         this.unitLists = units;
         if (this.isEditable == true && this.FarmerChickEggsBillDetailList) {
           this.FarmerChickEggsBillDetailList.forEach((key: any, value: any) => {
-            key.Units = this.unitLists.find(p => p.UnitDescription == key.Unit);
+            key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
           })
         }
       });
   }
 
+  calculateSumOfTotalAmt = () => {
+    this.FarmerChickEggsBillMaster.TotalAmount = 0;
 
+    this.FarmerChickEggsBillDetailList.forEach((key, value) => {
+      this.FarmerChickEggsBillMaster.TotalAmount += (parseFloat(key.Quantity) * parseFloat(key.Rate));
+
+      this.FarmerChickEggsBillMaster.TdsAmount = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) * 1 / 100);
+
+      this.FarmerChickEggsBillMaster.AdminChargesAmt = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) * 9 / 100);
+
+      this.FarmerChickEggsBillMaster.GrandTotal = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) - parseFloat(this.FarmerChickEggsBillMaster.TdsAmount.toString()) - parseFloat(this.FarmerChickEggsBillMaster.AdminChargesAmt.toString()) - parseFloat(this.FarmerChickEggsBillMaster.OtherCharges.toString()) );
+    })
+  }
+
+  calculateTaxableAmount(event, item) {
+    
+    this.calculateSumOfTotalAmt();
+  }
 
   addNewItem = () => {
     let newDetails = new FarmerChickEggsBillDetail();
@@ -128,6 +150,13 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
     this.FarmerChickEggsBillMaster.TblSalesBillDt = this.FarmerChickEggsBillDetailList;
 
 
+    this.FarmerChickEggsBillMaster.TblSalesBillDt.forEach((key: any, value: any) => {
+      key.Product = null;
+      key.Units = null;
+      key.PkId = 0;
+
+    })
+
     this.productService.saveFarmerChickEggBill(this.FarmerChickEggsBillMaster);
 
     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -147,27 +176,30 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
 
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
+    model.ProductType = model.Product.ProductType;
   };
+
   onSelectUnits = (value, model: any) => {
-    model.Unit = model.Units.UnitDescription;
+    model.UnitId = model.Units.UnitId;
   };
 
+  searchCustomer(event) {
+    this.cusotmerService.searchCustomer(event.query).subscribe((data: any) => {
+      this.customerList = data;
+    });
+  }
 
+  searchLocation(event) {
+    this.locationService.searchLocation(event.query).subscribe((data: any) => {
+      this.locationList = data;
+    });
+  }
 
-  searchCustomer = (value) => {
-    this.loadCustomers();
-  };
-
-  searchLocation = (value) => {
-    //made Api call for search
-    this.loadLocations();
-  };
-
-
-  searchPlan = (value) => {
-    //made Api call for search
-    this.loadPlans();
-  };
+  searchPlan(event) {
+    this.planService.searchPlan(event.query).subscribe((data: any) => {
+      this.planList = data;
+    });
+  }
 
   searchProduct = (value) => {
     //made Api call for search
@@ -178,8 +210,6 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
     this.loadUnits();
   };
 
-
-
 }
 export class FarmerChickEggsBillDetail {
   PkId: number;
@@ -187,10 +217,10 @@ export class FarmerChickEggsBillDetail {
   BillNo: string = '';
   BillDate: Date = new Date();
   ProductId: number = 0;
-  Unit: string = '';
-  Quantity: number;
-  Rate: number;
-  Amount: number;
+  UnitId: number = 0;
+  Quantity: number=0;
+  Rate: number=0;
+  Amount: number=0;
   Units: any;
   Product: any;
 
@@ -202,14 +232,14 @@ export class FarmerChickEggsBillMaster {
   LocationId: number = 0;
   CustomerId: number = 0;
   PlanId: number = 0;
-  OutstandingAmt: number;
+  OutstandingAmt: number=0;
   PlaceOfSupply: string = '';
   Address: string = '';
-  TotalAmount: number;
-  TdsAmount: number;
-  AdminChargesAmt: number;
-  OtherCharges: number;
-  GrandTotal: number;
+  TotalAmount: number=0;
+  TdsAmount: number=0;
+  AdminChargesAmt: number=0;
+  OtherCharges: number=0;
+  GrandTotal: number=0;
   //TotalQty: number = 0;
   //following fields re used for selecting object in typo, User clicked on type field then below field will have customer object selected
   Location: any;

@@ -178,7 +178,6 @@ export class PurchaseBillComponent implements OnInit {
       key.Product = null;
       key.PkId = 0;
       key.Units = null;
-
     })
 
     //adding deleted records List

@@ -19,17 +19,24 @@ export class BookingViewComponent implements OnInit {
   }
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
+    {
+      headerName: 'Button Col 1', 'width': 100,
+      cellRenderer: 'buttonRenderer',
+      cellRendererParams: {
+        onClick: this.onBtnClick1.bind(this),
+        label: 'Click 1'
+      }
+    },
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'RecordNo', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'RecordNo', 'width': 150
+    },
+
+    {
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -44,11 +51,11 @@ export class BookingViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 150,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        //newTH.innerHTML = 'Delete';
+        newTH.innerHTML = 'Delete';
         newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);
@@ -57,21 +64,12 @@ export class BookingViewComponent implements OnInit {
         return newTH;
       },
     },
-
+    { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150 },
     {
-      headerName: 'Record No', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'RecordNo', 'width': 120
-    },
-
-    
-    { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 120 },
-    {
-      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 120
+      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150
     },
     {
-      headerName: 'Booking Date ', field: 'BookingDate', 'width': 100
+      headerName: 'BookingDate ', field: 'BookingDate', 'width': 100
     },
     {
       headerName: 'Plan Name   ', field: 'Plan.PlanName', 'width': 100
@@ -79,8 +77,8 @@ export class BookingViewComponent implements OnInit {
     {
       headerName: 'Unit Manager', field: 'Employee.EmployeeName', 'width': 100
     },
-    { headerName: 'No Of Plan    ', field: 'NoOfPlan' },
-    { headerName: 'No Of Chicks    ', field: 'NoOfChicks' },
+    { headerName: 'NoOfPlan    ', field: 'NoOfPlan' },
+    { headerName: 'NoOfChicks    ', field: 'NoOfChicks' },
     { headerName: 'Amount    ', field: 'Amount' }
   ];
 

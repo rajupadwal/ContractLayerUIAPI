@@ -260,6 +260,9 @@ namespace ContractLayerFarm.Data.Repositories
         {
             if (master.BillId > 0)
             {
+                var toBeDeleteSaleDT = this.RepositoryContext.Set<TblSalesBillDt>().Where(s => s.BillId == master.BillId);
+                RepositoryContext.RemoveRange(toBeDeleteSaleDT);
+                this.RepositoryContext.SaveChanges();
                 this.RepositoryContext.Set<TblSalesBillMt>().Update(master);
                 this.RepositoryContext.SaveChanges();
             }
@@ -290,6 +293,7 @@ namespace ContractLayerFarm.Data.Repositories
                               select new ViewFarmerChickEggBillMaster
                               {
                                   BillNo = ep.BillNo,
+                                  BillId=ep.BillId,
                                   BillDate = ep.BillDate,
                                   CustmerName = e.CustmerName,
                                   LocationName = t.LocationName,

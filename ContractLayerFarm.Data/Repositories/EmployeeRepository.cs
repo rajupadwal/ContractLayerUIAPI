@@ -23,7 +23,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblEmployeeMaster> SearchEmployee(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
-            { return this.ktConContext.Set<TblEmployeeMaster>(); }
+            { return new List<TblEmployeeMaster>(); }
 
             return this.ktConContext.Set<TblEmployeeMaster>().Where(employee => employee.EmployeeName.ToLower().Contains(searchString.ToLower()));
         }

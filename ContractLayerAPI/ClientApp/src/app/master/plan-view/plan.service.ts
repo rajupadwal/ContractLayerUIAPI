@@ -19,6 +19,10 @@ export class PlanService {
     return this.http.post(APP_CONSTANT.PLAN_API.GETByID, id);
   }
 
+  searchPlan(searchString) {
+    return this.http.post(APP_CONSTANT.PLAN_API.SEARCH_PLAN, JSON.stringify(searchString));
+  }
+
 }
 
 

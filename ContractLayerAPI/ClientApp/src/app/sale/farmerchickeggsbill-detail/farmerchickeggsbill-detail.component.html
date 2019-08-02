@@ -88,19 +88,18 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="textarea-input"><strong> Outstanding Amount :</strong></label>
-              <div>
-                <span class="ui-float-label">
-                  <input [(ngModel)]="FarmerChickEggsBillMaster.OutstandingAmt" type="text" pInputText id="outstandingamt" name="outstandingamt" class="form-control" rows="3">
-                </span>
-              </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong> Outstanding Amount :</strong></label>
+            <div>
+              <span class="ui-float-label">
+                <input [(ngModel)]="FarmerChickEggsBillMaster.OutstandingAmt" type="text" pInputText id="outstandingamt" name="outstandingamt" class="form-control" rows="3">
+              </span>
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -157,7 +156,7 @@
               <div class="form-group">
                 <span class="ui-float-label">
                   <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
-                                  [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
+                                  [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductTypeName"></p-autoComplete>
 
                   <label for="float-input"></label>
                 </span>
@@ -170,7 +169,6 @@
                 <span class="ui-float-label">
                   <p-autoComplete [(ngModel)]="item.Units" [suggestions]="unitLists" (completeMethod)="searchUnits($event)"
                                   [dropdown]="true" (onSelect)="onSelectUnits($event,item)" [forceSelection]="true" field="UnitDescription"></p-autoComplete>
-                  <label for="float-input">Standard Pack </label>
                 </span>
               </div>
             </div>
@@ -179,8 +177,7 @@
             <div class="card-block">
               <div class="form-group">
                 <span class="ui-float-label">
-                  <input type="text" [(ngModel)]="item.Quantity" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
-                  <label for="float-input">Quantity </label>
+                  <input type="text" [(ngModel)]="item.Quantity" (change)="calculateTaxableAmount($event,item)" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
                 </span>
               </div>
             </div>
@@ -189,8 +186,7 @@
             <div class="card-block">
               <div class="form-group">
                 <span class="ui-float-label">
-                  <input type="text" [(ngModel)]="item.Rate" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
-                  <label for="float-input">Rate </label>
+                  <input type="text" [(ngModel)]="item.Rate" (change)="calculateTaxableAmount($event,item)" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
                 </span>
               </div>
             </div>
@@ -252,7 +248,7 @@
           <div class="form-group">
             <div>
               <span class="ui-float-label">
-                <input [(ngModel)]="FarmerChickEggsBillMaster.TdsAmount" type="text" pInputText id="tdsamount" name="tdsamount" class="form-control" rows="3">
+                <input [(ngModel)]="FarmerChickEggsBillMaster.TdsAmount"  type="text" pInputText id="tdsamount" name="tdsamount" class="form-control" rows="3">
               </span>
             </div>
           </div>
@@ -299,7 +295,7 @@
           <div class="form-group">
             <div>
               <span class="ui-float-label">
-                <input [(ngModel)]="FarmerChickEggsBillMaster.OtherCharges" type="text" pInputText id="othercharges" name="othercharges" class="form-control" rows="3">
+                <input [(ngModel)]="FarmerChickEggsBillMaster.OtherCharges" (change)="calculateTaxableAmount($event,item)" type="text" pInputText id="othercharges" name="othercharges" class="form-control" rows="3">
               </span>
             </div>
           </div>
