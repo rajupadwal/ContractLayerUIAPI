@@ -41,7 +41,9 @@ export class SalesReceiptDetailsComponent implements OnInit {
       ChequeAmount: [],
       CashAmount: [],
       Narration: [],
-      IsDeleted: [false]
+      IsDeleted: [false],
+      LocationId: [],
+      CustomerId: []
     });
 
     if (this.config.data) {

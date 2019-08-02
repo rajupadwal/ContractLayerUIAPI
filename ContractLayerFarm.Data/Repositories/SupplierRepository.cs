@@ -26,7 +26,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblSupplierMaster> SearchSupplier(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
-            { return new List<TblSupplierMaster>(); }
+            { return this.ktConContext.Set<TblSupplierMaster>(); }
 
             return this.ktConContext.Set<TblSupplierMaster>().Where(supplier => supplier.SupplierName.ToLower().Contains(searchString.ToLower()));
         }
