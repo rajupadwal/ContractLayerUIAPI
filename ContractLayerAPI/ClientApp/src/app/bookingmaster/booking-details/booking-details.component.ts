@@ -53,11 +53,11 @@ export class BookingDetailsComponent implements OnInit {
       EnquiryRef      : [],
       Agreement       : [],
       EggsLiability   : [],
-      //NoOfPlanCancel  : [],
+      NoOfPlanCancel  : [],
       PaymentMethod   : [],
       ChequeNo        : [],
       PaidAmount      : [],
-      //BalanceAmonut   : [],
+      BalanceAmount   : [],
       Narration: [],
       LocationId: [],
       CustomerId: [],
@@ -141,8 +141,8 @@ export class BookingDetailsComponent implements OnInit {
 
   setDataForEdit = () => {
     this.isEditable = true;
-    //let bookingdetailsForm;
-    //bookingdetailsForm.BookingDate = moment(this.config.data.BookingDate).toDate();
+    let bookingdetailsForm = this.config.data;
+    bookingdetailsForm.BookingDate = moment(this.config.data.BookingDate).toDate();
     this.bookingdetailsForm.setValue(this.config.data);
   }
 

@@ -10,6 +10,7 @@ import { PurchasereturnReceiptService } from '../purchasereturnreceipt-view/purc
 import { LocationService } from '../../master/location-view/location.service';
 import { Location } from '@angular/common';
 import { SupplierService } from '../../master/supplier-view/supplier.service';
+import * as moment from 'moment';
 @Component({
   selector: 'app-purchasereturnreceipt-details',
   templateUrl: './purchasereturnreceipt-details.component.html',
@@ -39,7 +40,9 @@ export class PurchasereturnreceiptDetailsComponent implements OnInit {
       ChequeNo: [],
       AmountReceived: [],
       Narration: [],
-      IsDeleted: [false]
+      IsDeleted: [false],
+      LocationId: [],
+      SupplierId: []
 
     });
 
@@ -76,9 +79,9 @@ export class PurchasereturnreceiptDetailsComponent implements OnInit {
 
   setDataForEdit = () => {
     this.isEditable = true;
-    
+    let purchasereturnreceiptForm = this.config.data;
+    purchasereturnreceiptForm.Date = moment(this.config.data.Date).toDate();
     this.purchasereturnreceiptForm.setValue(this.config.data);
-    let purchasereturnreceipt = this.config.data;
   }
   
   savePurchasereturnreceipt() {
