@@ -21,11 +21,40 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpGet("[action]")]
+        public int GetSaleReceiptNo()
+        {
+            try
+            {
+                int ReceiptNo = this._repoWrapper.Salesreceipt.GetSaleReceiptNo();
+                return ReceiptNo;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpPost("GetCustomerOutstandingAmt")]
+        public decimal GetCustomerOutstandingAmt([FromBody] TblSalesReceipt salesreceipt)
+        {
+            try
+            {
+                decimal oustanding = this._repoWrapper.Salesreceipt.GetCustomerOutstandingAmt(salesreceipt);
+                return oustanding;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpGet("[action]")]
         public IEnumerable<TblSalesReceipt> GetAll()
         {
             var Salesreceipt = this._repoWrapper.Salesreceipt.GetAllSaleReceipts();
             return Salesreceipt;
         }
+
         [HttpGet("[action]")]
         public TblSalesReceipt GetByID(int ReceiptNo)
         {
@@ -37,6 +66,7 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Salesreceipt.SaveCustomerTransaction(salesreceipt);
                 this._repoWrapper.Salesreceipt.Create(salesreceipt);
                 this._repoWrapper.Salesreceipt.Save();
                 return true;

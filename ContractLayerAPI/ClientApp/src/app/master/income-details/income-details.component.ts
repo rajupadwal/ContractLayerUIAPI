@@ -41,10 +41,11 @@ export class IncomeDetailsComponent implements OnInit {
       IncomeId: []
     });
 
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.getLocation(this.config.data.LocationId);
-    this.getIncometype(this.config.data.IncomeId);
+      this.getIncometype(this.config.data.IncomeId);
       this.setDataForEdit();
+    }
   }
 
 

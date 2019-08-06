@@ -43,7 +43,7 @@ export class SupplierViewComponent implements OnInit {
         newTH.innerHTML = 'EDIT';
         newTH.className = 'pi pi - pencil';
         newTH.onclick = () => {
-          const ref = this.dialog.open(SupplierMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Supplier' } });
+          const ref = this.dialog.open(SupplierMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Supplier' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -127,7 +127,7 @@ export class SupplierViewComponent implements OnInit {
 
 
   redirectToAddNew() {
-    const ref = this.dialog.open(SupplierMasterComponent, { modalConfig: { title: 'Add/Edit Supplier' } });
+    const ref = this.dialog.open(SupplierMasterComponent, { modalConfig: { title: 'Add/Edit Supplier' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

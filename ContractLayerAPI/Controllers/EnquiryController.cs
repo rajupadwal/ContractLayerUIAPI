@@ -21,6 +21,21 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpGet("[action]")]
+        public int GetEnquiryNo()
+        {
+            try
+            {
+                int enqNo = this._repoWrapper.Enquiry.GetEnquiryNo();
+                return enqNo;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpGet("[action]")]
         public IEnumerable<TblEnquiryDetails> GetAll()
         {
             var Enquiry = this._repoWrapper.Enquiry.GetAllEnquiry();

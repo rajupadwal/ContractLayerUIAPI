@@ -36,7 +36,7 @@ export class EnquiryViewComponent implements OnInit {
         newTH.innerHTML = 'Edit';
         newTH.className = 'pi pi - pencil';
         newTH.onclick = () => {
-          const ref = this.dialog.open(EnquiryMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Enquiry' } });
+          const ref = this.dialog.open(EnquiryMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Enquiry' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -64,10 +64,6 @@ export class EnquiryViewComponent implements OnInit {
       checkboxSelection: true,
       field: 'RecordNo', 'width': 150
     },
-
-    
-
-    
 
     { headerName: 'Date ', field: 'Date', 'width': 100 },
     {
@@ -116,7 +112,7 @@ export class EnquiryViewComponent implements OnInit {
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(EnquiryMasterComponent, { modalConfig: { title: 'Add/Edit Enquiry' } });
+    const ref = this.dialog.open(EnquiryMasterComponent, { modalConfig: { title: 'Add/Edit Enquiry' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

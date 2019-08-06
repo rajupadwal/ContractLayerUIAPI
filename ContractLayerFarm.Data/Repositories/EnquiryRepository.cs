@@ -20,6 +20,12 @@ namespace ContractLayerFarm.Data.Repositories
             this.ktConContext = ktConContext;
         }
 
+        public int GetEnquiryNo()
+        {
+            int maxEnquiryNo = this.ktConContext.TblEnquiryDetails.Select(p => p.RecordNo).DefaultIfEmpty(0).Max() + 1;
+            return maxEnquiryNo;
+        }
+
         public IEnumerable<TblEnquiryDetails> GetAllEnquiry()
         {
 

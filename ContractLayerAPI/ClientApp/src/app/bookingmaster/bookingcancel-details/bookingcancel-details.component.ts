@@ -53,7 +53,7 @@ export class BookingcancelDetailsComponent implements OnInit {
       PlanId: []
     });
 
-    if (this.config.data) {
+    if (this.config.isEditable==true) {
       this.getLocation(this.config.data.LocationId);
       this.getCustomer(this.config.data.CustomerId);
       this.getPlan(this.config.data.PlanId);

@@ -21,13 +21,14 @@ export class EggsrangeMasterComponent implements OnInit {
 
   ngOnInit() {
     this.eggsrangemasterForm = this.formBuilder.group({
-      EggsRangeCode   : [0],
-      EggsRangeFrom   : [],
-      EggsRangeTo     : [],
-      EggsRate        : [] 
+      EggsRangeCode: [0],
+      EggsRangeFrom: [],
+      EggsRangeTo: [],
+      EggsRate: []
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
+    }
   }
 
   setDataForEdit = () => {

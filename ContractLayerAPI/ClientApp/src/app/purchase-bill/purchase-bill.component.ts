@@ -47,8 +47,9 @@ export class PurchaseBillComponent implements OnInit {
     this.PurchaseBillMaster.Roundoff = 0;
     this.PurchaseBillMaster.GrandTotal = 0;
     
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
+    }
   }
 
 

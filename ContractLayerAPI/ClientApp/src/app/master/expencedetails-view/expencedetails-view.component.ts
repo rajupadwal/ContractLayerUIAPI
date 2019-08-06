@@ -41,7 +41,7 @@ export class ExpencedetailsViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(ExpencedetailsMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Expence Details' } });
+          const ref = this.dialog.open(ExpencedetailsMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Expence Details' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -126,7 +126,7 @@ export class ExpencedetailsViewComponent implements OnInit {
 
 
   redirectToAddNew() {
-    const ref = this.dialog.open(ExpencedetailsMasterComponent, { modalConfig: { title: 'Add/Edit Expence Details' } });
+    const ref = this.dialog.open(ExpencedetailsMasterComponent, { modalConfig: { title: 'Add/Edit Expence Details' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

@@ -5,6 +5,7 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblSalesReceipt
     {
+        public int PkId { get; set; }
         public int ReceiptNo { get; set; }
         public DateTime? Date { get; set; }
         public int? LocationId { get; set; }
@@ -13,8 +14,8 @@ namespace ContractLayerFarm.Data.Models
         public string BillRefNo { get; set; }
         public string PaymentMethod { get; set; }
         public string ChequeNo { get; set; }
-        public decimal? ChequeAmount { get; set; }
         public decimal? CashAmount { get; set; }
+        public decimal? OutstandingAmount { get; set; }
         public string Narration { get; set; }
         public bool? IsDeleted { get; set; }
 

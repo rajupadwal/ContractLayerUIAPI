@@ -35,7 +35,7 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(PurchasereturnreceiptDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Return Receipt' } });
+          const ref = this.dialog.open(PurchasereturnreceiptDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Return Receipt' }, isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -99,7 +99,7 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    const ref = this.dialog.open(PurchasereturnreceiptDetailsComponent, { modalConfig: { title: 'Add/Edit Purchase Return Receipt' } });
+    const ref = this.dialog.open(PurchasereturnreceiptDetailsComponent, { modalConfig: { title: 'Add/Edit Purchase Return Receipt' }, isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

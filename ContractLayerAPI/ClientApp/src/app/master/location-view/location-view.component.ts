@@ -42,7 +42,7 @@ export class LocationViewComponent implements OnInit {
         newTH.innerHTML = 'EDIT';
         newTH.className = 'pi pi - pencil';
         newTH.onclick = () => {
-          const ref = this.dialog.open(LocationInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Location' } });
+          const ref = this.dialog.open(LocationInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Location' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -124,7 +124,7 @@ export class LocationViewComponent implements OnInit {
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(LocationInfoComponent, { modalConfig: { title: 'Add/Edit Location' } });
+    const ref = this.dialog.open(LocationInfoComponent, { modalConfig: { title: 'Add/Edit Location' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

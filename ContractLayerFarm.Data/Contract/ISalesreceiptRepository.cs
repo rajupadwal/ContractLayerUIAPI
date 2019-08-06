@@ -10,5 +10,9 @@ namespace ContractLayerFarm.Data.Contract
         //UserInfo Authenticate(string username, string password);
         bool Authenticate();
         IEnumerable<TblSalesReceipt> GetAllSaleReceipts();
+
+        void SaveCustomerTransaction(TblSalesReceipt master);
+        int GetSaleReceiptNo();
+        decimal GetCustomerOutstandingAmt(TblSalesReceipt master);
     }
 }

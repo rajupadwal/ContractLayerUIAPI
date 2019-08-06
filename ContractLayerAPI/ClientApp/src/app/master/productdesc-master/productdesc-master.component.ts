@@ -25,8 +25,9 @@ export class ProductdescMasterComponent implements OnInit {
       ProductName : [] 
      //IsDeleted    : [false]
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
+    }
   }
 
   setDataForEdit = () => {

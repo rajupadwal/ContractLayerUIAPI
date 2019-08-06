@@ -54,9 +54,10 @@ export class CustomerInfoComponent implements OnInit {
       // AccountHolderName:[],
 
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.getLocation(this.config.data.LocationId);
-    this.setDataForEdit();
+      this.setDataForEdit();
+    }
   }
 
   setDataForEdit = () => {
@@ -80,6 +81,7 @@ export class CustomerInfoComponent implements OnInit {
 
     let customer = this.customerForm.value;
     customer.LocationId = customer.Location.LocationId;
+    delete customer.Location;
     return this.http.post(this.isEditable ? APP_CONSTANT.CUSOTMER_API.EDIT : APP_CONSTANT.CUSOTMER_API.ADD, customer)
       .subscribe((customer) => {
         // login successful if there's a jwt token in the response

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { APP_CONSTANT } from '../../../config';
+import { ɵangular_packages_forms_forms_v } from '@angular/forms';
 
 @Injectable({
 providedIn :'root'
@@ -35,7 +36,9 @@ export class BookingService {
     return this.http.post(isEditable ? APP_CONSTANT.BOOKING_API.EDIT : APP_CONSTANT.BOOKING_API.ADD, formValues);
   }
 
-
+  getBookingNo() {
+    return this.http.get(APP_CONSTANT.BOOKING_API.GETBOOKINGNO);
+  }
 }
 
 

@@ -31,8 +31,9 @@ export class ProfileMasterComponent implements OnInit {
       ThankYouNote: [],
       CompanyLogo : []
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
+    }
   }
 
   setDataForEdit = () => {

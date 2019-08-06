@@ -32,8 +32,9 @@ export class PlanMasterComponent implements OnInit {
       AdminCharges      : []
       
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
+    }
   }
 
   setDataForEdit = () => {

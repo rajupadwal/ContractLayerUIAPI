@@ -26,8 +26,9 @@ export class ExpencetypeMasterComponent implements OnInit {
       IsDeleted:[false]
                  
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
+    }
   }
 
   setDataForEdit = () => {

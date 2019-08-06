@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>Receipt No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ReceiptNo" type="text" pInputText id="receiptno" name="receiptno" class="form-control" rows="3">
+                  <input formControlName="ReceiptNo" type="text" pInputText id="receiptno" name="receiptno" class="form-control" rows="3" disabled>
                 </span>
               </div>
             </div>
@@ -56,11 +56,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Payment Type :</strong></label>
-              <select formControlName="PaymentType" id="select" name="select" class="form-control">
+              <select formControlName="PaymentType" (change)="calculateOutstandingAmount($event)" id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Against Bill">Against Bill</option>
-                <option value="Against Advance">Against Advance</option>
-                <option value="Aganist Sale Return">Aganist Sale Return</option>
+                <option value="Against Booking">Against Booking</option>
+                <!--<option value="Aganist Sale Return">Aganist Sale Return</option>-->
               </select>
             </div>
           </div>
@@ -69,7 +69,7 @@
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
-              <label for="textarea-input"><strong>Bill Reference No :</strong></label>
+              <label for="textarea-input"><strong>Booking/Billing Ref. No :</strong></label>
               <div>
                 <span class="ui-float-label">
                   <input formControlName="BillRefNo" type="text" pInputText id="billrefno" name="billrefno" class="form-control" rows="3">
@@ -85,6 +85,18 @@
         <!--<small>Form</small>-->
       </div>
       <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Outstanding Amount :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="OutstandingAmount" type="text" pInputText id="outstandingamount" name="outstandingamount" class="form-control" disabled>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
@@ -110,24 +122,14 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="textarea-input"><strong>Cheque Amount :</strong></label>
-              <div>
-                <span class="ui-float-label">
-                  <input formControlName="ChequeAmount" type="text" pInputText id="chequeamount" name="chequeamount" class="form-control">
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
+
       <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
-              <label for="textarea-input"><strong>Cash Amount :</strong></label>
+              <label for="textarea-input"><strong> Amount :</strong></label>
               <div>
                 <span class="ui-float-label">
                   <input formControlName="CashAmount" type="text" pInputText id="cashamount" name="cashamount" class="form-control">

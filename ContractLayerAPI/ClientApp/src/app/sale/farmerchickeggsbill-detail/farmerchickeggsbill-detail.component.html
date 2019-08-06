@@ -1,21 +1,11 @@
 <div class="col-sm-12">
   <div class="card">
     <div class="card-header">
-      <strong>Bill Settlement</strong>
+      <strong>Create Bill</strong>
       <!--<small>Form</small>-->
     </div>
     <!--<form [formGroup]="bookingdetailsForm" (ngSubmit)="saveBookingDetails()">-->
     <div class="row">
-      <div class="col-sm-4">
-        <div class="card-block">
-          <div class="form-group">
-            <label for="select"><strong>Location Name:</strong></label>
-            <p-autoComplete [(ngModel)]="FarmerChickEggsBillMaster.Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
-                            [dropdown]="true" (onSelect)="onSelectLocations($event)" [forceSelection]="true" field="LocationName"></p-autoComplete>
-          </div>
-        </div>
-      </div>
-
       <div class="col-sm-4">
         <div class="card-block">
           <div class="form-group">
@@ -25,6 +15,15 @@
                 <input [(ngModel)]="FarmerChickEggsBillMaster.BillNo" type="text" pInputText id="billno" name="recordno" class="form-control" rows="3">
               </span>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="select"><strong>Location Name:</strong></label>
+            <p-autoComplete [(ngModel)]="FarmerChickEggsBillMaster.Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                            [dropdown]="true" (onSelect)="onSelectLocations($event)" [forceSelection]="true" field="LocationName"></p-autoComplete>
           </div>
         </div>
       </div>

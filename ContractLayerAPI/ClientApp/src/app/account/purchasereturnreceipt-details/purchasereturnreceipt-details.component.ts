@@ -46,7 +46,7 @@ export class PurchasereturnreceiptDetailsComponent implements OnInit {
 
     });
 
-    if (this.config.data) {
+    if (this.config.isEditable==true) {
       this.getLocation(this.config.data.LocationId);
       this.getSupplier(this.config.data.SupplierId);
       this.setDataForEdit();
