@@ -19,24 +19,16 @@ export class ProfileViewComponent implements OnInit {
 }
  
   columnDefs = [
+    //{
+    //  headerName: 'Button Col 1', 'width':100,
+    //  cellRenderer: 'buttonRenderer',
+    //  cellRendererParams: {
+    //    onClick: this.onBtnClick1.bind(this),
+    //    label: 'Click 1'
+    //  }
+    //},
     {
-      headerName: 'Button Col 1', 'width':100,
-      cellRenderer: 'buttonRenderer',
-      cellRendererParams: {
-        onClick: this.onBtnClick1.bind(this),
-        label: 'Click 1'
-      }
-    },
-
-    {
-      headerName: 'ProfileId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'ProfileId', 'width': 150
-    },
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -56,8 +48,7 @@ export class ProfileViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'Delete';
-        newTH.className = "pi pi-times";
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -65,6 +56,15 @@ export class ProfileViewComponent implements OnInit {
         return newTH;
       },
     },
+
+    {
+      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'ProfileId', 'width': 100
+    },
+
+    
     { headerName: 'CompanyName ', field: 'CompanyName', 'width': 150 },
     {
       headerName: 'PhoneNo', field: 'PhoneNo',' width': 150 },
@@ -73,12 +73,12 @@ export class ProfileViewComponent implements OnInit {
     {
       headerName: 'GSTNo    ', field: 'GstNo', 'width': 100},
 
-    { headerName: 'EmailId           ', field: 'EmailId' , 'width': 100 },
+    { headerName: 'Email Id           ', field: 'EmailId' , 'width': 100 },
     {
-      headerName: 'MobileNo ', field: 'MobileNo', 'width': 100
+      headerName: 'Mobile No ', field: 'MobileNo', 'width': 100
     },
     {
-      headerName: 'ThankYouNote    ', field: 'ThankYouNote', 'width': 100
+      headerName: 'Thank You Note    ', field: 'ThankYouNote', 'width': 100
     } 
   ];
 

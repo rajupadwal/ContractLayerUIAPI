@@ -121,6 +121,12 @@ export class BookingDetailsComponent implements OnInit {
     this.bookingdetailsForm.patchValue({ NoOfChicks: selectedPlan.NoOfChicks, Amount: selectedPlan.Amount });
     //this.bookingdetailsForm.patchValue({  });
   }
+
+  calculatePlanAmount(event) {
+    this.bookingdetailsForm.patchValue({ NoOfChicks: (parseFloat(this.bookingdetailsForm.controls['NoOfPlan'].value) * parseFloat(this.bookingdetailsForm.controls['NoOfChicks'].value)) });
+    this.bookingdetailsForm.patchValue({ Amount: (parseFloat(this.bookingdetailsForm.controls['NoOfPlan'].value) * parseFloat(this.bookingdetailsForm.controls['Amount'].value)) });
+  }
+
   searchPlan(event) {
     this.bookingService.searchPlan(event.query).subscribe((data: any) => {
       this.planList = data;

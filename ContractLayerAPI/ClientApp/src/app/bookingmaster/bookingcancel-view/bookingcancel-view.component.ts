@@ -48,8 +48,8 @@ export class BookingcancelViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-       // newTH.innerHTML = 'Delete';
-        newTH.className = "pi pi-times";
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        //newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);
 

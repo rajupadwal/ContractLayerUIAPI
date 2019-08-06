@@ -49,8 +49,7 @@ export class PlanViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'Delete';
-        newTH.className = "pi pi-times";
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 

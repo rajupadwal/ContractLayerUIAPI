@@ -14,21 +14,13 @@ import { FarmerinwardService } from './farmerinward.service';
 export class FarmerinwardViewComponent implements OnInit {
 
   columnDefs = [
-    {
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-    },
+    //{
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //},
 
     {
-      headerName: 'RecordNo', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'RecordNo', 'width': 150
-    },
-
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -36,15 +28,40 @@ export class FarmerinwardViewComponent implements OnInit {
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerInwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Inward' } });
           ref.afterClosed.subscribe(result => {
-          this.RefreshGrid();
+            this.RefreshGrid();
           });
         };
         return newTH;
       },
     },
-    { headerName: 'Date ', field: 'Date', 'width': 150 },
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 150
+      headerName: 'Delete', 'width': 100,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        //newTH.className = "pi pi-times";
+        newTH.onclick = () => {
+          //this.delete(params.data);
+
+        };
+        return newTH;
+      },
+    },
+
+
+    {
+      headerName: 'Record No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'RecordNo', 'width': 130
+    },
+
+
+    
+    { headerName: 'Date ', field: 'Date', 'width': 120 },
+    {
+      headerName: 'Location Name', field: 'LocationName', ' width': 120
     },
     {
       headerName: 'Customer Name ', field: 'CustmerName', 'width': 100
@@ -82,6 +99,7 @@ export class FarmerinwardViewComponent implements OnInit {
     });
   }
 
+
   RefreshGrid = () => {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -95,6 +113,11 @@ export class FarmerinwardViewComponent implements OnInit {
         console.log(error);
 
       });
+
+    //delete (bookingcancel) {
+    //  let httpOptions = {
+    //    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    //  };
   }
 
 }

@@ -83,7 +83,7 @@
               <label for="textarea-input"><strong>No Of Plan :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="NoOfPlan" type="text" pInputText id="noofplan" name="noofplan" class="form-control" rows="3"  />
+                  <input formControlName="NoOfPlan" (change)="calculatePlanAmount($event)" type="text" pInputText id="noofplan" name="noofplan" class="form-control" rows="3" />
                 </span>
               </div>
             </div>
@@ -130,9 +130,9 @@
               <label for="select"><strong>Enquiry Reference :</strong></label>
               <select formControlName="EnquiryRef" id="select" name="select" class="form-control">
                 <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
+                <option value="1">Walking In</option>
+                <option value="2">online</option>
+                <option value="3">Friends </option>
               </select>
             </div>
           </div>

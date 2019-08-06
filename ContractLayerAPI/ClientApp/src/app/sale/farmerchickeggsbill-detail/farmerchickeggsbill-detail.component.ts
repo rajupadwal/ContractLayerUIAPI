@@ -177,6 +177,7 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
     model.ProductType = model.Product.ProductType;
+    model.Rate = model.Product.SellingPrice;
   };
 
   onSelectUnits = (value, model: any) => {

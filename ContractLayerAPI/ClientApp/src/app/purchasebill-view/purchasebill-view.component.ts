@@ -14,21 +14,12 @@ import { PurchasebillService } from './purchasebill.service';
 export class PurchasebillViewComponent implements OnInit {
 
   columnDefs = [
+    //{
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //},
     {
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-    },
-
-    {
-      headerName: 'BillNo', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'BillNo', 'width': 150
-    },
-
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -36,12 +27,35 @@ export class PurchasebillViewComponent implements OnInit {
         newTH.onclick = () => {
           const ref = this.dialog.open(PurchaseBillComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Bill', width: '90%' } });
           ref.afterClosed.subscribe(result => {
-          this.RefreshGrid();
+            this.RefreshGrid();
           });
         };
         return newTH;
       },
     },
+    {
+      headerName: 'Delete', 'width': 100,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.onclick = () => {
+         // this.delete(params.data);
+
+        };
+        return newTH;
+      },
+    },
+
+    {
+      headerName: 'GRN No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'BillNo', 'width': 150
+    },
+
+
+    
 
     { headerName: 'Date ', field: 'BillDate', 'width': 150 },
     {

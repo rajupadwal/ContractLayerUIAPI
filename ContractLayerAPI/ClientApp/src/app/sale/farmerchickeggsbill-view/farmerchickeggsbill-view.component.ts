@@ -13,21 +13,12 @@ import { DialogService } from '../../dialog/dialog.service';
 export class FarmerchickeggsbillViewComponent implements OnInit {
 
   columnDefs = [
+    //{
+    //  headerName: 'Button Col 1', 'width': 100,
+    //  cellRenderer: 'buttonRenderer',
+    //},
     {
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
-    },
-
-    {
-      headerName: 'BillId', headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-      field: 'BillId', 'width': 150
-    },
-
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -41,6 +32,29 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
         return newTH;
       },
     },
+    {
+      headerName: 'Delete', 'width': 100,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.onclick = () => {
+          // this.delete(params.data);
+
+        };
+        return newTH;
+      },
+    },
+
+    {
+      headerName: 'Bill No', headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+      field: 'BillId', 'width': 150
+    },
+
+
+    
     { headerName: 'Date ', field: 'BillDate', 'width': 150 },
     {
       headerName: 'Location Name', field: 'LocationName', ' width': 150

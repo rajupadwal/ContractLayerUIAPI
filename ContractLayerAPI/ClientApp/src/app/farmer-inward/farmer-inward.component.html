@@ -5,53 +5,47 @@
       <!--<small>Form</small>-->
     </div>
     <!--<form [formGroup]="bookingdetailsForm" (ngSubmit)="saveBookingDetails()">-->
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="textarea-input"><strong>Record No:</strong></label>
-              <div>
-                <span class="ui-float-label">
-                  <input [(ngModel)]="FarmerInwardMaster.RecordNo" readonly="readonly" type="text" pInputText id="recordno" name="recordno" class="form-control" rows="3" disabled>
-                </span>
-              </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Record No:</strong></label>
+            <div>
+              <span class="ui-float-label">
+                <input [(ngModel)]="FarmerInwardMaster.RecordNo" readonly="readonly" type="text" pInputText id="recordno" name="recordno" class="form-control" rows="3" disabled>
+              </span>
             </div>
           </div>
         </div>
-       
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="textarea-input"><strong>Date :</strong></label>
-              <div>
-                <span class="ui-float-label">
-                  <p-calendar [(ngModel)]="FarmerInwardMaster.Date" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-       
       </div>
 
-      <div class="row">
-
-
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="select"><strong>Location :</strong></label>
-
-              <p-autoComplete [(ngModel)]="FarmerInwardMaster.Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
-                              [dropdown]="true" (onSelect)="onSelectLocations($event)" [forceSelection]="true" field="LocationName"></p-autoComplete>
-
-             
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Date :</strong></label>
+            <div>
+              <span class="ui-float-label">
+                <p-calendar [(ngModel)]="FarmerInwardMaster.Date" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+              </span>
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="select"><strong>Location :</strong></label>
+
+            <p-autoComplete [(ngModel)]="FarmerInwardMaster.Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                            [dropdown]="true" (onSelect)="onSelectLocations($event)" [forceSelection]="true" field="LocationName"></p-autoComplete>
 
 
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">

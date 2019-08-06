@@ -13,7 +13,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="CustmerName" appValidationBorder type="text" pInputText id="customername" name="customername" class="form-control" rows="3">
-                  
+
                 </span>
               </div>
             </div>
@@ -26,7 +26,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="CustomerMobileNo" appValidationBorder type="text" pInputText id="customermobileno" name="customermobileno" class="form-control" rows="3">
-                  
+
                 </span>
               </div>
             </div>
@@ -40,7 +40,7 @@
           <div>
             <span class="ui-float-label">
               <textarea formControlName="Address" appValidationBorder id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
-              
+
             </span>
           </div>
         </div>
@@ -108,7 +108,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="Pincode" type="text" pInputText id="pincode" name="pincode" class="form-control">
-                  
+
                 </span>
 
               </div>
@@ -135,7 +135,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="GstNo" appValidationBorder type="text" pInputText id="gstno" name="gstno" class="form-control">
-                  
+
                 </span>
               </div>
             </div>
@@ -148,7 +148,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="PanNo" appValidationBorder type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
-                  
+
                 </span>
               </div>
             </div>
@@ -164,7 +164,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="ContactPerson" appValidationBorder id="ContactPerson" name="ContactPerson" class="form-control" />
-                  
+
                 </span>
               </div>
             </div>
@@ -177,7 +177,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="ConatctPersonNo" appValidationBorder id="ConatctPersonNo" name="ConatctPersonNo" class="form-control" />
-                  
+
                 </span>
               </div>
             </div>
@@ -190,12 +190,18 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="Designation" appValidationBorder id="designation" name="designation" class="form-control" />
-                  
+
                 </span>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="card-header">
+        <strong>Bank Details</strong>
+        <div style="width:10px">
+        </div>
+
       </div>
 
       <div class="row">
@@ -219,7 +225,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="IfscCode" id="ifsccode" name="ifsccode" class="form-control" />
-                  
+
                 </span>
               </div>
             </div>
@@ -247,7 +253,7 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="AccountNo" id="accountno" name="accountno" class="form-control" />
-                  
+
                 </span>
               </div>
             </div>
@@ -256,7 +262,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit"  [disabled]="!customerForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" [disabled]="!customerForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>
