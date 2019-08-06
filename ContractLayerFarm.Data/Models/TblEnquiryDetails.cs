@@ -5,6 +5,7 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblEnquiryDetails
     {
+        public int PkId { get; set; }
         public int RecordNo { get; set; }
         public DateTime? Date { get; set; }
         public string CustomerName { get; set; }

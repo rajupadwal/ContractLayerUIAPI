@@ -83,7 +83,7 @@
               <label for="textarea-input"><strong>No Of Plan :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="NoOfPlan" type="text" pInputText id="noofplan" name="noofplan" class="form-control" rows="3"  />
+                  <input formControlName="NoOfPlan" (change)="calculatePlanAmount($event)" type="text" pInputText id="noofplan" name="noofplan" class="form-control" rows="3"  />
                 </span>
               </div>
             </div>

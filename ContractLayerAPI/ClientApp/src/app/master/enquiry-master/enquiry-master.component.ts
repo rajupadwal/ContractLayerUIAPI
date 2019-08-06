@@ -9,6 +9,7 @@ import { DialogRef } from '../../dialog/dialog-ref';
 import { LocationService } from '../location-view/location.service';
 import { CusotmerService } from '../customer-view/customer.service';
 import * as moment from 'moment';
+import { EnquiryService } from '../enquiry-view/enquiry.service';
 //import { EventEmitter } from 'events';
 
 @Component({
@@ -25,12 +26,18 @@ export class EnquiryMasterComponent implements OnInit {
   public locationList: [];
   public isEditable: boolean = false;
    
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private cusotmerservice: CusotmerService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private cusotmerservice: CusotmerService, private enquiryService: EnquiryService) { }
 
   ngOnInit() {
-    this.enquiryForm = this.formBuilder.group({
 
-      RecordNo        : [0],
+    this.enquiryService.getEnquiryNo()
+      .subscribe((enquiry: any) => {
+        this.enquiryForm.controls['RecordNo'].patchValue(enquiry);
+      });
+
+    this.enquiryForm = this.formBuilder.group({
+      PkId            : [0],
+      RecordNo        : [],
       Date		        : [],
       CustomerName    : [],
       Enquiry		      : [],
@@ -48,10 +55,10 @@ export class EnquiryMasterComponent implements OnInit {
       IsDeleted: [false],
       LocationId:[]
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.getLocation(this.config.data.LocationId);
       this.setDataForEdit();
-
+    }
   }
 
   getLocation(id) {
@@ -69,20 +76,16 @@ export class EnquiryMasterComponent implements OnInit {
   setDataForEdit = () => {
     this.isEditable = true;
     let enquiryForm = this.config.data;
-    enquiryForm.Date = (moment(this.config.data.Date).toDate());
-    enquiryForm.RemindDate = (moment(this.config.data.RemindDate).toDate());
+    enquiryForm.Date = moment(this.config.data.Date).toDate();
+    enquiryForm.RemindDate = moment(this.config.data.RemindDate).toDate();
     this.enquiryForm.setValue(this.config.data);
   }
   
   saveEnquiry() {
     let enquiry = this.enquiryForm.value;
     enquiry.LocationId = enquiry.Location.LocationId;
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-
-    return this.http.post(this.isEditable ? APP_CONSTANT.ENQUIRY_API.EDIT : APP_CONSTANT.ENQUIRY_API.ADD, enquiry, httpOptions)
-      .subscribe((enquiry) => {
+    delete enquiry.Location;
+    this.enquiryService.saveEnquiry(enquiry, this.isEditable).subscribe((enquiry) => {
         // login successful if there's a jwt token in the response
         if (enquiry) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes

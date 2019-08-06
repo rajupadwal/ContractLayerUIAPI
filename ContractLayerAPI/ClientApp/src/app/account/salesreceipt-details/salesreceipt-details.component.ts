@@ -28,9 +28,14 @@ export class SalesReceiptDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.salereceiptdetailsForm = this.formBuilder.group({
+    this.salesreceiptservice.getSaleReceiptNo()
+      .subscribe((salereceipt: any) => {
+        this.salereceiptdetailsForm.controls['ReceiptNo'].patchValue(salereceipt);
+      });
 
-      ReceiptNo: [0],
+    this.salereceiptdetailsForm = this.formBuilder.group({
+      PkId: [0],
+      ReceiptNo: [],
       Date: [],
       Location: [{}],
       Customer: [{}],
@@ -38,13 +43,15 @@ export class SalesReceiptDetailsComponent implements OnInit {
       BillRefNo: [],
       PaymentMethod: [],
       ChequeNo: [],
-      ChequeAmount: [],
+      OutstandingAmount: [],
       CashAmount: [],
       Narration: [],
-      IsDeleted: [false]
+      IsDeleted: [false],
+      LocationId: [],
+      CustomerId: [],
     });
 
-    if (this.config.data) {
+    if (this.config.isEditable==true) {
       this.getCstomer(this.config.data.CustomerId);
       this.getLocation(this.config.data.LocationId);
       this.setDataForEdit();
@@ -78,6 +85,14 @@ export class SalesReceiptDetailsComponent implements OnInit {
     this.salesreceiptservice.searchLocation(event.query).subscribe((data: any) => {
       this.locationList = data;
     });
+  }
+
+  calculateOutstandingAmount(event) {
+    let salereceiptdetails = this.salereceiptdetailsForm.value;
+    this.salesreceiptservice.getCustOutstanding(salereceiptdetails)
+      .subscribe((salereceipt: any) => {
+        this.salereceiptdetailsForm.controls['OutstandingAmount'].patchValue(salereceipt);
+      });
   }
 
   saveSalereceipt() {

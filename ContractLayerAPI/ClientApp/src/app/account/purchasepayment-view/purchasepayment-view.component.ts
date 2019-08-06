@@ -42,7 +42,7 @@ export class PurchasepaymentViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(PurchasepaymentDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Payment' } });
+          const ref = this.dialog.open(PurchasepaymentDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Payment' }, isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -99,7 +99,7 @@ export class PurchasepaymentViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    const ref = this.dialog.open(PurchasepaymentDetailsComponent, { modalConfig: { title: 'Add/Edit Purchase Payment' } });
+    const ref = this.dialog.open(PurchasepaymentDetailsComponent, { modalConfig: { title: 'Add/Edit Purchase Payment' }, isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

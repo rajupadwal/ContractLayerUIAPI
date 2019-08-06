@@ -14,7 +14,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Enquiry/GetAll',
     GETByID: API_URL + 'Enquiry/GetByID',
     EDIT: API_URL + 'Enquiry/Update',
-    DELETE: API_URL + 'Enquiry/Delete'
+    DELETE: API_URL + 'Enquiry/Delete',
+    GETENQUIRYNO: API_URL + 'Enquiry/GetEnquiryNo'
   },
   
   CUSOTMER_API: {
@@ -107,7 +108,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Booking/GetAll',
     GETByID: API_URL + 'Booking/GetByID',
     EDIT: API_URL + 'Booking/Update',
-    DELETE: API_URL + 'Booking/Delete'
+    DELETE: API_URL + 'Booking/Delete',
+    GETBOOKINGNO: API_URL + 'Booking/GetBookingNo'
   },
   BOOKINGCANCEL_API: {
     ADD: API_URL + 'Bookingcancel/Add',
@@ -154,7 +156,9 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Salesreceipt/GetAll',
     GETByID: API_URL + 'Salesreceipt/GetByID',
     EDIT: API_URL + 'Salesreceipt/Update',
-    DELETE: API_URL + 'Salesreceipt/Delete'
+    DELETE: API_URL + 'Salesreceipt/Delete',
+    GETSALERECEIPTNO: API_URL + 'Salesreceipt/GetSaleReceiptNo',
+    GETCUSTOUTSTANDING: API_URL + 'Salesreceipt/GetCustomerOutstandingAmt',
   },
   FARMERCHIKEGGBILL_API: {
     ADD: API_URL + 'Salesreceipt/Add',
@@ -164,14 +168,12 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Salesreceipt/Delete'
   },
 
-
-  
-
   PRODUCT_FARMER_INWARDS_API: {
     SAVEFARMERINWARDMASTER: API_URL + 'Product/SaveFarmerInwardMaster',
     SAVEFARMERINWARDSDETAILS: API_URL + 'Product/SaveFarmerInwardsDetails',
     GETALLFARMERINWARDMASTERS: API_URL + 'Product/GetAllFarmerInwardMasters',
     GETALLFARMERINWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerInwardMasteDetails',
+    GETFARMERINWARDNO: API_URL + 'Product/GetFarmerInwardNo',
   },
 
   PRODUCT_FARMER_OUTWARDS_API: {
@@ -179,12 +181,16 @@ export const APP_CONSTANT={
     SAVEFARMEROUTWARDSDETAILS: API_URL + 'Product/SaveFarmerOutwardsDetails',
     GETALLFARMEROUTWARDMASTERS: API_URL + 'Product/GetAllFarmerOutwardMasters',
     GETALLFARMEROUTWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerOutwardMasteDetails',
+    GETFARMEROUTWARDNO: API_URL + 'Product/GetFarmerOutwardNo',
+    GETPRODUCTAVAILABLESTOCK: API_URL + 'Product/GetProductAvailableStock'
   },
+
   PRODUCT_FARMER_CHICKEGGBILL_API: {
     SAVEFARMERCHICKEGGBILLMASTER: API_URL + 'Product/SaveFarmerChickEggBillMaster',
     SAVEFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/SaveFarmerChickEggBillDetails',
     GETALLFARMERCHICKEGGBILLMASTERS: API_URL + 'Product/GetAllFarmerChickEggBillMasters',
     GETALLFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/GetAllFarmerChickEggBillDetails',
+    GETALLFARMERCHICKEGGBILLNO: API_URL + 'Product/GetChickEggsBillNo',
   },
 
 

@@ -41,7 +41,7 @@ export class PurchasepaymentDetailsComponent implements OnInit {
       IsDeleted       : [false]
     });
 
-    if (this.config.data) {
+    if (this.config.isEditable==true) {
       this.getSupplier(this.config.data.SupplierId);
       this.getLocation(this.config.data.LocationId);
       this.setDataForEdit();

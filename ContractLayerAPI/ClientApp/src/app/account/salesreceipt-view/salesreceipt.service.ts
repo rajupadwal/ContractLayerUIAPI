@@ -19,13 +19,6 @@ export class SalesReceiptService {
     return this.salesreceiptData;
   }
 
-  
-  //searchCustomer(searchString) {
-  //  return this.http.post(APP_CONSTANT.CUSOTMER_API.SEARCH_CUSTOMER, JSON.stringify(searchString));
-  //}
-  //searchPlan(searchString) {
-  //  return this.http.post(APP_CONSTANT.PLAN_API.SEARCH_PLAN, JSON.stringify(searchString));
-  //}
   searchCustomer(searchString) {
     return this.http.post(APP_CONSTANT.CUSOTMER_API.SEARCH_CUSTOMER, JSON.stringify(searchString));
   }
@@ -34,12 +27,17 @@ export class SalesReceiptService {
     return this.http.post(APP_CONSTANT.LOCATION_API.SEARCH_LOCATION, JSON.stringify(searchString));
   }
 
-
   saveSalereceipt(formValues: any, isEditable:boolean) {
     return this.http.post(isEditable ? APP_CONSTANT.SALERECEIPT_API.EDIT : APP_CONSTANT.SALERECEIPT_API.ADD, formValues);
   }
 
+  getSaleReceiptNo() {
+    return this.http.get(APP_CONSTANT.SALERECEIPT_API.GETSALERECEIPTNO);
+  }
 
+  getCustOutstanding(formValues: any) {
+    return this.http.post(APP_CONSTANT.SALERECEIPT_API.GETCUSTOUTSTANDING, formValues);
+  }
 }
 
 

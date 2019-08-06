@@ -33,7 +33,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ' } });
+          const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -92,7 +92,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { modalConfig: { title: 'Add/Edit sale' } });
+    const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { modalConfig: { title: 'Add/Edit sale' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

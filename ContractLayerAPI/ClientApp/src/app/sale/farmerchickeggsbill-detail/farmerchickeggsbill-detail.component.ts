@@ -9,6 +9,7 @@ import { PlanService } from '../../master/plan-view/plan.service';
 import { DialogRef } from '../../dialog/dialog-ref';
 import { DialogConfig } from '../../dialog/dialog-config';
 import { ProductdescService } from '../../master/productdesc-view/productdesc.service';
+import { FarmerchikeggbillService } from '../farmerchickeggsbill-view/farmerchickeggsbill.service';
 
 
 
@@ -32,9 +33,15 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
   isEditable: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private cusotmerService: CusotmerService,
-    private productService: ProductService, private productdescService: ProductdescService, private planService: PlanService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
+    private productService: ProductService, private productdescService: ProductdescService, private planService: PlanService, private locationService: LocationService, private farmerchikeggbillService: FarmerchikeggbillService,public dialog: DialogRef, private config: DialogConfig, ) { }
 
   ngOnInit() {
+
+    this.farmerchikeggbillService.getChickEggsBillNo()
+      .subscribe((billno: any) => {
+        this.FarmerChickEggsBillMaster.BillNo = billno;
+      });
+
     let detail = new FarmerChickEggsBillDetail();
     this.FarmerChickEggsBillDetailList = [detail];
     this.FarmerChickEggsBillMaster = new FarmerChickEggsBillMaster();
@@ -42,9 +49,9 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
     this.loadLocations();
     this.loadPlans();
 
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
-
+    }
   }
 
   setDataForEdit = () => {
@@ -177,6 +184,7 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
     model.ProductType = model.Product.ProductType;
+    model.Rate = model.Product.SellingPrice;
   };
 
   onSelectUnits = (value, model: any) => {

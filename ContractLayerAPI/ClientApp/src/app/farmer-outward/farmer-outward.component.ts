@@ -9,8 +9,7 @@ import { DialogConfig } from '../dialog/dialog-config';
 
 import * as moment from 'moment';
 import { ProductdescService } from '../master/productdesc-view/productdesc.service';
-
-
+import { FarmeroutwardService } from '../farmeroutward-view/farmeroutward.service';
 
 @Component({
   selector: 'app-farmer-outward',
@@ -21,7 +20,6 @@ export class FarmerOutwardComponent implements OnInit {
   FarmerOutwardDetailsList: any = [];
   FarmerOutwardMaster: FarmerOutwardMaster;
 
-
   customerList;
   planList;
   locationList;
@@ -31,9 +29,15 @@ export class FarmerOutwardComponent implements OnInit {
   isEditable: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private cusotmerService: CusotmerService,
-    private productService: ProductService,private productdescservice: ProductdescService, private planService: PlanService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
+    private productService: ProductService, private productdescservice: ProductdescService, private planService: PlanService, private locationService: LocationService, private farmeroutwardService: FarmeroutwardService, public dialog: DialogRef, private config: DialogConfig, ) { }
 
   ngOnInit() {
+
+    this.farmeroutwardService.getFarmerOutwardNo()
+      .subscribe((outwardno: any) => {
+        this.FarmerOutwardMaster.RecordNo = outwardno;
+      });
+
     let detail = new FarmerOutwardDetail();
     this.FarmerOutwardDetailsList = [detail];
     this.FarmerOutwardMaster = new FarmerOutwardMaster();
@@ -43,9 +47,9 @@ export class FarmerOutwardComponent implements OnInit {
     this.loadProducts();
     this.loadUnits();
     
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
-
+    }
   }
 
   setDataForEdit = () => {
@@ -71,15 +75,18 @@ export class FarmerOutwardComponent implements OnInit {
   }
 
   loadProducts = () => {
-    this.productdescservice.loadProducts()
+    this.productService.loadProducts()
       .subscribe((products: any) => {
         this.productlist = products;
+        this.productlist.forEach((key: any, value: any) => {
+          key.ProductTypeName = key.Product.ProductName + '-' + key.ProductType;
+        })
+
         if (this.isEditable == true && this.FarmerOutwardDetailsList) {
           this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
           })
         }
-       
       });
   }
 
@@ -103,7 +110,7 @@ export class FarmerOutwardComponent implements OnInit {
         this.unitLists = units;
         if (this.isEditable == true && this.FarmerOutwardDetailsList) {
           this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
-            key.Units = this.unitLists.find(p => p.UnitDescription == key.Unit);
+            key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
           })
         }
       });
@@ -127,6 +134,11 @@ export class FarmerOutwardComponent implements OnInit {
     delete this.FarmerOutwardMaster.Customer;
     this.FarmerOutwardMaster.TblFarmerOutwardDt = this.FarmerOutwardDetailsList;
 
+    this.FarmerOutwardMaster.TblFarmerOutwardDt.forEach((key: any, value: any) => {
+      key.Product = null;
+      key.Units = null;
+      key.PkId = 0;
+    })
 
     this.productService.saveFarmerOutwards(this.FarmerOutwardMaster);
 
@@ -148,24 +160,38 @@ export class FarmerOutwardComponent implements OnInit {
 
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
+    model.ProductType = model.Product.ProductType;
+
+    let newDetails = new FarmerOutwardDetail();
+    newDetails.ProductId = model.ProductId;
+    newDetails.ProductType = model.ProductType;
+
+    this.farmeroutwardService.getProductAvailableStock(newDetails)
+      .subscribe((stock: any) => {
+        model.AvailableStock = stock;
+      });
   };
   onSelectUnits = (value, model: any) => {
-    model.Unit = model.Units.UnitDescription;
+    model.UnitId = model.Units.UnitId;
   };
 
-  searchCustomer = (value) => {
-    this.loadCustomers();
-  };
+  searchCustomer(event) {
+    this.cusotmerService.searchCustomer(event.query).subscribe((data: any) => {
+      this.customerList = data;
+    });
+  }
 
-  searchLocation = (value) => {
-    //made Api call for search
-    this.loadLocations();
-  };
+  searchLocation(event) {
+    this.locationService.searchLocation(event.query).subscribe((data: any) => {
+      this.locationList = data;
+    });
+  }
 
-  searchPlan = (value) => {
-    //made Api call for search
-    this.loadPlans();
-  };
+  searchPlan(event) {
+    this.planService.searchPlan(event.query).subscribe((data: any) => {
+      this.planList = data;
+    });
+  }
 
   searchProduct = (value) => {
     //made Api call for search
@@ -182,8 +208,10 @@ export class FarmerOutwardDetail {
   RecordNo: number = 0;;
   Date: Date = new Date();
   ProductId: number = 0;
-  Unit: string = '';
-  Quantity: number;
+  ProductType: string;
+  UnitId: number = 0;
+  Quantity: number=0;
+  AvailableStock: number = 0;
   Units: any;
   Product: any;
 }

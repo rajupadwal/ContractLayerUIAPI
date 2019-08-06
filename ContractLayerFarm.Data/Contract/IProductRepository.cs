@@ -12,6 +12,12 @@ namespace ContractLayerFarm.Data.Contract
 
        // IEnumerable<TblProductTypeMaster> SearchProduct(string searchString);
         IEnumerable<TblUnitMaster> GetUnits();
+
+        int GetChickEggsBillNo();
+        int GetFarmerInwardNo();
+        int GetFarmerOutwardNo();
+        decimal GetProductAvailableStock(TblFarmerOutwardDt master);
+
         IEnumerable<TblProductTypeMaster> GetAllProduct();
 
         void SaveFarmerInwardMaster(TblFarmerInwardMt master);

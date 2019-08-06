@@ -11,5 +11,7 @@ namespace ContractLayerFarm.Data.Contract
         bool Authenticate();
 
         IEnumerable<TblEnquiryDetails> GetAllEnquiry();
+
+        int GetEnquiryNo();
     }
 }

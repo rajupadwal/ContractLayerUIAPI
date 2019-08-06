@@ -33,7 +33,7 @@ export class CustomerViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(CustomerInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Customer' } });
+          const ref = this.dialog.open(CustomerInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Customer' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -94,7 +94,7 @@ export class CustomerViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    const ref = this.dialog.open(CustomerInfoComponent, {modalConfig: { title: 'Add/Edit Customer' } });
+    const ref = this.dialog.open(CustomerInfoComponent, {modalConfig: { title: 'Add/Edit Customer' },isEditable: false });
     ref.afterClosed.subscribe(result => {
      // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

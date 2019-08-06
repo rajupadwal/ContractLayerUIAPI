@@ -39,7 +39,7 @@ export class ProductViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(ProductMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Product Details Master' } });
+          const ref = this.dialog.open(ProductMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Product Details Master' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -115,7 +115,7 @@ export class ProductViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    const ref = this.dialog.open(ProductMasterComponent, { modalConfig: { title: 'Add/Edit Product Master' } });
+    const ref = this.dialog.open(ProductMasterComponent, { modalConfig: { title: 'Add/Edit Product Master' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

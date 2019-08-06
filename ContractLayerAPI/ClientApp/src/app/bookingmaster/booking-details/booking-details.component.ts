@@ -12,6 +12,7 @@ import { CusotmerService } from '../../master/customer-view/customer.service';
 import { PlanService } from '../../master/plan-view/plan.service';
 import * as moment from 'moment';
 import { EmployeeService } from '../../master/employee-view/employee.service';
+import { parse } from 'querystring';
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
@@ -28,14 +29,18 @@ export class BookingDetailsComponent implements OnInit {
   public locationList: [];
   public employeeList: [];
 
-
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService, private employeeService: EmployeeService) { }
 
   ngOnInit() {
 
+    this.bookingService.getBookingNo()
+      .subscribe((booking: any) => {
+        this.bookingdetailsForm.controls['RecordNo'].patchValue(booking);
+      });
+    
     this.bookingdetailsForm = this.formBuilder.group({
 
-      RecordNo        : [0],
+      RecordNo: [],
       Location        : [{}],
       Customer        : [{}],
       BookingDate     : [],
@@ -62,7 +67,9 @@ export class BookingDetailsComponent implements OnInit {
       //IsDeleted       : [false] 
     });
 
-    if (this.config.data) {
+    
+
+    if (this.config.isEditable==true) {
       this.getLocation(this.config.data.LocationId);
       this.getCustomer(this.config.data.CustomerId);
       this.getPlan(this.config.data.PlanId);
@@ -127,6 +134,10 @@ export class BookingDetailsComponent implements OnInit {
     });
   }
 
+  calculatePlanAmount(event) {
+    this.bookingdetailsForm.patchValue({ NoOfChicks: (parseFloat(this.bookingdetailsForm.controls['NoOfPlan'].value) * parseFloat(this.bookingdetailsForm.controls['NoOfChicks'].value)) });
+    this.bookingdetailsForm.patchValue({ Amount: (parseFloat(this.bookingdetailsForm.controls['NoOfPlan'].value) * parseFloat(this.bookingdetailsForm.controls['Amount'].value)) });
+  }
 
   setDataForEdit = () => {
     this.isEditable = true;

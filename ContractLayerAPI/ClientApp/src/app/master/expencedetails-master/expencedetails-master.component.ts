@@ -50,7 +50,7 @@ export class ExpencedetailsMasterComponent implements OnInit {
       EmployeeId: [],
       ExpenceId:[]
     });
-    if (this.config.data) {
+    if (this.config.isEditable==true) {
       this.getLocation(this.config.data.LocationId);
       this.getEmployee(this.config.data.EmployeeId);
       this.getExpencetype(this.config.data.ExpenceId);

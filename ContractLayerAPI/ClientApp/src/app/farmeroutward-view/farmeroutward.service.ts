@@ -19,6 +19,13 @@ export class FarmeroutwardService {
 //    return this.http.post(APP_CONSTANT.GETALLFARMERINWARDMASTERS.GETByID,id);
   }
 
+  getFarmerOutwardNo() {
+    return this.http.get(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.GETFARMEROUTWARDNO);
+  }
+
+  getProductAvailableStock(master) {
+    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.GETPRODUCTAVAILABLESTOCK, master);
+  }
 }
 
 

@@ -36,7 +36,7 @@ export class PlanViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(PlanMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Plan Master' } });
+          const ref = this.dialog.open(PlanMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Plan Master' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -104,7 +104,7 @@ export class PlanViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    const ref = this.dialog.open(PlanMasterComponent, { modalConfig: { title: 'Add/Edit Plan Master' } });
+    const ref = this.dialog.open(PlanMasterComponent, { modalConfig: { title: 'Add/Edit Plan Master' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

@@ -35,7 +35,7 @@ export class SupplierMasterComponent implements OnInit {
       State : [],
       District : [],
       Taluka : [],
-PlantAddress	:[],
+      PlantAddress	:[],
       City : [],
       Pincode : [],
       WebAddress : [],
@@ -53,9 +53,9 @@ PlantAddress	:[],
       BranchName : [],
       AccountType : [],
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.setDataForEdit();
-
+    }
   }
   setDataForEdit = () => {
     this.isEditable = true;

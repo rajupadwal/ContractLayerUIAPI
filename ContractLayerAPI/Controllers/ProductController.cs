@@ -20,6 +20,62 @@ namespace ContractLayerAPI.Controllers
             _repoWrapper = repoWrapper;
         }
 
+        [HttpGet("[action]")]
+        public int GetChickEggsBillNo()
+        {
+            try
+            {
+                int BillNo = this._repoWrapper.Product.GetChickEggsBillNo();
+                return BillNo;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpGet("[action]")]
+        public int GetFarmerInwardNo()
+        {
+            try
+            {
+                int InwardNo = this._repoWrapper.Product.GetFarmerInwardNo();
+                return InwardNo;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpGet("[action]")]
+        public int GetFarmerOutwardNo()
+        {
+            try
+            {
+                int OutwardNo = this._repoWrapper.Product.GetFarmerOutwardNo();
+                return OutwardNo;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpPost("GetProductAvailableStock")]
+        public decimal GetProductAvailableStock([FromBody] TblFarmerOutwardDt farmerInwardMt)
+        {
+            try
+            {
+                decimal availableStock = this._repoWrapper.Product.GetProductAvailableStock(farmerInwardMt);
+                return availableStock;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
 
         [HttpGet("[action]")]
         public IEnumerable<TblProductTypeMaster> GetAll()

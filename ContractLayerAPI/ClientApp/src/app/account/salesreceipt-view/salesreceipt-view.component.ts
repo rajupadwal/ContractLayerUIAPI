@@ -42,7 +42,7 @@ export class SalesreceiptViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(SalesReceiptDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sales Receipt' } });
+          const ref = this.dialog.open(SalesReceiptDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sales Receipt' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -74,11 +74,10 @@ export class SalesreceiptViewComponent implements OnInit {
     {
       headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100
     },
-    //{ headerName: 'BillRefNo    ', field: 'BillRefNo' },
+    { headerName: 'BillRefNo    ', field: 'BillRefNo' },
     { headerName: 'PaymentMethod    ', field: 'PaymentMethod' },
     { headerName: 'ChequeNo    ', field: 'ChequeNo' },
-    { headerName: 'ChequeAmount    ', field: 'ChequeAmount' },
-    { headerName: 'CashAmount    ', field: 'CashAmount' },
+    { headerName: 'Amount    ', field: 'CashAmount' },
     { headerName: 'Narration    ', field: 'Narration' }
   ];
 
@@ -100,7 +99,7 @@ export class SalesreceiptViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    const ref = this.dialog.open(SalesReceiptDetailsComponent, { modalConfig: { title: 'Add/Edit Sale Receipt' } });
+    const ref = this.dialog.open(SalesReceiptDetailsComponent, { modalConfig: { title: 'Add/Edit Sale Receipt' } ,isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

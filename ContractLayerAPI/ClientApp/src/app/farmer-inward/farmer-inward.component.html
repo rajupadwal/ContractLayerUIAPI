@@ -120,7 +120,7 @@
                 <div class="form-group">
                   <span class="ui-float-label">
                     <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
-                                    [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
+                                    [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductTypeName"></p-autoComplete>
 
                     <label for="float-input"></label>
                   </span>
@@ -133,7 +133,6 @@
                   <span class="ui-float-label">
                     <p-autoComplete [(ngModel)]="item.Units" [suggestions]="unitLists" (completeMethod)="searchUnits($event)"
                                     [dropdown]="true" (onSelect)="onSelectUnits($event,item)" [forceSelection]="true" field="UnitDescription"></p-autoComplete>
-                    <label for="float-input">Standard Pack </label>
                   </span>
                 </div>
               </div>
@@ -143,7 +142,6 @@
                 <div class="form-group">
                   <span class="ui-float-label">
                     <input type="text"  [(ngModel)]="item.Quantity" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
-                    <label for="float-input">Quantity </label>
                   </span>
                 </div>
               </div>

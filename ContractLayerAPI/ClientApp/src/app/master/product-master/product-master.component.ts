@@ -40,12 +40,13 @@ export class ProductMasterComponent implements OnInit {
       MinimumQty   :  [],
       OpeningStock: [],
       ProductId: [],
-      UnitId:[]
+      UnitId: []
     });
-    if (this.config.data)
+    if (this.config.isEditable == true) {
       this.getProduct(this.config.data.ProductId);
       this.getUnit(this.config.data.UnitId);
       this.setDataForEdit();
+    }
   }
 
   getProduct(id) {

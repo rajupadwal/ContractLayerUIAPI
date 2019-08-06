@@ -21,6 +21,22 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpGet("[action]")]
+        public int GetBookingNo()
+        {
+            try
+            {
+                int Booking = this._repoWrapper.Booking.GetBookingNo();
+                return Booking;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+
+        [HttpGet("[action]")]
         public IEnumerable<TblBookingMaster> GetAll()
         {
             var Booking = this._repoWrapper.Booking.GetAllBooking();
@@ -37,6 +53,7 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Booking.SaveBookinginCustomerTransaction(booking);
                 this._repoWrapper.Booking.Create(booking);
                 this._repoWrapper.Booking.Save();
                 return true;

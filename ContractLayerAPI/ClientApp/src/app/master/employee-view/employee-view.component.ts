@@ -34,7 +34,7 @@ export class EmployeeViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(EmployeeInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Employee' } });
+          const ref = this.dialog.open(EmployeeInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Employee' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -95,7 +95,7 @@ export class EmployeeViewComponent implements OnInit {
       });
   }
   redirectToAddNew() {
-    const ref = this.dialog.open(EmployeeInfoComponent, { modalConfig: { title: 'Add/Edit Employee' } });
+    const ref = this.dialog.open(EmployeeInfoComponent, { modalConfig: { title: 'Add/Edit Employee' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();
