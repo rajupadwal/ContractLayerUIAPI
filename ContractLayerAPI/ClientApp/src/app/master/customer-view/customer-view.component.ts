@@ -64,15 +64,27 @@ export class CustomerViewComponent implements OnInit {
 
     
     //{ headerName: 'CustomerId', field: 'CustomerId' },
-    { headerName: 'CustmerName ', field: 'CustmerName', 'width': 100 },
+    { headerName: 'Customer Name ', field: 'CustmerName', 'width': 100 },
     {
-      headerName: 'CustomerMobileNo', field: 'CustomerMobileNo',' width': 80 },
+      headerName: 'Customer Mobile No', field: 'CustomerMobileNo',' width': 80 },
     {
       headerName: 'Address ', field: 'Address' ,'width': 100},
     //{
     //  headerName: 'PlantAddress    ', field: 'PlantAddress','width': 100 },
+    
+    { headerName: 'Location           ', field: 'Location.LocationName' },
     { headerName: 'State           ', field: 'State' },
-    { headerName: 'Location           ', field: 'Location.LocationName' }
+    { headerName: 'District           ', field: 'District' },
+    { headerName: 'Taluka           ', field: 'Taluka' },
+    { headerName: 'City           ', field: 'City' },
+    { headerName: 'Pincode           ', field: 'Pincode' },
+    { headerName: 'GstNo           ', field: 'GstNo' },
+    { headerName: 'PanNo           ', field: 'PanNo' },
+    { headerName: 'BankName           ', field: 'BankName' },
+    { headerName: 'AccountNo           ', field: 'AccountNo' },
+    { headerName: 'AccountHolderName           ', field: 'AccountHolderName' },
+    { headerName: 'IfscCode           ', field: 'IfscCode' },
+    { headerName: 'State           ', field: 'BranchName' }
   ];
 
   rowData ;

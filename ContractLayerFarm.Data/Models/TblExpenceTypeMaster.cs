@@ -9,7 +9,7 @@ namespace ContractLayerFarm.Data.Models
         {
             TblOfficeExpencesDetails = new HashSet<TblOfficeExpencesDetails>();
         }
-
+        public int PkId { get; set; }
         public int ExpenceId { get; set; }
         public string ExpenceType { get; set; }
         public bool? IsDeleted { get; set; }

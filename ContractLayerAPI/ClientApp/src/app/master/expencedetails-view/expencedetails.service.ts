@@ -20,6 +20,10 @@ export class ExpencedetailsService {
     return this.expencedetailsData;
   }
 
+  getExpenceNo() {
+    return this.http.get(APP_CONSTANT.EXPENCEDETAILS_API.GETEXPENCENO);
+  }
+
   
 
 }

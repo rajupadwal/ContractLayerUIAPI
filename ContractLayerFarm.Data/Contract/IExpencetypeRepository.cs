@@ -10,6 +10,8 @@ namespace ContractLayerFarm.Data.Contract
         //UserInfo Authenticate(string username, string password);
         bool Authenticate();
         IEnumerable<TblExpenceTypeMaster> SearchExpenceType(string searchString);
-        
+
+        int GetExpenceNo();
+
     }
 }

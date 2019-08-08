@@ -4,13 +4,13 @@
       <strong>Product Description Master</strong>
       <!--<small>Form</small>-->
     </div>
-    <form [formGroup]="productdescmasterForm" (ngSubmit)="saveProductdescMaster()">
+    <form [formGroup]="productdescmasterForm" novalidate (ngSubmit)="saveProductdescMaster()">
       <div class="card-block">
         <div class="form-group">
           <label for="textarea-input"><strong>Product Name:</strong></label>
           <div>
             <span class="ui-float-label">
-              <input formControlName="ProductName" type="text" pInputText id="productname" name="productname" class="form-control" rows="3">
+              <input formControlName="ProductName" appValidationBorder type="text" pInputText id="productname" name="productname" ng-model=productdescmasterForm.ProductName required class="form-control" rows="3">
               <!--<label for="float-input">Please Enter Product Name </label>-->
             </span>
           </div>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" [disabled]="!productdescmasterForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

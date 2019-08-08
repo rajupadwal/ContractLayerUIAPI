@@ -68,9 +68,11 @@ namespace ContractLayerFarm.Data.Models
         {
             modelBuilder.Entity<TblBookingCancelMaster>(entity =>
             {
-                entity.HasKey(e => e.RecordNo);
-
+                entity.HasKey(e => e.PkId);
+                
                 entity.ToTable("tbl_BookingCancelMaster");
+
+                entity.Property(e => e.RecordNo);
 
                 entity.Property(e => e.BookungCancelDate).HasColumnType("datetime");
 
@@ -98,11 +100,13 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblBookingMaster>(entity =>
             {
-                entity.HasKey(e => e.RecordNo);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_BookingMaster");
 
                 entity.Property(e => e.Agreement).HasMaxLength(20);
+
+                entity.Property(e => e.RecordNo);
 
                 entity.Property(e => e.BookingDate).HasColumnType("datetime");
 
@@ -111,6 +115,7 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.DeliveryStatus).HasMaxLength(20);
 
                 entity.Property(e => e.EnquiryRef).HasMaxLength(20);
+                
 
                 entity.Property(e => e.MobileNo).HasMaxLength(20);
 
@@ -146,7 +151,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.CompanyName).HasMaxLength(50);
 
-                entity.Property(e => e.EmailId).HasMaxLength(20);
+                entity.Property(e => e.EmailId).HasMaxLength(35);
 
                 entity.Property(e => e.GstNo).HasMaxLength(25);
 
@@ -189,6 +194,8 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.GstNo).HasMaxLength(20);
 
+                entity.Property(e => e.AccountHolderName).HasMaxLength(20);
+
                 entity.Property(e => e.IfscCode).HasMaxLength(20);
 
                 entity.Property(e => e.MicrCode).HasMaxLength(20);
@@ -218,9 +225,10 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblEmployeeAdvance>(entity =>
             {
-                entity.HasKey(e => e.RecordNo);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_EmployeeAdvance");
+                entity.Property(e => e.RecordNo);
 
                 entity.Property(e => e.Narration).HasMaxLength(50);
 
@@ -342,11 +350,13 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblExpenceTypeMaster>(entity =>
             {
-                entity.HasKey(e => e.ExpenceId);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_ExpenceTypeMaster");
 
-                entity.Property(e => e.ExpenceType).HasMaxLength(20);
+                entity.Property(e => e.ExpenceId);
+
+                entity.Property(e => e.ExpenceType).HasMaxLength(30);
             });
 
             modelBuilder.Entity<TblFarmerInwardDt>(entity =>
@@ -473,9 +483,11 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblIncomeDeatils>(entity =>
             {
-                entity.HasKey(e => e.RecordNo);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_IncomeDeatils");
+
+                entity.Property(e => e.RecordNo);
 
                 entity.Property(e => e.ChequeNo).HasMaxLength(20);
 
@@ -485,7 +497,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.PaymentMethod).HasMaxLength(20);
 
-                entity.Property(e => e.Title).HasMaxLength(20);
+                entity.Property(e => e.Title).HasMaxLength(40);
 
                 entity.HasOne(d => d.Income)
                     .WithMany(p => p.TblIncomeDeatils)
@@ -589,9 +601,11 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblOfficeExpencesDetails>(entity =>
             {
-                entity.HasKey(e => e.ExpencesNo);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_OfficeExpencesDetails");
+
+                entity.Property(e => e.ExpencesNo);
 
                 entity.Property(e => e.ChequeNo).HasMaxLength(20);
 
@@ -782,9 +796,11 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblPurchasepayment>(entity =>
             {
-                entity.HasKey(e => e.RecordNo);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_Purchasepayment");
+
+                entity.Property(e => e.RecordNo);
 
                 entity.Property(e => e.BillRefNo).HasMaxLength(20);
 

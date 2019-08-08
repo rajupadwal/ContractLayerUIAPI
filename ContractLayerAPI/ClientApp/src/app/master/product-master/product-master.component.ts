@@ -29,16 +29,16 @@ export class ProductMasterComponent implements OnInit {
 
       PkId         :  [0],
       Product      : [{}],
-      ProductType  :  [],
+      ProductType: ["", Validators.required],
       Hsnsac       :  [],
       Unit         : [{}],
-      PurchasePrice  :  [],
-      SellingPrice :  [],
-      Cgst         :  [],
-      Sgst         :  [],
+      PurchasePrice: ["", Validators.required],
+      SellingPrice: ["", Validators.required],
+      Cgst: ["", Validators.required],
+      Sgst: ["", Validators.required],
       Igst         :  [],
       MinimumQty   :  [],
-      OpeningStock: [],
+      OpeningStock: ["", Validators.required],
       ProductId: [],
       UnitId: []
     });

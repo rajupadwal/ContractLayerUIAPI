@@ -50,7 +50,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       headerName: 'Bill No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'BillId', 'width': 150
+      field: 'BillNo', 'width': 150
     },
 
 

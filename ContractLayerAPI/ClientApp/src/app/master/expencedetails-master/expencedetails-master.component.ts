@@ -12,6 +12,7 @@ import { EmployeeService } from '../employee-view/employee.service';
 import { ExpencetypeMasterComponent } from '../expencetype-master/expencetype-master.component';
 import { ExpencetypeService } from '../expencetype-view/expencetype.service';
 import * as moment from 'moment';
+import { ExpencedetailsService } from '../expencedetails-view/expencedetails.service';
 
 @Component({
   selector: 'app-expencedetails-master',
@@ -31,20 +32,28 @@ export class ExpencedetailsMasterComponent implements OnInit {
   //resultList: any[] = [];
   //error: string = '';
   //success: string = '';
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private employeeService: EmployeeService, private expencetypeService:ExpencetypeService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private employeeService: EmployeeService, private expencetypeService: ExpencetypeService, private expencedetailsService:ExpencedetailsService) { }
 
   ngOnInit() {
-    this.expencedetailsForm = this.formBuilder.group({
 
-      ExpencesNo: [0],
-      Date: [],
+    if (this.config.isEditable == false) {
+      this.expencedetailsService.getExpenceNo()
+        .subscribe((expenceno: any) => {
+          this.expencedetailsForm.controls['ExpencesNo'].patchValue(expenceno);
+        });
+    }
+
+    this.expencedetailsForm = this.formBuilder.group({
+      PkId:[0],
+      ExpencesNo: [],
+      Date: ["", Validators.required],
       Expence: [{}],
       Location: [{}],
       Employee: [{}],
-      PaymentMethod: [],
+      PaymentMethod: ["", Validators.required],
       ChequeNo: [],
-      Amount: [],
-      Narration: [],
+      Amount: ["", Validators.required],
+      Narration: ["", Validators.required],
       IsDeleted: [false],
       LocationId: [],
       EmployeeId: [],

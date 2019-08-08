@@ -26,6 +26,21 @@ namespace ContractLayerAPI.Controllers
             var Expencetype = this._repoWrapper.Expencetype.FindAll().ToList();
             return Expencetype;
         }
+
+        [HttpGet("[action]")]
+        public int GetExpenceNo()
+        {
+            try
+            {
+                int Expenceno = this._repoWrapper.Expencetype.GetExpenceNo();
+                return Expenceno;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
         [HttpPost("SearchExpenceType")]
         public IEnumerable<TblExpenceTypeMaster> SearchExpenceType([FromBody]string searchString)
         {

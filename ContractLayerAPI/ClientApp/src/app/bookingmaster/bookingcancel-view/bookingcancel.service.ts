@@ -31,6 +31,9 @@ export class BookingcancelService {
   saveBookingCancel(formValues: any, isEditable: boolean) {
     return this.http.post(isEditable ? APP_CONSTANT.BOOKINGCANCEL_API.EDIT : APP_CONSTANT.BOOKINGCANCEL_API.ADD, formValues);
   }
+  getBookingCancelNo() {
+    return this.http.get(APP_CONSTANT.BOOKINGCANCEL_API.GETBOOKINGCANCELNO);
+  }
 
   
 }

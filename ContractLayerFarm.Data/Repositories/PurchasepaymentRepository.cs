@@ -34,5 +34,10 @@ namespace ContractLayerFarm.Data.Repositories
                        .ToList();
             return TblPurchasepayment;
         }
+        public int GetPurchasePaymentNo()
+        {
+            int maxPurchasePaymentNo = this.ktConContext.TblPurchasepayment.Select(p => p.RecordNo).DefaultIfEmpty(0).Max() + 1;
+            return maxPurchasePaymentNo;
+        }
     }
 }

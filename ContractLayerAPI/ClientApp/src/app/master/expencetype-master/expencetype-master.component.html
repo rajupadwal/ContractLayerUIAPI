@@ -24,7 +24,7 @@
               <label for="textarea-input"><strong>ExpenceType Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ExpenceType" type="text" pInputText id="expencetype" name="expencetype" class="form-control" rows="3">
+                  <input formControlName="ExpenceType" appValidationBorder type="text" pInputText id="expencetype" name="expencetype" class="form-control" rows="3">
                 </span>
               </div>
             </div>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" [disabled]="!expencetypeForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

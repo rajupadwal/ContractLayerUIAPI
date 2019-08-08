@@ -62,7 +62,7 @@ export class ProductViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'SrNo', headerCheckboxSelection: true,
+      headerName: 'Sr No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
       field: 'PkId', 'width': 50
@@ -92,7 +92,7 @@ export class ProductViewComponent implements OnInit {
       headerName: 'MinimumQty ', field: 'MinimumQty', 'width': 100
     },
 
-    { headerName: 'OpeningStock', field: 'OpeningStock', 'width': 100 },
+    { headerName: 'Opening Stock', field: 'OpeningStock', 'width': 100 },
     
   ];
 

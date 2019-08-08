@@ -29,7 +29,7 @@ export class PurchasepaymentViewComponent implements OnInit {
     //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -44,12 +44,12 @@ export class PurchasepaymentViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 120,
+      headerName: 'Delete', 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
        // newTH.innerHTML = 'Delete';
-        newTH.className = "pi pi-times";
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -62,19 +62,19 @@ export class PurchasepaymentViewComponent implements OnInit {
       headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 120
+      field: 'RecordNo', 'width': 140
     },
 
     
-    { headerName: 'Date ', field: 'Date', 'width': 150 },
+    { headerName: 'Date ', field: 'Date', 'width': 100 },
     {
-      headerName: 'Location Name', field: 'Location.LocationName', ' width': 150
+      headerName: 'Location Name', field: 'Location.LocationName', ' width': 90
     },
     {
-      headerName: 'Supplier Name ', field: 'Supplier.SupplierName', 'width': 100
+      headerName: 'Supplier Name ', field: 'Supplier.SupplierName', 'width': 90
     },
     {
-      headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100
+      headerName: 'PaymentType    ', field: 'PaymentType', 'width': 90
     },
     //{ headerName: 'BillRefNo    ', field: 'BillRefNo' },
     { headerName: 'Payment Method    ', field: 'PaymentMethod' },

@@ -32,14 +32,15 @@ export class BookingDetailsComponent implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private bookingService: BookingService, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService, private employeeService: EmployeeService) { }
 
   ngOnInit() {
-
-    this.bookingService.getBookingNo()
-      .subscribe((booking: any) => {
-        this.bookingdetailsForm.controls['RecordNo'].patchValue(booking);
-      });
+    if (this.config.isEditable == false) {
+      this.bookingService.getBookingNo()
+        .subscribe((booking: any) => {
+          this.bookingdetailsForm.controls['RecordNo'].patchValue(booking);
+        });
+    }
     
     this.bookingdetailsForm = this.formBuilder.group({
-
+      PkId             :[0],
       RecordNo: [],
       Location        : [{}],
       Customer        : [{}],
@@ -48,6 +49,7 @@ export class BookingDetailsComponent implements OnInit {
       Plan            : [{}],
       NoOfPlan        : [],
       NoOfChicks      : [],
+      EggsReturnRate  :[],
       Amount          : [],
       Employee        : [{}],
       EnquiryRef      : [],
@@ -62,8 +64,8 @@ export class BookingDetailsComponent implements OnInit {
       LocationId: [],
       CustomerId: [],
       PlanId: [],
-      EmployeeId: []
-      //DeliveryStatus  : [],
+      EmployeeId: [],
+      DeliveryStatus  : []
       //IsDeleted       : [false] 
     });
 
@@ -129,10 +131,7 @@ export class BookingDetailsComponent implements OnInit {
     //this.bookingdetailsForm.patchValue({  });
   }
 
-  calculatePlanAmount(event) {
-    this.bookingdetailsForm.patchValue({ NoOfChicks: (parseFloat(this.bookingdetailsForm.controls['NoOfPlan'].value) * parseFloat(this.bookingdetailsForm.controls['NoOfChicks'].value)) });
-    this.bookingdetailsForm.patchValue({ Amount: (parseFloat(this.bookingdetailsForm.controls['NoOfPlan'].value) * parseFloat(this.bookingdetailsForm.controls['Amount'].value)) });
-  }
+  
 
   searchPlan(event) {
     this.bookingService.searchPlan(event.query).subscribe((data: any) => {

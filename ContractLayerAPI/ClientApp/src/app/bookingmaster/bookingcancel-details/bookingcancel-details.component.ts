@@ -30,9 +30,17 @@ export class BookingcancelDetailsComponent implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder, private bookingcancelService: BookingcancelService, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService) { }
 
   ngOnInit() {
-    this.bookingcancelForm = this.formBuilder.group({
 
-      RecordNo              : [0],
+    if (this.config.isEditable == false) {
+      this.bookingcancelService.getBookingCancelNo()
+        .subscribe((bookingcancel: any) => {
+          this.bookingcancelForm.controls['RecordNo'].patchValue(bookingcancel);
+        });
+    }
+
+    this.bookingcancelForm = this.formBuilder.group({
+      PkId                  :[0],
+      RecordNo              : [],
       Location              : [{}],
       Customer              : [{}],
       BookungCancelDate     : [],

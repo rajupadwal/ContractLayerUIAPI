@@ -18,6 +18,10 @@ export class ExpencetypeService {
   getData() {
     return this.expencetypeData;
   }
+
+  getExpenceNo() {
+    return this.http.get(APP_CONSTANT.EXPENCETYPE_API.GETEXPENCENO);
+  }
   getExpencetypeByID(id) {
     return this.http.post(APP_CONSTANT.EXPENCETYPE_API.GETByID, id);
   }

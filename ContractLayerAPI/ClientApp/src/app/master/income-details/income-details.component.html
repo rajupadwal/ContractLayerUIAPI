@@ -34,7 +34,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Location :</strong></label>
-              <p-autoComplete formControlName="Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+              <p-autoComplete formControlName="Location" appValidationBorder [suggestions]="locationList" (completeMethod)="searchLocation($event)"
                               [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
             </div>
           </div>
@@ -46,7 +46,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Type Of Income :</strong></label>
-              <p-autoComplete formControlName="Income" [suggestions]="incometypeList" (completeMethod)="searchIncomeType($event)"
+              <p-autoComplete formControlName="Income"  [suggestions]="incometypeList" (completeMethod)="searchIncomeType($event)"
                               [dropdown]="true" [forceSelection]="true" field="IncomeType"></p-autoComplete>
             </div>
           </div>
@@ -57,7 +57,7 @@
               <label for="textarea-input"><strong>Title :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Title" type="text" pInputText id="title" name="title" class="form-control" rows="3">
+                  <input formControlName="Title" appValidationBorder type="text" pInputText id="title" name="title" class="form-control" rows="3">
                 </span>
               </div>
             </div>
@@ -80,7 +80,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Payment Method :</strong></label>
-              <select formControlName="PaymentMethod" id="select" name="select" class="form-control">
+              <select formControlName="PaymentMethod" appValidationBorder id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Cash">Cash</option>
                 <option value="Cheque">Cheque</option>
@@ -107,7 +107,7 @@
               <label for="textarea-input"><strong>Amount :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Amount" type="text" pInputText id="amount" name="amount" class="form-control">
+                  <input formControlName="Amount" appValidationBorder type="text" pInputText id="amount" name="amount" class="form-control">
                 </span>
               </div>
             </div>
@@ -121,7 +121,7 @@
               <label for="textarea-input"><strong>Narration :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Narration" type="text" pInputText id="narration" name="narration" class="form-control">
+                  <input formControlName="Narration" appValidationBorder type="text" pInputText id="narration" name="narration" class="form-control">
                 </span>
               </div>
             </div>
@@ -141,7 +141,7 @@
         </div>
       </div>
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" [disabled]="!incomedetailsForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

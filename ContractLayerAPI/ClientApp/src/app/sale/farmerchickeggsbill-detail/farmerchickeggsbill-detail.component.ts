@@ -36,11 +36,13 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
     private productService: ProductService, private productdescService: ProductdescService, private planService: PlanService, private locationService: LocationService, private farmerchikeggbillService: FarmerchikeggbillService,public dialog: DialogRef, private config: DialogConfig, ) { }
 
   ngOnInit() {
-
+    if (this.config.isEditable == false) {
     this.farmerchikeggbillService.getChickEggsBillNo()
       .subscribe((billno: any) => {
         this.FarmerChickEggsBillMaster.BillNo = billno;
+     
       });
+    }
 
     let detail = new FarmerChickEggsBillDetail();
     this.FarmerChickEggsBillDetailList = [detail];
@@ -125,11 +127,11 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
     this.FarmerChickEggsBillDetailList.forEach((key, value) => {
       this.FarmerChickEggsBillMaster.TotalAmount += (parseFloat(key.Quantity) * parseFloat(key.Rate));
 
-      this.FarmerChickEggsBillMaster.TdsAmount = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) * 1 / 100);
+     // this.FarmerChickEggsBillMaster.TdsAmount = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) * 1 / 100);
 
-      this.FarmerChickEggsBillMaster.AdminChargesAmt = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) * 9 / 100);
+      this.FarmerChickEggsBillMaster.AdminChargesAmt = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) * 10 / 100);
 
-      this.FarmerChickEggsBillMaster.GrandTotal = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) - parseFloat(this.FarmerChickEggsBillMaster.TdsAmount.toString()) - parseFloat(this.FarmerChickEggsBillMaster.AdminChargesAmt.toString()) - parseFloat(this.FarmerChickEggsBillMaster.OtherCharges.toString()) );
+      this.FarmerChickEggsBillMaster.GrandTotal = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) - parseFloat(this.FarmerChickEggsBillMaster.AdminChargesAmt.toString()) - parseFloat(this.FarmerChickEggsBillMaster.OtherCharges.toString()) );
     })
   }
 
@@ -176,6 +178,7 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
 
   onSelectCustomers = (value) => {
     this.FarmerChickEggsBillMaster.CustomerId = this.FarmerChickEggsBillMaster.Customer.CustomerId;
+    this.FarmerChickEggsBillMaster.Address = this.FarmerChickEggsBillMaster.Customer.Address;
   };
   onSelectLocations = (value) => {
     this.FarmerChickEggsBillMaster.LocationId = this.FarmerChickEggsBillMaster.Location.LocationId;

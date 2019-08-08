@@ -5,6 +5,7 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblBookingMaster
     {
+        public int PkId { get; set; }
         public int RecordNo { get; set; }
         public int? LocationId { get; set; }
         public int? CustomerId { get; set; }
@@ -13,6 +14,8 @@ namespace ContractLayerFarm.Data.Models
         public int? PlanId { get; set; }
         public int? NoOfPlan { get; set; }
         public int? NoOfChicks { get; set; }
+        public decimal? EggsReturnRate { get; set; }
+
         public int? NoOfPlanCancel { get; set; }
         public decimal? Amount { get; set; }
         public int? EmployeeId { get; set; }

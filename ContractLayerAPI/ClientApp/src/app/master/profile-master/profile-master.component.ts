@@ -22,13 +22,13 @@ export class ProfileMasterComponent implements OnInit {
   ngOnInit() {
     this.profilemasterForm = this.formBuilder.group({
       ProfileId   : [0],
-      CompanyName : [],
-      PhoneNo     : [],
-      Address     : [],
+      CompanyName: ["", Validators.required],
+      PhoneNo: ["", Validators.required],
+      Address: ["", Validators.required],
       GstNo       : [],
-      EmailId     : [],
-      MobileNo    : [],
-      ThankYouNote: [],
+      EmailId: ["", Validators.required],
+      MobileNo: ["", Validators.required],
+      ThankYouNote: ["", Validators.required],
       CompanyLogo : []
     });
     if (this.config.isEditable == true) {

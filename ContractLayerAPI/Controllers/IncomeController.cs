@@ -27,6 +27,23 @@ namespace ContractLayerAPI.Controllers
             return Income;
         }
 
+        [HttpGet("[action]")]
+        public int GetIncomeNo()
+        {
+            try
+            {
+                int incomeno = this._repoWrapper.Income.GetIncomeNo();
+                return incomeno;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+
+
         [HttpGet("[action]")] 
         public TblIncomeDeatils GetByID(int RecordNo)
         {

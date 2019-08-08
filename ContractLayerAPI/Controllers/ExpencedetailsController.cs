@@ -27,6 +27,22 @@ namespace ContractLayerAPI.Controllers
             var Expencedetails = this._repoWrapper.Expencedetails.GetAllExpenceType();
             return Expencedetails;
         }
+
+        [HttpGet("[action]")]
+        public int GetExpenceNo()
+        {
+            try
+            {
+                int Expenceno = this._repoWrapper.Expencedetails.GetExpenceNo();
+                return Expenceno;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         [HttpPost("GetByID")]
         public TblOfficeExpencesDetails GetByID([FromBody] int ExpenceId)
         {

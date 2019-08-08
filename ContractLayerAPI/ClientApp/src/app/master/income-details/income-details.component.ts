@@ -25,17 +25,26 @@ export class IncomeDetailsComponent implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, private incomeService:IncomeService) { }
 
   ngOnInit() {
+
+    if (this.config.isEditable == false) {
+      this.incomeService.getIncomeNo()
+        .subscribe((booking: any) => {
+          this.incomedetailsForm.controls['RecordNo'].patchValue(booking);
+        });
+    }
+
     this.incomedetailsForm = this.formBuilder.group({
 
-      RecordNo              : [0],
-      Date                  : [],
+      PkId                  :[0],
+      RecordNo              : [],
+      Date: ["", Validators.required],
       Location              : [{}],
       Income                : [{}],
-      Title                 : [],
-      PaymentMethod         : [],
+      Title: ["", Validators.required],
+      PaymentMethod: ["", Validators.required],
       ChequeNo              : [],
-      Amount            : [],
-      Narration             : [],
+      Amount: ["", Validators.required],
+      Narration: ["", Validators.required],
       IsDeleted: [false],
       LocationId: [],
       IncomeId: []

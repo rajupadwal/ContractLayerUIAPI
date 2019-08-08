@@ -22,7 +22,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblIncomeType> SearchIncometype(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
-            { return new List<TblIncomeType>(); }
+            { return this.ktConContext.Set<TblIncomeType>(); }
 
             return this.ktConContext.Set<TblIncomeType>().Where(incometype => incometype.IncomeType.ToLower().Contains(searchString.ToLower()));
         }

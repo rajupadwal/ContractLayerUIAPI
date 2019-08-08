@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>Supplier Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="SupplierName" type="text" pInputText id="suppliername" name="suppliername" class="form-control" rows="3">
+                  <input formControlName="SupplierName" appValidationBorder type="text" pInputText id="suppliername" name="suppliername" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Supplier Name </label>-->
                 </span>
               </div>
@@ -25,7 +25,7 @@
               <label for="select"><strong>Mobile Number :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="SupplierMobileNo" type="text" pInputText id="suppliermobileno" name="suppliermobileno" class="form-control" rows="3">
+                  <input formControlName="SupplierMobileNo" appValidationBorder type="text" pInputText id="suppliermobileno" name="suppliermobileno" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Mobile No</label>-->
                 </span>
               </div>
@@ -40,7 +40,7 @@
               <label for="textarea-input"><strong>Address Details:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <textarea formControlName="Address" id="address" name="address" rows="2" class="form-control"></textarea>
+                  <textarea formControlName="Address" appValidationBorder id="address" name="address" rows="2" class="form-control"></textarea>
                   <!--<label for="float-input">Enter  Address Details.. </label>-->
                 </span>
               </div>
@@ -51,7 +51,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>State :</strong></label>
-              <select formControlName="State" id="select" name="select" class="form-control">
+              <select formControlName="State" appValidationBorder id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Maharashtra">Maharashtra</option>
                 <option value="Goa">Goa</option>
@@ -64,7 +64,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>District :</strong></label>
-              <select formControlName="District" id="select" name="select" class="form-control">
+              <select formControlName="District" appValidationBorder  id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Pune">Pune</option>
                 <option value="Nashik">Nashik</option>
@@ -79,7 +79,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Taluka :</strong></label>
-              <select formControlName="Taluka" id="select" name="select" class="form-control">
+              <select formControlName="Taluka" appValidationBorder id="select" name="select" class="form-control">
                 <option value="">Please select</option>
                 <option value="Maval">Maval</option>
                 <option value="Khed">Khed</option>
@@ -91,7 +91,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>City :</strong></label>
-              <select formControlName="City" id="select" name="select" class="form-control">
+              <select formControlName="City" appValidationBorder id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Pune">Pune</option>
                 <option value="Mumbai">Mumbai</option>
@@ -106,7 +106,7 @@
               <label for="select"><strong>Pin Code :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Pincode" type="text" pInputText id="pincode" name="Pincode" class="form-control" rows="3">
+                  <input formControlName="Pincode" appValidationBorder type="text" pInputText id="pincode" name="Pincode" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Pin Code</label>-->
                 </span>
               </div>
@@ -121,7 +121,7 @@
               <label for="textarea-input"><strong>GST No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="GstNo" type="text" pInputText id="gstno" name="gstno" class="form-control" rows="3">
+                  <input formControlName="GstNo" appValidationBorder type="text" pInputText id="gstno" name="gstno" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter GST No </label>-->
                 </span>
               </div>
@@ -134,7 +134,7 @@
               <label for="select"><strong>PAN Number :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PanNo" type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
+                  <input formControlName="PanNo" appValidationBorder type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter PAN No</label>-->
                 </span>
               </div>
@@ -213,7 +213,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
+        <button type="submit" [disabled]="!supplierForm.valid" class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
       </div>
     </form>
   </div>

@@ -22,7 +22,7 @@ export class ProductdescMasterComponent implements OnInit {
   ngOnInit() {
     this.productdescmasterForm = this.formBuilder.group({
       ProductId   : [0],
-      ProductName : [] 
+      ProductName: ["", Validators.required] 
      //IsDeleted    : [false]
     });
     if (this.config.isEditable == true) {

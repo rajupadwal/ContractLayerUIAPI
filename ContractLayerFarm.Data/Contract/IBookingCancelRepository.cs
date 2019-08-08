@@ -11,5 +11,6 @@ namespace ContractLayerFarm.Data.Contract
         bool Authenticate();
 
         IEnumerable<TblBookingCancelMaster> GetAllBookingCancel();
+        int GetBookingCancelNo();
     }
 }
