@@ -32,6 +32,10 @@ namespace ContractLayerFarm.Data.Repositories
                        .ToList();
             return TblEmployeeAdvance;
         }
-        
+        public int GetEmployeeAdvanceNo()
+        {
+            int maxEmployeeAdvanceNo = this.ktConContext.TblEmployeeAdvance.Select(p => p.RecordNo).DefaultIfEmpty(0).Max() + 1;
+            return maxEmployeeAdvanceNo;
+        }
     }
 }

@@ -117,7 +117,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Bookingcancel/GetAll',
     GETByID: API_URL + 'Bookingcancel/GetByID',
     EDIT: API_URL + 'Bookingcancel/Update',
-    DELETE: API_URL + 'Bookingcancel/Delete'
+    DELETE: API_URL + 'Bookingcancel/Delete',
+    GETBOOKINGCANCELNO: API_URL + 'Bookingcancel/GetBookingCancelNo'
   },
 
   
@@ -126,14 +127,16 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Employeeadvance/GetAll',
     GETByID: API_URL + 'Employeeadvance/GetByID',
     EDIT: API_URL + 'Employeeadvance/Update',
-    DELETE: API_URL + 'Employeeadvance/Delete'
+      DELETE: API_URL + 'Employeeadvance/Delete',
+    GETEMPLOYEEADVANCENO: API_URL + 'Employeeadvance/GetEmployeeAdvanceNo'
   },
   INCOME_API: {
     ADD: API_URL + 'Income/Add',
     GETALL: API_URL + 'Income/GetAll',
     GETByID: API_URL + 'Income/GetByID',
     EDIT: API_URL + 'Income/Update',
-    DELETE: API_URL + 'Income/Delete'
+    DELETE: API_URL + 'Income/Delete',
+    GETINCOMENO: API_URL + 'Income/GetIncomeNo'
   },
 
   EXPENCETYPE_API: {
@@ -142,7 +145,8 @@ export const APP_CONSTANT={
     GETByID: API_URL + 'Expencetype/GetByID',
     EDIT: API_URL + 'Expencetype/Update',
     DELETE: API_URL + 'Expencetype/Delete',
-    SEARCH_EXPENCETYPE: API_URL + 'Expencetype/SearchExpenceType'
+    SEARCH_EXPENCETYPE: API_URL + 'Expencetype/SearchExpenceType',
+    GETEXPENCENO: API_URL + 'Expencetype/GetExpenceNo'
   },
 
   EXPENCEDETAILS_API: {
@@ -150,7 +154,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Expencedetails/GetAll',
     GETByID: API_URL + 'Expencedetails/GetByID',
     EDIT: API_URL + 'Expencedetails/Update',
-    DELETE: API_URL + 'Expencedetails/Delete'
+    DELETE: API_URL + 'Expencedetails/Delete',
+    GETEXPENCENO: API_URL + 'Expencedetails/GetExpenceNo'
   },
   SALERECEIPT_API: {
     ADD: API_URL + 'Salesreceipt/Add',
@@ -207,7 +212,9 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Purchasepayment/GetAll',
     GETByID: API_URL + 'Purchasepayment/GetByID',
     EDIT: API_URL + 'Purchasepayment/Update',
-    DELETE: API_URL + 'Purchasepayment/Delete'
+    DELETE: API_URL + 'Purchasepayment/Delete',
+    PURCHASEPAYMENTNO: API_URL + 'Purchasepayment/GetPurchasePaymentNo'
+
   },
 
   PURCHASERETURNRECEIPT_API: {

@@ -22,7 +22,7 @@ namespace ContractLayerFarm.Data.Repositories
         public IEnumerable<TblExpenceTypeMaster> SearchExpenceType(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
-            { return new List<TblExpenceTypeMaster>(); }
+            { return this.ktConContext.Set<TblExpenceTypeMaster>(); }
 
             return this.ktConContext.Set<TblExpenceTypeMaster>().Where(expencetype => expencetype.ExpenceType.ToLower().Contains(searchString.ToLower()));
         }
@@ -31,7 +31,12 @@ namespace ContractLayerFarm.Data.Repositories
         {
             return true;
         }
+        public int GetExpenceNo()
+        {
+            int maxExpenceNo = this.ktConContext.TblExpenceTypeMaster.Select(p => p.ExpenceId).DefaultIfEmpty(0).Max() + 1;
+            return maxExpenceNo;
+        }
 
-        
+
     }
 }

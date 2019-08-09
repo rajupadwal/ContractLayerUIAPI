@@ -50,6 +50,7 @@ export class BookingDetailsComponent implements OnInit {
       Plan            : [{}],
       NoOfPlan        : [],
       NoOfChicks      : [],
+      EggsReturnRate  :[],
       Amount          : [],
       Employee        : [{}],
       EnquiryRef      : [],

@@ -22,14 +22,14 @@ export class PlanMasterComponent implements OnInit {
   ngOnInit() {
     this.planmasterForm = this.formBuilder.group({
       PlanId    : [0],
-      PlanName  : [],
-      ChickAgeInDays  : [],
-      DurationInDays  : [],
-      NoOfChicks  : [],
+      PlanName: ["", Validators.required],
+      ChickAgeInDays: ["", Validators.required],
+      DurationInDays: ["", Validators.required],
+      NoOfChicks: ["", Validators.required],
       EggsReturn  : [],
       ChicksReturnRate  : [],
-      Amount      : [],
-      AdminCharges      : []
+      Amount: ["", Validators.required],
+      AdminCharges: ["", Validators.required]
       
     });
     if (this.config.isEditable == true) {

@@ -18,6 +18,10 @@ export class EmployeeadvanceService {
   getData() {
     return this.employeeadvanceData;
   }
+
+  getEmployeeAdvanceNo() {
+    return this.http.get(APP_CONSTANT.EMPLOYEEADVANCE_API.GETEMPLOYEEADVANCENO);
+  }
   //saveEmployeeAdvance(formValues: any, isEditable: boolean) {
   //  return this.http.post(isEditable ? APP_CONSTANT.EMPLOYEEADVANCE_API.EDIT : APP_CONSTANT.EMPLOYEEADVANCE_API.ADD, formValues);
   //}

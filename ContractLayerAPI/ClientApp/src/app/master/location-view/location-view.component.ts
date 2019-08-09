@@ -39,8 +39,7 @@ export class LocationViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'EDIT';
-        newTH.className = 'pi pi - pencil';
+        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(LocationInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Location' },isEditable: true });
           ref.afterClosed.subscribe(result => {

@@ -34,7 +34,9 @@ export class PurchasePayemntService {
   //  return this.http.post(APP_CONSTANT.LOCATION_API.SEARCH_LOCATION, JSON.stringify(searchString));
   //}
 
-
+  getPurchasePaymentNo() {
+    return this.http.get(APP_CONSTANT.PURCHASEPAYMENT_API.PURCHASEPAYMENTNO);
+  }
   savePurchasepayment(formValues: any, isEditable:boolean) {
     return this.http.post(isEditable ? APP_CONSTANT.PURCHASEPAYMENT_API.EDIT : APP_CONSTANT.PURCHASEPAYMENT_API.ADD, formValues);
   }

@@ -27,6 +27,21 @@ namespace ContractLayerAPI.Controllers
             return Employeeadv;
         }
 
+        [HttpGet("[action]")]
+        public int GetEmployeeAdvanceNo()
+        {
+            try
+            {
+                int Employeeadvno = this._repoWrapper.Employeeadvance.GetEmployeeAdvanceNo();
+                return Employeeadvno;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         [HttpGet("[action]")] 
         public TblEmployeeAdvance GetByID(int recno)
         {

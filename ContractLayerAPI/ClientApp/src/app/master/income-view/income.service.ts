@@ -28,6 +28,9 @@ export class IncomeService {
   searchIncometype(searchString) {
     return this.http.post(APP_CONSTANT.INCOMETYPE_API.SEARCH_INCOMETYPE, JSON.stringify(searchString));
   }
+  getIncomeNo() {
+    return this.http.get(APP_CONSTANT.INCOME_API.GETINCOMENO);
+  }
 
 
 }

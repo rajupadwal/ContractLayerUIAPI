@@ -23,10 +23,10 @@ export class LocationInfoComponent implements OnInit {
     this.locationForm = this.formBuilder.group({
       
       LocationId: [0],
-      LocationName: [],
+      LocationName: ["", Validators.required],
       LocationCode: [],
-      PinCode: [],
-      Address: [],
+      PinCode: ["", Validators.required],
+      Address: ["", Validators.required],
       Remarks: [],
       ContactNo: [],
       VoucherType: [],

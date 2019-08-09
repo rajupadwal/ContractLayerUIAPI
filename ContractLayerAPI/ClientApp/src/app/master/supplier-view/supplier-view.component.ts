@@ -40,8 +40,7 @@ export class SupplierViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'EDIT';
-        newTH.className = 'pi pi - pencil';
+        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(SupplierMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Supplier' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -81,15 +80,23 @@ export class SupplierViewComponent implements OnInit {
     {
       headerName: 'Supplier Mobile No', field: 'SupplierMobileNo', ' width': 150
     },
+    { headerName: 'Address    ', field: 'Address', 'width': 100 },
     {
       headerName: 'State ', field: 'State', 'width': 100
     },
-    {
-      headerName: 'Address    ', field: 'Address', 'width': 100
-    },
+    { headerName: 'Taluka           ', field: 'Taluka', 'width': 100 },
     { headerName: 'District           ', field: 'District', 'width': 100 },
 
-    { headerName: 'Taluka           ', field: 'Taluka', 'width': 100 }
+    { headerName: 'City           ', field: 'City', 'width': 100 },
+    { headerName: 'Pincode           ', field: 'Pincode', 'width': 100 },
+    
+    { headerName: 'RegistrationNo           ', field: 'RegistrationNo', 'width': 100 },
+    { headerName: 'GstNo           ', field: 'GstNo', 'width': 100 },
+    { headerName: 'PanNo           ', field: 'PanNo', 'width': 100 },
+    { headerName: 'BankName           ', field: 'BankName', 'width': 100 },
+    { headerName: 'AccountNo           ', field: 'AccountNo', 'width': 100 },
+    { headerName: 'IfscCode           ', field: 'IfscCode', 'width': 100 },
+    { headerName: 'AccountType           ', field: 'AccountType', 'width': 100 }
 
   ];
 

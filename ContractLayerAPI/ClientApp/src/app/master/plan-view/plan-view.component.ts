@@ -71,18 +71,18 @@ export class PlanViewComponent implements OnInit {
     {
       headerName: 'Chick Age In Days', field: 'ChickAgeInDays',' width': 150 },
     {
-      headerName: 'Duration In Days ', field: 'DurationInDays' ,'width': 100},
+      headerName: 'Duration In Days ', field: 'DurationInDays' ,'width': 120},
     {
-      headerName: 'No Of Chicks    ', field: 'NoOfChicks', 'width': 100},
+      headerName: 'No Of Chicks    ', field: 'NoOfChicks', 'width': 120},
 
-    { headerName: 'Eggs Return           ', field: 'EggsReturn' , 'width': 100 },
+    { headerName: 'Eggs Return           ', field: 'EggsReturn' , 'width': 120 },
     {
-      headerName: 'Chicks Return Rate ', field: 'ChicksReturnRate', 'width': 100
+      headerName: 'Chicks Return Rate ', field: 'ChicksReturnRate', 'width': 140
     },
     {
       headerName: 'Amount    ', field: 'Amount', 'width': 100
     },
-    { headerName: 'AdminCharges           ', field: 'AdminCharges' , 'width': 100 }
+    { headerName: 'Admin Charges           ', field: 'AdminCharges' , 'width': 150 }
   ];
 
   rowData = [

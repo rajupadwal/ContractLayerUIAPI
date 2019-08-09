@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>Company Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="CompanyName" type="text" pInputText id="companyname" name="companyname" class="form-control" rows="3">
+                  <input formControlName="CompanyName" appValidationBorder type="text" pInputText id="companyname" name="companyname" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Company Name </label>-->
                 </span>
               </div>
@@ -25,7 +25,7 @@
               <label for="textarea-input"><strong>Email ID:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="EmailId" type="text" pInputText id="emailid" name="emailid" class="form-control" rows="3">
+                  <input formControlName="EmailId" appValidationBorder type="text" pInputText id="emailid" name="emailid" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Email ID </label>-->
                 </span>
               </div>
@@ -41,7 +41,7 @@
               <label for="textarea-input"><strong>PhoneNo :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PhoneNo" type="text" pInputText id="phoneno" name="phoneno" class="form-control">
+                  <input formControlName="PhoneNo" appValidationBorder type="text" pInputText id="phoneno" name="phoneno" class="form-control">
                   <!--<label for="float-input">Please Enter Phone No </label>-->
                 </span>
               </div>
@@ -54,7 +54,7 @@
               <label for="textarea-input"><strong>Mobile No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="MobileNo" type="text" pInputText id="mobileno" name="mobileno" class="form-control">
+                  <input formControlName="MobileNo" appValidationBorder type="text" pInputText id="mobileno" name="mobileno" class="form-control">
                   <!--<label for="float-input">Please Mobile No </label>-->
                 </span>
               </div>
@@ -70,7 +70,7 @@
               <label for="textarea-input"><strong>Address :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Address" type="text" pInputText id="address" name="address " class="form-control" rows="3">
+                  <input formControlName="Address" appValidationBorder type="text" pInputText id="address" name="address " class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Address </label>-->
                 </span>
               </div>
@@ -83,7 +83,7 @@
               <label for="textarea-input"><strong>Thanks Note :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ThankYouNote" type="text" pInputText id="thankyounote" name="thankyounote" class="form-control" rows="3">
+                  <input formControlName="ThankYouNote" appValidationBorder type="text" pInputText id="thankyounote" name="thankyounote" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Thanks Note </label>-->
                 </span>
               </div>
@@ -128,7 +128,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" [disabled]="!profilemasterForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

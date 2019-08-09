@@ -5,6 +5,7 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblIncomeDeatils
     {
+        public int PkId { get; set; }
         public int RecordNo { get; set; }
         public DateTime? Date { get; set; }
         public int? LocationId { get; set; }

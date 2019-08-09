@@ -11,7 +11,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Product Name :</strong></label>
-              <p-autoComplete formControlName="Product" [suggestions]="productList" (completeMethod)="searchProduct($event)"
+              <p-autoComplete formControlName="Product" appValidationBorder [suggestions]="productList" (completeMethod)="searchProduct($event)"
                               [dropdown]="true" [forceSelection]="true" field="ProductName"></p-autoComplete>
             </div>
           </div>
@@ -22,7 +22,7 @@
               <label for="textarea-input"><strong>Product Type :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ProductType" type="text" pInputText id="producttype" name="producttype" class="form-control">
+                  <input formControlName="ProductType" appValidationBorder type="text" pInputText id="producttype" name="producttype" class="form-control">
                   <!--<label for="float-input">Please Enter Product Type  </label>-->
                 </span>
               </div>
@@ -49,7 +49,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Unit :</strong></label>
-              <p-autoComplete formControlName="Unit" [suggestions]="unitList" (completeMethod)="searchUnit($event)"
+              <p-autoComplete formControlName="Unit" appValidationBorder [suggestions]="unitList" (completeMethod)="searchUnit($event)"
                               [dropdown]="true" [forceSelection]="true" field="UnitDescription"></p-autoComplete>
             </div>
           </div>
@@ -60,7 +60,7 @@
               <label for="textarea-input"><strong>Purchase Price:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PurchasePrice" type="text" pInputText id="purchaseprice" name="purchaseprice" class="form-control">
+                  <input formControlName="PurchasePrice" appValidationBorder type="text" pInputText id="purchaseprice" name="purchaseprice" class="form-control">
                   <!--<label for="float-input">Please Enter Purchase Price  </label>-->
                 </span>
               </div>
@@ -73,7 +73,7 @@
               <label for="textarea-input"><strong>Selling Price:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="SellingPrice" type="text" pInputText id="sellingprice" name="sellingprice" class="form-control">
+                  <input formControlName="SellingPrice" appValidationBorder type="text" pInputText id="sellingprice" name="sellingprice" class="form-control">
                   <!--<label for="float-input">Please Enter Selling Price  </label>-->
                 </span>
               </div>
@@ -89,7 +89,7 @@
               <label for="textarea-input"><strong>CGST :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Cgst" type="text" pInputText id="cgst" name="cgst" class="form-control">
+                  <input formControlName="Cgst" appValidationBorder type="text" pInputText id="cgst" name="cgst" class="form-control">
                   <!--<label for="float-input">Please Enter CGST  </label>-->
                 </span>
               </div>
@@ -102,7 +102,7 @@
               <label for="textarea-input"><strong>SGST :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Sgst" type="text" pInputText id="sgst" name="sgst" class="form-control">
+                  <input formControlName="Sgst" appValidationBorder type="text" pInputText id="sgst" name="sgst" class="form-control">
                   <!--<label for="float-input">Please Enter SGST  </label>-->
                 </span>
               </div>
@@ -144,7 +144,7 @@
               <label for="textarea-input"><strong>Opening Stock :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="OpeningStock" id="openingstock" name="openingstock" class="form-control" />
+                  <input formControlName="OpeningStock" appValidationBorder id="openingstock" name="openingstock" class="form-control" />
                   <!--<label for="float-input">(Please Enter OpeningStock) </label>-->
                 </span>
               </div>
@@ -160,7 +160,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" [disabled]="!productForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

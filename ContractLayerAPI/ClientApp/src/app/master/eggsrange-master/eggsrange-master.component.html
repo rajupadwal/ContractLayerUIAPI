@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>No. Of Eggs From:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="EggsRangeFrom" id="eggsrangefrom" name="eggsrangefrom" class="form-control" />
+                  <input formControlName="EggsRangeFrom" appValidationBorder id="eggsrangefrom" name="eggsrangefrom" class="form-control" />
                   <!--<label for="float-input">(Enter Pan Card No) </label>-->
                 </span>
               </div>
@@ -25,7 +25,7 @@
               <label for="textarea-input"><strong>No. Of Eggs To:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="EggsRangeTo" id="eggsrangeto" name="eggsrangeto" class="form-control" />
+                  <input formControlName="EggsRangeTo" appValidationBorder id="eggsrangeto" name="eggsrangeto" class="form-control" />
                   <!--<label for="float-input">(Enter Pan Card No) </label>-->
                 </span>
               </div>
@@ -38,7 +38,7 @@
               <label for="textarea-input"><strong>Eggs Rate:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="EggsRate" id="eggsrate" name="eggsrate" class="form-control" />
+                  <input formControlName="EggsRate" appValidationBorder id="eggsrate" name="eggsrate" class="form-control" />
                   <!--<label for="float-input">(Please Enter Voter Id) </label>-->
                 </span>
               </div>
@@ -48,7 +48,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" [disabled]="!eggsrangemasterForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

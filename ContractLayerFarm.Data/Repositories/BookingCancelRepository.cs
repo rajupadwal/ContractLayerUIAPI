@@ -28,6 +28,12 @@ namespace ContractLayerFarm.Data.Repositories
                        .ToList();
             return TblBookingCancelMaster;
         }
+
+        public int GetBookingCancelNo()
+        {
+            int maxBookingCancelNo = this.ktConContext.TblBookingCancelMaster.Select(p => p.RecordNo).DefaultIfEmpty(0).Max() + 1;
+            return maxBookingCancelNo;
+        }
         bool IBookingCancelRepository.Authenticate()
         {
             return true;

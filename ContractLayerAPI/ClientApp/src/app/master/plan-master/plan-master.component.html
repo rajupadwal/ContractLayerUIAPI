@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>Plan Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PlanName" type="text" pInputText id="planname" name="planname" class="form-control" rows="3">
+                  <input formControlName="PlanName" appValidationBorder type="text" pInputText id="planname" name="planname" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Plan Name </label>-->
                 </span>
               </div>
@@ -25,7 +25,7 @@
               <label for="textarea-input"><strong>Chicks Age In Days:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ChickAgeInDays" type="text" pInputText id="chickageindays" name="chickageindays" class="form-control" rows="3">
+                  <input formControlName="ChickAgeInDays" appValidationBorder type="text" pInputText id="chickageindays" name="chickageindays" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Chicks Age In Days </label>-->
                 </span>
               </div>
@@ -38,7 +38,7 @@
               <label for="textarea-input"><strong>Duration In Days:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="DurationInDays" type="text" pInputText id="durationindays" name="durationindays " class="form-control" rows="3">
+                  <input formControlName="DurationInDays" appValidationBorder type="text" pInputText id="durationindays" name="durationindays " class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Duration In Days </label>-->
                 </span>
               </div>
@@ -54,7 +54,7 @@
               <label for="textarea-input"><strong>No Of Chicks :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="NoOfChicks" type="text" pInputText id="noofchicks" name="noofchicks" class="form-control" rows="3">
+                  <input formControlName="NoOfChicks" appValidationBorder type="text" pInputText id="noofchicks" name="noofchicks" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter No Of Chicks </label>-->
                 </span>
               </div>
@@ -97,7 +97,7 @@
               <label for="textarea-input"><strong>Amount :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Amount" type="text" pInputText id="amount" name="amount" class="form-control" rows="3">
+                  <input formControlName="Amount" appValidationBorder type="text" pInputText id="amount" name="amount" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Amount </label>-->
                 </span>
               </div>
@@ -110,7 +110,7 @@
               <label for="textarea-input"><strong>Admin Charges:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="AdminCharges" type="text" pInputText id="admincharges" name="admincharges" class="form-control" rows="3">
+                  <input formControlName="AdminCharges" appValidationBorder type="text" pInputText id="admincharges" name="admincharges" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Admin Charges </label>-->
                 </span>
               </div>
@@ -126,7 +126,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" [disabled]="!planmasterForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

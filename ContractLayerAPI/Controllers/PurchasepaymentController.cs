@@ -26,6 +26,22 @@ namespace ContractLayerAPI.Controllers
             var Purchasepayment = this._repoWrapper.Purchasepayment.GetAllPurchasepayment();
             return Purchasepayment;
         }
+
+        [HttpGet("[action]")]
+        public int GetPurchasePaymentNo()
+        {
+            try
+            {
+                int Purchasepaumentno = this._repoWrapper.Purchasepayment.GetPurchasePaymentNo();
+                return Purchasepaumentno;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         [HttpGet("[action]")]
         public TblPurchasepayment GetByID(int RecordNo)
         {

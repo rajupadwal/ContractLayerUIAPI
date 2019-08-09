@@ -29,16 +29,16 @@ export class ProductMasterComponent implements OnInit {
 
       PkId         :  [0],
       Product      : [{}],
-      ProductType  :  [],
+      ProductType: ["", Validators.required],
       Hsnsac       :  [],
       Unit         : [{}],
-      PurchasePrice  :  [],
-      SellingPrice :  [],
-      Cgst         :  [0],
-      Sgst         :  [0],
-      Igst         :  [0],
-      MinimumQty   :  [0],
-      OpeningStock: [0],
+      PurchasePrice: ["", Validators.required],
+      SellingPrice: ["", Validators.required],
+      Cgst: ["", Validators.required],
+      Sgst: ["", Validators.required],
+      Igst         :  [],
+      MinimumQty   :  [],
+      OpeningStock: ["", Validators.required],
       ProductId: [],
       UnitId: []
     });
@@ -73,10 +73,12 @@ export class ProductMasterComponent implements OnInit {
     });
   }
 
+  
   setDataForEdit = () => {
     this.isEditable = true;
     this.productForm.setValue(this.config.data);
   }
+
   
   saveProduct() {
       let httpOptions = {

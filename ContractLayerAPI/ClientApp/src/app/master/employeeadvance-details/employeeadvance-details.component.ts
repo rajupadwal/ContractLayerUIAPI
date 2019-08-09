@@ -26,12 +26,21 @@ export class EmployeeadvanceDetailsComponent implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private locationService: LocationService, private employeeService: EmployeeService, private employeeadvanceService: EmployeeadvanceService) { }
 
   ngOnInit() {
+
+    if (this.config.isEditable == false) {
+      this.employeeadvanceService.getEmployeeAdvanceNo()
+        .subscribe((employeeadvno: any) => {
+          this.employeeadvanceForm.controls['RecordNo'].patchValue(employeeadvno);
+        });
+    }
+
     this.employeeadvanceForm = this.formBuilder.group({
-      RecordNo        : [0],
-      RecordDate      : [],
+      PkId:[0],
+      RecordNo: [],
+      RecordDate: ["", Validators.required],
       Location        : [{}],
-      Advance         : [],
-      Narration       : [],
+      Advance: ["", Validators.required],
+      Narration: ["", Validators.required],
       Employee: [{}],
       LocationId: [],
       EmployeeId:[]

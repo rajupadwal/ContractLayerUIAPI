@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>Location Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="LocationName" type="text" pInputText id="LocationName" name="LocationName" class="form-control" rows="3">
+                  <input formControlName="LocationName" appValidationBorder type="text" pInputText id="LocationName" name="LocationName" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Location Name </label>-->
                 </span>
               </div>
@@ -40,7 +40,7 @@
               <label for="textarea-input"><strong>Address Details:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <textarea formControlName="Address" id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
+                  <textarea formControlName="Address" appValidationBorder id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
                   <!--<label for="float-input">Enter  Address Details.. </label>-->
                 </span>
               </div>
@@ -54,7 +54,7 @@
               <label for="textarea-input"><strong>Location Pin Code:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PinCode" type="text" pInputText id="pincode" name="pincode" class="form-control" rows="3">
+                  <input formControlName="PinCode" appValidationBorder type="text" pInputText id="pincode" name="pincode" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Location Pin Code </label>-->
                 </span>
               </div>
@@ -94,7 +94,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
+        <button type="submit" [disabled]="!locationForm.valid" class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
       </div>
     </form>
 </div>

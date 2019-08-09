@@ -29,19 +29,19 @@ export class SupplierMasterComponent implements OnInit {
     this.supplierForm = this.formBuilder.group({
 
       SupplierId  : [0],
-      SupplierName : [],
-      SupplierMobileNo : [],
-      Address : [],
-      State : [],
-      District : [],
-      Taluka : [],
+      SupplierName: ["", Validators.required],
+      SupplierMobileNo: ["", Validators.required],
+      Address: ["", Validators.required],
+      State: ["", Validators.required],
+      District: ["", Validators.required],
+      Taluka: ["", Validators.required],
       PlantAddress	:[],
-      City : [],
-      Pincode : [],
+      City: ["", Validators.required],
+      Pincode: ["", Validators.required],
       WebAddress : [],
       RegistrationNo : [],
-      GstNo : [],
-      PanNo : [],
+      GstNo: ["", Validators.required],
+      PanNo: ["", Validators.required],
       Remarks : [],
       ContactPerson : [],
       ConatctPersonNo : [],
@@ -51,7 +51,7 @@ export class SupplierMasterComponent implements OnInit {
       IfscCode : [],
       MicrCode : [],
       BranchName : [],
-      AccountType : [],
+      AccountType : []
     });
     if (this.config.isEditable == true) {
       this.setDataForEdit();

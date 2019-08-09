@@ -32,5 +32,10 @@ namespace ContractLayerFarm.Data.Repositories
                        .ToList();
             return TblOfficexpencesDetails;
         }
+        public int GetExpenceNo()
+        {
+            int maxExpenceNo = this.ktConContext.TblOfficeExpencesDetails.Select(p => p.ExpencesNo).DefaultIfEmpty(0).Max() + 1;
+            return maxExpenceNo;
+        }
     }
 }

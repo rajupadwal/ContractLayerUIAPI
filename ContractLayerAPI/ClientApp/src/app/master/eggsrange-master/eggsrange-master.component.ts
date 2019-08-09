@@ -22,9 +22,9 @@ export class EggsrangeMasterComponent implements OnInit {
   ngOnInit() {
     this.eggsrangemasterForm = this.formBuilder.group({
       EggsRangeCode: [0],
-      EggsRangeFrom: [],
-      EggsRangeTo: [],
-      EggsRate: []
+      EggsRangeFrom: ["", Validators.required],
+      EggsRangeTo: ["", Validators.required],
+      EggsRate: ["", Validators.required]
     });
     if (this.config.isEditable == true) {
       this.setDataForEdit();

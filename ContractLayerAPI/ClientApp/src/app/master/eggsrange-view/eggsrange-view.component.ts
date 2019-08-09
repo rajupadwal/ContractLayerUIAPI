@@ -66,9 +66,9 @@ export class EggsrangeViewComponent implements OnInit {
     },
 
     
-    { headerName: 'EggsRangeFrom ', field: 'EggsRangeFrom', 'width': 150 },
-    { headerName: 'EggsRangeTo ', field: 'EggsRangeTo', 'width': 150 },
-    { headerName: 'EggsRate ', field: 'EggsRate', 'width': 150 },
+    { headerName: 'Eggs Range From ', field: 'EggsRangeFrom', 'width': 150 },
+    { headerName: 'Eggs Range To ', field: 'EggsRangeTo', 'width': 150 },
+    { headerName: 'Eggs Rate ', field: 'EggsRate', 'width': 150 },
   ];
 
   rowData = [

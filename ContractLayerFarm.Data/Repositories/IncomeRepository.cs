@@ -19,6 +19,8 @@ namespace ContractLayerFarm.Data.Repositories
 
                     }
 
+        
+
         bool IIncomeRepository.Authenticate()
         {
             return true;
@@ -32,6 +34,12 @@ namespace ContractLayerFarm.Data.Repositories
                        .Include(blog => blog.Income)
                        .ToList();
             return TblIncomeDeatils;
+        }
+
+        public int GetIncomeNo()
+        {
+            int maxIncomeNo = this.ktConContext.TblIncomeDeatils.Select(p => p.PkId).DefaultIfEmpty(0).Max() + 1;
+            return maxIncomeNo;
         }
     }
 }

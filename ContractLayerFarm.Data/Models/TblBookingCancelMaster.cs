@@ -5,6 +5,7 @@ namespace ContractLayerFarm.Data.Models
 {
     public partial class TblBookingCancelMaster
     {
+        public int PkId { get; set; }
         public int RecordNo { get; set; }
         public int? LocationId { get; set; }
         public int? CustomerId { get; set; }

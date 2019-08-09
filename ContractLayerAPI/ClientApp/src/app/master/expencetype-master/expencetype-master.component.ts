@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { DialogConfig } from "src/app/dialog/dialog-config";
 import { DialogRef } from '../../dialog/dialog-ref';
+import { ExpencetypeService } from '../expencetype-view/expencetype.service';
 
 @Component({
   selector: 'app-expencetype-master',
@@ -17,12 +18,21 @@ export class ExpencetypeMasterComponent implements OnInit {
 
   expencetypeForm: FormGroup;
   public isEditable: boolean = false;
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, private expencetypeService:ExpencetypeService) { }
 
   ngOnInit() {
+
+    if (this.config.isEditable == false) {
+      this.expencetypeService.getExpenceNo()
+        .subscribe((expenceno: any) => {
+          this.expencetypeForm.controls['ExpenceId'].patchValue(expenceno);
+        });
+    }
+
     this.expencetypeForm = this.formBuilder.group({
-      ExpenceId: [0],
-      ExpenceType: [],
+      PkId     :[0],
+      ExpenceId: [],
+      ExpenceType: ["", Validators.required],
       IsDeleted:[false]
                  
     });

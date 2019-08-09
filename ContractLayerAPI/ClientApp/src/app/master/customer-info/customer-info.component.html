@@ -51,7 +51,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>State :</strong></label>
-              <select formControlName="State" id="select" name="select" class="form-control">
+              <select formControlName="State" appValidationBorder id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Maharashtra">Maharashtra</option>
                 <option value="Goa">Goa</option>
@@ -64,7 +64,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>District :</strong></label>
-              <select formControlName="District" id="select" name="select" class="form-control">
+              <select formControlName="District" appValidationBorder id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Pune">Pune</option>
                 <option value="Nashik">Nashik</option>
@@ -77,7 +77,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Taluka :</strong></label>
-              <select formControlName="Taluka" id="select" name="select" class="form-control">
+              <select formControlName="Taluka" appValidationBorder id="select" name="select" class="form-control">
                 <option value="">Please select</option>
                 <option value="Maval">Maval</option>
                 <option value="Khed">Khed</option>
@@ -92,7 +92,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>City :</strong></label>
-              <select formControlName="City" id="select" name="select" class="form-control">
+              <select formControlName="City"  appValidationBorder id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Pune">Pune</option>
                 <option value="Mumbai">Mumbai</option>
@@ -107,7 +107,7 @@
               <label for="textarea-input"><strong>PIN Code:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Pincode" type="text" pInputText id="pincode" name="pincode" class="form-control">
+                  <input formControlName="Pincode"  appValidationBorder type="text" pInputText id="pincode" name="pincode" class="form-control">
 
                 </span>
 
@@ -119,7 +119,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Location :</strong></label>
-              <p-autoComplete formControlName="Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+              <p-autoComplete formControlName="Location"  appValidationBorder [suggestions]="locationList" (completeMethod)="searchLocation($event)"
                               [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
 
             </div>
@@ -134,7 +134,7 @@
               <label for="textarea-input"><strong>GST No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="GstNo" appValidationBorder type="text" pInputText id="gstno" name="gstno" class="form-control">
+                  <input formControlName="GstNo"  type="text" pInputText id="gstno" name="gstno" class="form-control">
 
                 </span>
               </div>
@@ -147,7 +147,7 @@
               <label for="textarea-input"><strong>PAN No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PanNo" appValidationBorder type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
+                  <input formControlName="PanNo"  type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
 
                 </span>
               </div>
@@ -163,7 +163,7 @@
               <label for="textarea-input"><strong>Contact Person Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ContactPerson" appValidationBorder id="ContactPerson" name="ContactPerson" class="form-control" />
+                  <input formControlName="ContactPerson" id="ContactPerson" name="ContactPerson" class="form-control" />
 
                 </span>
               </div>
@@ -176,7 +176,7 @@
               <label for="textarea-input"><strong>Contact No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="ConatctPersonNo" appValidationBorder id="ConatctPersonNo" name="ConatctPersonNo" class="form-control" />
+                  <input formControlName="ConatctPersonNo" id="ConatctPersonNo" name="ConatctPersonNo" class="form-control" />
 
                 </span>
               </div>
@@ -189,7 +189,7 @@
               <label for="textarea-input"><strong>Designation:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Designation" appValidationBorder id="designation" name="designation" class="form-control" />
+                  <input formControlName="Designation" id="designation" name="designation" class="form-control" />
 
                 </span>
               </div>
@@ -205,7 +205,20 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Account Holder Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="AccountHolderName"  id="accountholdername" name="accountholdername" class="form-control" />
+
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
               <label for="textarea-input"><strong>BankName:</strong></label>
@@ -218,7 +231,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
               <label for="textarea-input"><strong>IFSC Code:</strong></label>
@@ -233,7 +246,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
               <label for="textarea-input"><strong>AccountType:</strong></label>
@@ -246,7 +259,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
               <label for="textarea-input"><strong>Account No:</strong></label>

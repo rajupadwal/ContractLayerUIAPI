@@ -27,9 +27,16 @@ export class PurchasepaymentDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.purchasepaymentdetailsForm = this.formBuilder.group({
+    if (this.config.isEditable == false) {
+      this.purchasepayemntservice.getPurchasePaymentNo()
+        .subscribe((purchasepaymentno: any) => {
+          this.purchasepaymentdetailsForm.controls['RecordNo'].patchValue(purchasepaymentno);
+        });
+    }
 
-      RecordNo        : [0],
+    this.purchasepaymentdetailsForm = this.formBuilder.group({
+      PkId            :[0],
+      RecordNo        : [],
       Date            : [],
       Location        : [{}],
       Supplier        : [{}],

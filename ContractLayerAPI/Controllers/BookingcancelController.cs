@@ -26,6 +26,20 @@ namespace ContractLayerAPI.Controllers
             var Bookingcancel = this._repoWrapper.Bookingcancel.GetAllBookingCancel();
             return Bookingcancel;
         }
+        [HttpGet("[action]")]
+        public int GetBookingCancelNo()
+        {
+            try
+            {
+                int BookingCancelNo = this._repoWrapper.Bookingcancel.GetBookingCancelNo();
+                return BookingCancelNo;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
 
         [HttpGet("[action]")] 
         public TblBookingCancelMaster GetByID(int RecordNo)
