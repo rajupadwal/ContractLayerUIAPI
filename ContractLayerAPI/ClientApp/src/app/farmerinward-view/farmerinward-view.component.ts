@@ -69,6 +69,9 @@ export class FarmerinwardViewComponent implements OnInit {
     {
       headerName: 'Plan Name ', field: 'PlanName', 'width': 100
     },
+    {
+      headerName: 'Collection Agent Name ', field: 'CollectionAgentName', 'width': 100
+    },
   ];
 
   rowData;
@@ -99,19 +102,14 @@ export class FarmerinwardViewComponent implements OnInit {
     });
   }
 
-
+  
   RefreshGrid = () => {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.farmerinwardService.loadFarmerInwardMaster().subscribe(
+    return this.farmerinwardService.loadFarmerInwardMaster().subscribe(
       (response) => {
         this.rowData = response;
-      },
-
-      (error) => {
-        console.log(error);
-
       });
 
     //delete (bookingcancel) {

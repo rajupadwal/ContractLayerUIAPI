@@ -21,7 +21,7 @@ export class PurchaseBillComponent implements OnInit {
   supplierList;
   locationList;
   productlist;
-  unitLists;
+  producttypelist;
   isEditable: boolean = false;
   constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService,
     private productService: ProductService,private productdescservice: ProductdescService,  private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
@@ -33,7 +33,7 @@ export class PurchaseBillComponent implements OnInit {
     this.loadSuppliers();
     this.loadLocations();
     this.loadProducts();
-    this.loadUnits();
+    //this.loadUnits();
 
     this.PurchaseBillMaster.BeforeTaxAmt = 0;
     this.PurchaseBillMaster.TransportationCost = 0;
@@ -107,7 +107,7 @@ export class PurchaseBillComponent implements OnInit {
     this.productService.getAllPurchasebillmastedetails(this.config.data).subscribe((response) => {
       this.PurchaseBillDetailsList = response;
       this.loadProducts();
-      this.loadUnits();
+      //this.loadUnits();
     });
   }
 
@@ -119,17 +119,24 @@ export class PurchaseBillComponent implements OnInit {
   }
 
   loadProducts = () => {
-    this.productService.loadProducts()
+    this.productdescservice.loadProducts()
       .subscribe((products: any) => {
         this.productlist = products;
-        this.productlist.forEach((key: any, value: any) => {
-          key.ProductTypeName = key.Product.ProductName + '-' + key.ProductType;
-        })
-
 
         if (this.isEditable == true && this.PurchaseBillDetailsList) {
           this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
+
+            let newDetails = new PurchaseBillDetail();
+            newDetails.ProductId = key.Product.ProductId;
+
+            this.productService.getProductTypeByProductID(newDetails)
+              .subscribe((types: any) => {
+                this.producttypelist = types;
+                this.producttypelist.forEach((key: any, value: any) => {
+                  key.Producttypeun = key.ProductType + '-' + key.Unit.UnitDescription;
+                })
+              });
           })
         }
       });
@@ -142,17 +149,17 @@ export class PurchaseBillComponent implements OnInit {
       });
   }
 
-  loadUnits = () => {
-    this.productService.loadUnits()
-      .subscribe((units: any) => {
-        this.unitLists = units;
-        if (this.isEditable == true && this.PurchaseBillDetailsList) {
-          this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
-            key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
-          })
-        }
-      });
-  }
+  //loadUnits = () => {
+  //  this.productService.loadUnits()
+  //    .subscribe((units: any) => {
+  //      this.unitLists = units;
+  //      if (this.isEditable == true && this.PurchaseBillDetailsList) {
+  //        this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
+  //          key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
+  //        })
+  //      }
+  //    });
+  //}
 
   addNewItem = () => {
     let newDetails = new PurchaseBillDetail();
@@ -178,7 +185,7 @@ export class PurchaseBillComponent implements OnInit {
     this.PurchaseBillMaster.TblPurchaseBillDt.forEach((key: any, value: any) => {
       key.Product = null;
       key.PkId = 0;
-      key.Units = null;
+      key.Producttypeun = null;
     })
 
     //adding deleted records List
@@ -186,7 +193,6 @@ export class PurchaseBillComponent implements OnInit {
 
     // store user details and jwt token in local storage to keep user logged in between page refreshes
     this.dialog.close();
-
   }
 
   onSelectSuppliers = (value) => {
@@ -198,15 +204,62 @@ export class PurchaseBillComponent implements OnInit {
 
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
-    model.ProductType = model.Product.ProductType;
-    model.Rate = model.Product.SellingPrice;
-    model.CgstPercentage = model.Product.Cgst;
-    model.SgstPercentage = model.Product.Sgst;
-    
+    this.PurchaseBillDetailsList.ProductId = model.ProductId;
+
+    let newDetails = new PurchaseBillDetail();
+    newDetails.ProductId = model.Product.ProductId;
+
+    this.productService.getProductTypeByProductID(newDetails)
+      .subscribe((types: any) => {
+        this.producttypelist = types;
+        this.producttypelist.forEach((key: any, value: any) => {
+          key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
+        })
+      });
+
+   // model.ProductType = model.Product.ProductType;
+  }
+
+  onSelectProducttypes = (value, model: any) => {
+    model.ProductId = model.Product.ProductId;
+    model.ProductType = model.Producttypeun.ProductType;
+    model.Unit = model.Producttypeun.Unit.UnitDescription;
+    model.Rate = model.Producttypeun.SellingPrice;
+    model.CgstPercentage = model.Producttypeun.Cgst;
+    model.SgstPercentage = model.Producttypeun.Sgst;
+    model.HsnCode = model.Producttypeun.Hsnsac;
   };
 
-  onSelectUnits = (value, model: any) => {
-    model.UnitId = model.Units.UnitId;
+  //onSelectUnits = (value, model: any) => {
+  //  model.UnitId = model.Units.UnitId;
+  //};
+
+  searchProducttype = (value) => {
+    let newDetails = new PurchaseBillDetail();
+    newDetails.ProductId = this.PurchaseBillDetailsList.ProductId;
+
+    this.productService.getProductTypeByProductID(newDetails)
+      .subscribe((types: any) => {
+        this.producttypelist = types;
+        this.producttypelist.forEach((key: any, value: any) => {
+          key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
+        })
+
+        if (this.isEditable == true && this.PurchaseBillDetailsList) {
+          this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
+            let newDetails = new PurchaseBillDetail();
+            newDetails.ProductId = key.Product.ProductId;
+
+            this.productService.getProductTypeByProductID(newDetails)
+              .subscribe((types: any) => {
+                this.producttypelist = types;
+                this.producttypelist.forEach((key: any, value: any) => {
+                  key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
+                })
+              });
+          })
+        }
+      });
   };
 
   searchSupplier = (value) => {
@@ -222,10 +275,10 @@ export class PurchaseBillComponent implements OnInit {
     //made Api call for search
     this.loadProducts();
   };
-  searchUnits = (value) => {
-    //made Api call for search
-    this.loadUnits();
-  };
+  //searchUnits = (value) => {
+  //  //made Api call for search
+  //  this.loadUnits();
+  //};
 }
 
 export class PurchaseBillDetail {
@@ -235,7 +288,7 @@ export class PurchaseBillDetail {
   BillDate: Date = new Date();
   ProductId: number = 0;
   ProductType: string = '';
-  UnitId: number = 0;
+  Unit: string;
   HsnCode: string = '';
   Quantity: number=0;
   Rate: number = 0;
@@ -247,7 +300,7 @@ export class PurchaseBillDetail {
   IgstPercentage: number = 0;
   TotalAmount: number = 0;
   PkId: number = 0;
-  Units: any;
+  Producttypeun: any;
   Product: any;
  
 }

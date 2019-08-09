@@ -11,7 +11,7 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? BillDate { get; set; }
         public int? ProductId { get; set; }
         public string ProductType { get; set; }
-        public int UnitId { get; set; }
+        public string Unit { get; set; }
         public decimal? Quantity { get; set; }
         public decimal? Rate { get; set; }
         public decimal? Amount { get; set; }

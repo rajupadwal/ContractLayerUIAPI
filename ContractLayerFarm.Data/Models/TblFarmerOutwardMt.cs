@@ -10,6 +10,7 @@ namespace ContractLayerFarm.Data.Models
             TblFarmerOutwardDt = new HashSet<TblFarmerOutwardDt>();
         }
 
+        public int PkId { get; set; }
         public int RecordNo { get; set; }
         public DateTime Date { get; set; }
         public int LocationId { get; set; }

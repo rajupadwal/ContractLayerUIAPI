@@ -42,12 +42,21 @@ namespace ContractLayerAPI.Controllers
             var Booking = this._repoWrapper.Booking.GetAllBooking();
             return Booking;
         }
+
+        [HttpPost("GetPlanByCustID")]
+        public IEnumerable<TblBookingMaster> GetPlanByCustID([FromBody] TblBookingMaster booking)
+        {
+            var Booking = this._repoWrapper.Booking.GetAllBookingForCustomer(booking);
+            return Booking;
+        }
+
         [HttpGet("[action]")]
         public TblBookingMaster GetByID(int RecordNo)
         {
             var Booking = this._repoWrapper.Booking.FindByCondition(x => x.RecordNo == RecordNo).FirstOrDefault();
             return Booking;
         }
+
         [HttpPost("Add")]
         public bool Add([FromBody] TblBookingMaster booking)
         {

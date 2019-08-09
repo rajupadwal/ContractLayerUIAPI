@@ -38,52 +38,60 @@
 
             <p-autoComplete [(ngModel)]="FarmerInwardMaster.Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
                             [dropdown]="true" (onSelect)="onSelectLocations($event)" [forceSelection]="true" field="LocationName"></p-autoComplete>
-
-
           </div>
         </div>
       </div>
     </div>
 
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="select"><strong>Customer Name :</strong></label>
-              <p-autoComplete [(ngModel)]="FarmerInwardMaster.Customer" [suggestions]="customerList" (completeMethod)="searchCustomer($event)"
-                              [dropdown]="true" (onSelect)="onSelectCustomers($event)" [forceSelection]="true" field="CustmerName"></p-autoComplete>
-            </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="select"><strong>Customer Name :</strong></label>
+            <p-autoComplete [(ngModel)]="FarmerInwardMaster.Customer" [suggestions]="customerList" (completeMethod)="searchCustomer($event)"
+                            [dropdown]="true" (onSelect)="onSelectCustomers($event)" [forceSelection]="true" field="CustmerName"></p-autoComplete>
           </div>
         </div>
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="select"><strong>Plan :</strong></label>
-              <p-autoComplete [(ngModel)]="FarmerInwardMaster.Plan" [suggestions]="planList" (completeMethod)="searchPlan($event)"
-                              [dropdown]="true" (onSelect)="onSelectPlans($event)" [forceSelection]="true" field="PlanName"></p-autoComplete>
-            </div>
-          </div>
-        </div>
-
       </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="select"><strong>Plan :</strong></label>
+            <p-autoComplete [(ngModel)]="FarmerInwardMaster.Plan" [suggestions]="planList" (completeMethod)="searchPlan($event)"
+                            [dropdown]="true" (onSelect)="onSelectPlans($event)" [forceSelection]="true" field="PlanName"></p-autoComplete>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Collection Agent Name :</strong></label>
+            <div>
+              <span class="ui-float-label">
+                <input [(ngModel)]="FarmerInwardMaster.CollectionAgentName" type="text" pInputText id="collectionagentname" name="collectionagentname" class="form-control" rows="3" >
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <div class="col-sm-10">
+      <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
             <strong>Product Details</strong>
             <div style="width:10px">
             </div>
-
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
               <div class="card-block ">
                 <div class="form-group">
                   Product Name
                 </div>
               </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <div class="card-block">
                 <div class="form-group">
                   standard Pack
@@ -94,7 +102,6 @@
               <div class="card-block">
                 <div class="form-group">
                   <span class="ui-float-label">
-
                     Quantity
                   </span>
                 </div>
@@ -109,24 +116,25 @@
             </div>
           </div>
           <div class="row" *ngFor="let item of FarmerInwardDetailsList">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
               <div class="card-block">
                 <div class="form-group">
                   <span class="ui-float-label">
                     <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
-                                    [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductTypeName"></p-autoComplete>
+                                    [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
 
                     <label for="float-input"></label>
                   </span>
                 </div>
               </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <div class="card-block">
                 <div class="form-group">
                   <span class="ui-float-label">
-                    <p-autoComplete [(ngModel)]="item.Units" [suggestions]="unitLists" (completeMethod)="searchUnits($event)"
-                                    [dropdown]="true" (onSelect)="onSelectUnits($event,item)" [forceSelection]="true" field="UnitDescription"></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="item.Producttype" [suggestions]="producttypelist" (completeMethod)="searchProducttype($event,item)"
+                                    [dropdown]="true" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
+                    <label for="float-input"></label>
                   </span>
                 </div>
               </div>

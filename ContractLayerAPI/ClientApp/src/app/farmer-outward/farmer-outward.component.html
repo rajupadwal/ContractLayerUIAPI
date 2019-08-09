@@ -71,15 +71,15 @@
 
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
               <div class="card-block ">
                 <div class="form-group">
                   Product Name
                 </div>
               </div>
             </div>
-            <div class="col-sm-2">
-              <div class="card-block">
+            <div class="col-sm-3">
+              <div class="card-block ">
                 <div class="form-group">
                   Standard Pack
                 </div>
@@ -112,23 +112,24 @@
             </div>
           </div>
           <div class="row" *ngFor="let item of FarmerOutwardDetailsList">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
               <div class="card-block">
                 <div class="form-group">
                   <span class="ui-float-label">
-                    <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)" 
-                                    [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductTypeName"></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
+                                    [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
                     <label for="float-input"></label>
                   </span>
                 </div>
               </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
               <div class="card-block">
                 <div class="form-group">
                   <span class="ui-float-label">
-                    <p-autoComplete [(ngModel)]="item.Units" [suggestions]="unitLists" (completeMethod)="searchUnits($event)"
-                                    [dropdown]="true" (onSelect)="onSelectUnits($event,item)" [forceSelection]="true" field="UnitDescription"></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="item.Producttype" [suggestions]="producttypelist" (completeMethod)="searchProducttype($event)"
+                                    [dropdown]="true" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
+                    <label for="float-input"></label>
                   </span>
                 </div>
               </div>

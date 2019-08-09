@@ -34,11 +34,11 @@ export class ProductMasterComponent implements OnInit {
       Unit         : [{}],
       PurchasePrice  :  [],
       SellingPrice :  [],
-      Cgst         :  [],
-      Sgst         :  [],
-      Igst         :  [],
-      MinimumQty   :  [],
-      OpeningStock: [],
+      Cgst         :  [0],
+      Sgst         :  [0],
+      Igst         :  [0],
+      MinimumQty   :  [0],
+      OpeningStock: [0],
       ProductId: [],
       UnitId: []
     });
@@ -73,33 +73,30 @@ export class ProductMasterComponent implements OnInit {
     });
   }
 
-  
   setDataForEdit = () => {
     this.isEditable = true;
     this.productForm.setValue(this.config.data);
   }
-
   
   saveProduct() {
       let httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
-    let product = this.productForm.value;
+    let product1 = this.productForm.value;
    // customer.LocationId = customer.Location.LocationId;
     //product.ProductId = product.ProductName.ProductId;
-    product.ProductId = product.Product.ProductId;
-    product.UnitId = product.Unit.UnitId;
-    delete product.Product;
-    delete product.Unit; 
-    return this.http.post(this.isEditable ? APP_CONSTANT.PRODUCT_API.EDIT : APP_CONSTANT.PRODUCT_API.ADD, product, httpOptions)
-      .subscribe((product) => {
+    product1.ProductId = product1.Product.ProductId;
+    product1.UnitId = product1.Unit.UnitId;
+    delete product1.Product;
+    delete product1.Unit; 
+    return this.http.post(this.isEditable ? APP_CONSTANT.PRODUCT_API.EDIT : APP_CONSTANT.PRODUCT_API.ADD, product1, httpOptions)
+      .subscribe((product1) => {
           // login successful if there's a jwt token in the response
-        if (product) {
+        if (product1) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-          this.dialog.close(product);
+          this.dialog.close(product1);
           }
-        return product;
+        return product1;
       });
   }
-
 }

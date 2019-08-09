@@ -98,14 +98,9 @@ export class PurchasebillViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.Purchasebillservice.loadPurchaseBillMaster().subscribe(
+    return this.Purchasebillservice.loadPurchaseBillMaster().subscribe(
       (response) => {
         this.rowData = response;
-      },
-
-      (error) => {
-        console.log(error);
-
       });
   }
 

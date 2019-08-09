@@ -118,7 +118,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-3">
             <div class="card-block">
               <div class="form-group">
                 standard Pack
@@ -134,14 +134,14 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-2">
             <div class="card-block">
               <div class="form-group">
                 Rate
               </div>
             </div>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
                 Action
@@ -155,19 +155,20 @@
               <div class="form-group">
                 <span class="ui-float-label">
                   <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
-                                  [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductTypeName"></p-autoComplete>
+                                  [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
 
                   <label for="float-input"></label>
                 </span>
               </div>
             </div>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-3">
             <div class="card-block">
               <div class="form-group">
                 <span class="ui-float-label">
-                  <p-autoComplete [(ngModel)]="item.Units" [suggestions]="unitLists" (completeMethod)="searchUnits($event)"
-                                  [dropdown]="true" (onSelect)="onSelectUnits($event,item)" [forceSelection]="true" field="UnitDescription"></p-autoComplete>
+                  <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="producttypelist" (completeMethod)="searchProducttype($event)"
+                                  [dropdown]="true" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
+                  <label for="float-input"></label>
                 </span>
               </div>
             </div>
@@ -181,7 +182,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-2">
             <div class="card-block">
               <div class="form-group">
                 <span class="ui-float-label">
@@ -190,7 +191,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
                 <button type="button" (click)="removeItem(item)">Delete</button>

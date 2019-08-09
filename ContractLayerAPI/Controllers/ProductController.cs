@@ -20,6 +20,13 @@ namespace ContractLayerAPI.Controllers
             _repoWrapper = repoWrapper;
         }
 
+        [HttpPost("GetTypeByProductID")]
+        public IEnumerable<TblProductTypeMaster> GetTypeByProductID([FromBody] TblProductTypeMaster type)
+        {
+            var prodtype = this._repoWrapper.Product.GetAllProductTypeForProduct(type);
+            return prodtype;
+        }
+
         [HttpGet("[action]")]
         public int GetChickEggsBillNo()
         {
@@ -83,7 +90,6 @@ namespace ContractLayerAPI.Controllers
             var Product = this._repoWrapper.Product.GetAllProduct();
             return Product;
         }
-
         
         [HttpGet("[action]")] 
         public TblProductTypeMaster GetByID(int ProductId)
@@ -92,8 +98,6 @@ namespace ContractLayerAPI.Controllers
             return Product;
         }
 
-
-
         [HttpPost("Add")]
         public bool Add([FromBody]TblProductTypeMaster product)
         {
@@ -101,6 +105,9 @@ namespace ContractLayerAPI.Controllers
             {
                 this._repoWrapper.Product.Create(product);
                 this._repoWrapper.Product.Save();
+
+                this._repoWrapper.Product.SaveOpeningStockDetails(product);
+
                 return true;
             }
 
@@ -177,7 +184,7 @@ namespace ContractLayerAPI.Controllers
         [HttpPost("GetAllFarmerInwardMasteDetails")]
         public IEnumerable<TblFarmerInwardDt> GetAllFarmerInwardMasteDetails([FromBody] TblFarmerInwardMt farmerInwardMt)
         {
-            return this._repoWrapper.Product.GetAllFarmerInwardMasteDetails(farmerInwardMt.RecordNo);
+            return this._repoWrapper.Product.GetAllFarmerInwardMasteDetails(farmerInwardMt.PkId);
         }
 
         //------------------Outward Details-------------
@@ -228,7 +235,7 @@ namespace ContractLayerAPI.Controllers
         [HttpPost("GetAllFarmerOutwardMasteDetails")]
         public IEnumerable<TblFarmerOutwardDt> GetAllFarmerOutwardMasteDetails([FromBody] TblFarmerOutwardMt farmerOutwardMt)
         {
-            return this._repoWrapper.Product.GetAllFarmerOutwardMasteDetails(farmerOutwardMt.RecordNo);
+            return this._repoWrapper.Product.GetAllFarmerOutwardMasteDetails(farmerOutwardMt.PkId);
         }
 
         //------------------Purchase Bill Details-------------

@@ -55,7 +55,7 @@ namespace ContractLayerFarm.Data.Repositories
                                       bookingrev = ct.BookingReceivedAmt
                                   });
 
-                outstandingAmt = Convert.ToDecimal( entryPoint.Sum(x => Convert.ToDecimal(x.bookingamt) - entryPoint.Sum(k => Convert.ToDecimal(k.bookingrev))));
+                outstandingAmt = Convert.ToDecimal( entryPoint.Sum(x => Convert.ToDecimal(x.bookingamt)) - entryPoint.Sum(k => Convert.ToDecimal(k.bookingrev)));
             }
                 
             return outstandingAmt;

@@ -30,10 +30,12 @@ export class EnquiryMasterComponent implements OnInit {
 
   ngOnInit() {
 
-    this.enquiryService.getEnquiryNo()
-      .subscribe((enquiry: any) => {
-        this.enquiryForm.controls['RecordNo'].patchValue(enquiry);
-      });
+    if (this.config.isEditable == false) {
+      this.enquiryService.getEnquiryNo()
+        .subscribe((enquiry: any) => {
+          this.enquiryForm.controls['RecordNo'].patchValue(enquiry);
+        });
+    }
 
     this.enquiryForm = this.formBuilder.group({
       PkId            : [0],

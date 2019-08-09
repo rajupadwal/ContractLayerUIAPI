@@ -32,7 +32,6 @@ namespace ContractLayerFarm.Data.Repositories
             int maxFarmerInwardNo = this.ktConContext.TblFarmerInwardMt.Select(p => p.RecordNo).DefaultIfEmpty(0).Max() + 1;
             return maxFarmerInwardNo;
         }
-        
 
         public int GetFarmerOutwardNo()
         {
@@ -67,6 +66,17 @@ namespace ContractLayerFarm.Data.Repositories
             return TblProductTypeMaster;
         }
 
+        public IEnumerable<TblProductTypeMaster> GetAllProductTypeForProduct(TblProductTypeMaster master)
+        {
+
+            var TblProductTypeMaster = this.ktConContext.TblProductTypeMaster
+                       .Include(blog => blog.Product)
+                       .Include(blog => blog.Unit)
+                       .Where(s => s.ProductId == master.ProductId)
+                       .ToList();
+            return TblProductTypeMaster;
+        }
+
         bool IProductRepository.Authenticate()
         {
             return true;
@@ -76,6 +86,32 @@ namespace ContractLayerFarm.Data.Repositories
         {
             return this.ktConContext.Set<TblUnitMaster>();
         }
+
+        //---------------Save Opening Stock Details--------------------------//
+        public void SaveOpeningStockDetails(TblProductTypeMaster master)
+        {
+            TblStockDetails stockList = new TblStockDetails()
+            {
+                InwardDocNo = "",
+                OutwardDocNo = "",
+                DebitNoteNo = "",
+                CreditNoteNo = "",
+                TranscationType = "Opening",
+                ProductId = master.ProductId,
+                ProductType = master.ProductType,
+                InwardQty = 0,
+                OutwardQty = 0,
+                TranscationDate = DateTime.Now,
+                OpeningStock = master.OpeningStock,
+                CreditNoteQty = 0,
+                DebitNoteQty = 0,
+                Unit = "",
+            };
+
+                this.RepositoryContext.Set<TblStockDetails>().Add(stockList);
+                this.RepositoryContext.SaveChanges();
+        }
+
 
         public void SaveFarmerInwardMaster(TblFarmerInwardMt master)
         {
@@ -98,10 +134,10 @@ namespace ContractLayerFarm.Data.Repositories
                     OpeningStock = 0,
                     CreditNoteQty = 0,
                     DebitNoteQty = 0,
-                    UnitId = details.UnitId,
+                    Unit = details.Unit.ToString(),
                 });
             }
-            if (master.RecordNo > 0)
+            if (master.PkId > 0)
             {
                 var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.RecordNo.ToString());
                 RepositoryContext.RemoveRange(toBeDeleteStock);
@@ -134,11 +170,13 @@ namespace ContractLayerFarm.Data.Repositories
                               //where e.OwnerID == user.UID
                               select new ViewFarmerInwardMaster
                               {
+                                  PkId=ep.PkId,
                                   RecordNo = ep.RecordNo,
                                   Date = ep.Date,
                                   CustmerName = e.CustmerName,
                                   LocationName = t.LocationName,
                                   PlanName = p.PlanName,
+                                  CollectionAgentName=ep.CollectionAgentName,
                                   PlanId = ep.PlanId,
                                   CustomerId = ep.CustomerId,
                                   LocationId = ep.LocationId,
@@ -154,7 +192,6 @@ namespace ContractLayerFarm.Data.Repositories
         {
             return this.ktConContext.Set<TblFarmerInwardDt>().Where(p => p.RecordNo == recordNo).ToList();
         }
-
 
         //-------------------Farmer Outward Details----------------------
 
@@ -179,23 +216,40 @@ namespace ContractLayerFarm.Data.Repositories
                     OpeningStock = 0,
                     CreditNoteQty = 0,
                     DebitNoteQty = 0,
-                    UnitId = details.UnitId,
+                    Unit = details.Unit,
                 });
             }
-            if (master.RecordNo > 0)
+            if (master.PkId > 0)
             {
                 var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.OutwardDocNo == master.RecordNo.ToString());
                 RepositoryContext.RemoveRange(toBeDeleteStock);
-                this.RepositoryContext.SaveChanges();
                 this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
                 this.RepositoryContext.Set<TblFarmerOutwardMt>().Update(master);
                 this.RepositoryContext.SaveChanges();
+
+                var entity = this.ktConContext.TblBookingMaster.FirstOrDefault(item => item.CustomerId == master.CustomerId && item.PlanId == master.PlanId);
+
+                if (entity != null)
+                {
+                    entity.DeliveryStatus = "Delivered";
+                    ktConContext.TblBookingMaster.Update(entity);
+                    ktConContext.SaveChanges();
+                }
             }
             else
             {
                 this.RepositoryContext.Set<TblFarmerOutwardMt>().Add(master);
                 this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
                 this.RepositoryContext.SaveChanges();
+
+                var entity = this.ktConContext.TblBookingMaster.FirstOrDefault(item => item.CustomerId == master.CustomerId && item.PlanId == master.PlanId);
+
+                if (entity != null)
+                {
+                    entity.DeliveryStatus = "Delivered";
+                    ktConContext.TblBookingMaster.Update(entity);
+                    ktConContext.SaveChanges();
+                }
             }
         }
         public void SaveFarmerOutwardDetails(TblFarmerOutwardDt[] details)
@@ -213,6 +267,7 @@ namespace ContractLayerFarm.Data.Repositories
                               //where e.OwnerID == user.UID
                               select new ViewFarmerInwardMaster
                               {
+                                  PkId = ep.PkId,
                                   RecordNo = ep.RecordNo,
                                   Date = ep.Date,
                                   CustmerName = e.CustmerName,
@@ -233,7 +288,6 @@ namespace ContractLayerFarm.Data.Repositories
         {
             return this.ktConContext.Set<TblFarmerOutwardDt>().Where(p => p.RecordNo == recordNo).ToList();
         }
-
 
         //-------------------Purchase Bill Details----------------------
 
@@ -258,7 +312,7 @@ namespace ContractLayerFarm.Data.Repositories
                     OpeningStock = 0,
                     CreditNoteQty = 0,
                     DebitNoteQty = 0,
-                    UnitId = details.UnitId,
+                    Unit = details.Unit,
                            });
             }
             if (master.BillId > 0)
@@ -288,13 +342,8 @@ namespace ContractLayerFarm.Data.Repositories
             this.RepositoryContext.SaveChanges();
         }
 
-        
-
         IEnumerable<ViewPurchaseBillMaster> IProductRepository.GetAllPurchaseBillMasters()
         {
-
-
-
             var entryPoint = (from ep in ktConContext.TblPurchaseBillMt
                               join e in ktConContext.TblSupplierMaster on ep.SupplierId equals e.SupplierId
                               join t in ktConContext.TblLocationMaster on ep.LocationId equals t.LocationId
@@ -375,12 +424,8 @@ namespace ContractLayerFarm.Data.Repositories
             this.RepositoryContext.SaveChanges();
         }
 
-
         IEnumerable<ViewFarmerChickEggBillMaster> IProductRepository.GetAllFarmerChickEggBillMasters()
         {
-
-
-
             var entryPoint = (from ep in ktConContext.TblSalesBillMt
                               join e in ktConContext.TblCustomerMaster on ep.CustomerId equals e.CustomerId
                               join t in ktConContext.TblLocationMaster on ep.LocationId equals t.LocationId
@@ -414,13 +459,9 @@ namespace ContractLayerFarm.Data.Repositories
             return entryPoint.ToList();
         }
 
-
         IEnumerable<TblSalesBillDt> IProductRepository.GetAllFarmerChickEggBillDetails(int billid)
         {
             return this.ktConContext.Set<TblSalesBillDt>().Where(p => p.BillId == billid).ToList();
         }
-
-
-
     }
 }

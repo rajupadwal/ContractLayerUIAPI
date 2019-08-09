@@ -24,6 +24,10 @@ export class ProductService {
     return this.http.post(APP_CONSTANT.PRODUCT_API.GETByID, id);
   }
 
+  getProductTypeByProductID(master) {
+    return this.http.post(APP_CONSTANT.PRODUCT_API.GETTYPEBYPRODUCTID, master);
+  }
+
   getUnitByID(id) {
     return this.http.post(APP_CONSTANT.PRODUCT_UNIT_API.GETByID, id);
   }

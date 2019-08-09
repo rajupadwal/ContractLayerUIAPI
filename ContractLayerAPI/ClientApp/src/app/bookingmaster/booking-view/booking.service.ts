@@ -39,6 +39,10 @@ export class BookingService {
   getBookingNo() {
     return this.http.get(APP_CONSTANT.BOOKING_API.GETBOOKINGNO);
   }
+
+  getPlanByCustomerID(master) {
+    return this.http.post(APP_CONSTANT.BOOKING_API.GETPLANBYCUSTID, master);
+  }
 }
 
 

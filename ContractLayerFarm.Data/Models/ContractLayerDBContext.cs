@@ -98,9 +98,11 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblBookingMaster>(entity =>
             {
-                entity.HasKey(e => e.RecordNo);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_BookingMaster");
+
+                entity.Property(e => e.RecordNo);
 
                 entity.Property(e => e.Agreement).HasMaxLength(20);
 
@@ -357,7 +359,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.UnitId);
+                entity.Property(e => e.Unit).HasMaxLength(20);
 
                 entity.HasOne(d => d.RecordNoNavigation)
                     .WithMany(p => p.TblFarmerInwardDt)
@@ -367,9 +369,10 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblFarmerInwardMt>(entity =>
             {
-                entity.HasKey(e => e.RecordNo);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_FarmerInwardMT");
+                entity.Property(e => e.RecordNo);
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
@@ -401,19 +404,21 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.UnitId);
+                entity.Property(e => e.Unit).HasMaxLength(20); ;
 
                 entity.HasOne(d => d.RecordNoNavigation)
                     .WithMany(p => p.TblFarmerOutwardDt)
                     .HasForeignKey(d => d.RecordNo)
-                    .HasConstraintName("FK_tbl_FarmerOutwardDT_tbl_RecordNo");
+                    .HasConstraintName("FK_tbl_FarmerOutwardDT_tbl_PkId");
             });
 
             modelBuilder.Entity<TblFarmerOutwardMt>(entity =>
             {
-                entity.HasKey(e => e.RecordNo);
+                entity.HasKey(e => e.PkId);
 
                 entity.ToTable("tbl_FarmerOutwardMT");
+
+                entity.Property(e => e.RecordNo);
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
@@ -661,6 +666,7 @@ namespace ContractLayerFarm.Data.Models
                 entity.ToTable("tbl_PurchaseBillDT");
 
                 entity.Property(e => e.BatchNo).HasMaxLength(20);
+                entity.Property(e => e.Unit).HasMaxLength(20);
 
                 entity.Property(e => e.BillDate).HasColumnType("datetime");
 
@@ -838,7 +844,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.ProductType).HasMaxLength(50);
 
-                entity.Property(e => e.UnitId);
+                entity.Property(e => e.Unit).HasMaxLength(20);
 
                 entity.HasOne(d => d.Bill)
                     .WithMany(p => p.TblSalesBillDt)
@@ -994,7 +1000,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.TranscationType).HasMaxLength(20);
 
-                entity.Property(e => e.UnitId).HasMaxLength(20);
+                entity.Property(e => e.Unit).HasMaxLength(20);
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.TblStockDetails)

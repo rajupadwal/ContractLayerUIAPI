@@ -31,6 +31,19 @@ namespace ContractLayerFarm.Data.Repositories
             return TblBookingMaster;
         }
 
+        public IEnumerable<TblBookingMaster> GetAllBookingForCustomer(TblBookingMaster master)
+        {
+
+            var TblBookingMaster = this.ktConContext.TblBookingMaster
+                       .Include(blog => blog.Location)
+                       .Include(blog => blog.Customer)
+                       .Include(blog => blog.Plan)
+                       .Include(blog => blog.Employee)
+                       .Where(s => s.CustomerId == master.CustomerId)
+                       .ToList();
+            return TblBookingMaster;
+        }
+
         public int GetBookingNo()
         {
             int maxBookingNo = this.ktConContext.TblBookingMaster.Select(p => p.RecordNo).DefaultIfEmpty(0).Max()+1;

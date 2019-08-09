@@ -117,14 +117,9 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.farmerchikeggbillservice.loadFarmerchickeggbillMaster().subscribe(
+    return this.farmerchikeggbillservice.loadFarmerchickeggbillMaster().subscribe(
       (response) => {
         this.rowData = response;
-      },
-
-      (error) => {
-        console.log(error);
-
       });
   }
 

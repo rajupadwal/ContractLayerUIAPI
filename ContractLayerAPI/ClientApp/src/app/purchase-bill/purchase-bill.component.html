@@ -102,13 +102,15 @@
               </div>
             </div>
           </div>
-          <!--<div class="col-sm-1">
+          <div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
-                HSN
+
+                Hsn Code
+
               </div>
             </div>
-          </div>-->
+          </div>
           <div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
@@ -127,15 +129,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-1">
-            <div class="card-block">
-              <div class="form-group">
-                
-                  MRP
-                 
-              </div>
-            </div>
-          </div>
+          
           <!--<div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
@@ -203,109 +197,102 @@
           <div class="col-sm-2">
             <div class="card-block">
               <div class="form-group">
-                
-                  <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
-                                  [dropdown]="true" (change)="calculateTaxableAmount($event,item)"  (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductTypeName"></p-autoComplete>
-                 
+
+                <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
+                                [dropdown]="true"  (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
+
               </div>
             </div>
           </div>
           <div class="col-sm-2">
             <div class="card-block">
               <div class="form-group">
-                
-                  <p-autoComplete [(ngModel)]="item.Units" [suggestions]="unitLists" (completeMethod)="searchUnits($event)"
-                                  [dropdown]="true" (onSelect)="onSelectUnits($event,item)" [forceSelection]="true" field="UnitDescription"></p-autoComplete>
+                <span class="ui-float-label">
+                  <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="producttypelist" (completeMethod)="searchProducttype($event)"
+                                  [dropdown]="true" (change)="calculateTaxableAmount($event,item)" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
+                  <label for="float-input"></label>
+                </span>
               </div>
             </div>
           </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" [(ngModel)]="item.HsnCode" pInputText id="hsncode" name="hsncode" class="form-control" rows="3">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" (change)="calculateTaxableAmount($event,item)" [(ngModel)]="item.Quantity" pInputText id="quantity" name="quantity" class="form-control" rows="3">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" (change)="calculateTaxableAmount($event,item)" [(ngModel)]="item.Rate" pInputText id="rate" name="rate" class="form-control" rows="3">
+
+              </div>
+            </div>
+          </div>
+          
           <!--<div class="col-sm-1">
     <div class="card-block">
       <div class="form-group">
-        
-          <input type="text" [(ngModel)]="item.HsnCode" pInputText id="hsncode" name="hsncode" class="form-control" rows="3">
-         
-      </div>
-    </div>
-  </div>-->
-          <div class="col-sm-1">
-            <div class="card-block">
-              <div class="form-group">
-                
-                  <input type="text" (change)="calculateTaxableAmount($event,item)" [(ngModel)]="item.Quantity" pInputText id="quantity" name="quantity" class="form-control" rows="3">
-                 
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-1">
-            <div class="card-block">
-              <div class="form-group">
-                
-                  <input type="text" (change)="calculateTaxableAmount($event,item)" [(ngModel)]="item.Rate" pInputText id="rate" name="rate" class="form-control" rows="3">
-                 
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-1">
-            <div class="card-block">
-              <div class="form-group">
-                
-                  <input type="text" [(ngModel)]="item.Mrp" pInputText id="mrp" name="mrp" class="form-control" rows="3">
-                 
-              </div>
-            </div>
-          </div>
-          <!--<div class="col-sm-1">
-    <div class="card-block">
-      <div class="form-group">
-        
+
           <input type="text" [(ngModel)]="item.Discount" pInputText id="discount" name="discount" class="form-control" rows="3">
-         
+
       </div>
     </div>
   </div>-->
           <div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
-                
-                  <input type="text" [(ngModel)]="item.TaxableAmt" pInputText id="taxableamt" name="taxableamt" class="form-control" rows="3">
-                 
+
+                <input type="text" [(ngModel)]="item.TaxableAmt" pInputText id="taxableamt" name="taxableamt" class="form-control" rows="3">
+
               </div>
             </div>
           </div>
           <div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
-                
-                  <input type="text" [(ngModel)]="item.CgstPercentage" (change)="calculateTaxableAmount($event,item)" pInputText id="cgstpercentage" name="cgstpercentage" class="form-control" rows="3">
-                 
+
+                <input type="text" [(ngModel)]="item.CgstPercentage" (change)="calculateTaxableAmount($event,item)" pInputText id="cgstpercentage" name="cgstpercentage" class="form-control" rows="3">
+
               </div>
             </div>
           </div>
           <div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
-                
-                  <input type="text" [(ngModel)]="item.SgstPercentage" (change)="calculateTaxableAmount($event,item)" pInputText id="sgstpercentage" name="sgstpercentage" class="form-control" rows="3">
-                 
+
+                <input type="text" [(ngModel)]="item.SgstPercentage" (change)="calculateTaxableAmount($event,item)" pInputText id="sgstpercentage" name="sgstpercentage" class="form-control" rows="3">
+
               </div>
             </div>
           </div>
           <!--<div class="col-sm-1">
     <div class="card-block">
       <div class="form-group">
-        
+
           <input type="text" [(ngModel)]="item.IgstPercentage" pInputText id="igstpercentage" name="igstpercentage" class="form-control" rows="3">
-         
+
       </div>
     </div>
   </div>-->
           <div class="col-sm-1">
             <div class="card-block">
               <div class="form-group">
-                
-                  <input type="text" [(ngModel)]="item.TotalAmount" pInputText id="totalamount" name="totalamount" class="form-control" rows="3">
-                 
+
+                <input type="text" [(ngModel)]="item.TotalAmount" pInputText id="totalamount" name="totalamount" class="form-control" rows="3">
+
               </div>
             </div>
           </div>

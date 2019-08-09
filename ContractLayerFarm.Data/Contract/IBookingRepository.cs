@@ -11,6 +11,8 @@ namespace ContractLayerFarm.Data.Contract
         bool Authenticate();
 
         IEnumerable<TblBookingMaster> GetAllBooking();
+        IEnumerable<TblBookingMaster> GetAllBookingForCustomer(TblBookingMaster master);
+
         void SaveBookinginCustomerTransaction(TblBookingMaster master);
 
         int GetBookingNo();

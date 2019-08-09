@@ -87,14 +87,9 @@ export class FarmeroutwardViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.farmeroutwardService.loadFarmerOutwardMaster().subscribe(
+    return this.farmeroutwardService.loadFarmerOutwardMaster().subscribe(
       (response) => {
         this.rowData = response;
-      },
-
-      (error) => {
-        console.log(error);
-
       });
   }
 

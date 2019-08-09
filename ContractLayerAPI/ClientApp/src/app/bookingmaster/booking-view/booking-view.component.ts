@@ -80,7 +80,8 @@ export class BookingViewComponent implements OnInit {
     },
     { headerName: 'No Of Plan    ', field: 'NoOfPlan' },
     { headerName: 'No Of Chicks    ', field: 'NoOfChicks' },
-    { headerName: 'Amount    ', field: 'Amount' }
+    { headerName: 'Amount    ', field: 'Amount' },
+    { headerName: 'Delivery Status    ', field: 'DeliveryStatus' }
   ];
 
   rowData;

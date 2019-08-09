@@ -10,6 +10,8 @@ import { DialogConfig } from '../dialog/dialog-config';
 import * as moment from 'moment';
 import { ProductdescService } from '../master/productdesc-view/productdesc.service';
 import { FarmeroutwardService } from '../farmeroutward-view/farmeroutward.service';
+import { BookingService } from '../bookingmaster/booking-view/booking.service';
+import { Key } from 'protractor';
 
 @Component({
   selector: 'app-farmer-outward',
@@ -25,27 +27,28 @@ export class FarmerOutwardComponent implements OnInit {
   locationList;
 
   productlist;
-  unitLists;
+  producttypelist;
   isEditable: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private cusotmerService: CusotmerService,
-    private productService: ProductService, private productdescservice: ProductdescService, private planService: PlanService, private locationService: LocationService, private farmeroutwardService: FarmeroutwardService, public dialog: DialogRef, private config: DialogConfig, ) { }
+    private productService: ProductService, private productdescservice: ProductdescService, private planService: PlanService, private bookingService: BookingService, private locationService: LocationService, private farmeroutwardService: FarmeroutwardService, public dialog: DialogRef, private config: DialogConfig, ) { }
 
   ngOnInit() {
-
-    this.farmeroutwardService.getFarmerOutwardNo()
-      .subscribe((outwardno: any) => {
-        this.FarmerOutwardMaster.RecordNo = outwardno;
-      });
+    if (this.config.isEditable == false) {
+      this.farmeroutwardService.getFarmerOutwardNo()
+        .subscribe((outwardno: any) => {
+          this.FarmerOutwardMaster.RecordNo = outwardno;
+        });
+    }
 
     let detail = new FarmerOutwardDetail();
     this.FarmerOutwardDetailsList = [detail];
     this.FarmerOutwardMaster = new FarmerOutwardMaster();
     this.loadCustomers();
     this.loadLocations();
-    this.loadPlans();
+    //this.loadPlans();
     this.loadProducts();
-    this.loadUnits();
+    //this.loadUnits();
     
     if (this.config.isEditable == true) {
       this.setDataForEdit();
@@ -63,7 +66,7 @@ export class FarmerOutwardComponent implements OnInit {
     this.productService.getAllFarmeroutwardmastedetails(this.config.data).subscribe((response) => {
       this.FarmerOutwardDetailsList = response;
       this.loadProducts();
-      this.loadUnits();
+      //this.loadUnits();
     });
   }
 
@@ -75,16 +78,24 @@ export class FarmerOutwardComponent implements OnInit {
   }
 
   loadProducts = () => {
-    this.productService.loadProducts()
+    this.productdescservice.loadProducts()
       .subscribe((products: any) => {
         this.productlist = products;
-        this.productlist.forEach((key: any, value: any) => {
-          key.ProductTypeName = key.Product.ProductName + '-' + key.ProductType;
-        })
 
         if (this.isEditable == true && this.FarmerOutwardDetailsList) {
           this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
+
+            let newDetails = new FarmerOutwardDetail();
+            newDetails.ProductId = key.Product.ProductId;
+
+            this.productService.getProductTypeByProductID(newDetails)
+              .subscribe((types: any) => {
+                this.producttypelist = types;
+                this.producttypelist.forEach((key: any, value: any) => {
+                  key.Producttype = key.ProductType + '-' + key.Unit.UnitDescription;
+                })
+              });
           })
         }
       });
@@ -97,24 +108,17 @@ export class FarmerOutwardComponent implements OnInit {
       });
   }
 
-  loadPlans = () => {
-    this.planService.loadPlans()
-      .subscribe((plans: any) => {
-        this.planList = plans;
-      });
-  }
-
-  loadUnits = () => {
-    this.productService.loadUnits()
-      .subscribe((units: any) => {
-        this.unitLists = units;
-        if (this.isEditable == true && this.FarmerOutwardDetailsList) {
-          this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
-            key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
-          })
-        }
-      });
-  }
+  //loadUnits = () => {
+  //  this.productService.loadUnits()
+  //    .subscribe((units: any) => {
+  //      this.unitLists = units;
+  //      if (this.isEditable == true && this.FarmerOutwardDetailsList) {
+  //        this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
+  //          key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
+  //        })
+  //      }
+  //    });
+  //}
 
   addNewItem = () => {
     let newDetails = new FarmerOutwardDetail();
@@ -136,7 +140,7 @@ export class FarmerOutwardComponent implements OnInit {
 
     this.FarmerOutwardMaster.TblFarmerOutwardDt.forEach((key: any, value: any) => {
       key.Product = null;
-      key.Units = null;
+      key.Producttype = null;
       key.PkId = 0;
     })
 
@@ -152,27 +156,58 @@ export class FarmerOutwardComponent implements OnInit {
   };
 
   onSelectCustomers = (value) => {
+    let newDetails = new FarmerOutwardMaster();
     this.FarmerOutwardMaster.CustomerId = this.FarmerOutwardMaster.Customer.CustomerId;
+    newDetails.CustomerId = this.FarmerOutwardMaster.Customer.CustomerId;
+
+    this.bookingService.getPlanByCustomerID(newDetails)
+      .subscribe((plans: any) => {
+        this.planList = plans;
+        this.planList.forEach((key: any, value: any) => {
+          key.PlanName = key.Plan.PlanName;
+        })
+      });
   };
+
   onSelectLocations = (value) => {
     this.FarmerOutwardMaster.LocationId = this.FarmerOutwardMaster.Location.LocationId;
   };
 
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
-    model.ProductType = model.Product.ProductType;
+    this.FarmerOutwardDetailsList.ProductId = model.ProductId;
 
     let newDetails = new FarmerOutwardDetail();
-    newDetails.ProductId = model.ProductId;
-    newDetails.ProductType = model.ProductType;
+    newDetails.ProductId  = model.Product.ProductId;
+
+    this.productService.getProductTypeByProductID(newDetails)
+      .subscribe((types: any) => {
+        this.producttypelist = types;
+        this.producttypelist.forEach((key: any, value: any) => {
+          key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
+        })
+
+        //if (this.isEditable == true && this.FarmerOutwardDetailsList) {
+        //  this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
+        //    key.Producttype = this.producttypelist.find(p => p.ProductTypeUnit == key.ProductType + '-' + key.Unit);
+        //  })
+        //}
+      });
+  };
+
+  onSelectProducttypes = (value, model: any) => {
+    model.ProductId = model.Product.ProductId;
+    model.ProductType = model.Producttype.ProductType;
+    model.Unit = model.Producttype.Unit.UnitDescription;
+
+    let newDetails = new FarmerOutwardDetail();
+    newDetails.ProductId = model.Product.ProductId;
+    newDetails.ProductType = model.Producttype.ProductType;
 
     this.farmeroutwardService.getProductAvailableStock(newDetails)
       .subscribe((stock: any) => {
         model.AvailableStock = stock;
       });
-  };
-  onSelectUnits = (value, model: any) => {
-    model.UnitId = model.Units.UnitId;
   };
 
   searchCustomer(event) {
@@ -188,18 +223,50 @@ export class FarmerOutwardComponent implements OnInit {
   }
 
   searchPlan(event) {
-    this.planService.searchPlan(event.query).subscribe((data: any) => {
-      this.planList = data;
-    });
+    let newDetails = new FarmerOutwardMaster();
+    this.FarmerOutwardMaster.CustomerId = this.FarmerOutwardMaster.Customer.CustomerId;
+    newDetails.CustomerId = this.FarmerOutwardMaster.Customer.CustomerId;
+
+    this.bookingService.getPlanByCustomerID(newDetails)
+      .subscribe((plans: any) => {
+        this.planList = plans;
+        this.planList.forEach((key: any, value: any) => {
+          key.PlanName = key.Plan.PlanName;
+        })
+      });
   }
 
   searchProduct = (value) => {
     //made Api call for search
     this.loadProducts();
   };
-  searchUnits = (value) => {
-    //made Api call for search
-    this.loadUnits();
+
+  searchProducttype = (value) => {
+    let newDetails = new FarmerOutwardDetail();
+    newDetails.ProductId = this.FarmerOutwardDetailsList.ProductId;
+
+    this.productService.getProductTypeByProductID(newDetails)
+      .subscribe((types: any) => {
+        this.producttypelist = types;
+        this.producttypelist.forEach((key: any, value: any) => {
+          key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
+        })
+
+        if (this.isEditable == true && this.FarmerOutwardDetailsList) {
+          this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
+            let newDetails = new FarmerOutwardDetail();
+            newDetails.ProductId = key.Product.ProductId;
+
+            this.productService.getProductTypeByProductID(newDetails)
+              .subscribe((types: any) => {
+                this.producttypelist = types;
+                this.producttypelist.forEach((key: any, value: any) => {
+                  key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
+                })
+              });
+          })
+        }
+      });
   };
 }
 
@@ -209,14 +276,15 @@ export class FarmerOutwardDetail {
   Date: Date = new Date();
   ProductId: number = 0;
   ProductType: string;
-  UnitId: number = 0;
+  Unit: string;
   Quantity: number=0;
   AvailableStock: number = 0;
-  Units: any;
   Product: any;
+  Producttype: any;
 }
 
 export class FarmerOutwardMaster {
+  PkId: number;
   RecordNo: number = 0;
   Date:Date = new Date();
   LocationId: number = 0;

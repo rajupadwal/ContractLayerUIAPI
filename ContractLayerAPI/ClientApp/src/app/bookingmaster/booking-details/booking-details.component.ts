@@ -33,14 +33,16 @@ export class BookingDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.bookingService.getBookingNo()
-      .subscribe((booking: any) => {
-        this.bookingdetailsForm.controls['RecordNo'].patchValue(booking);
-      });
+    if (this.config.isEditable == false) {
+      this.bookingService.getBookingNo()
+        .subscribe((booking: any) => {
+          this.bookingdetailsForm.controls['RecordNo'].patchValue(booking);
+        });
+    }
     
     this.bookingdetailsForm = this.formBuilder.group({
-
-      RecordNo: [],
+      PkId  : [0],
+      RecordNo  : [],
       Location        : [{}],
       Customer        : [{}],
       BookingDate     : [],
@@ -62,12 +64,10 @@ export class BookingDetailsComponent implements OnInit {
       LocationId: [],
       CustomerId: [],
       PlanId: [],
-      EmployeeId: []
-      //DeliveryStatus  : [],
+      EmployeeId: [],
+      DeliveryStatus  : [],
       //IsDeleted       : [false] 
     });
-
-    
 
     if (this.config.isEditable==true) {
       this.getLocation(this.config.data.LocationId);
@@ -140,11 +140,6 @@ export class BookingDetailsComponent implements OnInit {
     });
   }
 
-  calculatePlanAmount(event) {
-    this.bookingdetailsForm.patchValue({ NoOfChicks: (parseFloat(this.bookingdetailsForm.controls['NoOfPlan'].value) * parseFloat(this.bookingdetailsForm.controls['NoOfChicks'].value)) });
-    this.bookingdetailsForm.patchValue({ Amount: (parseFloat(this.bookingdetailsForm.controls['NoOfPlan'].value) * parseFloat(this.bookingdetailsForm.controls['Amount'].value)) });
-  }
-
   setDataForEdit = () => {
     this.isEditable = true;
     let bookingdetailsForm = this.config.data;
@@ -158,6 +153,7 @@ export class BookingDetailsComponent implements OnInit {
     booking.LocationId = booking.Location.LocationId;
     booking.CustomerId = booking.Customer.CustomerId;
     booking.PlanId = booking.Plan.PlanId;
+    booking.DeliveryStatus = 'Pending';
     //Object.assign(booking, this.bookingdetailsForm.value);
     
     delete booking.Location;

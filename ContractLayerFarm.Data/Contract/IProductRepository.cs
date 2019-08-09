@@ -18,7 +18,10 @@ namespace ContractLayerFarm.Data.Contract
         int GetFarmerOutwardNo();
         decimal GetProductAvailableStock(TblFarmerOutwardDt master);
 
+        void SaveOpeningStockDetails(TblProductTypeMaster master);
+
         IEnumerable<TblProductTypeMaster> GetAllProduct();
+        IEnumerable<TblProductTypeMaster> GetAllProductTypeForProduct(TblProductTypeMaster master);
 
         void SaveFarmerInwardMaster(TblFarmerInwardMt master);
         void SaveFarmerInwardDetails(TblFarmerInwardDt[] details);

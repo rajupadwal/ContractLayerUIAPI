@@ -65,7 +65,7 @@ export const APP_CONSTANT={
     GETByID: API_URL + 'Product/GetByIdAll',
     EDIT: API_URL + 'Product/Update',
     DELETE: API_URL + 'Product/Delete',
-    
+    GETTYPEBYPRODUCTID: API_URL + 'Product/GetTypeByProductID',
   },
 
   PRODUCT_UNIT_API: {
@@ -109,7 +109,8 @@ export const APP_CONSTANT={
     GETByID: API_URL + 'Booking/GetByID',
     EDIT: API_URL + 'Booking/Update',
     DELETE: API_URL + 'Booking/Delete',
-    GETBOOKINGNO: API_URL + 'Booking/GetBookingNo'
+    GETBOOKINGNO: API_URL + 'Booking/GetBookingNo',
+    GETPLANBYCUSTID: API_URL + 'Booking/GetPlanByCustID',
   },
   BOOKINGCANCEL_API: {
     ADD: API_URL + 'Bookingcancel/Add',

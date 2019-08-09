@@ -27,11 +27,12 @@ export class SalesReceiptDetailsComponent implements OnInit {
     , private cusotmerService: CusotmerService, private locationService: LocationService) { }
 
   ngOnInit() {
-
-    this.salesreceiptservice.getSaleReceiptNo()
-      .subscribe((salereceipt: any) => {
-        this.salereceiptdetailsForm.controls['ReceiptNo'].patchValue(salereceipt);
-      });
+    if (this.config.isEditable == false) {
+      this.salesreceiptservice.getSaleReceiptNo()
+        .subscribe((salereceipt: any) => {
+          this.salereceiptdetailsForm.controls['ReceiptNo'].patchValue(salereceipt);
+        });
+    }
 
     this.salereceiptdetailsForm = this.formBuilder.group({
       PkId: [0],
