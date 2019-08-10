@@ -8,7 +8,6 @@ import { CalendarModule } from 'primeng/calendar';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 import { DialogModule } from '../../dialog/dialog.module';
 import { PurchasereturnReceiptService } from './purchasereturnreceipt.service';
-import { PurchasereturnreceiptDetailsComponent } from '../purchasereturnreceipt-details/purchasereturnreceipt-details.component';
 import { PurchasereturnReceiptViewComponent } from './purchasereturnreceipt-view.component';
 import { PurchasereturnReceiptViewRoutingModule } from './purchasereturnreceipt.view.routing.module';
 //import { AutoCompleteModule } from 'primeng';
@@ -26,7 +25,7 @@ import { PurchasereturnReceiptViewRoutingModule } from './purchasereturnreceipt.
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [PurchasereturnReceiptViewComponent, PurchasereturnreceiptDetailsComponent],
+  declarations: [PurchasereturnReceiptViewComponent],
   providers: [PurchasereturnReceiptService]
 })
 export class PurchasereturnReceiptViewModule {

@@ -7,7 +7,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 import { DialogModule } from '../../dialog/dialog.module';
-import { SalesReceiptDetailsComponent } from '../salesreceipt-details/salesreceipt-details.component';
+
 import { SalesReceiptService } from './salesreceipt.service';
 import { SalesReceiptViewRoutingModule } from './salesreceipt.view.routing.module';
 import { SalesreceiptViewComponent } from './salesreceipt-view.component';
@@ -26,7 +26,7 @@ import { SalesreceiptViewComponent } from './salesreceipt-view.component';
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [SalesreceiptViewComponent,SalesReceiptDetailsComponent],
+  declarations: [SalesreceiptViewComponent],
   providers: [SalesReceiptService]
 })
 export class SalesReceiptViewModule {

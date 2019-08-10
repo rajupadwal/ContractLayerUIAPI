@@ -11,7 +11,6 @@ import { CalendarModule } from 'primeng/calendar';
 //import { AutoCompleteModule } from 'primeng';
 import { FarmerinwardViewComponent } from './farmerinward-view.component';
 import { FarmerinwardviewRoutingModule } from './farmerinward.view.routing.module';
-import { FarmerInwardComponent } from '../farmer-inward/farmer-inward.component';
 import { FarmerinwardService } from './farmerinward.service';
 import { DialogModule } from '../dialog/dialog.module';
 import { ValidationBorderModule } from '../validation-border';
@@ -30,7 +29,7 @@ import { ValidationBorderModule } from '../validation-border';
     CommonModule
 
   ],
-  declarations: [FarmerinwardViewComponent, FarmerInwardComponent],
+  declarations: [FarmerinwardViewComponent],
   providers:[FarmerinwardService]
 
 })

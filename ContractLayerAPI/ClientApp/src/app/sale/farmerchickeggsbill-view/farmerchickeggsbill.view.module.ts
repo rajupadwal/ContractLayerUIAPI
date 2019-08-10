@@ -10,7 +10,6 @@ import { CalendarModule } from 'primeng/calendar';
 //import { DPRService } from './dpr.service';
 //import { AutoCompleteModule } from 'primeng';
 
-import { FarmerchickeggsbillDetailComponent } from '../farmerchickeggsbill-detail/farmerchickeggsbill-detail.component';
 import { FarmerchickeggsbillViewComponent } from './farmerchickeggsbill-view.component';
 import { FarmerChikEggviewRoutingModule } from './farmerchickeggsbill.view.routing.module';
 import { DialogModule } from '../../dialog/dialog.module';
@@ -31,7 +30,7 @@ import { FarmerchikeggbillService } from './farmerchickeggsbill.service';
     CommonModule
 
   ],
-  declarations: [FarmerchickeggsbillViewComponent, FarmerchickeggsbillDetailComponent],
+  declarations: [FarmerchickeggsbillViewComponent],
   providers: [FarmerchikeggbillService]
 
 })

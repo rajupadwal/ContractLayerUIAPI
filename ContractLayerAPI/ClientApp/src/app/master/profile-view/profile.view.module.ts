@@ -10,7 +10,6 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
-import { ProfileMasterComponent } from '../profile-master/profile-master.component';
 import { ProfileViewComponent } from './profile-view.component';
 import { ProfileViewRoutingModule } from './profile.view.routing.module';
 import { ProfileService } from './profile.service';
@@ -31,7 +30,7 @@ import { DialogModule } from '../../dialog/dialog.module';
     CommonModule
 
   ],
-  declarations: [ProfileViewComponent, ProfileMasterComponent],
+  declarations: [ProfileViewComponent],
   providers:[ProfileService]
 
 })

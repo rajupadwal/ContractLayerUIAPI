@@ -10,7 +10,6 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 import { DialogModule } from '../../dialog/dialog.module';
 import { EmployeeadvanceService } from './employeeadvance.service';
 import { EmployeeadvanceViewComponent } from './employeeadvance-view.component';
-import { EmployeeadvanceDetailsComponent } from '../employeeadvance-details/employeeadvance-details.component';
 import { EmployeeadvanceViewRoutingModule } from './employeeadvance.view.routing.module';
 
 @NgModule({
@@ -26,7 +25,7 @@ import { EmployeeadvanceViewRoutingModule } from './employeeadvance.view.routing
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [EmployeeadvanceViewComponent, EmployeeadvanceDetailsComponent],
+  declarations: [EmployeeadvanceViewComponent],
   providers:[EmployeeadvanceService]
 
 })

@@ -9,7 +9,6 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 import { BookingViewRoutingModule } from './booking.view.routing.module';
 import { BookingViewComponent } from './booking-view.component';
 import { DialogModule } from '../../dialog/dialog.module';
-import { BookingDetailsComponent } from '../booking-details/booking-details.component';
 import { BookingService } from './booking.service';
 //import { AutoCompleteModule } from 'primeng';
 
@@ -26,7 +25,7 @@ import { BookingService } from './booking.service';
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [BookingViewComponent,BookingDetailsComponent],
+  declarations: [BookingViewComponent],
   providers: [BookingService]
 })
 export class BookingViewModule {

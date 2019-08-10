@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit  {
   }
 
 
-  
+  onSubmit(){}
 
   public createAccount(): boolean {
     this.router.navigateByUrl('/login');
