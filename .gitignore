@@ -341,3 +341,4 @@ healthchecksdb
 ContractLayerAPI/ContractLayerAPI.csproj
 ContractLayerAPI/ContractLayerAPI.csproj
 ContractLayerAPI/ContractLayerAPI.csproj
+/ContractLayerAPI/ClientApp/dist/
