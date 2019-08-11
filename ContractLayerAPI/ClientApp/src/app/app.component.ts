@@ -5,7 +5,7 @@ import { OnInit } from "@angular/core";
 @Component({
   // tslint:disable-next-line
   selector: 'body',
-  template: '<div *ngIf="isLoading"  class="loading">{{loaderService.isLoading}}</div> <router-outlet></router-outlet>'
+  templateUrl:'app.component.html'
 })
 export class AppComponent implements OnInit  {
   isLoading: boolean=false;

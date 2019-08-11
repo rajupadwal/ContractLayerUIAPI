@@ -28,6 +28,7 @@ import { ValidationBorderModule } from './validation-border';
 import { LoaderService } from './app.loading.service';
 
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -59,6 +60,7 @@ import { LoaderService } from './app.loading.service';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     ErrorDirective,
+    
     
 
   ],
