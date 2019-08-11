@@ -25,6 +25,8 @@ import { AuthService } from "./services/auth.service";
 import { ValidationBorderModule } from './validation-border';
 
 
+import { LoaderService } from './app.loading.service';
+
 
 @NgModule({
   imports: [
@@ -70,8 +72,8 @@ import { ValidationBorderModule } from './validation-border';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }
-
+  },
+  LoaderService
   ],
   bootstrap: [AppComponent]
 })
