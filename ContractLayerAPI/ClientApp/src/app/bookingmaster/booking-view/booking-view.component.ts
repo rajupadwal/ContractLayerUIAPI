@@ -65,7 +65,7 @@ export class BookingViewComponent implements OnInit {
     },
 
     
-    { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150 },
+    { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150, sortable: true},
     {
       headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150
     },
