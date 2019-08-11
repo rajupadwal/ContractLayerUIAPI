@@ -11,7 +11,6 @@ import { CalendarModule } from 'primeng/calendar';
 
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 import { ProductService } from './product.service';
-import { ProductMasterComponent } from '../product-master/product-master.component';
 import { ProductViewComponent } from './product-view.component';
 import { ProductViewRoutingModule } from './product.view.routing.module';
 //import { AutoCompleteModule } from 'primeng';
@@ -32,7 +31,7 @@ import { DialogModule } from '../../dialog/dialog.module';
     CommonModule
 
   ],
-  declarations: [ProductViewComponent, ProductMasterComponent],
+  declarations: [ProductViewComponent],
   providers:[ProductService]
 
 })

@@ -8,7 +8,6 @@ import { CalendarModule } from 'primeng/calendar';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
-import { BookingcancelDetailsComponent } from '../bookingcancel-details/bookingcancel-details.component';
 import { BookingcancelService } from './bookingcancel.service';
 import { BookingcancelviewRoutingModule } from './bookingcancel.view.routing.module';
 import { BookingcancelViewComponent } from './bookingcancel-view.component';
@@ -26,7 +25,7 @@ import { BookingcancelViewComponent } from './bookingcancel-view.component';
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [BookingcancelViewComponent, BookingcancelDetailsComponent],
+  declarations: [BookingcancelViewComponent],
   providers:[BookingcancelService]
 })
 export class BookingcancelViewModule {

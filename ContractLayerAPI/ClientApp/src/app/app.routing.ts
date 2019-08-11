@@ -42,7 +42,7 @@ export const routes: Routes = [
       },
       {
         path: 'Farmeroutwardview',
-        loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardModule'
+        loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
       },
       {
         path: 'Purchasebillview',

@@ -12,7 +12,6 @@ import { DialogModule } from '../../dialog/dialog.module';
 import { DialogConfig } from '../../dialog/dialog-config';
 import { DialogRef } from '../../dialog/dialog-ref';
 import { ExpencedetailsViewComponent } from './expencedetails-view.component';
-import { ExpencedetailsMasterComponent } from '../expencedetails-master/expencedetails-master.component';
 import { ExpencedetailsviewRoutingModule } from './expencedetails.view.routing.module';
 import { ExpencedetailsService } from './expencedetails.service';
 //import { AutoCompleteModule } from 'primeng';
@@ -31,7 +30,7 @@ import { ExpencedetailsService } from './expencedetails.service';
     CommonModule
 
   ],
-  declarations: [ExpencedetailsViewComponent, ExpencedetailsMasterComponent],
+  declarations: [ExpencedetailsViewComponent],
   providers: [ExpencedetailsService, DialogConfig, DialogRef]
 
 })

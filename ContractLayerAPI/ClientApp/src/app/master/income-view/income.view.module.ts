@@ -10,7 +10,6 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 import { DialogModule } from '../../dialog/dialog.module';
 import { IncomeService } from './income.service';
 import { IncomeViewComponent } from './income-view.component';
-import { IncomeDetailsComponent } from '../income-details/income-details.component';
 import { IncomeviewRoutingModule } from './income.view.routing.module';
 
 @NgModule({
@@ -26,7 +25,7 @@ import { IncomeviewRoutingModule } from './income.view.routing.module';
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [IncomeViewComponent, IncomeDetailsComponent],
+  declarations: [IncomeViewComponent],
   providers:[IncomeService]
 })
 export class IncomeViewModule {

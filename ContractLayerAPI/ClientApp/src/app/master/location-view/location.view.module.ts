@@ -15,7 +15,6 @@ import { LocationviewRoutingModule  } from './location.view.routing.module'
 
 //import { DPRService } from './dpr.service';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
-import { LocationInfoComponent } from '../location-info/location-info.component';
 import { LocationService } from './location.service';
 import { DialogConfig } from '../../dialog/dialog-config';
 import { DialogService } from '../../dialog/dialog.service';
@@ -37,7 +36,7 @@ import { DialogModule } from '../../dialog/dialog.module';
     CommonModule
 
   ],
-  declarations: [LocationViewComponent, LocationInfoComponent],
+  declarations: [LocationViewComponent],
   providers: [LocationService, DialogConfig,DialogService,DialogRef]
 
 })

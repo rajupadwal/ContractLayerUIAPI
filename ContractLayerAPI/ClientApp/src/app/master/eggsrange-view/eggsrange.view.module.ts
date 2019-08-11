@@ -9,7 +9,6 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
 import { EggsrangeViewComponent } from './eggsrange-view.component';
-import { EggsrangeMasterComponent } from '../eggsrange-master/eggsrange-master.component';
 import { EggsrangeService } from './eggsrange.service';
 import { EggsrangeViewRoutingModule } from './eggsrange.view.routing.module';
 
@@ -26,7 +25,7 @@ import { EggsrangeViewRoutingModule } from './eggsrange.view.routing.module';
     ValidationBorderModule,
     CommonModule
   ],
-  declarations: [EggsrangeViewComponent, EggsrangeMasterComponent],
+  declarations: [EggsrangeViewComponent],
   providers:[EggsrangeService]
 
 })

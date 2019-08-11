@@ -9,7 +9,6 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 import { DialogModule } from '../../dialog/dialog.module';
 import { EnquiryviewRoutingModule } from './enquiry.view.routing.module';
 import { EnquiryViewComponent } from './enquiry-view.component';
-import { EnquiryMasterComponent } from '../enquiry-master/enquiry-master.component';
 import { EnquiryService } from './enquiry.service';
 //import { AutoCompleteModule } from 'primeng';
 
@@ -27,7 +26,7 @@ import { EnquiryService } from './enquiry.service';
     CommonModule
 
   ],
-  declarations: [EnquiryViewComponent, EnquiryMasterComponent],
+  declarations: [EnquiryViewComponent],
   providers: [EnquiryService]
 
 })
