@@ -14,6 +14,7 @@ import { SupplierService } from './supplier.service';
 import { DialogModule } from '../../dialog/dialog.module';
 import { DialogConfig } from '../../dialog/dialog-config';
 import { DialogRef } from '../../dialog/dialog-ref';
+import { SupplierMasterModule } from '../supplier-master/supplier.master.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -27,7 +28,8 @@ import { DialogRef } from '../../dialog/dialog-ref';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    SupplierMasterModule
 
   ],
   declarations: [SupplierViewComponent],

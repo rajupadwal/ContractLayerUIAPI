@@ -18,6 +18,7 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 import { CusotmerService} from './customer.service'
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { CusotmerInfoModule } from '../customer-info/customer.info.module';
 
 @NgModule({
   imports: [
@@ -30,7 +31,9 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    CusotmerInfoModule
+    
 
   ],
   declarations: [CustomerViewComponent],

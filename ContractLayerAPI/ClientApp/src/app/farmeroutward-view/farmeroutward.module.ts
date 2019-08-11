@@ -14,6 +14,7 @@ import { ValidationBorderModule } from '../validation-border';
 
 import { FarmeroutwardViewComponent } from './farmeroutward-view.component';
 import { FarmeroutwardviewRoutingModule } from './farmeroutward.view.routing.module';
+import { FarmerOutwardModule } from '../farmer-outward/farmer-outward.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { FarmeroutwardviewRoutingModule } from './farmeroutward.view.routing.mod
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    FarmerOutwardModule
 
   ],
   declarations: [FarmeroutwardViewComponent],

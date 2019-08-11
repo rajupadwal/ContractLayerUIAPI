@@ -11,6 +11,7 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 import { EmployeeService} from './employee.service'
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { EmployeeInfoModule } from '../employee-info/employee.info.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    EmployeeInfoModule
   ],
   declarations: [EmployeeViewComponent],
   providers:[EmployeeService]

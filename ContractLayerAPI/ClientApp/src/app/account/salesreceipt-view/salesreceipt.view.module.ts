@@ -11,6 +11,7 @@ import { DialogModule } from '../../dialog/dialog.module';
 import { SalesReceiptService } from './salesreceipt.service';
 import { SalesReceiptViewRoutingModule } from './salesreceipt.view.routing.module';
 import { SalesreceiptViewComponent } from './salesreceipt-view.component';
+import { SaleReceiptDetailsModule } from '../salesreceipt-details/salesreceipt.details.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SalesreceiptViewComponent } from './salesreceipt-view.component';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    SaleReceiptDetailsModule
   ],
   declarations: [SalesreceiptViewComponent],
   providers: [SalesReceiptService]

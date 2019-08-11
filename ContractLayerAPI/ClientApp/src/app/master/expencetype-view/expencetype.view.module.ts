@@ -11,6 +11,7 @@ import { DialogModule } from '../../dialog/dialog.module';
 import { ExpencetypeViewComponent } from './expencetype-view.component';
 import { ExpencetypeViewRoutingModule } from './expencetype.view.routing.module';
 import { ExpencetypeService } from './expencetype.service';
+import { ExpencetypeMasterModule } from '../expencetype-master/expencetype.master.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ExpencetypeService } from './expencetype.service';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    ExpencetypeMasterModule
 
   ],
   declarations: [ExpencetypeViewComponent],

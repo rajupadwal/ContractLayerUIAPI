@@ -15,6 +15,7 @@ import { ProductViewComponent } from './product-view.component';
 import { ProductViewRoutingModule } from './product.view.routing.module';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { ProductMasterModule } from '../product-master/product.master.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    ProductMasterModule
 
   ],
   declarations: [ProductViewComponent],

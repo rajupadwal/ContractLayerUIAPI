@@ -10,6 +10,7 @@ import { BookingViewRoutingModule } from './booking.view.routing.module';
 import { BookingViewComponent } from './booking-view.component';
 import { DialogModule } from '../../dialog/dialog.module';
 import { BookingService } from './booking.service';
+import { BookingDetailsModule } from '../booking-details/booking.details.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BookingService } from './booking.service';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    BookingDetailsModule
   ],
   declarations: [BookingViewComponent],
   providers: [BookingService]

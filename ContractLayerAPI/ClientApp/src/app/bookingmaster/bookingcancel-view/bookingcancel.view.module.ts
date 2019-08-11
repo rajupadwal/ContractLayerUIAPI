@@ -11,6 +11,7 @@ import { DialogModule } from '../../dialog/dialog.module';
 import { BookingcancelService } from './bookingcancel.service';
 import { BookingcancelviewRoutingModule } from './bookingcancel.view.routing.module';
 import { BookingcancelViewComponent } from './bookingcancel-view.component';
+import { BookingcancelDetailsModule } from '../bookingcancel-details/bookingcancel.details.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { BookingcancelViewComponent } from './bookingcancel-view.component';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    BookingcancelDetailsModule
   ],
   declarations: [BookingcancelViewComponent],
   providers:[BookingcancelService]

@@ -10,6 +10,7 @@ import { DialogModule } from '../../dialog/dialog.module';
 import { EnquiryviewRoutingModule } from './enquiry.view.routing.module';
 import { EnquiryViewComponent } from './enquiry-view.component';
 import { EnquiryService } from './enquiry.service';
+import { EnquiryMasterModule } from '../enquiry-master/enquiry.master.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EnquiryService } from './enquiry.service';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    EnquiryMasterModule
 
   ],
   declarations: [EnquiryViewComponent],

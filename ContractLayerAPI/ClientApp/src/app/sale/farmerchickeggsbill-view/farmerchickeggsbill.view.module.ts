@@ -15,6 +15,7 @@ import { FarmerChikEggviewRoutingModule } from './farmerchickeggsbill.view.routi
 import { DialogModule } from '../../dialog/dialog.module';
 import { ValidationBorderModule } from '../../validation-border';
 import { FarmerchikeggbillService } from './farmerchickeggsbill.service';
+import { FarmerChickEggsDetailModule } from '../farmerchickeggsbill-detail/farmerchickeggsbill.detail.module';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { FarmerchikeggbillService } from './farmerchickeggsbill.service';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    FarmerChickEggsDetailModule
 
   ],
   declarations: [FarmerchickeggsbillViewComponent],

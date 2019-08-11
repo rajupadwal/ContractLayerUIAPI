@@ -17,6 +17,7 @@ import { PlanService } from './plan.service';
 import { PlanViewComponent } from './plan-view.component';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { PlanMasterModule } from '../plan-master/plan.master.module';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    PlanMasterModule
 
   ],
   declarations: [PlanViewComponent],

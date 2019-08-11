@@ -1,5 +1,6 @@
 
-export const API_URL = window.location.origin + "/ContractLayer/api/";
+//export const API_URL = window.location.origin + "/ContractLayer/api/";
+export const API_URL = window.location.origin + "/api/";
 export const APP_CONSTANT={
   USER_APIS : {
     LOGIN: API_URL + "user/login"

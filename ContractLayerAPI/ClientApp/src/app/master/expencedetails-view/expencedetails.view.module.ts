@@ -14,6 +14,7 @@ import { DialogRef } from '../../dialog/dialog-ref';
 import { ExpencedetailsViewComponent } from './expencedetails-view.component';
 import { ExpencedetailsviewRoutingModule } from './expencedetails.view.routing.module';
 import { ExpencedetailsService } from './expencedetails.service';
+import { ExpencedetailsMasterModule } from '../expencedetails-master/expencedetails.master.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ExpencedetailsService } from './expencedetails.service';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    ExpencedetailsMasterModule
 
   ],
   declarations: [ExpencedetailsViewComponent],

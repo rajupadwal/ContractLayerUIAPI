@@ -14,6 +14,7 @@ import { FarmerinwardviewRoutingModule } from './farmerinward.view.routing.modul
 import { FarmerinwardService } from './farmerinward.service';
 import { DialogModule } from '../dialog/dialog.module';
 import { ValidationBorderModule } from '../validation-border';
+import { FarmerInwardModule } from '../farmer-inward/farmer-inward.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { ValidationBorderModule } from '../validation-border';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    FarmerInwardModule
 
   ],
   declarations: [FarmerinwardViewComponent],

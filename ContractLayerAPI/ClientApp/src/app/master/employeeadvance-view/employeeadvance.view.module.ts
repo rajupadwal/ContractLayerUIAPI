@@ -11,6 +11,7 @@ import { DialogModule } from '../../dialog/dialog.module';
 import { EmployeeadvanceService } from './employeeadvance.service';
 import { EmployeeadvanceViewComponent } from './employeeadvance-view.component';
 import { EmployeeadvanceViewRoutingModule } from './employeeadvance.view.routing.module';
+import { EmployeeadvanceDetailsModule } from '../employeeadvance-details/employeeadvance-details.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { EmployeeadvanceViewRoutingModule } from './employeeadvance.view.routing
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    EmployeeadvanceDetailsModule
   ],
   declarations: [EmployeeadvanceViewComponent],
   providers:[EmployeeadvanceService]

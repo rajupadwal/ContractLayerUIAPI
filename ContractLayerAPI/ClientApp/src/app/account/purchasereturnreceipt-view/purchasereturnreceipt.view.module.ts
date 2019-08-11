@@ -10,6 +10,7 @@ import { DialogModule } from '../../dialog/dialog.module';
 import { PurchasereturnReceiptService } from './purchasereturnreceipt.service';
 import { PurchasereturnReceiptViewComponent } from './purchasereturnreceipt-view.component';
 import { PurchasereturnReceiptViewRoutingModule } from './purchasereturnreceipt.view.routing.module';
+import { PurchasereturnReceiptDetailsModule } from '../purchasereturnreceipt-details/purchasereturnreceipt.details.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -23,7 +24,8 @@ import { PurchasereturnReceiptViewRoutingModule } from './purchasereturnreceipt.
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    PurchasereturnReceiptDetailsModule
   ],
   declarations: [PurchasereturnReceiptViewComponent],
   providers: [PurchasereturnReceiptService]
