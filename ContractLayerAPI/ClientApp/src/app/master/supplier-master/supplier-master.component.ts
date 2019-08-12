@@ -61,8 +61,11 @@ export class SupplierMasterComponent implements OnInit {
     this.isEditable = true;
     this.supplierForm.setValue(this.config.data);
   }
-  
+
   savesupplier() {
+    if (!this.dialog.validateForm(this.supplierForm)) {
+      return;
+    }
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

@@ -37,7 +37,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
 
   onOverlayClicked(evt: MouseEvent) {
     //evt.stopPropagation();
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   onDialogClicked(evt: MouseEvent) {
@@ -60,6 +60,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   }
 
   close() {
-    this._onClose.next();
+    this._onClose.next(false);
   }
 }
