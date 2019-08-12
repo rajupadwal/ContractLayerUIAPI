@@ -15,9 +15,9 @@ import { PlanViewRoutingModule } from './plan.view.routing.module'
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 import { PlanService } from './plan.service';
 import { PlanViewComponent } from './plan-view.component';
-import { PlanMasterComponent } from '../plan-master/plan-master.component';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { PlanMasterModule } from '../plan-master/plan.master.module';
 
 @NgModule({
   imports: [
@@ -30,10 +30,11 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    PlanMasterModule
 
   ],
-  declarations: [PlanViewComponent, PlanMasterComponent],
+  declarations: [PlanViewComponent],
   providers:[PlanService]
 
 })

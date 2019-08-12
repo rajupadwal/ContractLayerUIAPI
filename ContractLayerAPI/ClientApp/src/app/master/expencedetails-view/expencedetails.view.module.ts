@@ -12,9 +12,9 @@ import { DialogModule } from '../../dialog/dialog.module';
 import { DialogConfig } from '../../dialog/dialog-config';
 import { DialogRef } from '../../dialog/dialog-ref';
 import { ExpencedetailsViewComponent } from './expencedetails-view.component';
-import { ExpencedetailsMasterComponent } from '../expencedetails-master/expencedetails-master.component';
 import { ExpencedetailsviewRoutingModule } from './expencedetails.view.routing.module';
 import { ExpencedetailsService } from './expencedetails.service';
+import { ExpencedetailsMasterModule } from '../expencedetails-master/expencedetails.master.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -28,10 +28,11 @@ import { ExpencedetailsService } from './expencedetails.service';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    ExpencedetailsMasterModule
 
   ],
-  declarations: [ExpencedetailsViewComponent, ExpencedetailsMasterComponent],
+  declarations: [ExpencedetailsViewComponent],
   providers: [ExpencedetailsService, DialogConfig, DialogRef]
 
 })

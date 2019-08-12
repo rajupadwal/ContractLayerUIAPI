@@ -127,10 +127,11 @@
               <div class="card-block">
                 <div class="form-group">
                   <span class="ui-float-label">
-                    <p-autoComplete [(ngModel)]="item.Producttype" [suggestions]="producttypelist" (completeMethod)="searchProducttype($event)"
+                    <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="item.productTypeList" (completeMethod)="searchProducttype($event,item)"
                                     [dropdown]="true" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
                     <label for="float-input"></label>
                   </span>
+                  {{item.ProductTypeList| json}}
                 </div>
               </div>
             </div>

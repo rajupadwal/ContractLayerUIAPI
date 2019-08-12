@@ -12,11 +12,11 @@ import { CalendarModule } from 'primeng/calendar';
 
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 import { ProductdescService } from './productdesc.service';
-import { ProductdescMasterComponent } from '../productdesc-master/productdesc-master.component';
 import { ProductdescViewComponent } from './productdesc-view.component';
 import { ProductdescViewRoutingModule } from './productdesc.view.routing.module';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { ProductdescMasterModule } from '../productdesc-master/productdesc.master.module';
 
 @NgModule({
   imports: [
@@ -29,10 +29,11 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    ProductdescMasterModule
 
   ],
-  declarations: [ProductdescViewComponent, ProductdescMasterComponent],
+  declarations: [ProductdescViewComponent],
   providers:[ProductdescService]
 
 })

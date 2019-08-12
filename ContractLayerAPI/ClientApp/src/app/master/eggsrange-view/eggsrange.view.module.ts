@@ -9,9 +9,9 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
 import { EggsrangeViewComponent } from './eggsrange-view.component';
-import { EggsrangeMasterComponent } from '../eggsrange-master/eggsrange-master.component';
 import { EggsrangeService } from './eggsrange.service';
 import { EggsrangeViewRoutingModule } from './eggsrange.view.routing.module';
+import { EggsrangeMasterModule } from '../eggsrange-master/eggsrange.master.module';
 
 @NgModule({
   imports: [
@@ -24,9 +24,10 @@ import { EggsrangeViewRoutingModule } from './eggsrange.view.routing.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    EggsrangeMasterModule
   ],
-  declarations: [EggsrangeViewComponent, EggsrangeMasterComponent],
+  declarations: [EggsrangeViewComponent],
   providers:[EggsrangeService]
 
 })

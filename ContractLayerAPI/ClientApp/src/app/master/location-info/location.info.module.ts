@@ -12,8 +12,9 @@ import { CalendarModule } from 'primeng/calendar';
 
 //import { DPRService } from './dpr.service';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
-import { SupplierMasterRoutingModule } from '../supplier-master/supplier.master.routing.module';
-import { SupplierMasterComponent } from '../supplier-master/supplier-master.component';
+import { locationInfoRoutingModule } from "src/app/master/location-info/location.info.routing.module";
+import { LocationInfoComponent } from "src/app/master/location-info/location-info.component";
+
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -21,7 +22,7 @@ import { SupplierMasterComponent } from '../supplier-master/supplier-master.comp
     FormsModule,
     BsDropdownModule.forRoot(),
     AgGridModule.withComponents([]),
-    SupplierMasterRoutingModule,
+    locationInfoRoutingModule,
     CalendarModule,
     AutoCompleteModule,
     ReactiveFormsModule,
@@ -29,10 +30,10 @@ import { SupplierMasterComponent } from '../supplier-master/supplier-master.comp
     CommonModule
 
   ],
-  declarations: [SupplierMasterComponent],
+  declarations: [LocationInfoComponent],
   
 })
-export class SupplierMasterModule {
+export class LocationInfoModule {
  
  }
 //providers: [DPRService]

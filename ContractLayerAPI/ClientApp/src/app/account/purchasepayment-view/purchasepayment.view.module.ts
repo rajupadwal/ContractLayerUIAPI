@@ -7,10 +7,10 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 import { DialogModule } from '../../dialog/dialog.module';
-import { PurchasepaymentDetailsComponent } from '../purchasepayment-details/purchasepayment-details.component';
 import { PurchasepaymentViewComponent } from './purchasepayment-view.component';
 import { PurchasePaymentViewRoutingModule } from './purchasepayment.view.routing.module';
 import { PurchasePayemntService } from './purchasepayment.service';
+import { PurchasePaymentDetailsModule } from '../purchasepayment-details/purchasepayment.details.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -24,9 +24,10 @@ import { PurchasePayemntService } from './purchasepayment.service';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    PurchasePaymentDetailsModule
   ],
-  declarations: [PurchasepaymentViewComponent, PurchasepaymentDetailsComponent],
+  declarations: [PurchasepaymentViewComponent],
   providers: [PurchasePayemntService]
 })
 export class PurchasePaymentViewModule {

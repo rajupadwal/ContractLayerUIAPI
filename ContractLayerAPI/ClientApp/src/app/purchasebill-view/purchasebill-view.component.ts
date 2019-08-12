@@ -113,16 +113,17 @@ export class PurchasebillViewComponent implements OnInit {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();
     });
+    
   }
 
   RefreshGrid = () => {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.Purchasebillservice.loadPurchaseBillMaster().subscribe(
-      (response) => {
-        this.rowData = response;
+    
+    return this.http.get(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.GETALLPURCHASEBILLMASTERS, httpOptions)
+      .subscribe((purchasebill: any) => {
+        this.rowData = purchasebill;
       });
   }
-
 }

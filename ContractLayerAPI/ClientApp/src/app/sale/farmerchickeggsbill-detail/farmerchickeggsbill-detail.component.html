@@ -166,10 +166,11 @@
             <div class="card-block">
               <div class="form-group">
                 <span class="ui-float-label">
-                  <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="producttypelist" (completeMethod)="searchProducttype($event)"
+                  <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="item.productTypeList" (completeMethod)="searchProducttype($event,item)"
                                   [dropdown]="true" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
                   <label for="float-input"></label>
                 </span>
+                {{item.ProductTypeList| json}}
               </div>
             </div>
           </div>
@@ -295,7 +296,7 @@
           <div class="form-group">
             <div>
               <span class="ui-float-label">
-                <input [(ngModel)]="FarmerChickEggsBillMaster.OtherCharges" (change)="calculateTaxableAmount($event,item)" type="text" pInputText id="othercharges" name="othercharges" class="form-control" rows="3">
+                <input [(ngModel)]="FarmerChickEggsBillMaster.OtherCharges" (change)="calculateTaxableAmount($event,'')" type="text" pInputText id="othercharges" name="othercharges" class="form-control" rows="3">
               </span>
             </div>
           </div>

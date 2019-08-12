@@ -27,6 +27,8 @@ namespace ContractLayerFarm.Data.Models
         public decimal? Igst { get; set; }
         public decimal? MinimumQty { get; set; }
         public decimal? OpeningStock { get; set; }
+        public TblProductMaster Product { get; set; }
+        public TblUnitMaster Unit { get; set; }
 
         public ICollection<TblFeedSheduleMasterDt> TblFeedSheduleMasterDt { get; set; }
         public ICollection<TblMortalitywastageDt> TblMortalitywastageDt { get; set; }
@@ -34,8 +36,5 @@ namespace ContractLayerFarm.Data.Models
         public ICollection<TblPurchaseBillReturnDt> TblPurchaseBillReturnDt { get; set; }
         public ICollection<TblSalesBillDt> TblSalesBillDt { get; set; }
         public ICollection<TblStockDetails> TblStockDetails { get; set; }
-
-        public TblProductMaster Product { get; set; }
-        public TblUnitMaster Unit { get; set; }
     }
 }

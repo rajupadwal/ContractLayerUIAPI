@@ -11,10 +11,10 @@ import { CalendarModule } from 'primeng/calendar';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../dialog/dialog.module';
 import { ValidationBorderModule } from '../validation-border';
-import { FarmeroutwardService } from './farmeroutward.service';
-import { FarmerOutwardComponent } from '../farmer-outward/farmer-outward.component';
+
 import { FarmeroutwardViewComponent } from './farmeroutward-view.component';
 import { FarmeroutwardviewRoutingModule } from './farmeroutward.view.routing.module';
+import { FarmerOutwardModule } from '../farmer-outward/farmer-outward.module';
 
 @NgModule({
   imports: [
@@ -27,13 +27,12 @@ import { FarmeroutwardviewRoutingModule } from './farmeroutward.view.routing.mod
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    FarmerOutwardModule
 
   ],
-  declarations: [FarmeroutwardViewComponent, FarmerOutwardComponent],
-  providers:[FarmeroutwardService]
-
+  declarations: [FarmeroutwardViewComponent],
 })
-export class FarmeroutwardModule {
+export class FarmeroutwardViewModule {
 
 }

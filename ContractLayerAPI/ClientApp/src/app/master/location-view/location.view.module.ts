@@ -15,12 +15,12 @@ import { LocationviewRoutingModule  } from './location.view.routing.module'
 
 //import { DPRService } from './dpr.service';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
-import { LocationInfoComponent } from '../location-info/location-info.component';
 import { LocationService } from './location.service';
 import { DialogConfig } from '../../dialog/dialog-config';
 import { DialogService } from '../../dialog/dialog.service';
 import { DialogRef } from '../../dialog/dialog-ref';
 import { DialogModule } from '../../dialog/dialog.module';
+import { LocationInfoModule } from '../location-info/location.info.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -34,10 +34,11 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    LocationInfoModule
 
   ],
-  declarations: [LocationViewComponent, LocationInfoComponent],
+  declarations: [LocationViewComponent],
   providers: [LocationService, DialogConfig,DialogService,DialogRef]
 
 })

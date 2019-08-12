@@ -9,9 +9,9 @@ import { ValidationBorderModule } from '../../validation-border/validation-borde
 import { BookingViewRoutingModule } from './booking.view.routing.module';
 import { BookingViewComponent } from './booking-view.component';
 import { DialogModule } from '../../dialog/dialog.module';
-import { BookingDetailsComponent } from '../booking-details/booking-details.component';
 import { BookingService } from './booking.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BookingDetailsModule } from '../booking-details/booking.details.module';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
@@ -26,9 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    BookingDetailsModule
   ],
-  declarations: [BookingViewComponent,BookingDetailsComponent],
+  declarations: [BookingViewComponent],
   providers: [BookingService]
 })
 export class BookingViewModule {

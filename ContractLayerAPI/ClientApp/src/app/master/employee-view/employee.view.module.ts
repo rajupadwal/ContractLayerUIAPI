@@ -8,10 +8,10 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 import { EmployeeviewRoutingModule } from './employee.view.routing.module'
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
-import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
 import { EmployeeService} from './employee.service'
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { EmployeeInfoModule } from '../employee-info/employee.info.module';
 
 @NgModule({
   imports: [
@@ -24,9 +24,10 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    EmployeeInfoModule
   ],
-  declarations: [EmployeeViewComponent, EmployeeInfoComponent],
+  declarations: [EmployeeViewComponent],
   providers:[EmployeeService]
 })
 export class EmployeeViewModule {

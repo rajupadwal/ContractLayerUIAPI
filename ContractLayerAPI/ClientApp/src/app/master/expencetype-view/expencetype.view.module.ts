@@ -8,10 +8,10 @@ import { CalendarModule } from 'primeng/calendar';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
-import { ExpencetypeMasterComponent } from '../expencetype-master/expencetype-master.component';
 import { ExpencetypeViewComponent } from './expencetype-view.component';
 import { ExpencetypeViewRoutingModule } from './expencetype.view.routing.module';
 import { ExpencetypeService } from './expencetype.service';
+import { ExpencetypeMasterModule } from '../expencetype-master/expencetype.master.module';
 
 @NgModule({
   imports: [
@@ -24,10 +24,11 @@ import { ExpencetypeService } from './expencetype.service';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    ExpencetypeMasterModule
 
   ],
-  declarations: [ExpencetypeViewComponent, ExpencetypeMasterComponent],
+  declarations: [ExpencetypeViewComponent],
   providers:[ExpencetypeService]
 
 })

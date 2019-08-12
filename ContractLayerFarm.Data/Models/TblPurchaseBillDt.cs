@@ -30,7 +30,5 @@ namespace ContractLayerFarm.Data.Models
 
         public TblPurchaseBillMt Bill { get; set; }
         public TblProductTypeMaster Product { get; set; }
-
-        //public TblUnitMaster Units { get; set; }
     }
 }

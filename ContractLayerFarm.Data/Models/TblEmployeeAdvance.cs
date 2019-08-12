@@ -17,3 +17,4 @@ namespace ContractLayerFarm.Data.Models
         public TblEmployeeMaster Employee { get; set; }
     }
 }
+

@@ -10,12 +10,12 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
-import { ProfileMasterComponent } from '../profile-master/profile-master.component';
 import { ProfileViewComponent } from './profile-view.component';
 import { ProfileViewRoutingModule } from './profile.view.routing.module';
 import { ProfileService } from './profile.service';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { ProfileMasterModule } from '../profile-master/profile.master.module';
 
 @NgModule({
   imports: [
@@ -28,10 +28,11 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    ProfileMasterModule
 
   ],
-  declarations: [ProfileViewComponent, ProfileMasterComponent],
+  declarations: [ProfileViewComponent],
   providers:[ProfileService]
 
 })

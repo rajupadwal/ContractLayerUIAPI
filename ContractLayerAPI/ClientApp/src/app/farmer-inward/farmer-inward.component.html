@@ -1,10 +1,10 @@
 <div class="col-sm-12">
   <div class="card">
     <div class="card-header">
-      <strong>Booking Order</strong>
+      <strong>Farmer Inward Details</strong>
       <!--<small>Form</small>-->
     </div>
-    <!--<form [formGroup]="bookingdetailsForm" (ngSubmit)="saveBookingDetails()">-->
+    
     <div class="row">
       <div class="col-sm-4">
         <div class="card-block">
@@ -35,7 +35,6 @@
         <div class="card-block">
           <div class="form-group">
             <label for="select"><strong>Location :</strong></label>
-
             <p-autoComplete [(ngModel)]="FarmerInwardMaster.Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
                             [dropdown]="true" (onSelect)="onSelectLocations($event)" [forceSelection]="true" field="LocationName"></p-autoComplete>
           </div>
@@ -132,10 +131,11 @@
               <div class="card-block">
                 <div class="form-group">
                   <span class="ui-float-label">
-                    <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="producttypelist" (completeMethod)="searchProducttype($event,item)"
+                    <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="item.productTypeList" (completeMethod)="searchProducttype($event,item)"
                                     [dropdown]="true" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
                     <label for="float-input"></label>
                   </span>
+                  {{item.ProductTypeList| json}}
                 </div>
               </div>
             </div>
@@ -172,7 +172,6 @@
           <button type="button" (click)="saveItems()">save</button>
         </div>
       </div>
-    <!--</form>-->
   </div>
 </div>
 

@@ -15,10 +15,10 @@ import { CusotomerviewRoutingModule } from './cusotmer.view.routing.module'
 
 //import { DPRService } from './dpr.service';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
-import { CustomerInfoComponent } from '../customer-info/customer-info.component';
 import { CusotmerService} from './customer.service'
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
+import { CusotmerInfoModule } from '../customer-info/customer.info.module';
 
 @NgModule({
   imports: [
@@ -31,10 +31,12 @@ import { DialogModule } from '../../dialog/dialog.module';
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    CusotmerInfoModule
+    
 
   ],
-  declarations: [CustomerViewComponent, CustomerInfoComponent],
+  declarations: [CustomerViewComponent],
   providers:[CusotmerService]
 
 })

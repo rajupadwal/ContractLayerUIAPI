@@ -53,6 +53,9 @@ export class FarmerOutwardComponent implements OnInit {
     if (this.config.isEditable == true) {
       this.setDataForEdit();
     }
+    else {
+      this.loadProductTypes();
+    }
   }
 
   setDataForEdit = () => {
@@ -66,8 +69,31 @@ export class FarmerOutwardComponent implements OnInit {
     this.productService.getAllFarmeroutwardmastedetails(this.config.data).subscribe((response) => {
       this.FarmerOutwardDetailsList = response;
       this.loadProducts();
+      this.loadProductTypes();
       //this.loadUnits();
     });
+  }
+
+  loadProductTypes() {
+    this.productService.loadProducts()
+      .subscribe((products: any) => {
+        this.producttypelist = products;
+        this.producttypelist.forEach((key: any, value: any) => {
+          key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
+        })
+        if (this.isEditable == true && this.FarmerOutwardDetailsList) {
+          this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
+            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit);
+            if (productType) {
+              key.Producttypeun = productType;
+              key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
+            }
+
+          })
+        }
+      });
+
+
   }
 
   loadCustomers = () => {
@@ -85,17 +111,6 @@ export class FarmerOutwardComponent implements OnInit {
         if (this.isEditable == true && this.FarmerOutwardDetailsList) {
           this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
-
-            let newDetails = new FarmerOutwardDetail();
-            newDetails.ProductId = key.Product.ProductId;
-
-            this.productService.getProductTypeByProductID(newDetails)
-              .subscribe((types: any) => {
-                this.producttypelist = types;
-                this.producttypelist.forEach((key: any, value: any) => {
-                  key.Producttype = key.ProductType + '-' + key.Unit.UnitDescription;
-                })
-              });
           })
         }
       });
@@ -107,18 +122,6 @@ export class FarmerOutwardComponent implements OnInit {
         this.locationList = locaions;
       });
   }
-
-  //loadUnits = () => {
-  //  this.productService.loadUnits()
-  //    .subscribe((units: any) => {
-  //      this.unitLists = units;
-  //      if (this.isEditable == true && this.FarmerOutwardDetailsList) {
-  //        this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
-  //          key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
-  //        })
-  //      }
-  //    });
-  //}
 
   addNewItem = () => {
     let newDetails = new FarmerOutwardDetail();
@@ -140,7 +143,7 @@ export class FarmerOutwardComponent implements OnInit {
 
     this.FarmerOutwardMaster.TblFarmerOutwardDt.forEach((key: any, value: any) => {
       key.Product = null;
-      key.Producttype = null;
+      key.Producttypeun = null;
       key.PkId = 0;
     })
 
@@ -176,38 +179,13 @@ export class FarmerOutwardComponent implements OnInit {
   onSelectProducts = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
     this.FarmerOutwardDetailsList.ProductId = model.ProductId;
-
-    let newDetails = new FarmerOutwardDetail();
-    newDetails.ProductId  = model.Product.ProductId;
-
-    this.productService.getProductTypeByProductID(newDetails)
-      .subscribe((types: any) => {
-        this.producttypelist = types;
-        this.producttypelist.forEach((key: any, value: any) => {
-          key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-        })
-
-        //if (this.isEditable == true && this.FarmerOutwardDetailsList) {
-        //  this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
-        //    key.Producttype = this.producttypelist.find(p => p.ProductTypeUnit == key.ProductType + '-' + key.Unit);
-        //  })
-        //}
-      });
   };
 
   onSelectProducttypes = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
-    model.ProductType = model.Producttype.ProductType;
-    model.Unit = model.Producttype.Unit.UnitDescription;
+    model.ProductType = model.Producttypeun.ProductType;
+    model.Unit = model.Producttypeun.Unit.UnitId;
 
-    let newDetails = new FarmerOutwardDetail();
-    newDetails.ProductId = model.Product.ProductId;
-    newDetails.ProductType = model.Producttype.ProductType;
-
-    this.farmeroutwardService.getProductAvailableStock(newDetails)
-      .subscribe((stock: any) => {
-        model.AvailableStock = stock;
-      });
   };
 
   searchCustomer(event) {
@@ -241,34 +219,17 @@ export class FarmerOutwardComponent implements OnInit {
     this.loadProducts();
   };
 
-  searchProducttype = (value) => {
+  searchProducttype = (value, item) => {
     let newDetails = new FarmerOutwardDetail();
-    newDetails.ProductId = this.FarmerOutwardDetailsList.ProductId;
-
-    this.productService.getProductTypeByProductID(newDetails)
-      .subscribe((types: any) => {
-        this.producttypelist = types;
-        this.producttypelist.forEach((key: any, value: any) => {
-          key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-        })
-
-        if (this.isEditable == true && this.FarmerOutwardDetailsList) {
-          this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
-            let newDetails = new FarmerOutwardDetail();
-            newDetails.ProductId = key.Product.ProductId;
-
-            this.productService.getProductTypeByProductID(newDetails)
-              .subscribe((types: any) => {
-                this.producttypelist = types;
-                this.producttypelist.forEach((key: any, value: any) => {
-                  key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-                })
-              });
-          })
-        }
-      });
+    newDetails.ProductId = item.ProductId;
+    let prdList = []
+    if (this.producttypelist && this.producttypelist.length > 0) {
+      prdList = JSON.parse(JSON.stringify(this.producttypelist));
+    }
+    item.productTypeList = [];
+    item.productTypeList = prdList.filter(p => p.ProductId == item.ProductId);
   };
-}
+  }
 
 export class FarmerOutwardDetail {
   PkId: number;
@@ -280,7 +241,8 @@ export class FarmerOutwardDetail {
   Quantity: number=0;
   AvailableStock: number = 0;
   Product: any;
-  Producttype: any;
+  Producttypeun: any;
+  productTypeList = [];
 }
 
 export class FarmerOutwardMaster {

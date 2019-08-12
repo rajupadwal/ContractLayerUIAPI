@@ -13,8 +13,8 @@ import { DialogModule } from '../dialog/dialog.module';
 import { ValidationBorderModule } from '../validation-border';
 import { PurchasebillService } from './purchasebill.service';
 import { PurchasebillViewComponent } from './purchasebill-view.component';
-import { PurchaseBillComponent } from '../purchase-bill/purchase-bill.component';
 import { PurchasebillviewRoutingModule } from './purchasebill.view.routing.module';
+import { PurchaseBillModule } from '../purchase-bill/purchase-bill.module';
 
 @NgModule({
   imports: [
@@ -27,9 +27,10 @@ import { PurchasebillviewRoutingModule } from './purchasebill.view.routing.modul
     AutoCompleteModule,
     ReactiveFormsModule,
     ValidationBorderModule,
-    CommonModule
+    CommonModule,
+    PurchaseBillModule
   ],
-  declarations: [PurchasebillViewComponent, PurchaseBillComponent],
+  declarations: [PurchasebillViewComponent],
   providers:[PurchasebillService]
 
 })
