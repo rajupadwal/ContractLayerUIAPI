@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { Observable } from "rxjs";
+import { LoaderService } from "src/app/app.loading.service";
+import { map } from "rxjs/internal/operators/map";
+import { finalize } from "rxjs/internal/operators/finalize";
+
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, private loaderService: LoaderService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     request = request.clone({
@@ -18,6 +25,30 @@ export class TokenInterceptor implements HttpInterceptor {
         'Content-Type': 'application/json' 
       }
     });
-    return next.handle(request);
+
+    this.loaderService.show();
+    return next.handle(request).pipe(
+      map(event => {
+        return event;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+          // client-side error
+          errorMessage = `Error: ${error.error.message}`;
+        } else {
+          // server-side error
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        window.alert(errorMessage);
+        return throwError(errorMessage);
+      }),
+      finalize(() => {
+         this.loaderService.hide();
+      })
+    )
+    
   }
+   
+  
 }
