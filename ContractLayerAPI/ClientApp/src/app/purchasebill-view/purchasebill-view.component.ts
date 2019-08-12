@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../config';
 import { DialogService } from '../dialog/dialog.service';
 import { PurchaseBillComponent } from '../purchase-bill/purchase-bill.component';
 import { PurchasebillService } from './purchasebill.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-purchasebill-view',
@@ -12,6 +13,9 @@ import { PurchasebillService } from './purchasebill.service';
   styleUrls: ['./purchasebill-view.component.css']
 })
 export class PurchasebillViewComponent implements OnInit {
+
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
     //{
@@ -51,23 +55,40 @@ export class PurchasebillViewComponent implements OnInit {
       headerName: 'GRN No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'BillNo', 'width': 150
+      field: 'BillNo', 'width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
-
-
-    
-
-    { headerName: 'Date ', field: 'BillDate', 'width': 150 },
+     
+    { headerName: 'Date ', field: 'BillDate', valueFormatter: this.dateFormatter,'width': 150 ,},
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 150
+      headerName: 'Location Name', field: 'LocationName', ' width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Supplier Name ', field: 'SupplierName', 'width': 100
+      headerName: 'Supplier Name ', field: 'SupplierName', 'width': 180,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
   ];
 
   rowData;
 
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
 
   constructor(private router: Router, private http: HttpClient, private Purchasebillservice: PurchasebillService, public dialog: DialogService) { }
 

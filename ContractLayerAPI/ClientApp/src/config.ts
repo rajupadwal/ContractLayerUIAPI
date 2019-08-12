@@ -213,8 +213,8 @@ export const APP_CONSTANT={
     GETByID: API_URL + 'Purchasepayment/GetByID',
     EDIT: API_URL + 'Purchasepayment/Update',
     DELETE: API_URL + 'Purchasepayment/Delete',
-    PURCHASEPAYMENTNO: API_URL + 'Purchasepayment/GetPurchasePaymentNo'
-
+    PURCHASEPAYMENTNO: API_URL + 'Purchasepayment/GetPurchasePaymentNo',
+     GETSUPPOUTSTANDING: API_URL + 'Purchasepayment/GetSupplierOutstandingAmt',
   },
 
   PURCHASERETURNRECEIPT_API: {
@@ -222,7 +222,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Purchasereturnreceipt/GetAll',
     GETByID: API_URL + 'Purchasereturnreceipt/GetByID',
     EDIT: API_URL + 'Purchasereturnreceipt/Update',
-    DELETE: API_URL + 'Purchasereturnreceipt/Delete'
+    DELETE: API_URL + 'Purchasereturnreceipt/Delete',
+    RETURNPURCHASEPAYMENTNO: API_URL + 'Purchasereturnreceipt/GetReturnPurchasePaymentNo',
   },
                                                     
 }

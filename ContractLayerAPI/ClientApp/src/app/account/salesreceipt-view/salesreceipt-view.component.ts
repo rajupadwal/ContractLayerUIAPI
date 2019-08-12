@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
 import { SalesReceiptService } from './salesreceipt.service';
 import { SalesReceiptDetailsComponent } from '../salesreceipt-details/salesreceipt-details.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-salesreceipt-view',
@@ -17,6 +18,9 @@ export class SalesreceiptViewComponent implements OnInit {
     alert('i am clicked');
     console.log(param);
   }
+
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
     //{
@@ -62,19 +66,26 @@ export class SalesreceiptViewComponent implements OnInit {
       headerName: 'Receipt No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'ReceiptNo', 'width': 130
+      field: 'ReceiptNo', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
-
     
     { headerName: 'Date ', field: 'Date', 'width': 100 },
     {
-      headerName: 'Location Name', field: 'Location.LocationName', ' width': 120
+      headerName: 'Location Name', field: 'Location.LocationName', ' width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Customer Name ', field: 'Customer.CustmerName', 'width': 100
+      headerName: 'Customer Name ', field: 'Customer.CustmerName', 'width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100
+      headerName: 'PaymentType    ', field: 'PaymentType', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     { headerName: 'BillRefNo    ', field: 'BillRefNo' },
     { headerName: 'PaymentMethod    ', field: 'PaymentMethod' },
@@ -86,6 +97,21 @@ export class SalesreceiptViewComponent implements OnInit {
   rowData = [
 
   ];
+
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
 
   constructor(private router: Router, private http: HttpClient, private salesreceiptservice: SalesReceiptService, public dialog: DialogService) { }
 

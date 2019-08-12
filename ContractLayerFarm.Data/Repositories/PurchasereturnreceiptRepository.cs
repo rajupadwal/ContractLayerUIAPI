@@ -33,5 +33,11 @@ namespace ContractLayerFarm.Data.Repositories
         {
             return true;
         }
+
+        public int GetReturnPurchasePaymentNo()
+        {
+            int maxPurchasePaymentNo = this.ktConContext.TblPurchaseReturnReceipt.Select(p => p.RecordNo).DefaultIfEmpty(0).Max() + 1;
+            return maxPurchasePaymentNo;
+        }
     }
 }

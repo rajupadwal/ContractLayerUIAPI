@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
 import { BookingDetailsComponent } from '../booking-details/booking-details.component';
 import { BookingService } from './booking.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-booking-view',
@@ -17,6 +18,10 @@ export class BookingViewComponent implements OnInit {
     alert('i am clicked');
     console.log(param);
   }
+
+  private gridApi;
+  private gridColumnApi;
+  private columnTypes;
 
   columnDefs = [
     //{
@@ -61,22 +66,51 @@ export class BookingViewComponent implements OnInit {
       headerName: 'RecordNo', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 120
+      field: 'RecordNo', 'width': 120,
+      filter: "agNumberColumnFilter"
+    },  
+    {
+      headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'BookingDate ', field: 'BookingDate', valueFormatter: this.dateFormatter, 'width': 180,
+      filter: "agDateColumnFilter",
+      filterParams: {
+        comparator: function (filterLocalDateAtMidnight, cellValue) {
+          var dateAsString = cellValue;
+          if (dateAsString == null) return -1;
+          var dateParts = dateAsString.split("/");
+          var cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
+          if (filterLocalDateAtMidnight.getTime() == cellDate.getTime()) {
+            return 0;
+          }
+          if (cellDate < filterLocalDateAtMidnight) {
+            return -1;
+          }
+          if (cellDate > filterLocalDateAtMidnight) {
+            return 1;
+          }
+        },
+        browserDatePicker: true
+      }
     },
 
-    
-    { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150 },
     {
-      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150
+      headerName: 'Plan Name   ', field: 'Plan.PlanName', 'width': 100,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'BookingDate ', field: 'BookingDate', 'width': 100
-    },
-    {
-      headerName: 'Plan Name   ', field: 'Plan.PlanName', 'width': 100
-    },
-    {
-      headerName: 'Unit Manager', field: 'Employee.EmployeeName', 'width': 100
+      headerName: 'Unit Manager', field: 'Employee.EmployeeName', 'width': 100,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     { headerName: 'No Of Plan    ', field: 'NoOfPlan' },
     { headerName: 'No Of Chicks    ', field: 'NoOfChicks' },
@@ -84,7 +118,22 @@ export class BookingViewComponent implements OnInit {
     { headerName: 'Delivery Status    ', field: 'DeliveryStatus' }
   ];
 
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+
   rowData;
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
 
   constructor(private router: Router, private http: HttpClient, private bookingService: BookingService, public dialog: DialogService) { }
 

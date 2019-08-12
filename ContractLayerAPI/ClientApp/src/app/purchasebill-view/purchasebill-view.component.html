@@ -9,8 +9,12 @@
   </div>
 </div>
 
-<ag-grid-angular style="width: 750px; height: 500px;"
+<ag-grid-angular style="width: 820px; height: 500px;"
+                 id="myGrid"
                  class="ag-theme-balham"
                  [rowData]="rowData"
-                 [columnDefs]="columnDefs">
+                 [columnDefs]="columnDefs"
+                 [defaultColDef]="defaultColDef"
+                 [floatingFilter]="true"
+                 (gridReady)="onGridReady($event)">
 </ag-grid-angular>

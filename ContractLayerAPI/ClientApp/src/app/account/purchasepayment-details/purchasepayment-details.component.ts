@@ -48,7 +48,8 @@ export class PurchasepaymentDetailsComponent implements OnInit {
       Narration       : [],
       IsDeleted: [false],
       LocationId: [],
-      SupplierId: []
+      SupplierId: [],
+      OutstandingAmount : [0]
     });
 
     if (this.config.isEditable==true) {
@@ -86,6 +87,14 @@ export class PurchasepaymentDetailsComponent implements OnInit {
     let PurchasepaymentdetailsForm = this.config.data;
     PurchasepaymentdetailsForm.Date = moment(this.config.data.Date).toDate();
     this.purchasepaymentdetailsForm.setValue(this.config.data);
+  }
+
+  calculateOutstandingAmount(event) {
+    let purchasepaymentdetails = this.purchasepaymentdetailsForm.value;
+    this.purchasepayemntservice.getSuppOutstanding(purchasepaymentdetails)
+      .subscribe((suppreceipt: any) => {
+        this.purchasepaymentdetailsForm.controls['OutstandingAmount'].patchValue(suppreceipt);
+      });
   }
   
   savePurchasepayment() {

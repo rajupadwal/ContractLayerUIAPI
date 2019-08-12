@@ -11,10 +11,12 @@ import { BookingViewComponent } from './booking-view.component';
 import { DialogModule } from '../../dialog/dialog.module';
 import { BookingDetailsComponent } from '../booking-details/booking-details.component';
 import { BookingService } from './booking.service';
+import { HttpClientModule } from '@angular/common/http';
 //import { AutoCompleteModule } from 'primeng';
 
 @NgModule({
   imports: [
+    HttpClientModule,
     FormsModule,
     DialogModule,
     BsDropdownModule.forRoot(),

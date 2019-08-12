@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>Record No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="RecordNo" type="text" pInputText id="recordno" name="recordno" class="form-control" rows="3">
+                  <input formControlName="RecordNo" type="text" pInputText id="recordno" name="recordno" class="form-control" rows="3" disabled>
                 </span>
               </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="form-group">
               <label for="select"><strong>Supplier Name :</strong></label>
               <p-autoComplete formControlName="Supplier" [suggestions]="supplierList" (completeMethod)="searchSupplier($event)"
-                              [dropdown]="true" [forceSelection]="true" field="SupplierName"></p-autoComplete>
+                              (onSelect)="calculateOutstandingAmount($event)" (change)="($event)" [dropdown]="true" [forceSelection]="true" field="SupplierName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
                 <option value="Please select">Please select</option>
                 <option value="Against Bill">Against Purchase Bill</option>
                 <option value="Against Advance">Against Advance</option>
-                <option value="Aganist Sale Return">Aganist Purchase Return</option>
+                <option value="Against Sale Return">Against Purchase Return</option>
               </select>
             </div>
           </div>
@@ -87,6 +87,18 @@
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
+              <label for="textarea-input"><strong>Outstanding Amount :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="OutstandingAmount" type="text" pInputText id="outstandingamount" name="outstandingamount" class="form-control" disabled>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
               <label for="select"><strong>Payment Method :</strong></label>
               <select formControlName="PaymentMethod" id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
@@ -109,6 +121,9 @@
             </div>
           </div>
         </div>
+        
+      </div>
+      <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
@@ -121,9 +136,7 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-         <div class="col-sm-4">
+        <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
               <label for="textarea-input"><strong>Narration :</strong></label>
@@ -135,13 +148,7 @@
             </div>
           </div>
         </div>
-         <div class="col-sm-6">
-          <div class="card-block">
-            <div class="form-group">
-            </div>
-            </div>
-          </div>
-        </div>
+      </div>
        <div class="input-group-btn" dropdown>
         <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>

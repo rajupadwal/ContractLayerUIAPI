@@ -48,11 +48,27 @@ namespace ContractLayerAPI.Controllers
             var Purchasepayment = this._repoWrapper.Purchasepayment.FindByCondition(x => x.RecordNo == RecordNo).FirstOrDefault();
             return Purchasepayment;
         }
+
+        [HttpPost("GetSupplierOutstandingAmt")]
+        public decimal GetSupplierOutstandingAmt([FromBody] TblPurchasepayment purreceipt)
+        {
+            try
+            {
+                decimal oustanding = this._repoWrapper.Purchasepayment.GetSupplierOutstandingAmt(purreceipt);
+                return oustanding;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         [HttpPost("Add")]
         public bool Add([FromBody] TblPurchasepayment purchasepayment)
         {
             try
             {
+                this._repoWrapper.Purchasepayment.SaveSupplierTransaction(purchasepayment);
                 this._repoWrapper.Purchasepayment.Create(purchasepayment);
                 this._repoWrapper.Purchasepayment.Save();
                 return true;

@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FarmerchickeggsbillDetailComponent } from '../farmerchickeggsbill-detail/farmerchickeggsbill-detail.component';
 import { FarmerchikeggbillService } from './farmerchickeggsbill.service';
 import { DialogService } from '../../dialog/dialog.service';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-farmerchickeggsbill-view',
@@ -11,6 +13,9 @@ import { DialogService } from '../../dialog/dialog.service';
   styleUrls: ['./farmerchickeggsbill-view.component.css']
 })
 export class FarmerchickeggsbillViewComponent implements OnInit {
+
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
     //{
@@ -50,26 +55,38 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       headerName: 'Bill No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'BillNo', 'width': 150
+      field: 'BillNo', 'width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
 
 
     
-    { headerName: 'Date ', field: 'BillDate', 'width': 150 },
+    { headerName: 'Date ', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 120 },
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 150
+      headerName: 'Location Name', field: 'LocationName', ' width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Customer Name ', field: 'CustmerName', 'width': 100
+      headerName: 'Customer Name ', field: 'CustmerName', 'width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Plan Name ', field: 'PlanName', 'width': 100
+      headerName: 'Plan Name ', field: 'PlanName', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Place Name ', field: 'PlaceOfSupply', 'width': 100
+      headerName: 'Place Name ', field: 'PlaceOfSupply', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Address ', field: 'Address', 'width': 100
+      headerName: 'Address ', field: 'Address', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
       headerName: 'Total Amount ', field: 'TotalAmount', 'width': 100
@@ -86,6 +103,21 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
   ];
 
   rowData;
+
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
 
 
   constructor(private router: Router, private http: HttpClient, private farmerchikeggbillservice: FarmerchikeggbillService, public dialog: DialogService) { }

@@ -10,5 +10,6 @@ namespace ContractLayerFarm.Data.Contract
         //UserInfo Authenticate(string username, string password);
         bool Authenticate();
         IEnumerable<TblPurchaseReturnReceipt> GetAllPurchasereturnReceipt();
+        int GetReturnPurchasePaymentNo();
     }
 }

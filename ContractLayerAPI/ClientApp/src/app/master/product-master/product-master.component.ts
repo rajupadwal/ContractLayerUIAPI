@@ -32,13 +32,13 @@ export class ProductMasterComponent implements OnInit {
       ProductType: ["", Validators.required],
       Hsnsac       :  [],
       Unit         : [{}],
-      PurchasePrice: ["", Validators.required],
-      SellingPrice: ["", Validators.required],
-      Cgst: ["", Validators.required],
-      Sgst: ["", Validators.required],
-      Igst         :  [],
-      MinimumQty   :  [],
-      OpeningStock: ["", Validators.required],
+      PurchasePrice: ["0", Validators.required],
+      SellingPrice: ["0", Validators.required],
+      Cgst: ["0", Validators.required],
+      Sgst: ["0", Validators.required],
+      Igst         :  [0],
+      MinimumQty   :  [0],
+      OpeningStock: ["0", Validators.required],
       ProductId: [],
       UnitId: []
     });
@@ -85,8 +85,6 @@ export class ProductMasterComponent implements OnInit {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
     let product1 = this.productForm.value;
-   // customer.LocationId = customer.Location.LocationId;
-    //product.ProductId = product.ProductName.ProductId;
     product1.ProductId = product1.Product.ProductId;
     product1.UnitId = product1.Unit.UnitId;
     delete product1.Product;

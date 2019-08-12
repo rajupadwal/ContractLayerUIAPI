@@ -124,6 +124,7 @@ namespace ContractLayerAPI.Controllers
             {
                 this._repoWrapper.Product.Update(product);
                 this._repoWrapper.Product.Save();
+                this._repoWrapper.Product.SaveOpeningStockDetails(product);
                 return true;
             }
 

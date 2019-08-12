@@ -41,6 +41,9 @@ export class PurchasePayemntService {
     return this.http.post(isEditable ? APP_CONSTANT.PURCHASEPAYMENT_API.EDIT : APP_CONSTANT.PURCHASEPAYMENT_API.ADD, formValues);
   }
 
+  getSuppOutstanding(formValues: any) {
+    return this.http.post(APP_CONSTANT.PURCHASEPAYMENT_API.GETSUPPOUTSTANDING, formValues);
+  }
 
 }
 

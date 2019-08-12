@@ -3,7 +3,7 @@
   padding: $sidebar-padding;
   overflow: hidden;
   color: $sidebar-color;
-  background: $sidebar-bg;
+  background: #4d9cea;
   @include borders($sidebar-borders);
 
   .sidebar-close {
@@ -32,23 +32,18 @@
     @include sidebar-width($sidebar-borders, $sidebar-width);
 
     &::-webkit-scrollbar {
-
       position: absolute;
       width: 10px;
       margin-left: -10px;
       -webkit-appearance: none;
     }
-
     // &::-webkit-scrollbar-button {    }
-
     &::-webkit-scrollbar-track {
       background-color: lighten($sidebar-bg, 5%);
       border-right: 1px solid darken($sidebar-bg, 5%);
       border-left: 1px solid darken($sidebar-bg, 5%);
     }
-
     // &::-webkit-scrollbar-track-piece {    }
-
     &::-webkit-scrollbar-thumb {
       height: 50px;
       background-color: darken($sidebar-bg, 10%);
@@ -57,9 +52,7 @@
       border-style: solid;
       border-width: 1px 2px;
     }
-
     // &::-webkit-scrollbar-corner {    }
-
     // &::-webkit-resizer {    }
   }
 
@@ -104,6 +97,7 @@
         text-decoration: none;
         background: $sidebar-nav-link-bg;
         @include borders($sidebar-nav-link-borders);
+
         @if $enable-sidebar-nav-rounded {
           border-radius: $border-radius;
         }
@@ -171,9 +165,11 @@
         &.open {
           background: $sidebar-nav-dropdown-bg;
           @include borders($sidebar-nav-dropdown-borders);
+
           @if $enable-sidebar-nav-rounded {
             border-radius: $border-radius;
           }
+
           > ul, > ol {
             // display: inline;
             max-height: 1000px;
@@ -192,11 +188,14 @@
             border-left: 0;
           }
         }
+
         &.nt {
           transition: 0s !important;
+
           > ul, > ol {
             transition: 0s !important;
           }
+
           .nav-link {
             &.nav-dropdown-toggle {
 

@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
 import { BookingcancelDetailsComponent } from '../bookingcancel-details/bookingcancel-details.component';
 import { BookingcancelService } from './bookingcancel.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-bookingcancel-view',
@@ -16,7 +17,10 @@ export class BookingcancelViewComponent implements OnInit {
   onBtnClick1 = (param) => {
     alert('i am clicked');
     console.log (param);
-}
+  }
+
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
     //{
@@ -61,19 +65,28 @@ export class BookingcancelViewComponent implements OnInit {
       headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 120
+      field: 'RecordNo', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
 
-    
-    { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150 },
     {
-      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150
+      headerName: 'Location Name ', field: 'Location.LocationName', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'BookingDate ', field: 'BookungCancelDate', 'width': 100
+      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Plan    ', field: 'Plan.PlanName', 'width': 100
+      headerName: 'BookingDate ', field: 'BookungCancelDate', valueFormatter: this.dateFormatter, 'width': 100
+    },
+    {
+      headerName: 'Plan    ', field: 'Plan.PlanName', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     { headerName: 'NoOfPlan    ', field: 'NoOfPlan' },
     { headerName: 'NoOfChicks    ', field: 'NoOfChicks' },
@@ -82,6 +95,21 @@ export class BookingcancelViewComponent implements OnInit {
   ];
 
   rowData;
+
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
     
   constructor(private router: Router, private http: HttpClient, private bookingcancelService: BookingcancelService, public dialog: DialogService) { }
 

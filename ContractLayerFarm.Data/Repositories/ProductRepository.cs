@@ -12,7 +12,7 @@ namespace ContractLayerFarm.Data.Repositories
     public class ProductRepository : RepositoryBase<TblProductTypeMaster>, IProductRepository
     {
         private ContractLayerDBContext ktConContext;
-        public ProductRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext;  }
+        public ProductRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext; }
 
         //public IEnumerable<TblProductTypeMaster> SearchProduct(string searchString)
         //{
@@ -42,16 +42,17 @@ namespace ContractLayerFarm.Data.Repositories
         public decimal GetProductAvailableStock(TblFarmerOutwardDt master)
         {
             decimal availableStock = 0;
-           
-                var entryPoint = (from st in ktConContext.TblStockDetails
-                                  where st.ProductId == master.ProductId && st.ProductType == master.ProductType
-                                  select new
-                                  {
-                                      inwardQty = st.InwardQty,
-                                      outwardQty = st.OutwardQty
-                                  });
 
-                availableStock = Convert.ToDecimal(entryPoint.Sum(x => Convert.ToDecimal(x.inwardQty)) - entryPoint.Sum(k => Convert.ToDecimal(k.outwardQty)));
+            var entryPoint = (from st in ktConContext.TblStockDetails
+                              where st.ProductId == master.ProductId && st.ProductType == master.ProductType
+                              select new
+                              {
+                                  openingStock=st.OpeningStock,
+                                  inwardQty = st.InwardQty,
+                                  outwardQty = st.OutwardQty
+                              });
+
+            availableStock = Convert.ToDecimal(entryPoint.Sum(x => Convert.ToDecimal(x.inwardQty)) + entryPoint.Sum(x => Convert.ToDecimal(x.inwardQty)) - entryPoint.Sum(k => Convert.ToDecimal(k.outwardQty)));
 
             return availableStock;
         }
@@ -61,7 +62,7 @@ namespace ContractLayerFarm.Data.Repositories
 
             var TblProductTypeMaster = this.ktConContext.TblProductTypeMaster
                        .Include(blog => blog.Product)
-                       .Include(blog=>blog.Unit)
+                       .Include(blog => blog.Unit)
                        .ToList();
             return TblProductTypeMaster;
         }
@@ -90,26 +91,40 @@ namespace ContractLayerFarm.Data.Repositories
         //---------------Save Opening Stock Details--------------------------//
         public void SaveOpeningStockDetails(TblProductTypeMaster master)
         {
-            TblStockDetails stockList = new TblStockDetails()
+            if (master.PkId > 0)
             {
-                InwardDocNo = "",
-                OutwardDocNo = "",
-                DebitNoteNo = "",
-                CreditNoteNo = "",
-                TranscationType = "Opening",
-                ProductId = master.ProductId,
-                ProductType = master.ProductType,
-                InwardQty = 0,
-                OutwardQty = 0,
-                TranscationDate = DateTime.Now,
-                OpeningStock = master.OpeningStock,
-                CreditNoteQty = 0,
-                DebitNoteQty = 0,
-                Unit = "",
-            };
+                var entity = this.ktConContext.TblStockDetails.FirstOrDefault(item => item.ProductId == master.ProductId && item.ProductType == master.ProductType && item.TranscationType == "Opening");
+
+                if (entity != null)
+                {
+                    entity.OpeningStock = master.OpeningStock;
+                    ktConContext.TblStockDetails.Update(entity);
+                    ktConContext.SaveChanges();
+                }
+            }
+            else
+            {
+                TblStockDetails stockList = new TblStockDetails()
+                {
+                    InwardDocNo = "",
+                    OutwardDocNo = "",
+                    DebitNoteNo = "",
+                    CreditNoteNo = "",
+                    TranscationType = "Opening",
+                    ProductId = master.ProductId,
+                    ProductType = master.ProductType,
+                    InwardQty = 0,
+                    OutwardQty = 0,
+                    TranscationDate = DateTime.Now,
+                    OpeningStock = master.OpeningStock,
+                    CreditNoteQty = 0,
+                    DebitNoteQty = 0,
+                    Unit = "",
+                };
 
                 this.RepositoryContext.Set<TblStockDetails>().Add(stockList);
                 this.RepositoryContext.SaveChanges();
+            }
         }
 
 
@@ -125,7 +140,7 @@ namespace ContractLayerFarm.Data.Repositories
                     OutwardDocNo = "",
                     DebitNoteNo = "",
                     CreditNoteNo = "",
-                    TranscationType = typeof(TblFarmerInwardMt) .ToString(),
+                    TranscationType = typeof(TblFarmerInwardMt).ToString(),
                     ProductId = details.ProductId,
                     ProductType = details.ProductType,
                     InwardQty = details.Quantity,
@@ -160,7 +175,7 @@ namespace ContractLayerFarm.Data.Repositories
             this.RepositoryContext.Set<TblFarmerInwardDt>().AddRange(details);
             this.RepositoryContext.SaveChanges();
         }
-        
+
         IEnumerable<ViewFarmerInwardMaster> IProductRepository.GetAllFarmerInwardMasters()
         {
             var entryPoint = (from ep in ktConContext.TblFarmerInwardMt
@@ -170,13 +185,13 @@ namespace ContractLayerFarm.Data.Repositories
                               //where e.OwnerID == user.UID
                               select new ViewFarmerInwardMaster
                               {
-                                  PkId=ep.PkId,
+                                  PkId = ep.PkId,
                                   RecordNo = ep.RecordNo,
                                   Date = ep.Date,
                                   CustmerName = e.CustmerName,
                                   LocationName = t.LocationName,
                                   PlanName = p.PlanName,
-                                  CollectionAgentName=ep.CollectionAgentName,
+                                  CollectionAgentName = ep.CollectionAgentName,
                                   PlanId = ep.PlanId,
                                   CustomerId = ep.CustomerId,
                                   LocationId = ep.LocationId,
@@ -295,7 +310,7 @@ namespace ContractLayerFarm.Data.Repositories
         {
             List<TblStockDetails> stockList = new List<TblStockDetails>();
 
-            foreach(var details in master.TblPurchaseBillDt)
+            foreach (var details in master.TblPurchaseBillDt)
             {
                 stockList.Add(new TblStockDetails()
                 {
@@ -313,31 +328,56 @@ namespace ContractLayerFarm.Data.Repositories
                     CreditNoteQty = 0,
                     DebitNoteQty = 0,
                     Unit = details.Unit,
-                           });
+                });
             }
             if (master.BillId > 0)
             {
-                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s=>s.InwardDocNo==master.BatchNo.ToString());
+                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.BatchNo.ToString());
                 RepositoryContext.RemoveRange(toBeDeleteStock);
                 this.RepositoryContext.SaveChanges();
                 this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
                 this.RepositoryContext.Set<TblPurchaseBillMt>().Update(master);
                 this.RepositoryContext.SaveChanges();
+
+                var entity = this.ktConContext.TblSupplierTransaction.FirstOrDefault(item => item.BillId == master.BillId.ToString() && item.TransactionType == "Purchase Bill");
+
+                if (entity != null)
+                {
+                    entity.PurchaseAmount = master.GrandTotal;
+                    ktConContext.TblSupplierTransaction.Update(entity);
+                    ktConContext.SaveChanges();
+                }
             }
             else
             {
                 this.RepositoryContext.Set<TblPurchaseBillMt>().Add(master);
                 this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
                 this.RepositoryContext.SaveChanges();
-            }
 
+                TblSupplierTransaction suppransList = new TblSupplierTransaction()
+                {
+                    SupplierId = master.SupplierId,
+                    TransactionDate = master.BillDate,
+                    TransactionType = "Purchase Bill",
+                    BillId = master.BillId.ToString(),
+                    PurchaseAmount = master.GrandTotal,
+                    PurchasePaidAmt = 0,
+                    PaymentType = "",
+                    Narration = master.Narration,
+                    PaymentVocherNo = "",
+                };
+
+                this.RepositoryContext.Set<TblSupplierTransaction>().Add(suppransList);
+                this.RepositoryContext.SaveChanges();
+            }
         }
+
         public void SavePurchaseBillDetails(TblPurchaseBillDt[] details)
         {
             this.RepositoryContext.Set<TblPurchaseBillDt>().AddRange(details);
 
             // Adding new entry for stock
-          
+
 
             this.RepositoryContext.SaveChanges();
         }
@@ -352,22 +392,22 @@ namespace ContractLayerFarm.Data.Repositories
                               {
                                   BillId = ep.BillId,
                                   BillDate = ep.BillDate,
-                                  BillNo=ep.BillNo,
-                                  BatchNo=ep.BatchNo,
+                                  BillNo = ep.BillNo,
+                                  BatchNo = ep.BatchNo,
                                   SupplierName = e.SupplierName,
                                   LocationName = t.LocationName,
-                                  BeforeTaxAmt            =ep.BeforeTaxAmt          ,
-                                  TransportationCost      =ep.TransportationCost    ,
-                                  TransportationGSTPer    =ep.TransportationGstper  ,
-                                  TransportationGSTAmt    =ep.TransportationGstamt  ,
-                                  TotalTransportAmt       =ep.TotalTransportAmt     ,
-                                  TotalCGSTAmt            =ep.TotalCgstamt          ,
-                                  TotalSGSTAmt            =ep.TotalSgstamt          ,
-                                  TotalIGSTAmt            =ep.TotalIgstamt          ,
-                                  OtherCharges            =ep.OtherCharges          ,
-                                  Roundoff                =ep.Roundoff              ,
-                                  GrandTotal              =ep.GrandTotal            ,
-                                  Narration               =ep.Narration             ,
+                                  BeforeTaxAmt = ep.BeforeTaxAmt,
+                                  TransportationCost = ep.TransportationCost,
+                                  TransportationGSTPer = ep.TransportationGstper,
+                                  TransportationGSTAmt = ep.TransportationGstamt,
+                                  TotalTransportAmt = ep.TotalTransportAmt,
+                                  TotalCGSTAmt = ep.TotalCgstamt,
+                                  TotalSGSTAmt = ep.TotalSgstamt,
+                                  TotalIGSTAmt = ep.TotalIgstamt,
+                                  OtherCharges = ep.OtherCharges,
+                                  Roundoff = ep.Roundoff,
+                                  GrandTotal = ep.GrandTotal,
+                                  Narration = ep.Narration,
                                   SupplierId = ep.SupplierId,
                                   LocationId = ep.LocationId,
                                   Supplier = new TblSupplierMaster { SupplierId = e.SupplierId, SupplierName = e.SupplierName },
@@ -386,19 +426,19 @@ namespace ContractLayerFarm.Data.Repositories
         public void SaveFarmerChickEggBillMaster(TblSalesBillMt master)
         {
             TblCustomerTransaction custransList = new TblCustomerTransaction()
-                {
-                    CustomerId = master.CustomerId,
-                    TransactionDate=master.BillDate,
-                    TransactionType= typeof(TblSalesBillMt).ToString(),
-                    BookingId = "",
-                    BookingAmount=0,
-                    BookingReceivedAmt=0,
-                    BillId = master.BillNo,
-                    BillAmount = master.GrandTotal,
-                    BillPaidAmt=0,
-                    PaymentType ="",
-                    Narration = master.Narration,
-                };
+            {
+                CustomerId = master.CustomerId,
+                TransactionDate = master.BillDate,
+                TransactionType = typeof(TblSalesBillMt).ToString(),
+                BookingId = "",
+                BookingAmount = 0,
+                BookingReceivedAmt = 0,
+                BillId = master.BillNo,
+                BillAmount = master.GrandTotal,
+                BillPaidAmt = 0,
+                PaymentType = "",
+                Narration = master.Narration,
+            };
 
             if (master.BillId > 0)
             {
@@ -434,7 +474,7 @@ namespace ContractLayerFarm.Data.Repositories
                               select new ViewFarmerChickEggBillMaster
                               {
                                   BillNo = ep.BillNo,
-                                  BillId=ep.BillId,
+                                  BillId = ep.BillId,
                                   BillDate = ep.BillDate,
                                   CustmerName = e.CustmerName,
                                   LocationName = t.LocationName,
@@ -442,11 +482,11 @@ namespace ContractLayerFarm.Data.Repositories
                                   PlanId = ep.PlanId,
                                   PlaceOfSupply = ep.PlaceOfSupply,
                                   Address = ep.Address,
-                                  TotalAmount=ep.TotalAmount,
-                                  TdsAmount=ep.TdsAmount,
-                                  AdminChargesAmt=ep.AdminChargesAmt,
-                                  OtherCharges=ep.OtherCharges,
-                                  GrandTotal=ep.GrandTotal,
+                                  TotalAmount = ep.TotalAmount,
+                                  TdsAmount = ep.TdsAmount,
+                                  AdminChargesAmt = ep.AdminChargesAmt,
+                                  OtherCharges = ep.OtherCharges,
+                                  GrandTotal = ep.GrandTotal,
                                   CustomerId = ep.CustomerId,
                                   LocationId = ep.LocationId,
                                   Customer = new TblCustomerMaster { CustomerId = e.CustomerId, CustmerName = e.CustmerName },

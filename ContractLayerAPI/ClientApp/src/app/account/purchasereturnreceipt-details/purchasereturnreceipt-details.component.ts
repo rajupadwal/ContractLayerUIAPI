@@ -29,9 +29,16 @@ export class PurchasereturnreceiptDetailsComponent implements OnInit {
 
   ngOnInit() {
 
+    if (this.config.isEditable == false) {
+      this.purchasereturnreceiptService.getReturnPurchasePaymentNo()
+        .subscribe((purchasepaymentno: any) => {
+          this.purchasereturnreceiptForm.controls['RecordNo'].patchValue(purchasepaymentno);
+        });
+    }
+
     this.purchasereturnreceiptForm = this.formBuilder.group({
 
-      RecordNo: [0],
+      RecordNo: [],
       Date: [],
       Location: [{}],
       Supplier: [{}],

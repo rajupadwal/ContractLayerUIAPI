@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../config';
 import { DialogService } from '../dialog/dialog.service';
 import { FarmerInwardComponent } from '../farmer-inward/farmer-inward.component';
 import { FarmerinwardService } from './farmerinward.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-farmerinward-view',
@@ -12,6 +13,9 @@ import { FarmerinwardService } from './farmerinward.service';
   styleUrls: ['./farmerinward-view.component.css']
 })
 export class FarmerinwardViewComponent implements OnInit {
+
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
     //{
@@ -49,32 +53,54 @@ export class FarmerinwardViewComponent implements OnInit {
       },
     },
 
-
     {
       headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 130
+      field: 'RecordNo', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
-
-
     
-    { headerName: 'Date ', field: 'Date', 'width': 120 },
+    { headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 120 },
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 120
+      headerName: 'Location Name', field: 'LocationName', ' width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Customer Name ', field: 'CustmerName', 'width': 100
+      headerName: 'Customer Name ', field: 'CustmerName', 'width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Plan Name ', field: 'PlanName', 'width': 100
+      headerName: 'Plan Name ', field: 'PlanName', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Collection Agent Name ', field: 'CollectionAgentName', 'width': 100
+      headerName: 'Collection Agent Name ', field: 'CollectionAgentName', 'width': 140,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
   ];
 
   rowData;
+
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
 
 
   constructor(private router: Router, private http: HttpClient, private farmerinwardService: FarmerinwardService, public dialog: DialogService) { }

@@ -19,6 +19,9 @@ export class ExpencetypeViewComponent implements OnInit {
 
   }
 
+  private gridApi;
+  private gridColumnApi;
+
   columnDefs = [
     //{
     //  headerName: 'Button Col 1', 'width': 100,
@@ -67,13 +70,28 @@ export class ExpencetypeViewComponent implements OnInit {
 
     
 
-    { headerName: 'Expence Type ', field: 'ExpenceType', 'width': 400 }
+    {
+      headerName: 'Expence Type ', field: 'ExpenceType', 'width': 400,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    }
     
   ];
+
+  defaultColDef = {
+  sortable: true,
+  filter: true
+  };
 
   rowData = [
 
   ];
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
 
   constructor(private router: Router, private http: HttpClient, private expencetypeservice: ExpencetypeService, public dialog: DialogService) { }
 
@@ -118,6 +136,8 @@ export class ExpencetypeViewComponent implements OnInit {
         this.RefreshGrid();
       });
   }
+
+
 }
 
 

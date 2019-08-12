@@ -23,6 +23,9 @@ export class PurchasereturnReceiptService {
     return this.http.post(isEditable ? APP_CONSTANT.PURCHASERETURNRECEIPT_API.EDIT : APP_CONSTANT.PURCHASERETURNRECEIPT_API.ADD, formValues);
   }
 
+  getReturnPurchasePaymentNo() {
+    return this.http.get(APP_CONSTANT.PURCHASERETURNRECEIPT_API.RETURNPURCHASEPAYMENTNO);
+  }
 
 }
 

@@ -67,7 +67,7 @@ export class FarmerInwardComponent implements OnInit {
       this.loadProducts();
 
       this.FarmerInwardDetailsList.forEach((key: any, value: any) => {
-        key.Producttype = key.ProductType + '-' + key.Unit;
+        key.Producttypeun = key.ProductType + '-' + key.Unit;
       });
       //this.loadUnits();
     });
@@ -93,11 +93,11 @@ export class FarmerInwardComponent implements OnInit {
             newDetails.ProductId = key.Product.ProductId;
             key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
             this.productService.getProductTypeByProductID(newDetails)
-              .subscribe((types: any) => {
-                this.producttypelist = types;
-                this.producttypelist.forEach((key1: any, value: any) => {
-                  key.ProductTypeUnit = key.ProductType + '-' + key.Unit;
-                  key1.ProductTypeUnit = key.ProductType + '-' + key.Unit;
+                .subscribe((types: any) => {
+                 this.producttypelist = types;
+                 this.producttypelist.forEach((key1: any, value: any) => {
+                   key.ProductTypeUnit = key.ProductType + '-' + key.Unit;
+                   key1.ProductTypeUnit = key.ProductType + '-' + key.Unit;
                 })
               });
           })
@@ -151,7 +151,7 @@ export class FarmerInwardComponent implements OnInit {
 
     this.FarmerInwardMaster.TblFarmerInwardDt.forEach((key: any, value: any) => {
       key.Product = null;
-      key.Producttype = null;
+      key.Producttypeun = null;
       key.PkId = 0;
     })
 
@@ -197,8 +197,8 @@ export class FarmerInwardComponent implements OnInit {
 
   onSelectProducttypes = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
-    model.ProductType = model.Producttype.ProductType;
-    model.Unit = model.Producttype.Unit.UnitDescription;
+    model.ProductType = model.Producttypeun.ProductType;
+    model.Unit = model.Producttypeun.Unit.UnitDescription;
   };
 
   searchCustomer(event) {
@@ -263,7 +263,7 @@ export class FarmerInwardDetail {
   Quantity: number;
   Units: any;
   Product: any;
-  Producttype: any;
+  Producttypeun: any;
 }
 
 export class FarmerInwardMaster {

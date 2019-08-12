@@ -17,7 +17,10 @@ export class CustomerViewComponent implements OnInit {
   onBtnClick1 = (param) => {
     alert('i am clicked');
     console.log (param);
-}
+  }
+
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
     //{
@@ -27,7 +30,7 @@ export class CustomerViewComponent implements OnInit {
 
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 120,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -59,35 +62,82 @@ export class CustomerViewComponent implements OnInit {
       headerName: 'Sr.No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'CustomerId', 'width': 100
+      field: 'CustomerId', 'width': 100,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
 
     
     //{ headerName: 'CustomerId', field: 'CustomerId' },
-    { headerName: 'Customer Name ', field: 'CustmerName', 'width': 100 },
     {
-      headerName: 'Customer Mobile No', field: 'CustomerMobileNo',' width': 80 },
+      headerName: 'Customer Name ', field: 'CustmerName', 'width': 180,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
     {
-      headerName: 'Address ', field: 'Address' ,'width': 100},
+      headerName: 'Mobile No', field: 'CustomerMobileNo', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Address ', field: 'Address', 'width': 180,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
     //{
     //  headerName: 'PlantAddress    ', field: 'PlantAddress','width': 100 },
     
-    { headerName: 'Location           ', field: 'Location.LocationName' },
-    { headerName: 'State           ', field: 'State' },
-    { headerName: 'District           ', field: 'District' },
-    { headerName: 'Taluka           ', field: 'Taluka' },
-    { headerName: 'City           ', field: 'City' },
-    { headerName: 'Pincode           ', field: 'Pincode' },
+    {
+      headerName: 'Location           ', field: 'Location.LocationName',
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'State           ', field: 'State',
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'District           ', field: 'District',
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Taluka           ', field: 'Taluka',
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'City           ', field: 'City',
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Pincode           ', field: 'Pincode',
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
     { headerName: 'GstNo           ', field: 'GstNo' },
     { headerName: 'PanNo           ', field: 'PanNo' },
     { headerName: 'BankName           ', field: 'BankName' },
     { headerName: 'AccountNo           ', field: 'AccountNo' },
     { headerName: 'AccountHolderName           ', field: 'AccountHolderName' },
     { headerName: 'IfscCode           ', field: 'IfscCode' },
-    { headerName: 'State           ', field: 'BranchName' }
+    { headerName: 'Branch Name           ', field: 'BranchName' }
   ];
 
-  rowData ;
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+
+  rowData;
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
     
   constructor(private router: Router, private http: HttpClient, private cusotmerService: CusotmerService, public dialog: DialogService) { }
 

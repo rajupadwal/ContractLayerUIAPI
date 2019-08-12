@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
 import { PurchasereturnreceiptDetailsComponent } from '../purchasereturnreceipt-details/purchasereturnreceipt-details.component';
 import { PurchasereturnReceiptService } from './purchasereturnreceipt.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-purchasereturnreceipt-view',
@@ -17,6 +18,9 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
     alert('i am clicked');
     console.log(param);
   }
+
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
     //{
@@ -62,16 +66,22 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
       headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 100
+      field: 'RecordNo', 'width': 100,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
 
     
-    { headerName: 'Date ', field: 'Date', 'width': 100 },
+    { headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 100 },
     {
-      headerName: 'Location Name', field: 'Location.LocationName', ' width': 120
+      headerName: 'Location Name', field: 'Location.LocationName', ' width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Supplier Name ', field: 'Supplier.SupplierName', 'width': 100
+      headerName: 'Supplier Name ', field: 'Supplier.SupplierName', 'width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     //{
     //  headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100
@@ -84,6 +94,21 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
   ];
 
   rowData;
+
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.ngOnInit();
+  }
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
 
   constructor(private router: Router, private http: HttpClient, private purchasereturnreceiptService: PurchasereturnReceiptService, public dialog: DialogService) { }
 

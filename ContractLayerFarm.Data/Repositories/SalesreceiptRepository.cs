@@ -82,42 +82,43 @@ namespace ContractLayerFarm.Data.Repositories
             }
             else
             {
-                bookReceiptAmt =0;
-                billPaidAmt =master.CashAmount;
+                bookReceiptAmt = 0;
+                billPaidAmt = master.CashAmount;
             }
 
-            TblCustomerTransaction custransList = new TblCustomerTransaction()
+            if (master.PkId > 0)
             {
-                CustomerId = master.CustomerId,
-                TransactionDate = master.Date,
-                TransactionType = typeof(TblSalesReceipt).ToString(),
-                BookingId = "0",
-                BookingAmount = 0,
-                BookingReceivedAmt = bookReceiptAmt,
-                BillId = "0",
-                BillAmount = 0,
-                BillPaidAmt = billPaidAmt,
-                PaymentType = master.PaymentType,
-                Narration = master.Narration,
-                ReceiptNo=master.ReceiptNo.ToString(),
-            };
+                var entity = this.ktConContext.TblCustomerTransactions.FirstOrDefault(item => item.ReceiptNo == master.ReceiptNo.ToString() && item.TransactionType == typeof(TblSalesReceipt).ToString());
 
-            //if (master.ReceiptNo > 0)
-            //{
-            //    var toBeDeleteSaleDT = this.RepositoryContext.Set<TblSalesBillDt>().Where(s => s.BillId == master.BillId);
-            //    RepositoryContext.RemoveRange(toBeDeleteSaleDT);
-            //    var toBeDeleteCustTrans = this.RepositoryContext.Set<TblCustomerTransaction>().Where(s => s.BillId == master.BillNo);
-            //    RepositoryContext.RemoveRange(toBeDeleteCustTrans);
-            //    this.RepositoryContext.SaveChanges();
-            //    this.RepositoryContext.Set<TblSalesBillMt>().Update(master);
-            //    this.RepositoryContext.Set<TblCustomerTransaction>().Update(custransList);
-            //    this.RepositoryContext.SaveChanges();
-            //}
-            //else
-            //{
+                if (entity != null)
+                {
+                    entity.BookingReceivedAmt = bookReceiptAmt;
+                    entity.BillPaidAmt = billPaidAmt;
+                    ktConContext.TblCustomerTransactions.Update(entity);
+                    ktConContext.SaveChanges();
+                }
+            }
+            else
+            {
+                TblCustomerTransaction custransList = new TblCustomerTransaction()
+                {
+                    CustomerId = master.CustomerId,
+                    TransactionDate = master.Date,
+                    TransactionType = typeof(TblSalesReceipt).ToString(),
+                    BookingId = "0",
+                    BookingAmount = 0,
+                    BookingReceivedAmt = bookReceiptAmt,
+                    BillId = "0",
+                    BillAmount = 0,
+                    BillPaidAmt = billPaidAmt,
+                    PaymentType = master.PaymentType,
+                    Narration = master.Narration,
+                    ReceiptNo = master.ReceiptNo.ToString(),
+                };
+               
                 this.RepositoryContext.Set<TblCustomerTransaction>().Add(custransList);
                 this.RepositoryContext.SaveChanges();
-            //}
+            }
         }
     }
 }

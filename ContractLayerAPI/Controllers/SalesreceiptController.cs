@@ -83,6 +83,7 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Salesreceipt.SaveCustomerTransaction(salesreceipt);
                 this._repoWrapper.Salesreceipt.Update(salesreceipt);
                 this._repoWrapper.Salesreceipt.Save();
                 return true;

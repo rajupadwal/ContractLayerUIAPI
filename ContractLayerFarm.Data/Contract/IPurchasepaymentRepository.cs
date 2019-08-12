@@ -11,6 +11,8 @@ namespace ContractLayerFarm.Data.Contract
         bool Authenticate();
 
         IEnumerable<TblPurchasepayment> GetAllPurchasepayment();
+        void SaveSupplierTransaction(TblPurchasepayment master);
         int GetPurchasePaymentNo();
+        decimal GetSupplierOutstandingAmt(TblPurchasepayment master);
     }
 }
