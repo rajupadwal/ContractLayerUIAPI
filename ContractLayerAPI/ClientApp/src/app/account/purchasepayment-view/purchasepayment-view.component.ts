@@ -18,6 +18,8 @@ export class PurchasepaymentViewComponent implements OnInit {
     alert('i am clicked');
     console.log(param);
   }
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
     //{
