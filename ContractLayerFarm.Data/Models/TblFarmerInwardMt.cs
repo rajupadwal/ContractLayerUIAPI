@@ -9,14 +9,15 @@ namespace ContractLayerFarm.Data.Models
         {
             TblFarmerInwardDt = new HashSet<TblFarmerInwardDt>();
         }
+
         public int PkId { get; set; }
         public int RecordNo { get; set; }
         public DateTime Date { get; set; }
         public int LocationId { get; set; }
         public int CustomerId { get; set; }
         public int PlanId { get; set; }
-        public bool? IsDeleted { get; set; }
         public string CollectionAgentName { get; set; }
+        public bool? IsDeleted { get; set; }
 
         public TblCustomerMaster Customer { get; set; }
         public TblLocationMaster Location { get; set; }

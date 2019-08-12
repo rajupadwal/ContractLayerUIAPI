@@ -91,7 +91,7 @@ export class FarmerInwardComponent implements OnInit {
           this.FarmerInwardDetailsList.forEach((key: any, value: any) => {
             let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit);
             if (productType) {
-              key.Producttype = productType;
+              key.Producttypeun = productType;
               key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
             }
            
@@ -148,7 +148,7 @@ export class FarmerInwardComponent implements OnInit {
 
     this.FarmerInwardMaster.TblFarmerInwardDt.forEach((key: any, value: any) => {
       key.Product = null;
-      key.Producttype = null;
+      key.Producttypeun = null;
       key.PkId = 0;
     })
 
@@ -177,8 +177,8 @@ export class FarmerInwardComponent implements OnInit {
 
   onSelectProducttypes = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
-    model.ProductType = model.Producttype.ProductType;
-    model.Unit = model.Producttype.Unit.UnitId;
+    model.ProductType = model.Producttypeun.ProductType;
+    model.Unit = model.Producttypeun.Unit.UnitId;
   };
 
   searchCustomer(event) {
@@ -227,7 +227,7 @@ export class FarmerInwardDetail {
   Quantity: number;
   Units: any;
   Product: any;
-  Producttype: any;
+  Producttypeun: any;
   productTypeList = [];
 }
 

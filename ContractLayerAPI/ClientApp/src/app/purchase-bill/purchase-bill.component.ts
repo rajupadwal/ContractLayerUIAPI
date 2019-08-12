@@ -153,16 +153,6 @@ export class PurchaseBillComponent implements OnInit {
           this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
 
-            //let newDetails = new PurchaseBillDetail();
-            //newDetails.ProductId = key.Product.ProductId;
-
-            //this.productService.getProductTypeByProductID(newDetails)
-            //  .subscribe((types: any) => {
-            //    this.producttypelist = types;
-            //    this.producttypelist.forEach((key: any, value: any) => {
-            //      key.Producttypeun = key.ProductType + '-' + key.Unit.UnitDescription;
-            //    })
-            //});
           })
         }
       });
@@ -175,17 +165,7 @@ export class PurchaseBillComponent implements OnInit {
       });
   }
 
-  //loadUnits = () => {
-  //  this.productService.loadUnits()
-  //    .subscribe((units: any) => {
-  //      this.unitLists = units;
-  //      if (this.isEditable == true && this.PurchaseBillDetailsList) {
-  //        this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
-  //          key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
-  //        })
-  //      }
-  //    });
-  //}
+  
 
   addNewItem = () => {
     let newDetails = new PurchaseBillDetail();
@@ -232,34 +212,19 @@ export class PurchaseBillComponent implements OnInit {
     model.ProductId = model.Product.ProductId;
     this.PurchaseBillDetailsList.ProductId = model.ProductId;
 
-    //let newDetails = new PurchaseBillDetail();
-    //newDetails.ProductId = model.Product.ProductId;
-
-    //this.productService.getProductTypeByProductID(newDetails)
-    //  .subscribe((types: any) => {
-    //    this.producttypelist = types;
-    //    this.producttypelist.forEach((key: any, value: any) => {
-    //      key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-    //    })
-    //  });
-
-    // model.ProductType = model.Product.ProductType;
-  }
+    }
 
   onSelectProducttypes = (value, model: any) => {
     model.ProductId = model.Product.ProductId;
     model.ProductType = model.Producttypeun.ProductType;
-    model.Unit = model.Producttypeun.Unit.UnitDescription;
+    model.Unit = model.Producttypeun.Unit.UnitId;
     model.Rate = model.Producttypeun.SellingPrice;
     model.CgstPercentage = model.Producttypeun.Cgst;
     model.SgstPercentage = model.Producttypeun.Sgst;
     model.HsnCode = model.Producttypeun.Hsnsac;
   };
 
-  //onSelectUnits = (value, model: any) => {
-  //  model.UnitId = model.Units.UnitId;
-  //};
-
+ 
   searchProducttype = (value, item) => {
     let newDetails = new PurchaseBillDetail();
     newDetails.ProductId = item.ProductId;
@@ -271,29 +236,7 @@ export class PurchaseBillComponent implements OnInit {
     item.productTypeList = prdList.filter(p => p.ProductId == item.ProductId);
   };
 
-    //this.productService.getProductTypeByProductID(newDetails)
-    //  .subscribe((types: any) => {
-    //    this.producttypelist = types;
-    //    this.producttypelist.forEach((key: any, value: any) => {
-    //      key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-    //    })
-
-    //    if (this.isEditable == true && this.PurchaseBillDetailsList) {
-    //      this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
-    //        let newDetails = new PurchaseBillDetail();
-    //        newDetails.ProductId = key.Product.ProductId;
-
-    //        this.productService.getProductTypeByProductID(newDetails)
-    //          .subscribe((types: any) => {
-    //            this.producttypelist = types;
-    //            this.producttypelist.forEach((key: any, value: any) => {
-    //              key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-    //            })
-    //          });
-    //      })
-    //    }
-    //  });
-  
+        
   searchSupplier = (value) => {
     this.loadSuppliers();
   };
@@ -307,10 +250,7 @@ export class PurchaseBillComponent implements OnInit {
     //made Api call for search
     this.loadProducts();
   };
-  //searchUnits = (value) => {
-  //  //made Api call for search
-  //  this.loadUnits();
-  //};
+  
 }
 
 export class PurchaseBillDetail {

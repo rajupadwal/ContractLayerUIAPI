@@ -19,7 +19,6 @@ namespace ContractLayerFarm.Data.Models
         public int CustomerId { get; set; }
         public string CustmerName { get; set; }
         public string CustomerMobileNo { get; set; }
-        
         public string Address { get; set; }
         public string PlantAddress { get; set; }
         public string State { get; set; }
@@ -33,11 +32,11 @@ namespace ContractLayerFarm.Data.Models
         public string ContactPerson { get; set; }
         public string ConatctPersonNo { get; set; }
         public string Designation { get; set; }
-        public string BankName { get; set; }
-        public string AccountHolderName { get; set; }
-        public string AccountNo { get; set; }
-        public string IfscCode { get; set; }
         public string MicrCode { get; set; }
+        public string BankName { get; set; }
+        public string AccountNo { get; set; }
+        public string AccountHolderName { get; set; }
+        public string IfscCode { get; set; }
         public string BranchName { get; set; }
         public string AccountType { get; set; }
         public bool? IsDeleted { get; set; }

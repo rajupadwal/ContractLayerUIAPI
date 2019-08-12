@@ -78,6 +78,7 @@ export class ProductService {
     this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.SAVEPURCHASEBILLMASTER, master)
       .subscribe((response) => {
         console.log("Purchase Bill master added successfully");
+        
       });
 
   }

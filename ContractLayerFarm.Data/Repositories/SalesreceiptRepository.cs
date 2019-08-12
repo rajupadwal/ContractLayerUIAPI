@@ -34,7 +34,7 @@ namespace ContractLayerFarm.Data.Repositories
             decimal outstandingAmt=0;
             if (master.PaymentType == "Against Bill")
             {
-                var entryPoint = (from ct in ktConContext.TblCustomerTransactions
+                var entryPoint = (from ct in ktConContext.TblCustomerTransaction
                                   where ct.CustomerId == master.Customer.CustomerId
                                   select new 
                                   {
@@ -47,7 +47,7 @@ namespace ContractLayerFarm.Data.Repositories
             }
             if (master.PaymentType == "Against Booking")
             {
-                var entryPoint = (from ct in ktConContext.TblCustomerTransactions
+                var entryPoint = (from ct in ktConContext.TblCustomerTransaction
                                   where ct.CustomerId == master.Customer.CustomerId
                                   select new
                                   {

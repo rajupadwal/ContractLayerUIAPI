@@ -15,8 +15,8 @@ namespace ContractLayerFarm.Data.Models
         public string PaymentMethod { get; set; }
         public string ChequeNo { get; set; }
         public decimal? CashAmount { get; set; }
-        public decimal? OutstandingAmount { get; set; }
         public string Narration { get; set; }
+        public decimal? OutstandingAmount { get; set; }
         public bool? IsDeleted { get; set; }
 
         public TblCustomerMaster Customer { get; set; }
