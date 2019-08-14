@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { APP_CONSTANT } from '../../../config';
+import { Observable } from "rxjs";
 
 
 @Injectable({
@@ -36,18 +37,11 @@ export class ProductService {
     return this.http.post(APP_CONSTANT.PRODUCT_UNIT_API.SEARCH_UNITS, JSON.stringify(searchString));
   }
 
-  saveFarmerInwards(master) {
-
-    this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.SAVEFARMERINWARDMASTER,  master)
-      .subscribe((response) => {
-        console.log("Inward master added successfully");
+  saveFarmerInwards(master): Observable<any> {
+   return this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.SAVEFARMERINWARDMASTER,  master)
+      .pipe((response:any) => {
+        return response;
       });
-
-
-    //this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.SAVEFARMERINWARDSDETAILS, details)
-    //  .subscribe((response) => {
-    //    console.log("Inward master added successfully");
-    //  });
   }
 
 
