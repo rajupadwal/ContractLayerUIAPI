@@ -149,6 +149,66 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
+        [HttpPost("DeleteFarmerInward")]
+        public bool DeleteFarmerInward([FromBody] TblFarmerInwardMt inward)
+        {
+            try
+            {
+                this._repoWrapper.Product.DeleteFarmerInward(inward);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost("DeleteFarmerOutward")]
+        public bool DeleteFarmerOutward([FromBody] TblFarmerOutwardMt outward)
+        {
+            try
+            {
+                this._repoWrapper.Product.DeleteFarmerOutward(outward);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost("DeletePurchaseBill")]
+        public bool DeletePurchaseBill([FromBody] TblPurchaseBillMt purchasebill)
+        {
+            try
+            {
+                this._repoWrapper.Product.DeletePurchaseBill(purchasebill);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost("DeleteChickEggsBill")]
+        public bool DeleteChickEggsBill([FromBody] TblSalesBillMt salebill)
+        {
+            try
+            {
+                this._repoWrapper.Product.DeleteSaleBill(salebill);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
 
         [HttpGet("[action]")]
         public IEnumerable<TblUnitMaster> GetAllUnits()
@@ -268,10 +328,25 @@ namespace ContractLayerAPI.Controllers
         {
             return this._repoWrapper.Product.GetAllFarmerChickEggBillDetails(salesBillDt.BillId);
         }
+
         [HttpPost("GetAllPurchaseBillMasteDetails")]
         public IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails([FromBody] TblPurchaseBillMt purchaseBillMt)
         {
             return this._repoWrapper.Product.GetAllPurchaseBillMasteDetails(purchaseBillMt.BillId);
+        }
+
+        [HttpPost("GetCustomerOutstandingAmt")]
+        public decimal GetCustomerOutstandingAmt([FromBody] TblSalesBillMt salebill)
+        {
+            try
+            {
+                decimal oustanding = this._repoWrapper.Product.GetCustomerOutstandingAmt(salebill);
+                return oustanding;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
     }
 }

@@ -38,5 +38,17 @@ namespace ContractLayerFarm.Data.Repositories
         {
             return true;
         }
+
+        public void SaveBookingCancelDetails(TblBookingCancelMaster master)
+        {
+            var entity = this.ktConContext.TblBookingMaster.FirstOrDefault(item => item.CustomerId == master.CustomerId && item.PlanId == master.PlanId);
+
+            if (entity != null)
+            {
+                entity.NoOfPlanCancel = master.CancelNoOfPlan;
+                ktConContext.TblBookingMaster.Update(entity);
+                ktConContext.SaveChanges();
+            }
+        }
     }
 }

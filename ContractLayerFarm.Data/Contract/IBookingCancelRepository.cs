@@ -12,5 +12,6 @@ namespace ContractLayerFarm.Data.Contract
 
         IEnumerable<TblBookingCancelMaster> GetAllBookingCancel();
         int GetBookingCancelNo();
+        void SaveBookingCancelDetails(TblBookingCancelMaster master);
     }
 }

@@ -159,6 +159,7 @@ export class BookingDetailsComponent implements OnInit {
     booking.CustomerId = booking.Customer.CustomerId;
     booking.PlanId = booking.Plan.PlanId;
     booking.DeliveryStatus = 'Pending';
+    booking.NoOfPlanCancel = '0';
     //Object.assign(booking, this.bookingdetailsForm.value);
     
     delete booking.Location;

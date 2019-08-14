@@ -127,6 +127,7 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
 
+        //-------------------------Farmer Inward------------------------------//
 
         public void SaveFarmerInwardMaster(TblFarmerInwardMt master)
         {
@@ -177,6 +178,22 @@ namespace ContractLayerFarm.Data.Repositories
         {
             this.RepositoryContext.Set<TblFarmerInwardDt>().AddRange(details);
             this.RepositoryContext.SaveChanges();
+        }
+
+        public void DeleteFarmerInward(TblFarmerInwardMt master)
+        {
+                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.RecordNo.ToString());
+                RepositoryContext.RemoveRange(toBeDeleteStock);
+                this.RepositoryContext.SaveChanges();
+
+                var toBeDeleteDT = this.RepositoryContext.Set<TblFarmerInwardDt>().Where(s => s.RecordNo == master.PkId);
+                RepositoryContext.RemoveRange(toBeDeleteDT);
+                this.RepositoryContext.SaveChanges();
+
+                var toBeDeleteMT = this.RepositoryContext.Set<TblFarmerInwardMt>().Where(s => s.PkId == master.PkId);
+                RepositoryContext.RemoveRange(toBeDeleteMT);
+                this.RepositoryContext.SaveChanges();
+
         }
 
         IEnumerable<ViewFarmerInwardMaster> IProductRepository.GetAllFarmerInwardMasters()
@@ -279,6 +296,32 @@ namespace ContractLayerFarm.Data.Repositories
         {
             this.RepositoryContext.Set<TblFarmerOutwardDt>().AddRange(details);
             this.RepositoryContext.SaveChanges();
+        }
+
+        public void DeleteFarmerOutward(TblFarmerOutwardMt master)
+        {
+            var entity = this.ktConContext.TblBookingMaster.FirstOrDefault(item => item.CustomerId == master.CustomerId && item.PlanId == master.PlanId);
+
+            if (entity != null)
+            {
+                entity.DeliveryStatus = "Pending";
+                ktConContext.TblBookingMaster.Update(entity);
+                ktConContext.SaveChanges();
+            }
+
+            var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.OutwardDocNo == master.RecordNo.ToString());
+            RepositoryContext.RemoveRange(toBeDeleteStock);
+            this.RepositoryContext.SaveChanges();
+
+            var toBeDeleteDT = this.RepositoryContext.Set<TblFarmerOutwardDt>().Where(s => s.RecordNo == master.PkId);
+            RepositoryContext.RemoveRange(toBeDeleteDT);
+            this.RepositoryContext.SaveChanges();
+
+            var toBeDeleteMT = this.RepositoryContext.Set<TblFarmerOutwardMt>().Where(s => s.PkId == master.PkId);
+            RepositoryContext.RemoveRange(toBeDeleteMT);
+            this.RepositoryContext.SaveChanges();
+
+
         }
 
         IEnumerable<ViewFarmerInwardMaster> IProductRepository.GetAllFarmerOutwardMasters()
@@ -429,11 +472,27 @@ namespace ContractLayerFarm.Data.Repositories
             return entryPoint.ToList();
         }
 
+        public void DeletePurchaseBill(TblPurchaseBillMt master)
+        {
+            var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.BatchNo.ToString());
+            RepositoryContext.RemoveRange(toBeDeleteStock);
+            this.RepositoryContext.SaveChanges();
+
+            var toBeDeleteDT = this.RepositoryContext.Set<TblPurchaseBillDt>().Where(s => s.BillId == master.BillId);
+            RepositoryContext.RemoveRange(toBeDeleteDT);
+            this.RepositoryContext.SaveChanges();
+
+            var toBeDeleteMT = this.RepositoryContext.Set<TblPurchaseBillMt>().Where(s => s.BillId == master.BillId);
+            RepositoryContext.RemoveRange(toBeDeleteMT);
+            this.RepositoryContext.SaveChanges();
+        }
+
         IEnumerable<TblPurchaseBillDt> IProductRepository.GetAllPurchaseBillMasteDetails(int billId)
         {
             return this.ktConContext.Set<TblPurchaseBillDt>().Where(p => p.BillId == billId).ToList();
         }
 
+        //------------------------Create Bill--------------------------
 
         public void SaveFarmerChickEggBillMaster(TblSalesBillMt master)
         {
@@ -505,16 +564,46 @@ namespace ContractLayerFarm.Data.Repositories
                                   Customer = new TblCustomerMaster { CustomerId = e.CustomerId, CustmerName = e.CustmerName },
                                   Plan = new TblPlanMaster { PlanId = p.PlanId, PlanName = p.PlanName },
                                   Location = new TblLocationMaster { LocationId = t.LocationId, LocationName = t.LocationName },
-
-
                               });
 
             return entryPoint.ToList();
         }
 
+        public void DeleteSaleBill(TblSalesBillMt master)
+        {
+            var toBeDeletecustTrans = this.RepositoryContext.Set<TblCustomerTransaction>().Where(s => s.BillId == master.BillId.ToString());
+            RepositoryContext.RemoveRange(toBeDeletecustTrans);
+            this.RepositoryContext.SaveChanges();
+
+            var toBeDeleteDT = this.RepositoryContext.Set<TblSalesBillDt>().Where(s => s.BillId == master.BillId);
+            RepositoryContext.RemoveRange(toBeDeleteDT);
+            this.RepositoryContext.SaveChanges();
+
+            var toBeDeleteMT = this.RepositoryContext.Set<TblSalesBillMt>().Where(s => s.BillId == master.BillId);
+            RepositoryContext.RemoveRange(toBeDeleteMT);
+            this.RepositoryContext.SaveChanges();
+        }
+
         IEnumerable<TblSalesBillDt> IProductRepository.GetAllFarmerChickEggBillDetails(int billid)
         {
             return this.ktConContext.Set<TblSalesBillDt>().Where(p => p.BillId == billid).ToList();
+        }
+
+        public decimal GetCustomerOutstandingAmt(TblSalesBillMt master)
+        {
+            decimal outstandingAmt = 0;
+           
+                var entryPoint = (from ct in ktConContext.TblCustomerTransaction
+                                  where ct.CustomerId == master.CustomerId
+                                  select new
+                                  {
+                                      billamt = ct.BillAmount,
+                                      billpaid = ct.BillPaidAmt
+                                  });
+
+                outstandingAmt = Convert.ToDecimal(entryPoint.Sum(x => Convert.ToDecimal(x.billamt)) - entryPoint.Sum(k => Convert.ToDecimal(k.billpaid)));
+
+            return outstandingAmt;
         }
     }
 }

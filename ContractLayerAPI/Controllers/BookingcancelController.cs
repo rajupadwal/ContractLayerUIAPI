@@ -53,6 +53,7 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
                 this._repoWrapper.Bookingcancel.Create(bookingcancel);
                 this._repoWrapper.Bookingcancel.Save();
                 return true;

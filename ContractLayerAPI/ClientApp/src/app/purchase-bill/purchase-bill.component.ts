@@ -140,8 +140,6 @@ export class PurchaseBillComponent implements OnInit {
           })
         }
       });
-
-
   }
 
   loadProducts = () => {

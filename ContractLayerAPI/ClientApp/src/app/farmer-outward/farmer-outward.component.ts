@@ -92,8 +92,6 @@ export class FarmerOutwardComponent implements OnInit {
           })
         }
       });
-
-
   }
 
   loadCustomers = () => {

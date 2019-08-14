@@ -136,8 +136,6 @@ export class ExpencetypeViewComponent implements OnInit {
         this.RefreshGrid();
       });
   }
-
-
 }
 
 

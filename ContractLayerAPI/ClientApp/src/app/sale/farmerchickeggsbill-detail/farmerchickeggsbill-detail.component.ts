@@ -112,17 +112,6 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
         if (this.isEditable == true && this.FarmerChickEggsBillDetailList) {
           this.FarmerChickEggsBillDetailList.forEach((key: any, value: any) => {
             key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
-
-            //let newDetails = new FarmerChickEggsBillDetail();
-            //newDetails.ProductId = key.Product.ProductId;
-
-            //this.productService.getProductTypeByProductID(newDetails)
-            //  .subscribe((types: any) => {
-            //    this.producttypelist = types;
-            //    this.producttypelist.forEach((key: any, value: any) => {
-            //      key.Producttypeun = key.ProductType + '-' + key.Unit.UnitDescription;
-            //    })
-            //  });
           })
         }
       });
@@ -142,18 +131,6 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
         this.planList = plans;
       });
   }
-
-  //loadUnits = () => {
-  //  this.productService.loadUnits()
-  //    .subscribe((units: any) => {
-  //      this.unitLists = units;
-  //      if (this.isEditable == true && this.FarmerChickEggsBillDetailList) {
-  //        this.FarmerChickEggsBillDetailList.forEach((key: any, value: any) => {
-  //          key.Units = this.unitLists.find(p => p.UnitId == key.UnitId);
-  //        })
-  //      }
-  //    });
-  //}
 
   calculateSumOfTotalAmt = () => {
     this.FarmerChickEggsBillMaster.TotalAmount = 0;
@@ -212,7 +189,13 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
   onSelectCustomers = (value) => {
     this.FarmerChickEggsBillMaster.CustomerId = this.FarmerChickEggsBillMaster.Customer.CustomerId;
     this.FarmerChickEggsBillMaster.Address = this.FarmerChickEggsBillMaster.Customer.Address;
-  };
+
+    this.farmerchikeggbillService.getCustOutstanding(this.FarmerChickEggsBillMaster)
+        .subscribe((salereceipt: any) => {
+          this.FarmerChickEggsBillMaster.OutstandingAmt = salereceipt;
+        });
+  }
+
   onSelectLocations = (value) => {
     this.FarmerChickEggsBillMaster.LocationId = this.FarmerChickEggsBillMaster.Location.LocationId;
   };
@@ -222,16 +205,6 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
     model.ProductId = model.Product.ProductId;
     this.FarmerChickEggsBillDetailList.ProductId = model.ProductId;
 
-    //let newDetails = new FarmerChickEggsBillDetail();
-    //newDetails.ProductId = model.Product.ProductId;
-
-    //this.productService.getProductTypeByProductID(newDetails)
-    //  .subscribe((types: any) => {
-    //    this.producttypelist = types;
-    //    this.producttypelist.forEach((key: any, value: any) => {
-    //      key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-    //    })
-    //  });
   }
 
   onSelectProducttypes = (value, model: any) => {
@@ -278,36 +251,8 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
     item.productTypeList = [];
     item.productTypeList = prdList.filter(p => p.ProductId == item.ProductId);
   };
-
-    //this.productService.getProductTypeByProductID(newDetails)
-    //  .subscribe((types: any) => {
-    //    this.producttypelist = types;
-    //    this.producttypelist.forEach((key: any, value: any) => {
-    //      key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-    //    })
-
-    //    if (this.isEditable == true && this.FarmerChickEggsBillDetailList) {
-    //      this.FarmerChickEggsBillDetailList.forEach((key: any, value: any) => {
-    //        let newDetails = new FarmerChickEggsBillDetail();
-    //        newDetails.ProductId = key.Product.ProductId;
-
-    //        this.productService.getProductTypeByProductID(newDetails)
-    //          .subscribe((types: any) => {
-    //            this.producttypelist = types;
-    //            this.producttypelist.forEach((key: any, value: any) => {
-    //              key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
-    //            })
-    //          });
-    //      })
-    //    }
-    //  });
-  
-  //searchUnits = (value) => {
-  //  //made Api call for search
-  //  this.loadUnits();
-  //};
-
 }
+
 export class FarmerChickEggsBillDetail {
   PkId: number;
   BillId: number = 0;
