@@ -46,7 +46,7 @@ export class FarmerinwardViewComponent implements OnInit {
         newTH.innerHTML = ' <i class="pi pi-trash"></i>';
         //newTH.className = "pi pi-times";
         newTH.onclick = () => {
-          //this.delete(params.data);
+          this.delete(params.data);
 
         };
         return newTH;
@@ -137,11 +137,17 @@ export class FarmerinwardViewComponent implements OnInit {
       (response) => {
         this.rowData = response;
       });
+  }
 
-    //delete (bookingcancel) {
-    //  let httpOptions = {
-    //    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    //  };
+  delete(farmerinward) {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_INWARDS_API.DELETE, farmerinward, httpOptions)
+      .subscribe((farmerinward) => {
+        this.RefreshGrid();
+      });
   }
 
 }

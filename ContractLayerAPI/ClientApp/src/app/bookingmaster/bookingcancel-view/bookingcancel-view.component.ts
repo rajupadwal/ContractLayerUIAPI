@@ -89,6 +89,7 @@ export class BookingcancelViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     { headerName: 'NoOfPlan    ', field: 'NoOfPlan' },
+    { headerName: 'No Of Plan Cancel   ', field: 'CancelNoOfPlan' },
     { headerName: 'NoOfChicks    ', field: 'NoOfChicks' },
     { headerName: 'Amount    ', field: 'Amonut' }
     

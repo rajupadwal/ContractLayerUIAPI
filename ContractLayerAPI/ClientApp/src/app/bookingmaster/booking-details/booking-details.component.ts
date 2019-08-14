@@ -56,7 +56,7 @@ export class BookingDetailsComponent implements OnInit {
       EnquiryRef      : [],
       Agreement       : [],
       EggsLiability   : [],
-      NoOfPlanCancel  : [],
+      NoOfPlanCancel: [],
       PaymentMethod   : [],
       ChequeNo        : [],
       PaidAmount      : [],
@@ -114,13 +114,13 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   searchLocation(event) {
-    this.bookingService.searchLocation(event.query).subscribe((data:any) => {
+    this.locationService.searchLocation(event.query).subscribe((data:any) => {
       this.locationList = data;
     });
   }
 
   searchCustomer(event) {
-    this.bookingService.searchCustomer(event.query).subscribe((data: any) => {
+    this.cusotmerService.searchCustomer(event.query).subscribe((data: any) => {
       this.customerList = data;
     });
   }
@@ -136,7 +136,7 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   searchPlan(event) {
-    this.bookingService.searchPlan(event.query).subscribe((data: any) => {
+    this.planService.searchPlan(event.query).subscribe((data: any) => {
       this.planList = data;
     });
   }
@@ -155,6 +155,7 @@ export class BookingDetailsComponent implements OnInit {
     booking.CustomerId = booking.Customer.CustomerId;
     booking.PlanId = booking.Plan.PlanId;
     booking.DeliveryStatus = 'Pending';
+    booking.NoOfPlanCancel = '0';
     //Object.assign(booking, this.bookingdetailsForm.value);
     
     delete booking.Location;

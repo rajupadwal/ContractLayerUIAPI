@@ -19,8 +19,32 @@ export class FarmeroutwardViewComponent implements OnInit {
 
   columnDefs = [
     {
-      headerName: 'Button Col 1', 'width': 100,
-      cellRenderer: 'buttonRenderer',
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.onclick = () => {
+          const ref = this.dialog.open(FarmerOutwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Outward' }, isEditable: true });
+          ref.afterClosed.subscribe(result => {
+            this.RefreshGrid();
+          });
+        };
+        return newTH;
+      },
+    },
+
+    {
+      headerName: 'Delete', 'width': 100,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.onclick = () => {
+          this.delete(params.data);
+        };
+        return newTH;
+      },
     },
 
     {
@@ -30,23 +54,6 @@ export class FarmeroutwardViewComponent implements OnInit {
       field: 'RecordNo', 'width': 130,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
-    },
-
-
-    {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
-
-      cellRenderer: (params) => {
-        var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
-        newTH.onclick = () => {
-          const ref = this.dialog.open(FarmerOutwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Outward' },isEditable: true });
-          ref.afterClosed.subscribe(result => {
-          this.RefreshGrid();
-          });
-        };
-        return newTH;
-      },
     },
 
     { headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 120 },
@@ -119,4 +126,14 @@ export class FarmeroutwardViewComponent implements OnInit {
       });
   }
 
+  delete(farmeroutward) {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.DELETE, farmeroutward, httpOptions)
+      .subscribe((farmeroutward) => {
+        this.RefreshGrid();
+      });
+  }
 }

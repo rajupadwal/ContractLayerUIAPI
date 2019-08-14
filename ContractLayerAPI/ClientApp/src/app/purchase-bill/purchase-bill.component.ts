@@ -131,7 +131,7 @@ export class PurchaseBillComponent implements OnInit {
         })
         if (this.isEditable == true && this.PurchaseBillDetailsList) {
           this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
-            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit);
+            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit && p.ProductType == key.ProductType);
             if (productType) {
               key.Producttypeun = productType;
               key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
@@ -140,8 +140,6 @@ export class PurchaseBillComponent implements OnInit {
           })
         }
       });
-
-
   }
 
   loadProducts = () => {

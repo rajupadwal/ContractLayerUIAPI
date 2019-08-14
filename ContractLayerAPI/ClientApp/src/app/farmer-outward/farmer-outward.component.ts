@@ -83,7 +83,7 @@ export class FarmerOutwardComponent implements OnInit {
         })
         if (this.isEditable == true && this.FarmerOutwardDetailsList) {
           this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
-            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit);
+            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit && p.ProductType == key.ProductType);
             if (productType) {
               key.Producttypeun = productType;
               key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
@@ -92,8 +92,6 @@ export class FarmerOutwardComponent implements OnInit {
           })
         }
       });
-
-
   }
 
   loadCustomers = () => {

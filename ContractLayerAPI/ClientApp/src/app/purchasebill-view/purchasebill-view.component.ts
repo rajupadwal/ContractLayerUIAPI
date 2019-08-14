@@ -44,7 +44,7 @@ export class PurchasebillViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = ' <i class="pi pi-trash"></i>';
         newTH.onclick = () => {
-         // this.delete(params.data);
+         this.delete(params.data);
 
         };
         return newTH;
@@ -124,6 +124,17 @@ export class PurchasebillViewComponent implements OnInit {
     return this.http.get(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.GETALLPURCHASEBILLMASTERS, httpOptions)
       .subscribe((purchasebill: any) => {
         this.rowData = purchasebill;
+      });
+  }
+
+  delete(farmerinward) {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.DELETE, farmerinward, httpOptions)
+      .subscribe((farmerinward) => {
+        this.RefreshGrid();
       });
   }
 }
