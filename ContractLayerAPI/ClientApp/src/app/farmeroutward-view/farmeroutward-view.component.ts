@@ -42,7 +42,7 @@ export class FarmeroutwardViewComponent implements OnInit {
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerOutwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Outward' },isEditable: true });
           ref.afterClosed.subscribe(result => {
-          this.RefreshGrid();
+            if (result == false) { return; } else this.RefreshGrid();
           });
         };
         return newTH;

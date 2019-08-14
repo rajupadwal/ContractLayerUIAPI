@@ -131,7 +131,7 @@ export class PurchaseBillComponent implements OnInit {
         })
         if (this.isEditable == true && this.PurchaseBillDetailsList) {
           this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
-            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit);
+            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit && p.ProductType == key.ProductType);
             if (productType) {
               key.Producttypeun = productType;
               key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
@@ -195,10 +195,12 @@ export class PurchaseBillComponent implements OnInit {
     })
 
     //adding deleted records List
-    this.productService.savePurchaseBills(this.PurchaseBillMaster);
+    this.productService.savePurchaseBills(this.PurchaseBillMaster).subscribe(result => {
+      this.dialog.close("Record added succesfully");
+    });
 
     // store user details and jwt token in local storage to keep user logged in between page refreshes
-    this.dialog.close();
+   
   }
 
   onSelectSuppliers = (value) => {

@@ -51,11 +51,11 @@ export class ProductService {
 
   //Farmer Outward Details
 
-  saveFarmerOutwards(master) {
+  saveFarmerOutwards(master): Observable<any> {
 
-    this.http.post(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.SAVEFARMEROUTWARDMASTER, master)
-      .subscribe((response) => {
-        console.log("Outward master added successfully");
+   return this.http.post(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.SAVEFARMEROUTWARDMASTER, master)
+      .pipe((response: any) => {
+        return response;
       });
 
   }
@@ -67,12 +67,11 @@ export class ProductService {
 
   //Purchase Bill Details
 
-  savePurchaseBills(master) {
+  savePurchaseBills(master): Observable<any>  {
 
-    this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.SAVEPURCHASEBILLMASTER, master)
-      .subscribe((response) => {
-        console.log("Purchase Bill master added successfully");
-        
+    return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.SAVEPURCHASEBILLMASTER, master)
+     .pipe((response: any) => {
+       return response;
       });
 
   }
@@ -85,11 +84,11 @@ export class ProductService {
     return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.GETALLFARMERCHICKEGGBILLDETAILS, master);
   }
 
-  saveFarmerChickEggBill(master) {
+  saveFarmerChickEggBill(master): Observable<any> {
 
-    this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.SAVEFARMERCHICKEGGBILLMASTER, master)
-      .subscribe((response) => {
-        console.log("Bill added successfully");
+    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.SAVEFARMERCHICKEGGBILLMASTER, master)
+      .pipe((response: any) => {
+        return response;
       });
 
 

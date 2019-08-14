@@ -29,12 +29,11 @@ export class EnquiryViewComponent implements OnInit {
     //  }
     //},
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = 'Edit';
-        newTH.className = 'pi pi - pencil';
+        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(EnquiryMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Enquiry' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -46,7 +45,7 @@ export class EnquiryViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Delete', 'width': 100,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');

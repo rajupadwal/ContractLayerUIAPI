@@ -85,6 +85,10 @@ export class EmployeeadvanceDetailsComponent implements OnInit {
   }
 
   saveEmployeeAdvance() {
+
+    if (!this.dialog.validateForm3(this.employeeadvanceForm)) {
+      return;
+    }
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

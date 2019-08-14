@@ -37,16 +37,16 @@ export class SalesReceiptDetailsComponent implements OnInit {
     this.salereceiptdetailsForm = this.formBuilder.group({
       PkId: [0],
       ReceiptNo: [],
-      Date: [],
+      Date: ["", Validators.required],
       Location: [{}],
       Customer: [{}],
-      PaymentType: [],
-      BillRefNo: [],
-      PaymentMethod: [],
+      PaymentType: ["", Validators.required],
+      BillRefNo: ["", Validators.required],
+      PaymentMethod: ["", Validators.required],
       ChequeNo: [],
       OutstandingAmount: [],
-      CashAmount: [],
-      Narration: [],
+      CashAmount: ["", Validators.required],
+      Narration: ["", Validators.required],
       IsDeleted: [false],
       LocationId: [],
       CustomerId: [],
@@ -97,6 +97,10 @@ export class SalesReceiptDetailsComponent implements OnInit {
   }
 
   saveSalereceipt() {
+    if (!this.dialog.validateForm15(this.salereceiptdetailsForm)) {
+      return;
+    }
+
     let salereceiptdetails = this.salereceiptdetailsForm.value;
     salereceiptdetails.LocationId = salereceiptdetails.Location.LocationId;
     salereceiptdetails.CustomerId = salereceiptdetails.Customer.CustomerId;

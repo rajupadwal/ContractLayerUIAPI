@@ -31,7 +31,7 @@ export class PurchasebillViewComponent implements OnInit {
         newTH.onclick = () => {
           const ref = this.dialog.open(PurchaseBillComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Bill', width: '90%' },isEditable: true });
           ref.afterClosed.subscribe(result => {
-            this.RefreshGrid();
+            if (result == false) { return; } else this.RefreshGrid();
           });
         };
         return newTH;

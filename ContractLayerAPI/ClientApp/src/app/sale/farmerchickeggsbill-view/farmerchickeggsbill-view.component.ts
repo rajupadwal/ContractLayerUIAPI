@@ -31,7 +31,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ' },isEditable: true });
           ref.afterClosed.subscribe(result => {
-            this.RefreshGrid();
+            if (result == false) { return; } else this.RefreshGrid();
           });
         };
         return newTH;

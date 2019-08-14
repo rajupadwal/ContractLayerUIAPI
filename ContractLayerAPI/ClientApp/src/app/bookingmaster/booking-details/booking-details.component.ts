@@ -45,23 +45,23 @@ export class BookingDetailsComponent implements OnInit {
       RecordNo  : [],
       Location        : [{}],
       Customer        : [{}],
-      BookingDate     : [],
-      MobileNo        : [],
+      BookingDate: ["", Validators.required],
+      MobileNo: ["", Validators.required],
       Plan            : [{}],
-      NoOfPlan        : [],
+      NoOfPlan: ["", Validators.required],
       NoOfChicks      : [],
       EggsReturnRate  :[],
       Amount          : [],
       Employee        : [{}],
       EnquiryRef      : [],
-      Agreement       : [],
+      Agreement: ["", Validators.required],
       EggsLiability   : [],
       NoOfPlanCancel  : [],
-      PaymentMethod   : [],
+      PaymentMethod: ["", Validators.required],
       ChequeNo        : [],
-      PaidAmount      : [],
+      PaidAmount: ["", Validators.required],
       BalanceAmount   : [],
-      Narration: [],
+      Narration: ["", Validators.required],
       LocationId: [],
       CustomerId: [],
       PlanId: [],
@@ -114,13 +114,13 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   searchLocation(event) {
-    this.bookingService.searchLocation(event.query).subscribe((data:any) => {
+    this.locationService.searchLocation(event.query).subscribe((data:any) => {
       this.locationList = data;
     });
   }
 
   searchCustomer(event) {
-    this.bookingService.searchCustomer(event.query).subscribe((data: any) => {
+    this.cusotmerService.searchCustomer(event.query).subscribe((data: any) => {
       this.customerList = data;
     });
   }
@@ -136,7 +136,7 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   searchPlan(event) {
-    this.bookingService.searchPlan(event.query).subscribe((data: any) => {
+    this.planService.searchPlan(event.query).subscribe((data: any) => {
       this.planList = data;
     });
   }
@@ -149,6 +149,10 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   saveBookingDetails() {
+    if (!this.dialog.validateForm13(this.bookingdetailsForm)) {
+      return;
+    }
+
     let booking = this.bookingdetailsForm.value;
     booking.EmployeeId = booking.Employee.EmployeeId;
     booking.LocationId = booking.Location.LocationId;

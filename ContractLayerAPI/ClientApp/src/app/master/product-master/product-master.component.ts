@@ -81,6 +81,10 @@ export class ProductMasterComponent implements OnInit {
 
   
   saveProduct() {
+
+    if (!this.dialog.validateForm11(this.productForm)) {
+      return;
+    }
       let httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };

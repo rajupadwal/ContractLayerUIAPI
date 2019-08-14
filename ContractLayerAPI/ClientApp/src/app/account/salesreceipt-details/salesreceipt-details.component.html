@@ -56,7 +56,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Payment Type :</strong></label>
-              <select formControlName="PaymentType" (change)="calculateOutstandingAmount($event)" id="select" name="select" class="form-control">
+              <select formControlName="PaymentType" appValidationBorder (change)="calculateOutstandingAmount($event)" id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Against Bill">Against Bill</option>
                 <option value="Against Booking">Against Booking</option>
@@ -71,7 +71,7 @@
               <label for="textarea-input"><strong>Booking/Billing Ref. No :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="BillRefNo" type="text" pInputText id="billrefno" name="billrefno" class="form-control" rows="3">
+                  <input formControlName="BillRefNo" appValidationBorder type="text" pInputText id="billrefno" name="billrefno" class="form-control" rows="3">
                 </span>
               </div>
             </div>
@@ -100,7 +100,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Payment Method :</strong></label>
-              <select formControlName="PaymentMethod" id="select" name="select" class="form-control">
+              <select formControlName="PaymentMethod" appValidationBorder id="select" name="select" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Cash">Cash</option>
                 <option value="Cheque">Cheque</option>
@@ -131,7 +131,7 @@
               <label for="textarea-input"><strong> Amount :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="CashAmount" type="text" pInputText id="cashamount" name="cashamount" class="form-control">
+                  <input formControlName="CashAmount" appValidationBorder type="text" pInputText id="cashamount" name="cashamount" class="form-control">
                 </span>
               </div>
             </div>
@@ -144,7 +144,7 @@
               <label for="textarea-input"><strong>Narration :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Narration" type="text" pInputText id="narration" name="narration" class="form-control">
+                  <input formControlName="Narration" appValidationBorder type="text" pInputText id="narration" name="narration" class="form-control">
                 </span>
               </div>
             </div>

@@ -91,7 +91,7 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
         })
         if (this.isEditable == true && this.FarmerChickEggsBillDetailList) {
           this.FarmerChickEggsBillDetailList.forEach((key: any, value: any) => {
-            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit);
+            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit && p.ProductType == key.ProductType);
             if (productType) {
               key.Producttypeun = productType;
               key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
@@ -200,10 +200,9 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
 
     })
 
-    this.productService.saveFarmerChickEggBill(this.FarmerChickEggsBillMaster);
-
-    // store user details and jwt token in local storage to keep user logged in between page refreshes
-    this.dialog.close();
+    this.productService.saveFarmerChickEggBill(this.FarmerChickEggsBillMaster).subscribe(result => {
+      this.dialog.close("Record added succesfully");
+    });
   }
 
   onSelectPlans = (value) => {

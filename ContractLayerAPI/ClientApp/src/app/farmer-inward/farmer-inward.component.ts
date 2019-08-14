@@ -89,7 +89,7 @@ export class FarmerInwardComponent implements OnInit {
         })
         if (this.isEditable == true && this.FarmerInwardDetailsList) {
           this.FarmerInwardDetailsList.forEach((key: any, value: any) => {
-            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit);
+            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit && p.ProductType == key.ProductType );
             if (productType) {
               key.Producttypeun = productType;
               key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
@@ -153,10 +153,13 @@ export class FarmerInwardComponent implements OnInit {
     })
 
 
-    this.productService.saveFarmerInwards(this.FarmerInwardMaster);
+    this.productService.saveFarmerInwards(this.FarmerInwardMaster).subscribe(result => {
+      this.dialog.close("Record added succesfully");
+    });
+    
 
     // store user details and jwt token in local storage to keep user logged in between page refreshes
-    this.dialog.close();
+    //this.dialog.close();
   }
 
   onSelectPlans = (value) => {

@@ -37,15 +37,15 @@ export class PurchasepaymentDetailsComponent implements OnInit {
     this.purchasepaymentdetailsForm = this.formBuilder.group({
       PkId            :[0],
       RecordNo        : [],
-      Date            : [],
+      Date: ["", Validators.required],
       Location        : [{}],
       Supplier        : [{}],
-      PaymentType     : [],
-      BillRefNo       : [],
-      PaymentMethod   : [],
+      PaymentType: ["", Validators.required],
+      BillRefNo: ["", Validators.required],
+      PaymentMethod: ["", Validators.required],
       ChequeNo        : [],
-      AmountPaid      : [],
-      Narration       : [],
+      AmountPaid: ["", Validators.required],
+      Narration: ["", Validators.required],
       IsDeleted: [false],
       LocationId: [],
       SupplierId: [],
@@ -98,6 +98,10 @@ export class PurchasepaymentDetailsComponent implements OnInit {
   }
   
   savePurchasepayment() {
+
+    if (!this.dialog.validateForm16(this.purchasepaymentdetailsForm)) {
+      return;
+    }
     let purchasepayementdetails = this.purchasepaymentdetailsForm.value;
     purchasepayementdetails.LocationId = purchasepayementdetails.Location.LocationId;
     purchasepayementdetails.SupplierId = purchasepayementdetails.Supplier.SupplierId;

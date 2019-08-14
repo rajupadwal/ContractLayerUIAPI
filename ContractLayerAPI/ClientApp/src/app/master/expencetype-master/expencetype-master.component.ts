@@ -47,6 +47,10 @@ export class ExpencetypeMasterComponent implements OnInit {
   }
 
   saveExpenceType() {
+    if (!this.dialog.validateForm(this.expencetypeForm)) {
+      return;
+    }
+
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

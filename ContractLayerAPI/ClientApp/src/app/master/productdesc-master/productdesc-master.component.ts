@@ -36,6 +36,10 @@ export class ProductdescMasterComponent implements OnInit {
   }
 
   saveProductdescMaster() {
+    if (!this.dialog.validateForm10(this.productdescmasterForm)) {
+      return;
+    }
+
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

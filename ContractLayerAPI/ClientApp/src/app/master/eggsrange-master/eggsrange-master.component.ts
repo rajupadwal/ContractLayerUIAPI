@@ -37,6 +37,10 @@ export class EggsrangeMasterComponent implements OnInit {
   }
 
   saveEggsrangeMaster() {
+
+    if (!this.dialog.validateForm2(this.eggsrangemasterForm)) {
+      return;
+    }
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

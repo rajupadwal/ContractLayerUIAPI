@@ -110,6 +110,10 @@ export class ExpencedetailsMasterComponent implements OnInit {
   }
 
   saveexpencedetails() {
+
+    if (!this.dialog.validateForm6(this.expencedetailsForm)) {
+      return;
+    }
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

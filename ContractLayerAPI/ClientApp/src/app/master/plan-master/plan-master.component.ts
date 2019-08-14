@@ -43,6 +43,10 @@ export class PlanMasterComponent implements OnInit {
   }
 
   savePlanMaster() {
+    if (!this.dialog.validateForm9(this.planmasterForm)) {
+      return;
+    }
+
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
