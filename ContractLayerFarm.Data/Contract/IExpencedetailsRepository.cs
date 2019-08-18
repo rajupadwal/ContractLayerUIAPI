@@ -12,5 +12,6 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<TblOfficeExpencesDetails> GetAllExpenceType();
 
         int GetExpenceNo();
+        void DeleteOfficeExpense(TblOfficeExpencesDetails master);
     }
 }

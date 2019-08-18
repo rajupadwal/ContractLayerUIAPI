@@ -21,18 +21,18 @@ export class LoginComponent {
   }
 
   public login(): boolean {
-    this.router.navigateByUrl('/dashboard');
-    //this.authService.login(this.userName, this.userPassword).subscribe((user:any) => {
-     // if (user && user.UserId > 0) {
-     //   this.router.navigateByUrl('/dashboard');
-     // } else {
-      //  this.errorMessage = "UserName or Password is Incorrect ! Please try again";
-      //}
-    //},
-     // (error) => {
+    //this.router.navigateByUrl('/dashboard');
+    this.authService.login(this.userName, this.userPassword).subscribe((user:any) => {
+      if (user.length > 0) {
+        this.router.navigateByUrl('/dashboard');
+      } else {
         this.errorMessage = "UserName or Password is Incorrect ! Please try again";
-     // }
-    //);
+      }
+    },
+      (error) => {
+        this.errorMessage = "UserName or Password is Incorrect ! Please try again";
+      }
+    );
     
     return true;
   }

@@ -183,6 +183,15 @@ export class FarmerOutwardComponent implements OnInit {
     model.ProductType = model.Producttypeun.ProductType;
     model.Unit = model.Producttypeun.Unit.UnitId;
 
+    let newDetails = new FarmerOutwardDetail();
+    newDetails.ProductId = model.ProductId;
+    newDetails.ProductType = model.ProductType;
+
+    this.farmeroutwardService.getProductAvailableStock(newDetails)
+      .subscribe((stock: any) => {
+        model.AvailableStock = stock;
+      });
+
   };
 
   searchCustomer(event) {

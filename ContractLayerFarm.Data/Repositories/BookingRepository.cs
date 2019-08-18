@@ -57,39 +57,46 @@ namespace ContractLayerFarm.Data.Repositories
 
         public void SaveBookinginCustomerTransaction(TblBookingMaster master)
         {
-
-            TblCustomerTransaction custransList = new TblCustomerTransaction()
+            if (master.PkId > 0)
             {
-                CustomerId = master.CustomerId,
-                TransactionDate = master.BookingDate,
-                TransactionType = typeof(TblBookingMaster).ToString(),
-                BookingId = master.RecordNo.ToString(),
-                BookingAmount = master.Amount,
-                BookingReceivedAmt = master.PaidAmount,
-                BillId = "0",
-                BillAmount = 0,
-                BillPaidAmt = 0,
-                PaymentType = master.PaymentMethod,
-                Narration = master.Narration,
-                ReceiptNo = "0"
-            };
 
-            //if (master.ReceiptNo > 0)
-            //{
-            //    var toBeDeleteSaleDT = this.RepositoryContext.Set<TblSalesBillDt>().Where(s => s.BillId == master.BillId);
-            //    RepositoryContext.RemoveRange(toBeDeleteSaleDT);
-            //    var toBeDeleteCustTrans = this.RepositoryContext.Set<TblCustomerTransaction>().Where(s => s.BillId == master.BillNo);
-            //    RepositoryContext.RemoveRange(toBeDeleteCustTrans);
-            //    this.RepositoryContext.SaveChanges();
-            //    this.RepositoryContext.Set<TblSalesBillMt>().Update(master);
-            //    this.RepositoryContext.Set<TblCustomerTransaction>().Update(custransList);
-            //    this.RepositoryContext.SaveChanges();
-            //}
-            //else
-            //{
-            this.RepositoryContext.Set<TblCustomerTransaction>().Add(custransList);
+                var entity = this.ktConContext.TblCustomerTransaction.FirstOrDefault(item => item.CustomerId == master.CustomerId && item.BookingId == master.RecordNo.ToString() && item.TransactionType== typeof(TblBookingMaster).ToString());
+
+                if (entity != null)
+                {
+                    entity.BookingAmount = master.Amount;
+                    entity.BookingReceivedAmt = master.PaidAmount;
+                    ktConContext.TblCustomerTransaction.Update(entity);
+                    ktConContext.SaveChanges();
+                }
+            }
+            else
+            {
+                TblCustomerTransaction custransList = new TblCustomerTransaction()
+                {
+                    CustomerId = master.CustomerId,
+                    TransactionDate = master.BookingDate,
+                    TransactionType = typeof(TblBookingMaster).ToString(),
+                    BookingId = master.RecordNo.ToString(),
+                    BookingAmount = master.Amount,
+                    BookingReceivedAmt = master.PaidAmount,
+                    BillId = "0",
+                    BillAmount = 0,
+                    BillPaidAmt = 0,
+                    PaymentType = master.PaymentMethod,
+                    Narration = master.Narration,
+                    ReceiptNo = "0"
+                };
+                this.RepositoryContext.Set<TblCustomerTransaction>().Add(custransList);
+                this.RepositoryContext.SaveChanges();
+            }
+        }
+
+        public void DeleteBookingTransaction(TblBookingMaster master)
+        {
+            var toBeDeletecusttrans = this.RepositoryContext.Set<TblCustomerTransaction>().Where(s => s.CustomerId == master.CustomerId && s.BookingId == master.RecordNo.ToString() && s.TransactionType == typeof(TblBookingMaster).ToString());
+            RepositoryContext.RemoveRange(toBeDeletecusttrans);
             this.RepositoryContext.SaveChanges();
-            //}
         }
     }
 }

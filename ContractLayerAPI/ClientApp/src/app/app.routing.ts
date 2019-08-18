@@ -121,9 +121,7 @@ export const routes: Routes = [
             path: 'Incomedetails',
             loadChildren: './master/income-view/income.view.module#IncomeViewModule'
           },
-
-          
-         
+                           
         ]
       },
 
@@ -182,8 +180,31 @@ export const routes: Routes = [
             path: 'Salechickeggbillview',
             loadChildren: './sale/farmerchickeggsbill-view/farmerchickeggsbill.view.module#FarmerchickeggbillModule'
           },
-          
+        ]
+      },
 
+      {
+        path: 'report',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Reports'
+        },
+        children: [
+
+          {
+            path: 'Stockdetailview',
+            loadChildren: './reports/stockdetail-view/stockdetail.module#StockdetailModule'
+          },
+
+          {
+            path: 'Customerbookingoutstandingview',
+            loadChildren: './reports/customerbookingoutstanding-view/customerbookingoutstanding.module#CustomerbookingoutstandingModule'
+          },
+
+          {
+            path: 'Customerbilloutstandingview',
+            loadChildren: './reports/customerbilloutstanding-view/customerbilloutstanding.module#CustomerbilloutstandingModule'
+          },
         ]
       },
 

@@ -12,6 +12,7 @@ namespace ContractLayerFarm.Data.Models
         public string BillId { get; set; }
         public string TransactionType { get; set; }
         public decimal? BookingAmount { get; set; }
+        public decimal? CancelBookingAmt { get; set; }
         public decimal? BookingReceivedAmt { get; set; }
         public decimal? BillAmount { get; set; }
         public decimal? BillPaidAmt { get; set; }

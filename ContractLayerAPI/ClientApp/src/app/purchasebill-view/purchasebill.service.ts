@@ -18,6 +18,10 @@ export class PurchasebillService {
 //    return this.http.post(APP_CONSTANT.GETALLFARMERINWARDMASTERS.GETByID,id);
   }
 
+  getGRNNo() {
+    return this.http.get(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.GETGRNNO);
+  }
+
 }
 
 

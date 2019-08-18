@@ -20,6 +20,13 @@ namespace ContractLayerAPI.Controllers
             _repoWrapper = repoWrapper;
         }
 
+        [HttpPost("Login")]
+        public IEnumerable<TblUserInfo> SearchLogin([FromBody] TblUserInfo user)
+        {
+            var login = this._repoWrapper.Product.SearchLogin(user);
+            return login;
+        }
+
         [HttpPost("GetTypeByProductID")]
         public IEnumerable<TblProductTypeMaster> GetTypeByProductID([FromBody] TblProductTypeMaster type)
         {
@@ -69,6 +76,20 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
+        [HttpGet("[action]")]
+        public int GetPurchaseBillGRNNo()
+        {
+            try
+            {
+                int GRNNo = this._repoWrapper.Product.GetPurchaseBillGRNNo();
+                return GRNNo;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         [HttpPost("GetProductAvailableStock")]
         public decimal GetProductAvailableStock([FromBody] TblFarmerOutwardDt farmerInwardMt)
         {
@@ -83,6 +104,26 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
+        [HttpGet("[action]")]
+        public IEnumerable<ViewStockDetails> GetProductwiseAvailableStock()
+        {
+            var Product = this._repoWrapper.Product.GetProductwiseAvailableStock();
+            return Product;
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewStockDetails> GetCustomerBookingOutstanding()
+        {
+            var Product = this._repoWrapper.Product.GetCustomerBookingOutstanding();
+            return Product;
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewStockDetails> GetCustomerBillOutstanding()
+        {
+            var Product = this._repoWrapper.Product.GetCustomerBillOutstanding();
+            return Product;
+        }
 
         [HttpGet("[action]")]
         public IEnumerable<TblProductTypeMaster> GetAll()
@@ -103,10 +144,11 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Product.SaveOpeningStockDetails(product);
                 this._repoWrapper.Product.Create(product);
                 this._repoWrapper.Product.Save();
 
-                this._repoWrapper.Product.SaveOpeningStockDetails(product);
+                
 
                 return true;
             }
@@ -122,8 +164,8 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Product.Update(product);
-                this._repoWrapper.Product.Save();
+                //this._repoWrapper.Product.Update(product);
+                //this._repoWrapper.Product.Save();
                 this._repoWrapper.Product.SaveOpeningStockDetails(product);
                 return true;
             }

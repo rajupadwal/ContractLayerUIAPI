@@ -10,15 +10,21 @@ namespace ContractLayerFarm.Data.Contract
 
         bool Authenticate();
 
-       // IEnumerable<TblProductTypeMaster> SearchProduct(string searchString);
+        IEnumerable<TblUserInfo> SearchLogin(TblUserInfo user);
         IEnumerable<TblUnitMaster> GetUnits();
 
         int GetChickEggsBillNo();
         int GetFarmerInwardNo();
         int GetFarmerOutwardNo();
+
+        int GetPurchaseBillGRNNo();
         decimal GetProductAvailableStock(TblFarmerOutwardDt master);
 
         void SaveOpeningStockDetails(TblProductTypeMaster master);
+
+        IEnumerable<ViewStockDetails> GetProductwiseAvailableStock();
+        IEnumerable<ViewStockDetails> GetCustomerBookingOutstanding();
+        IEnumerable<ViewStockDetails> GetCustomerBillOutstanding();
 
         IEnumerable<TblProductTypeMaster> GetAllProduct();
         IEnumerable<TblProductTypeMaster> GetAllProductTypeForProduct(TblProductTypeMaster master);

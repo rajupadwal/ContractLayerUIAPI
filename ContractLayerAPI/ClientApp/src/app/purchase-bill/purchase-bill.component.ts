@@ -9,6 +9,7 @@ import { DialogConfig } from '../dialog/dialog-config';
 import * as moment from 'moment';
 import { ProductdescService } from '../master/productdesc-view/productdesc.service';
 import { SupplierService } from '../master/supplier-view/supplier.service';
+import { PurchasebillService } from '../purchasebill-view/purchasebill.service';
 
 @Component({
   selector: 'app-purchase-bill',
@@ -23,10 +24,19 @@ export class PurchaseBillComponent implements OnInit {
   productlist;
   producttypelist;
   isEditable: boolean = false;
-  constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService,
+  constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService, private purchasebillService: PurchasebillService,
     private productService: ProductService, private productdescservice: ProductdescService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
 
   ngOnInit() {
+
+    if (this.config.isEditable == false) {
+      this.purchasebillService.getGRNNo()
+        .subscribe((grnno: any) => {
+          this.PurchaseBillMaster.BatchNo = grnno;
+
+        });
+    }
+
     let detail = new PurchaseBillDetail();
     this.PurchaseBillDetailsList = [detail];
     this.PurchaseBillMaster = new PurchaseBillMaster();
