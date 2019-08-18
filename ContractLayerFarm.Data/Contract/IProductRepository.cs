@@ -23,6 +23,10 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<TblProductTypeMaster> GetAllProduct();
         IEnumerable<TblProductTypeMaster> GetAllProductTypeForProduct(TblProductTypeMaster master);
 
+        void DeleteFarmerInward(TblFarmerInwardMt master);
+        void DeleteFarmerOutward(TblFarmerOutwardMt master);
+        void DeletePurchaseBill(TblPurchaseBillMt master);
+        void DeleteSaleBill(TblSalesBillMt master);
         void SaveFarmerInwardMaster(TblFarmerInwardMt master);
         void SaveFarmerInwardDetails(TblFarmerInwardDt[] details);
 
@@ -55,6 +59,8 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters();
 
         IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails(int billid);
+
+        decimal GetCustomerOutstandingAmt(TblSalesBillMt master);
 
     }
 }

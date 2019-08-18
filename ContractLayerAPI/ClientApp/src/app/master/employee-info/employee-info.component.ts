@@ -89,6 +89,10 @@ export class EmployeeInfoComponent implements OnInit {
   }
 
   saveEmployee() {
+
+    if (!this.dialog.validateForm4(this.employeeForm)) {
+      return;
+    }
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

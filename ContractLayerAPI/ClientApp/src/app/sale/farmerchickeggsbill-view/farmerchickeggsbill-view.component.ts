@@ -5,6 +5,7 @@ import { FarmerchickeggsbillDetailComponent } from '../farmerchickeggsbill-detai
 import { FarmerchikeggbillService } from './farmerchickeggsbill.service';
 import { DialogService } from '../../dialog/dialog.service';
 import * as moment from 'moment';
+import { APP_CONSTANT } from '../../../config';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ' },isEditable: true });
           ref.afterClosed.subscribe(result => {
-            this.RefreshGrid();
+            if (result == false) { return; } else this.RefreshGrid();
           });
         };
         return newTH;
@@ -44,7 +45,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = ' <i class="pi pi-trash"></i>';
         newTH.onclick = () => {
-          // this.delete(params.data);
+        this.delete(params.data);
 
         };
         return newTH;
@@ -152,6 +153,17 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
     return this.farmerchikeggbillservice.loadFarmerchickeggbillMaster().subscribe(
       (response) => {
         this.rowData = response;
+      });
+  }
+
+  delete(salebill) {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.DELETE, salebill, httpOptions)
+      .subscribe((salebill) => {
+        this.RefreshGrid();
       });
   }
 

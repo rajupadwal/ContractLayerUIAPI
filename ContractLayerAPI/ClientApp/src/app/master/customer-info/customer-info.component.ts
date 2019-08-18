@@ -78,6 +78,9 @@ export class CustomerInfoComponent implements OnInit {
   }
 
   saveCustomer() {
+    if (!this.dialog.validateForm1(this.customerForm)) {
+      return;
+    }
 
     let customer = this.customerForm.value;
     customer.LocationId = customer.Location.LocationId;

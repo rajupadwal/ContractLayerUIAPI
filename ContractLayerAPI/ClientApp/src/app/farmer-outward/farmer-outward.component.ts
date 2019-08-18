@@ -83,7 +83,7 @@ export class FarmerOutwardComponent implements OnInit {
         })
         if (this.isEditable == true && this.FarmerOutwardDetailsList) {
           this.FarmerOutwardDetailsList.forEach((key: any, value: any) => {
-            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit);
+            let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit && p.ProductType == key.ProductType);
             if (productType) {
               key.Producttypeun = productType;
               key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
@@ -92,8 +92,6 @@ export class FarmerOutwardComponent implements OnInit {
           })
         }
       });
-
-
   }
 
   loadCustomers = () => {
@@ -147,10 +145,9 @@ export class FarmerOutwardComponent implements OnInit {
       key.PkId = 0;
     })
 
-    this.productService.saveFarmerOutwards(this.FarmerOutwardMaster);
-
-    // store user details and jwt token in local storage to keep user logged in between page refreshes
-    this.dialog.close();
+    this.productService.saveFarmerOutwards(this.FarmerOutwardMaster).subscribe(result => {
+      this.dialog.close("Record added succesfully");
+    });
 
   }
 

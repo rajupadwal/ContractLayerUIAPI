@@ -42,6 +42,10 @@ export class ProfileMasterComponent implements OnInit {
   }
 
   saveProfileMaster() {
+
+    if (!this.dialog.validateForm12(this.profilemasterForm)) {
+      return;
+    }
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

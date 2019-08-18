@@ -41,20 +41,20 @@ export class BookingcancelDetailsComponent implements OnInit {
     this.bookingcancelForm = this.formBuilder.group({
       PkId                  :[0],
       RecordNo              : [],
-      Location              : [{}],
+      Location: [{}],
       Customer              : [{}],
-      BookungCancelDate     : [],
+      BookungCancelDate: ["", Validators.required],
       Plan                  : [{}],
-      NoOfPlan              : [],
+      NoOfPlan: ["", Validators.required],
       NoOfChicks            : [],
       Amonut                : [],
-      CancelNoOfPlan        : [],
+      CancelNoOfPlan: ["", Validators.required],
       CancelNoOfChicks      : [],
       CancelAmount          : [],
-      PaymentMethod         : [],
+      PaymentMethod: ["", Validators.required],
       ChequeNo              : [],
-      PaidAmount            : [],
-      Narration             : [],
+      PaidAmount: ["", Validators.required],
+      Narration: ["", Validators.required],
       IsDeleted: [false],
       LocationId: [],
       CustomerId: [],
@@ -123,6 +123,10 @@ export class BookingcancelDetailsComponent implements OnInit {
   }
 
   saveBookingCancel() {
+    if (!this.dialog.validateForm14(this.bookingcancelForm)) {
+      return;
+    }
+
     let bookingcancel = this.bookingcancelForm.value;
     bookingcancel.LocationId = bookingcancel.Location.LocationId;
     bookingcancel.CustomerId = bookingcancel.Customer.CustomerId;

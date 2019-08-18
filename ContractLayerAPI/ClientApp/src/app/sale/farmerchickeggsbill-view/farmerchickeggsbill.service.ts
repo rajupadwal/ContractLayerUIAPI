@@ -18,9 +18,9 @@ export class FarmerchikeggbillService {
     return this.http.get(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.GETALLFARMERCHICKEGGBILLNO);
   }
 
-//  getCustomerByID(id) {
-////    return this.http.post(APP_CONSTANT.GETALLFARMERINWARDMASTERS.GETByID,id);
-//  }
+  getCustOutstanding(master) {
+    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.GETCUSTOUTSTANDING, master);
+  }
 
 }
 

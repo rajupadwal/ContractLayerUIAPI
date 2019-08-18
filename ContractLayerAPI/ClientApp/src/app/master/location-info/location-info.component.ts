@@ -45,6 +45,10 @@ export class LocationInfoComponent implements OnInit {
 }
 
   savelocation() {
+    if (!this.dialog.validateForm8(this.locationForm)) {
+      return;
+    }
+
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

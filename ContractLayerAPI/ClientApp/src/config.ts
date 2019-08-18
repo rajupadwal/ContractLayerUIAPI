@@ -181,6 +181,7 @@ export const APP_CONSTANT={
     GETALLFARMERINWARDMASTERS: API_URL + 'Product/GetAllFarmerInwardMasters',
     GETALLFARMERINWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerInwardMasteDetails',
     GETFARMERINWARDNO: API_URL + 'Product/GetFarmerInwardNo',
+    DELETE: API_URL + 'Product/DeleteFarmerInward'
   },
 
   PRODUCT_FARMER_OUTWARDS_API: {
@@ -189,7 +190,8 @@ export const APP_CONSTANT={
     GETALLFARMEROUTWARDMASTERS: API_URL + 'Product/GetAllFarmerOutwardMasters',
     GETALLFARMEROUTWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerOutwardMasteDetails',
     GETFARMEROUTWARDNO: API_URL + 'Product/GetFarmerOutwardNo',
-    GETPRODUCTAVAILABLESTOCK: API_URL + 'Product/GetProductAvailableStock'
+    GETPRODUCTAVAILABLESTOCK: API_URL + 'Product/GetProductAvailableStock',
+    DELETE: API_URL + 'Product/DeleteFarmerOutward'
   },
 
   PRODUCT_FARMER_CHICKEGGBILL_API: {
@@ -198,6 +200,8 @@ export const APP_CONSTANT={
     GETALLFARMERCHICKEGGBILLMASTERS: API_URL + 'Product/GetAllFarmerChickEggBillMasters',
     GETALLFARMERCHICKEGGBILLDETAILS: API_URL + 'Product/GetAllFarmerChickEggBillDetails',
     GETALLFARMERCHICKEGGBILLNO: API_URL + 'Product/GetChickEggsBillNo',
+    DELETE: API_URL + 'Product/DeleteChickEggsBill',
+    GETCUSTOUTSTANDING: API_URL + 'Product/GetCustomerOutstandingAmt',
   },
 
 
@@ -206,6 +210,7 @@ export const APP_CONSTANT={
     SAVEPURCHASEBILLSDETAILS: API_URL + 'Product/SavePurchaseBillsDetails',
     GETALLPURCHASEBILLMASTERS: API_URL + 'Product/GetAllPurchaseBillMasters',
     GETALLPURCHASEBILLMASTEDETAILS: API_URL + 'Product/GetAllPurchaseBillMasteDetails',
+    DELETE: API_URL + 'Product/DeletePurchaseBill'
   },
   
   PURCHASEPAYMENT_API: {

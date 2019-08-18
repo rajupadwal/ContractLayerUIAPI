@@ -84,6 +84,10 @@ export class EnquiryMasterComponent implements OnInit {
   }
   
   saveEnquiry() {
+    if (!this.dialog.validateForm5(this.enquiryForm)) {
+      return;
+    }
+
     let enquiry = this.enquiryForm.value;
     enquiry.LocationId = enquiry.Location.LocationId;
     delete enquiry.Location;
