@@ -6,25 +6,18 @@ import { PrintService } from './printing/print.service';
 @Component({
   // tslint:disable-next-line
   selector: 'body',
-  templateUrl:'app.component.html'
+  template:'<div style="height:200px;width:900px;"></div>'
 })
-export class AppComponent implements OnInit  {
-  isLoading: boolean=false;
+export class AppMainComponent implements OnInit  {
+ 
   constructor(private loaderService: LoaderService, public printService: PrintService) {
 
   }
   title = 'angular-print-service';
 
   ngOnInit() {
-    this.loaderService.isLoading.subscribe((response) => {
-      setTimeout(() => { this.isLoading = response; },500)
-    });
+    
   }
 
-
-  onPrintInvoice() {
-    const invoiceIds = ['101', '102'];
-    this.printService
-      .printDocument('invoice', invoiceIds);
-  }
+  
 }

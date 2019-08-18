@@ -67,12 +67,12 @@ export class ProductService {
 
   //Purchase Bill Details
 
-  savePurchaseBills(master): Observable<any>  {
-
-    return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.SAVEPURCHASEBILLMASTER, master)
-     .pipe((response: any) => {
-       return response;
+  savePurchaseBills(master): Observable<any> {
+   return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.SAVEPURCHASEBILLMASTER, master)
+      .pipe((response: any) => {
+        return response;
       });
+     
 
   }
 

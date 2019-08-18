@@ -4,8 +4,26 @@ import { Routes, RouterModule } from '@angular/router';
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
+// Layouts
+import { PrintLayoutComponent } from "./printing/print-layout/print-layout.component";
+import { InvoiceComponent } from "./printing/invoice/invoice.component";
+import { AppMainComponent } from "./app.main.component";
+
+import { PurchaseBillPrintComponent} from './printing/purchaseBillPrint/purchase-bill.print.component'
 
 export const routes: Routes = [
+
+  
+
+  {
+    path: 'print',
+    outlet: 'print',
+    component: PrintLayoutComponent,
+    children: [
+      { path: 'invoice/:invoiceIds', component: InvoiceComponent },
+      { path: 'PurchaseBill/:purchaseDetails', component: PurchaseBillPrintComponent },
+    ]
+  },
   {
     path: '',
     component: SimpleLayoutComponent,
