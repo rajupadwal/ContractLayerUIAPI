@@ -9,6 +9,7 @@ import { DialogConfig } from '../dialog/dialog-config';
 import * as moment from 'moment';
 import { ProductdescService } from '../master/productdesc-view/productdesc.service';
 import { SupplierService } from '../master/supplier-view/supplier.service';
+import { PrintService } from "../printing/print.service";
 
 @Component({
   selector: 'app-purchase-bill',
@@ -24,7 +25,8 @@ export class PurchaseBillComponent implements OnInit {
   producttypelist;
   isEditable: boolean = false;
   constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService,
-    private productService: ProductService, private productdescservice: ProductdescService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
+    private productService: ProductService, private productdescservice: ProductdescService,
+    private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, private printService: PrintService ) { }
 
   ngOnInit() {
     let detail = new PurchaseBillDetail();
@@ -183,10 +185,15 @@ export class PurchaseBillComponent implements OnInit {
     this.PurchaseBillDetailsList = this.PurchaseBillDetailsList.filter(p => p.PkId != item.PkId);
     this.calculatePurchase();
   }
-  saveItems = () => {
+  saveItems = (isPrint) => {
+
+    let purchaseDetails = {};
+    Object.assign(purchaseDetails, this.PurchaseBillMaster );
+
     delete this.PurchaseBillMaster.Location;
     delete this.PurchaseBillMaster.Supplier;
     this.PurchaseBillMaster.TblPurchaseBillDt = this.PurchaseBillDetailsList;
+
 
     this.PurchaseBillMaster.TblPurchaseBillDt.forEach((key: any, value: any) => {
       key.Product = null;
@@ -195,11 +202,18 @@ export class PurchaseBillComponent implements OnInit {
     })
 
     //adding deleted records List
-    this.productService.savePurchaseBills(this.PurchaseBillMaster);
-
+    this.productService.savePurchaseBills(this.PurchaseBillMaster).subscribe((response) => {
+      this.dialog.close("Purchase Bill master added successfully");
+      if (isPrint && isPrint == true) {
+        this.printService.printDocument("PurchaseBill", purchaseDetails);
+      }
+    });
+   
     // store user details and jwt token in local storage to keep user logged in between page refreshes
-    this.dialog.close();
+   
   }
+
+  
 
   onSelectSuppliers = (value) => {
     this.PurchaseBillMaster.SupplierId = this.PurchaseBillMaster.Supplier.SupplierId;
