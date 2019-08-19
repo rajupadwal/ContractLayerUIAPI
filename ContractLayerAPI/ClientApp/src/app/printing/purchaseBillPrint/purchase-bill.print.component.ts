@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrintService } from '../print.service';
+import { ProductService } from "../../master/product-view/product.service";
+import { ProductdescService } from '../../master/productdesc-view/productdesc.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-purchase-bill',
@@ -8,18 +11,80 @@ import { PrintService } from '../print.service';
   styleUrls: ['./purchase-bill.print.component.css']
 })
 export class PurchaseBillPrintComponent implements OnInit {
-  PurchaseBillMaster
-  ngOnInit() {
+  PurchaseBillMaster = { deletedDetailsList: []};
+  PurchaseBillDetailsList: any = [];
+  productlist;
+  producttypelist;
 
-  }
-  constructor(route: ActivatedRoute,
-    private printService: PrintService) {
+
+
+  ngOnInit() {
     this.PurchaseBillMaster = this.printService.documentData;
-    setTimeout(() => {
-      this.printService.onDataReady();
-    }, 1000);
+    this.setDataForEdit();
    
   }
+  constructor(route: ActivatedRoute, private productService: ProductService, private productdescservice: ProductdescService,
+    private printService: PrintService) {
+  }
+
+
+  setDataForEdit = () => {
+
+
+    this.PurchaseBillMaster.deletedDetailsList = [];
+    this.getAllPurchasebillmastedetails();
+  }
+
+  getAllPurchasebillmastedetails() {
+    this.productService.getAllPurchasebillmastedetails(this.PurchaseBillMaster).subscribe((response) => {
+      this.PurchaseBillDetailsList = response;
+      this.loadProducts();
+      this.loadProductTypes();
+      //this.loadUnits();
+    });
+  }
+
+
+  loadProductTypes() {
+    this.productService.loadProducts()
+      .subscribe((products: any) => {
+        this.producttypelist = products;
+        this.producttypelist.forEach((key: any, value: any) => {
+          key.ProductTypeUnit = key.ProductType + '-' + key.Unit.UnitDescription;
+        })
+
+        this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
+          let productType = this.producttypelist.find(p => p.ProductId == key.ProductId && p.UnitId == key.Unit && p.ProductType == key.ProductType);
+          if (productType) {
+            key.Producttypeun = productType;
+            key.ProductTypeUnit = productType.ProductType + '-' + productType.Unit.UnitDescription;
+          }
+
+        })
+
+        setTimeout(() => {
+          this.printService.onDataReady();
+        }, 3000);
+
+      });
+  }
+
+  loadProducts = () => {
+    this.productdescservice.loadProducts()
+      .subscribe((products: any) => {
+        this.productlist = products;
+
+
+        this.PurchaseBillDetailsList.forEach((key: any, value: any) => {
+          key.Product = this.productlist.find(p => p.ProductId == key.ProductId);
+
+        })
+
+      });
+  }
+
+
+
 }
 
 export class PurchaseBillDetail {
@@ -31,7 +96,7 @@ export class PurchaseBillDetail {
   ProductType: string = '';
   Unit: string;
   HsnCode: string = '';
-  Quantity: number=0;
+  Quantity: number = 0;
   Rate: number = 0;
   Mrp: number = 0;
   Discount: number = 0;
@@ -44,7 +109,7 @@ export class PurchaseBillDetail {
   Producttypeun: any;
   Product: any;
   productTypeList = [];
- 
+
 }
 
 export class PurchaseBillMaster {
