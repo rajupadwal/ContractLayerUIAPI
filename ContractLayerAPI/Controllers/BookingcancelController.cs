@@ -54,6 +54,7 @@ namespace ContractLayerAPI.Controllers
             try
             {
                 this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
+                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 this._repoWrapper.Bookingcancel.Create(bookingcancel);
                 this._repoWrapper.Bookingcancel.Save();
                 return true;
@@ -69,6 +70,8 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
+                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 this._repoWrapper.Bookingcancel.Update(bookingcancel);
                 this._repoWrapper.Bookingcancel.Save();
                 return true;
@@ -84,6 +87,7 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Bookingcancel.DeleteBookingTransaction(bookingcancel);
                 this._repoWrapper.Bookingcancel.Delete(bookingcancel);
                 this._repoWrapper.Bookingcancel.Save();
                 return true;

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="invoice-title">
+        <h4>Booking/Bill Customer Receipt</h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div style="width:60%">
+      <strong>ReceiptNo : {{CustomerReceiptMaster.ReceiptNo}}</strong>
+    </div>
+    <div style="width:40%">
+      <strong>Date : {{CustomerReceiptMaster.Date| date:'dd/MM/yyyy'}}</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div style="width:60%">
+      <div style="width:40%">
+        <strong> Location : {{CustomerReceiptMaster.Location.LocationName}}</strong>
+      </div>
+    </div>
+    <div style="width:40%">
+      <strong>Customer Name : {{CustomerReceiptMaster.Customer.CustmerName}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div style="width:60%">
+      <strong>Payment Type : {{CustomerReceiptMaster.PaymentType}}</strong>
+    </div>
+    <div style="width:40%">
+      <strong>Booking/Bill No : {{CustomerReceiptMaster.BillRefNo}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div style="width:60%">
+      <strong>Payment Method : {{CustomerReceiptMaster.PaymentMethod}}</strong>
+    </div>
+    <div style="width:40%">
+      <strong>Cheque No : {{CustomerReceiptMaster.ChequeNo}}</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div style="width:60%">
+      <strong>Amount : {{CustomerReceiptMaster.CashAmount}}</strong>
+    </div>
+    <div style="width:40%">
+      <strong>Narration : {{CustomerReceiptMaster.Narration}}</strong>
+    </div>
+  </div>
+  <hr>
+
+</div>

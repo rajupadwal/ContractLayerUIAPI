@@ -52,10 +52,11 @@ namespace ContractLayerFarm.Data.Repositories
                                   select new
                                   {
                                       bookingamt = ct.BookingAmount,
-                                      bookingrev = ct.BookingReceivedAmt
+                                      bookingrev = ct.BookingReceivedAmt,
+                                      cancelbookingamt=ct.CancelBookingAmt
                                   });
 
-                outstandingAmt = Convert.ToDecimal( entryPoint.Sum(x => Convert.ToDecimal(x.bookingamt)) - entryPoint.Sum(k => Convert.ToDecimal(k.bookingrev)));
+                outstandingAmt = Convert.ToDecimal( entryPoint.Sum(x => Convert.ToDecimal(x.bookingamt)) - entryPoint.Sum(k => Convert.ToDecimal(k.bookingrev)) - entryPoint.Sum(k => Convert.ToDecimal(k.cancelbookingamt)));
             }
                 
             return outstandingAmt;

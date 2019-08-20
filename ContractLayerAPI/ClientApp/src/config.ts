@@ -3,7 +3,7 @@
 export const API_URL = window.location.origin + "/api/";
 export const APP_CONSTANT={
   USER_APIS : {
-    LOGIN: API_URL + "user/login"
+    LOGIN: API_URL + "Product/login"
   },
   DPR_APIS: {
     GETALL_ITEMGROUP_DETAILS: API_URL + "DPR/GetAllItemGroupDetails",
@@ -191,7 +191,11 @@ export const APP_CONSTANT={
     GETALLFARMEROUTWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerOutwardMasteDetails',
     GETFARMEROUTWARDNO: API_URL + 'Product/GetFarmerOutwardNo',
     GETPRODUCTAVAILABLESTOCK: API_URL + 'Product/GetProductAvailableStock',
-    DELETE: API_URL + 'Product/DeleteFarmerOutward'
+    DELETE: API_URL + 'Product/DeleteFarmerOutward',
+
+    GETPRODUCTWISEAVAILABLESTOCK: API_URL + 'Product/GetProductwiseAvailableStock',
+    GETCUSTBOOKINGOUTSTANDING: API_URL + 'Product/GetCustomerBookingOutstanding',
+    GETCUSTBILLOUTSTANDING: API_URL + 'Product/GetCustomerBillOutstanding',
   },
 
   PRODUCT_FARMER_CHICKEGGBILL_API: {
@@ -210,7 +214,17 @@ export const APP_CONSTANT={
     SAVEPURCHASEBILLSDETAILS: API_URL + 'Product/SavePurchaseBillsDetails',
     GETALLPURCHASEBILLMASTERS: API_URL + 'Product/GetAllPurchaseBillMasters',
     GETALLPURCHASEBILLMASTEDETAILS: API_URL + 'Product/GetAllPurchaseBillMasteDetails',
-    DELETE: API_URL + 'Product/DeletePurchaseBill'
+    GETGRNNO: API_URL + 'Product/GetPurchaseBillGRNNo',
+    DELETE: API_URL + 'Product/DeletePurchaseBill',
+  },
+
+  PRODUCT_PURCHASE_BILLRETURNS_API: {
+    SAVEPURCHASEBILLRETURNMASTER: API_URL + 'Product/SavePurchaseBillReturnMaster',
+    SAVEPURCHASEBILLRETURNSDETAILS: API_URL + 'Product/SavePurchaseBillReturnsDetails',
+    GETALLPURCHASEBILLRETURNMASTERS: API_URL + 'Product/GetAllPurchaseBillReturnMasters',
+    GETALLPURCHASEBILLRETURNMASTEDETAILS: API_URL + 'Product/GetAllPurchaseBillReturnMasteDetails',
+    GETGRNNO: API_URL + 'Product/GetPurchaseBillReturnGRNNo',
+    DELETE: API_URL + 'Product/DeletePurchaseBillReturn',
   },
   
   PURCHASEPAYMENT_API: {

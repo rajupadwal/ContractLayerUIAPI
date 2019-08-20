@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="invoice-title">
+        <h4>Supplier Payment Receipt</h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div style="width:60%">
+      <strong>ReceiptNo : {{SupplierReceiptMaster.ReceiptNo}}</strong>
+    </div>
+    <div style="width:40%">
+      <strong>Date : {{SupplierReceiptMaster.Date| date:'dd/MM/yyyy'}}</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div style="width:60%">
+      <div style="width:40%">
+        <strong> Location : {{SupplierReceiptMaster.Location.LocationName}}</strong>
+      </div>
+    </div>
+    <div style="width:40%">
+      <strong>Supplier Name : {{SupplierReceiptMaster.Supplier.SupplierName}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div style="width:60%">
+      <strong>Payment Type : {{SupplierReceiptMaster.PaymentType}}</strong>
+    </div>
+    <div style="width:40%">
+      <strong>Bill Ref No : {{SupplierReceiptMaster.BillRefNo}}</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div style="width:60%">
+      <strong>Payment Method : {{SupplierReceiptMaster.PaymentMethod}}</strong>
+    </div>
+    <div style="width:40%">
+      <strong>Cheque No : {{SupplierReceiptMaster.ChequeNo}}</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div style="width:60%">
+      <strong>Amount : {{SupplierReceiptMaster.AmountPaid}}</strong>
+    </div>
+    <div style="width:40%">
+      <strong>Narration : {{SupplierReceiptMaster.Narration}}</strong>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div style="width:50%">
+    </div>
+    <div style="width:50%">
+    </div>
+  </div>
+
+  <div class="row">
+    <div style="width:50%">
+    </div>
+    <div style="width:50%">
+      <strong>Authorized Signature</strong>
+    </div>
+  </div>
+</div>

@@ -65,19 +65,28 @@ export class ProductService {
   }
 
 
-  //Purchase Bill Details
+  //Purchase Bill & Purchase ReturnDetails
 
-  savePurchaseBills(master): Observable<any>  {
-
-    return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.SAVEPURCHASEBILLMASTER, master)
-     .pipe((response: any) => {
-       return response;
+  savePurchaseBills(master): Observable<any> {
+   return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.SAVEPURCHASEBILLMASTER, master)
+      .pipe((response: any) => {
+        return response;
       });
+  }
 
+  savePurchaseBillReturns(master): Observable<any> {
+    return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLRETURNS_API.SAVEPURCHASEBILLRETURNMASTER, master)
+      .pipe((response: any) => {
+        return response;
+      });
   }
 
   getAllPurchasebillmastedetails = (master) => {
     return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.GETALLPURCHASEBILLMASTEDETAILS, master);
+  }
+
+  getAllPurchasebillreturnmastedetails = (master) => {
+    return this.http.post(APP_CONSTANT.PRODUCT_PURCHASE_BILLRETURNS_API.GETALLPURCHASEBILLRETURNMASTEDETAILS, master);
   }
 
   getAllFarmerchickeggbilldetails = (master) => {

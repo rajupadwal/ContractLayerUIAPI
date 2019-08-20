@@ -12,6 +12,7 @@ import { CusotmerService } from '../../master/customer-view/customer.service';
 import { PlanService } from '../../master/plan-view/plan.service';
 
 import * as moment from 'moment';
+import { BookingService } from '../booking-view/booking.service';
 
 @Component({
   selector: 'app-bookingcancel-details',
@@ -27,7 +28,7 @@ export class BookingcancelDetailsComponent implements OnInit {
   public planList: [];
   bookingcancelForm: FormGroup;
   public isEditable: boolean = false;
-  constructor(private router: Router, private formBuilder: FormBuilder, private bookingcancelService: BookingcancelService, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private bookingcancelService: BookingcancelService, private bookingService: BookingService, private http: HttpClient, private config: DialogConfig, public dialog: DialogRef, public locationService: LocationService, public cusotmerService: CusotmerService, public planService: PlanService) { }
 
   ngOnInit() {
 
@@ -99,6 +100,17 @@ export class BookingcancelDetailsComponent implements OnInit {
   onSelectCustomer(selectedCustomer) {
     this.bookingcancelForm.patchValue({ MobileNo: selectedCustomer.CustomerMobileNo });
 
+    let bookingcancel = this.bookingcancelForm.value;
+    bookingcancel.CustomerId = bookingcancel.Customer.CustomerId;
+
+    this.bookingService.getPlanByCustomerID(bookingcancel)
+      .subscribe((plans: any) => {
+        this.planList = plans;
+        this.planList.forEach((key: any, value: any) => {
+          key.PlanName = key.Plan.PlanName;
+        })
+      });
+
   }
   searchCustomer(event) {
     this.bookingcancelService.searchCustomer(event.query).subscribe((data: any) => {
@@ -117,9 +129,16 @@ export class BookingcancelDetailsComponent implements OnInit {
     //this.bookingdetailsForm.patchValue({  });
   }
   searchPlan(event) {
-    this.bookingcancelService.searchPlan(event.query).subscribe((data: any) => {
-      this.planList = data;
-    });
+    let bookingcancel = this.bookingcancelForm.value;
+    bookingcancel.CustomerId = bookingcancel.Customer.CustomerId;
+
+    this.bookingService.getPlanByCustomerID(bookingcancel)
+      .subscribe((plans: any) => {
+        this.planList = plans;
+        this.planList.forEach((key: any, value: any) => {
+          key.PlanName = key.Plan.PlanName;
+        })
+      });
   }
 
   saveBookingCancel() {

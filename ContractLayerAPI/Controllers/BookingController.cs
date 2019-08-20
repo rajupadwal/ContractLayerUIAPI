@@ -79,6 +79,7 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Booking.SaveBookinginCustomerTransaction(booking);
                 this._repoWrapper.Booking.Update(booking);
                 this._repoWrapper.Booking.Save();
                 return true;

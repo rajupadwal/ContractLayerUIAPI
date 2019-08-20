@@ -29,3 +29,12 @@ button {
   color: #ecf0f1;
 }
 
+@media print {
+  .isPrinting > * {
+    display: none;
+  }
+
+  .isPrinting app-print-layout {
+    display: block;
+  }
+}

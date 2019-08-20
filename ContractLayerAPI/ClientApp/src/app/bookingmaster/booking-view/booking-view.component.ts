@@ -80,11 +80,11 @@ export class BookingViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Booking Date', field: 'BookingDate', valueFormatter: this.dateFormatter, 'width': 180,
+      headerName: 'BookingDate ', field: 'BookingDate', valueFormatter: this.dateFormatter, 'width': 180, 
       filter: "agDateColumnFilter",
       filterParams: {
         comparator: function (filterLocalDateAtMidnight, cellValue) {
-          var dateAsString = cellValue;
+          var dateAsString = moment(cellValue).format('DD/MM/YYYY');
           if (dateAsString == null) return -1;
           var dateParts = dateAsString.split("/");
           var cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));

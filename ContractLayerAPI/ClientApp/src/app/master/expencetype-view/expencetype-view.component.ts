@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../../config';
@@ -6,6 +6,8 @@ import { DialogService } from '../../dialog/dialog.service';
 import { ExpencetypeMasterComponent } from '../expencetype-master/expencetype-master.component';
 import { from } from 'rxjs';
 import { ExpencetypeService } from './expencetype.service';
+//import "ag-grid-enterprise";
+
 @Component({
   selector: 'app-expencetype-view',
   templateUrl: './expencetype-view.component.html',
@@ -16,11 +18,11 @@ export class ExpencetypeViewComponent implements OnInit {
   onBtnClick1 = (param) => {
     alert('i am clicked');
     console.log(param);
-
   }
 
   private gridApi;
   private gridColumnApi;
+  private excelStyles;
 
   columnDefs = [
     //{
@@ -68,8 +70,6 @@ export class ExpencetypeViewComponent implements OnInit {
       field: 'ExpenceId', 'width': 150
     },
 
-    
-
     {
       headerName: 'Expence Type ', field: 'ExpenceType', 'width': 580,
       filter: "agTextColumnFilter",
@@ -90,7 +90,17 @@ export class ExpencetypeViewComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    params.api.expandAll();
+
     this.ngOnInit();
+  }
+
+  onBtExport() {
+    var params = {
+      fileName: 'Navnath',
+      sheetName: 'Chintamani Soft'
+    };
+    this.gridApi.exportDataAsExcel(params);
   }
 
   constructor(private router: Router, private http: HttpClient, private expencetypeservice: ExpencetypeService, public dialog: DialogService) { }
@@ -137,6 +147,7 @@ export class ExpencetypeViewComponent implements OnInit {
         });
     }
   }
+  
 }
 
 

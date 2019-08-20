@@ -62,8 +62,8 @@ namespace ContractLayerFarm.Data.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;Trusted_Connection=True;");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;");
             }
         }
 
@@ -676,6 +676,7 @@ namespace ContractLayerFarm.Data.Models
 
             modelBuilder.Entity<TblProductTypeMaster>(entity =>
             {
+                entity.HasKey(e => e.PkId);
                 entity.HasKey(e => new { e.ProductId, e.ProductType });
 
                 entity.ToTable("tbl_ProductTypeMaster");
@@ -994,6 +995,8 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.BookingReceivedAmt).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.BookingAmount).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.CancelBookingAmt).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.PaymentType).HasMaxLength(50);
 

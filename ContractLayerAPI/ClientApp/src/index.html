@@ -4,6 +4,17 @@
   <style>
     /* Absolute Center Spinner */
 
+    @media print {
+      .isPrinting > * {
+        display: none;
+      }
+
+      .isPrinting app-print-layout {
+        display: block;
+      }
+    }
+
+
     .loading {
       position: fixed;
       z-index: 999;

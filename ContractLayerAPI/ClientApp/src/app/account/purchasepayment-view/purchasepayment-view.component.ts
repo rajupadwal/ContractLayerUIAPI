@@ -6,6 +6,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { PurchasepaymentDetailsComponent } from '../purchasepayment-details/purchasepayment-details.component';
 import { PurchasePayemntService } from './purchasepayment.service';
 import * as moment from 'moment';
+import { PrintService } from '../../printing/print.service';
 
 @Component({
   selector: 'app-purchasepayment-view',
@@ -32,7 +33,7 @@ export class PurchasepaymentViewComponent implements OnInit {
     //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -47,7 +48,20 @@ export class PurchasepaymentViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Print', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("SupplierReceipt", params.data);
+
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -71,7 +85,28 @@ export class PurchasepaymentViewComponent implements OnInit {
     },
 
     
-    { headerName: 'Date', field: 'Date', valueFormatter: this.dateFormatter, 'width': 100 },
+    {
+      headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 180,
+      filter: "agDateColumnFilter",
+      filterParams: {
+        comparator: function (filterLocalDateAtMidnight, cellValue) {
+          var dateAsString = moment(cellValue).format('DD/MM/YYYY');
+          if (dateAsString == null) return -1;
+          var dateParts = dateAsString.split("/");
+          var cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
+          if (filterLocalDateAtMidnight.getTime() == cellDate.getTime()) {
+            return 0;
+          }
+          if (cellDate < filterLocalDateAtMidnight) {
+            return -1;
+          }
+          if (cellDate > filterLocalDateAtMidnight) {
+            return 1;
+          }
+        },
+        browserDatePicker: true
+      }
+    },
     {
       headerName: 'Location', field: 'Location.LocationName', 'width': 120,
       filter: "agTextColumnFilter",
@@ -113,7 +148,7 @@ export class PurchasepaymentViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private purchasepayemntservice: PurchasePayemntService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private purchasepayemntservice: PurchasePayemntService, public dialog: DialogService, public printService:PrintService) { }
 
   ngOnInit() {
 

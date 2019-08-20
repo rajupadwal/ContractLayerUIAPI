@@ -6,6 +6,9 @@ import { DialogService } from '../../dialog/dialog.service';
 import { PurchaseBillComponent } from '../purchase-bill/purchase-bill.component';
 import { PurchasebillService } from './purchasebill.service';
 import * as moment from 'moment';
+import { PrintService } from "../printing/print.service";
+
+
 
 @Component({
   selector: 'app-purchasebill-view',
@@ -23,7 +26,7 @@ export class PurchasebillViewComponent implements OnInit {
     //  cellRenderer: 'buttonRenderer',
     //},
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -38,11 +41,24 @@ export class PurchasebillViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Print', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
+        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("PurchaseBill", params.data);
+
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Delete', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
         newTH.onclick = () => {
          this.delete(params.data);
 
@@ -55,11 +71,33 @@ export class PurchasebillViewComponent implements OnInit {
       headerName: 'GRN No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'BillNo', 'width': 130,
+      field: 'BatchNo', 'width': 150,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
      
+    {
+      headerName: 'Date ', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 180,
+      filter: "agDateColumnFilter",
+      filterParams: {
+        comparator: function (filterLocalDateAtMidnight, cellValue) {
+          var dateAsString = moment(cellValue).format('DD/MM/YYYY');
+          if (dateAsString == null) return -1;
+          var dateParts = dateAsString.split("/");
+          var cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
+          if (filterLocalDateAtMidnight.getTime() == cellDate.getTime()) {
+            return 0;
+          }
+          if (cellDate < filterLocalDateAtMidnight) {
+            return -1;
+          }
+          if (cellDate > filterLocalDateAtMidnight) {
+            return 1;
+          }
+        },
+        browserDatePicker: true
+      }
+    },
     { headerName: 'Date', field: 'BillDate', valueFormatter: this.dateFormatter,'width': 120 ,},
     {
       headerName: 'Location', field: 'LocationName', 'width': 120,
@@ -115,7 +153,8 @@ export class PurchasebillViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private Purchasebillservice: PurchasebillService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private Purchasebillservice: PurchasebillService, public dialog: DialogService,
+    private printService: PrintService) { }
 
 
   ngOnInit() {

@@ -355,10 +355,15 @@
     <a class="nav-link" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="icon-star"></i> Farmer Outward</a>
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillview']"><i class="icon-star"></i> Purchase Bill</a>
-  </li>-->
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillview']"><i class="icon-star"></i> Purchase Bill </a>
+            </li>
 
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillreturnview']"><i class="icon-star"></i> Purchase Bill Return</a>
+            </li>
+          </ul>
+        </li>
 
         <li class="nav-item nav-dropdown" appNavDropdown>
           <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Account</a>
@@ -411,6 +416,21 @@
 
 
 
+          </ul>
+        </li>
+
+        <li class="nav-item nav-dropdown" appNavDropdown>
+          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Reports</a>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Stockdetailview']"><i class="icon-star"></i> Productwise Stock</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerbookingoutstandingview']"><i class="icon-star"></i> Booking Outstanding</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerbilloutstandingview']"><i class="icon-star"></i> Bill Outstanding</a>
+            </li>
           </ul>
         </li>
 

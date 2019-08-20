@@ -20,6 +20,13 @@ namespace ContractLayerAPI.Controllers
             _repoWrapper = repoWrapper;
         }
 
+        [HttpPost("Login")]
+        public IEnumerable<TblUserInfo> SearchLogin([FromBody] TblUserInfo user)
+        {
+            var login = this._repoWrapper.Product.SearchLogin(user);
+            return login;
+        }
+
         [HttpPost("GetTypeByProductID")]
         public IEnumerable<TblProductTypeMaster> GetTypeByProductID([FromBody] TblProductTypeMaster type)
         {
@@ -69,6 +76,34 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
+        [HttpGet("[action]")]
+        public int GetPurchaseBillReturnGRNNo()
+        {
+            try
+            {
+                int GRNNo = this._repoWrapper.Product.GetPurchaseBillReturnGRNNo();
+                return GRNNo;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpGet("[action]")]
+        public int GetPurchaseBillGRNNo()
+        {
+            try
+            {
+                int GRNNo = this._repoWrapper.Product.GetPurchaseBillGRNNo();
+                return GRNNo;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         [HttpPost("GetProductAvailableStock")]
         public decimal GetProductAvailableStock([FromBody] TblFarmerOutwardDt farmerInwardMt)
         {
@@ -83,6 +118,26 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
+        [HttpGet("[action]")]
+        public IEnumerable<ViewStockDetails> GetProductwiseAvailableStock()
+        {
+            var Product = this._repoWrapper.Product.GetProductwiseAvailableStock();
+            return Product;
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewStockDetails> GetCustomerBookingOutstanding()
+        {
+            var Product = this._repoWrapper.Product.GetCustomerBookingOutstanding();
+            return Product;
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewStockDetails> GetCustomerBillOutstanding()
+        {
+            var Product = this._repoWrapper.Product.GetCustomerBillOutstanding();
+            return Product;
+        }
 
         [HttpGet("[action]")]
         public IEnumerable<TblProductTypeMaster> GetAll()
@@ -103,10 +158,11 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
+                this._repoWrapper.Product.SaveOpeningStockDetails(product);
                 this._repoWrapper.Product.Create(product);
                 this._repoWrapper.Product.Save();
 
-                this._repoWrapper.Product.SaveOpeningStockDetails(product);
+                
 
                 return true;
             }
@@ -122,8 +178,8 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Product.Update(product);
-                this._repoWrapper.Product.Save();
+                //this._repoWrapper.Product.Update(product);
+                //this._repoWrapper.Product.Save();
                 this._repoWrapper.Product.SaveOpeningStockDetails(product);
                 return true;
             }
@@ -185,6 +241,21 @@ namespace ContractLayerAPI.Controllers
             try
             {
                 this._repoWrapper.Product.DeletePurchaseBill(purchasebill);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost("DeletePurchaseBillReturn")]
+        public bool DeletePurchaseBillReturn([FromBody] TblPurchaseBillReturnMt purchasebill)
+        {
+            try
+            {
+                this._repoWrapper.Product.DeletePurchaseBillReturn(purchasebill);
                 return true;
             }
 
@@ -299,7 +370,7 @@ namespace ContractLayerAPI.Controllers
             return this._repoWrapper.Product.GetAllFarmerOutwardMasteDetails(farmerOutwardMt.PkId);
         }
 
-        //------------------Purchase Bill Details-------------
+        //------------------Purchase Bill  && Purchase Return Details-------------
 
         [HttpPost("SavePurchaseBillMaster")]
         public bool SavePurchaseBillMaster([FromBody] TblPurchaseBillMt purchaseBillMt)
@@ -316,12 +387,32 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
+        [HttpPost("SavePurchaseBillReturnMaster")]
+        public bool SavePurchaseBillReturnMaster([FromBody] TblPurchaseBillReturnMt purchaseBillMt)
+        {
+            try
+            {
+                this._repoWrapper.Product.SavePurchaseBillReturnMaster(purchaseBillMt);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         [HttpGet("[action]")]
         public IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters()
         {
             return this._repoWrapper.Product.GetAllPurchaseBillMasters().ToList();
         }
 
+        [HttpGet("[action]")]
+        public IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillReturnMasters()
+        {
+            return this._repoWrapper.Product.GetAllPurchaseBillReturnMasters().ToList();
+        }
 
         [HttpPost("GetAllFarmerChickEggBillDetails")]
         public IEnumerable<TblSalesBillDt> GetAllFarmerChickEggBillDetails([FromBody] TblSalesBillDt salesBillDt)
@@ -333,6 +424,12 @@ namespace ContractLayerAPI.Controllers
         public IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails([FromBody] TblPurchaseBillMt purchaseBillMt)
         {
             return this._repoWrapper.Product.GetAllPurchaseBillMasteDetails(purchaseBillMt.BillId);
+        }
+
+        [HttpPost("GetAllPurchaseBillReturnMasteDetails")]
+        public IEnumerable<TblPurchaseBillReturnDt> GetAllPurchaseBillReturnMasteDetails([FromBody] TblPurchaseBillReturnMt purchaseBillMt)
+        {
+            return this._repoWrapper.Product.GetAllPurchaseBillReturnMasteDetails(purchaseBillMt.BillId);
         }
 
         [HttpPost("GetCustomerOutstandingAmt")]

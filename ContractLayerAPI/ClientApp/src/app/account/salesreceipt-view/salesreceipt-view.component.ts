@@ -6,6 +6,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { SalesReceiptService } from './salesreceipt.service';
 import { SalesReceiptDetailsComponent } from '../salesreceipt-details/salesreceipt-details.component';
 import * as moment from 'moment';
+import { PrintService } from '../../printing/print.service';
 
 @Component({
   selector: 'app-salesreceipt-view',
@@ -33,7 +34,7 @@ export class SalesreceiptViewComponent implements OnInit {
     //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -48,7 +49,20 @@ export class SalesreceiptViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Print', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("CustomerReceipt", params.data);
+
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -113,7 +127,7 @@ export class SalesreceiptViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private salesreceiptservice: SalesReceiptService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private salesreceiptservice: SalesReceiptService, public dialog: DialogService, public printService:PrintService) { }
 
   ngOnInit() {
 

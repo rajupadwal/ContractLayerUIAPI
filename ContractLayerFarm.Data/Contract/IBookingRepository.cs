@@ -16,5 +16,7 @@ namespace ContractLayerFarm.Data.Contract
         void SaveBookinginCustomerTransaction(TblBookingMaster master);
 
         int GetBookingNo();
+
+        void DeleteBookingTransaction(TblBookingMaster master);
     }
 }

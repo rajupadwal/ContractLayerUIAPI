@@ -7,8 +7,10 @@ import { LocationService } from "../../master/location-view/location.service";
 import { DialogRef } from '../../dialog/dialog-ref';
 import { DialogConfig } from '../../dialog/dialog-config';
 import * as moment from 'moment';
-import { ProductdescService } from '../../master/productdesc-view/productdesc.service';
-import { SupplierService } from '../../master/supplier-view/supplier.service';
+import { ProductdescService } from '../master/productdesc-view/productdesc.service';
+import { SupplierService } from '../master/supplier-view/supplier.service';
+import { PrintService } from "../printing/print.service";
+import { PurchasebillService } from '../purchasebill-view/purchasebill.service';
 
 @Component({
   selector: 'app-purchase-bill',
@@ -23,10 +25,20 @@ export class PurchaseBillComponent implements OnInit {
   productlist;
   producttypelist;
   isEditable: boolean = false;
-  constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService,
-    private productService: ProductService, private productdescservice: ProductdescService, private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, ) { }
+  constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService, private purchasebillService: PurchasebillService,
+    private productService: ProductService, private productdescservice: ProductdescService,
+    private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, private printService: PrintService ) { }
 
   ngOnInit() {
+
+    if (this.config.isEditable == false) {
+      this.purchasebillService.getGRNNo()
+        .subscribe((grnno: any) => {
+          this.PurchaseBillMaster.BatchNo = grnno;
+
+        });
+    }
+
     let detail = new PurchaseBillDetail();
     this.PurchaseBillDetailsList = [detail];
     this.PurchaseBillMaster = new PurchaseBillMaster();
@@ -181,10 +193,15 @@ export class PurchaseBillComponent implements OnInit {
     this.PurchaseBillDetailsList = this.PurchaseBillDetailsList.filter(p => p.PkId != item.PkId);
     this.calculatePurchase();
   }
-  saveItems = () => {
+  saveItems = (isPrint) => {
+
+    let purchaseDetails = {};
+    this.PurchaseBillMaster.TblPurchaseBillDt = this.PurchaseBillDetailsList;
+    purchaseDetails = JSON.parse(JSON.stringify(this.PurchaseBillMaster));
+    //Object.assign(purchaseDetails, this.PurchaseBillMaster);
+
     delete this.PurchaseBillMaster.Location;
     delete this.PurchaseBillMaster.Supplier;
-    this.PurchaseBillMaster.TblPurchaseBillDt = this.PurchaseBillDetailsList;
 
     this.PurchaseBillMaster.TblPurchaseBillDt.forEach((key: any, value: any) => {
       key.Product = null;
@@ -193,13 +210,17 @@ export class PurchaseBillComponent implements OnInit {
     })
 
     //adding deleted records List
-    this.productService.savePurchaseBills(this.PurchaseBillMaster).subscribe(result => {
-      this.dialog.close("Record added succesfully");
+    this.productService.savePurchaseBills(this.PurchaseBillMaster).subscribe((response) => {
+      this.dialog.close("Purchase Bill master added successfully");
+      if (isPrint && isPrint == true) {
+        this.printService.printDocument("PurchaseBill","");
+      }
     });
-
+   
     // store user details and jwt token in local storage to keep user logged in between page refreshes
    
   }
+  
 
   onSelectSuppliers = (value) => {
     this.PurchaseBillMaster.SupplierId = this.PurchaseBillMaster.Supplier.SupplierId;
