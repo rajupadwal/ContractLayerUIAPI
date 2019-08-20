@@ -31,6 +31,35 @@ export class PrintService {
           }]);
         break;
       }
+      case 'CreateSale': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
+      case 'CustomerReceipt': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
+      case 'SupplierReceipt': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
     }
    
   }

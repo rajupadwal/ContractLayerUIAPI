@@ -10,6 +10,9 @@ import { InvoiceComponent } from "./printing/invoice/invoice.component";
 import { AppMainComponent } from "./app.main.component";
 
 import { PurchaseBillPrintComponent} from './printing/purchaseBillPrint/purchase-bill.print.component'
+import { CreateSalePrintComponent } from './printing/createSalePrint/create-sale.print.component';
+import { CustomerReceiptPrintComponent } from './printing/customerReceiptPrint/customer-receipt.print.component';
+import { SupplierReceiptPrintComponent } from './printing/supplierReceiptPrint/supplier-receipt.print.component';
 
 export const routes: Routes = [
 
@@ -22,6 +25,9 @@ export const routes: Routes = [
     children: [
       { path: 'invoice/:invoiceIds', component: InvoiceComponent },
       { path: 'PurchaseBill/:purchaseDetails', component: PurchaseBillPrintComponent },
+      { path: 'CreateSale/:createSales', component: CreateSalePrintComponent },
+      { path: 'CustomerReceipt/:customerReceipts', component: CustomerReceiptPrintComponent },
+      { path: 'SupplierReceipt/:supplierReceipts', component: SupplierReceiptPrintComponent },
     ]
   },
   {

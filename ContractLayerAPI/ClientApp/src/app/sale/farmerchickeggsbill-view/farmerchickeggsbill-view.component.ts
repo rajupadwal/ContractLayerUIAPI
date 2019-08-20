@@ -6,6 +6,7 @@ import { FarmerchikeggbillService } from './farmerchickeggsbill.service';
 import { DialogService } from '../../dialog/dialog.service';
 import * as moment from 'moment';
 import { APP_CONSTANT } from '../../../config';
+import { PrintService } from '../../printing/print.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
     //  cellRenderer: 'buttonRenderer',
     //},
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -39,7 +40,20 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Print', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("CreateSale", params.data);
+
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -140,7 +154,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
   }
 
 
-  constructor(private router: Router, private http: HttpClient, private farmerchikeggbillservice: FarmerchikeggbillService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private farmerchikeggbillservice: FarmerchikeggbillService, public dialog: DialogService, private printService: PrintService) { }
 
 
   ngOnInit() {
