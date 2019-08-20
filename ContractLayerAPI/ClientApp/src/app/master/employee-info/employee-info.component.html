@@ -12,7 +12,7 @@
               <label for="textarea-input"><strong>Employee Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="EmployeeName" appValidationBorder type="text"  pInputText id="employeename" name="employeename" class="form-control" rows="3">
+                  <input formControlName="EmployeeName" appValidationBorder type="text" pInputText id="employeename" name="employeename" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Employee Name </label>-->
                 </span>
               </div>
@@ -53,7 +53,7 @@
               <label for="textarea-input"><strong>Education Details:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="EducationDetails" appValidationBorder type="text" pInputText id="educationdetails" name="educationdetails" class="form-control" rows="3">
+                  <input formControlName="EducationDetails" type="text" pInputText id="educationdetails" name="educationdetails" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Education Details </label>-->
                 </span>
               </div>
@@ -80,12 +80,12 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>District :</strong></label>
-              <select formControlName="District" appValidationBorder id="select" name="select" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Pune">Pune</option>
-                <option value="Nashik">Nashik</option>
-                <option value="Nagpur">Nagpur</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="District" type="text" pInputText id="district" name="district" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Education Details </label>-->
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -93,11 +93,12 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Taluka :</strong></label>
-              <select formControlName="Taluka" appValidationBorder id="select" name="select" class="form-control">
-                <option value="">Please select</option>
-                <option value="Maval">Maval</option>
-                <option value="Khed">Khed</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Taluka" type="text" pInputText id="taluka" name="taluka" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Education Details </label>-->
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -105,12 +106,12 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>City :</strong></label>
-              <select formControlName="City" appValidationBorder id="select" name="select" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Pune">Pune</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Lonavala">Lonavala</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="City" type="text" pInputText id="city" name="city" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Education Details </label>-->
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -136,7 +137,7 @@
               <label for="textarea-input"><strong>Aadhar No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="AadharId" appValidationBorder id="aadharid" name="aadharid" class="form-control" />
+                  <input formControlName="AadharId" id="aadharid" name="aadharid" class="form-control" />
                   <!--<label for="float-input">(Please Enter Aadhar Id) </label>-->
                 </span>
               </div>
@@ -218,7 +219,7 @@
               <label for="textarea-input"><strong>Date Of Leaving :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <p-calendar formControlName="DateOfLeaving" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                  <p-calendar formControlName="DateOfLeaving" [showIcon]="true" showButtonBar="true"></p-calendar>
                 </span>
               </div>
             </div>
@@ -238,46 +239,6 @@
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="select"><strong>Location :</strong></label>
-              <p-autoComplete formControlName="Location" appValidationBorder [suggestions]="locationList" (completeMethod)="searchLocation($event)"
-                              [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
-
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="textarea-input"><strong>User Id :</strong></label>
-              <div>
-                <span class="ui-float-label">
-                  <input formControlName="UserId" appValidationBorder id="userid" name="userid" class="form-control" />
-                  <!--<label for="float-input">(Enter User Id) </label>-->
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card-block">
-            <div class="form-group">
-              <label for="textarea-input"><strong>Password :</strong></label>
-              <div>
-                <span class="ui-float-label">
-                  <input formControlName="Password" appValidationBorder id="password" name="password" class="form-control" />
-                  <!--<label for="float-input">(Enter Password) </label>-->
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
@@ -321,6 +282,54 @@
         </div>
       </div>
 
+      <div class="card-header">
+        <strong>Employee Login Details</strong>
+        <div style="width:10px">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Location :</strong></label>
+              <p-autoComplete formControlName="Location" appValidationBorder [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                              [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>User Id :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="UserId" appValidationBorder id="userid" name="userid" class="form-control" />
+                  <!--<label for="float-input">(Enter User Id) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Password :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Password" appValidationBorder id="password" name="password" class="form-control" />
+                  <!--<label for="float-input">(Enter Password) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-header">
+        <strong>Contact Person Information</strong>
+        <div style="width:10px">
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
@@ -362,7 +371,11 @@
           </div>
         </div>
       </div>
-
+      <div class="card-header">
+        <strong>Bank Details</strong>
+        <div style="width:10px">
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
@@ -370,7 +383,7 @@
               <label for="textarea-input"><strong>Bank Name :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="BankName" appValidationBorder id="bankname" name="bankname" class="form-control" />
+                  <input formControlName="BankName" id="bankname" name="bankname" class="form-control" />
                   <!--<label for="float-input">(Enter Bank Name) </label>-->
                 </span>
               </div>
@@ -383,7 +396,7 @@
               <label for="textarea-input"><strong>Account No :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="AccountNo" appValidationBorder id="accountno" name="accountno" class="form-control" />
+                  <input formControlName="AccountNo" id="accountno" name="accountno" class="form-control" />
                   <!--<label for="float-input">(Enter AccountNo) </label>-->
                 </span>
               </div>
@@ -396,7 +409,7 @@
               <label for="textarea-input"><strong>IFSC Code :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="IfscCode" appValidationBorder id="ifsccode" name="ifsccode" class="form-control" />
+                  <input formControlName="IfscCode" id="ifsccode" name="ifsccode" class="form-control" />
                   <!--<label for="float-input">(Enter IFSCCode) </label>-->
                 </span>
               </div>
@@ -425,7 +438,7 @@
               <label for="textarea-input"><strong>Branch Name :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="BranchName" appValidationBorder id="branchname" name="branchname" class="form-control" />
+                  <input formControlName="BranchName" id="branchname" name="branchname" class="form-control" />
                   <!--<label for="float-input">(Enter Branch Name) </label>-->
                 </span>
               </div>
@@ -448,7 +461,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
       </div>
     </form>
   </div>

@@ -19,25 +19,18 @@ export class ProductViewComponent implements OnInit {
     console.log(param);
 
   }
+  private gridApi;
+  private gridColumnApi;
 
   columnDefs = [
-    //{
 
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
-
-
+       
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(ProductMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Product Details Master' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -49,11 +42,11 @@ export class ProductViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -65,36 +58,58 @@ export class ProductViewComponent implements OnInit {
       headerName: 'Sr No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'PkId', 'width': 50
+      field: 'PkId', 'width': 110
     },
 
-    { headerName: 'Product Name ', field: 'Product.ProductName', 'width': 100 },
     {
-      headerName: 'ProductType', field: 'ProductType',' width': 100 },
+      headerName: 'Product Name ', field: 'Product.ProductName', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
     {
-      headerName: 'HSNSAC ', field: 'Hsnsac' ,'width': 100},
+      headerName: 'Product Type', field: 'ProductType', 'width': 140,
+
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'HSN/SAC Code ', field: 'Hsnsac', 'width': 130,
+
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }},
     {
       headerName: 'Unit ', field: 'Unit.UnitDescription', 'width': 100},
 
-    { headerName: 'PurchasePrice', field: 'PurchasePrice', 'width': 100 },
     {
-      headerName: 'SellingPrice ', field: 'SellingPrice', 'width': 100
+      headerName: 'Purchase Price', field: 'PurchasePrice', 'width': 130,
+
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" } },
+    {
+      headerName: 'Selling Price ', field: 'SellingPrice', 'width': 130,
+
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'CGST ', field: 'Cgst', 'width': 100
+      headerName: 'CGST % ', field: 'Cgst', 'width': 90
     },
 
-    { headerName: 'SGST', field: 'Sgst', 'width': 100 },
+    { headerName: 'SGST %', field: 'Sgst', 'width': 90 },
     {
-      headerName: 'IGST ', field: 'Igst', 'width': 100
+      headerName: 'IGST % ', field: 'Igst', 'width': 90
     },
     {
-      headerName: 'MinimumQty ', field: 'MinimumQty', 'width': 100
+      headerName: 'Minimum Qty ', field: 'MinimumQty', 'width': 120
     },
 
-    { headerName: 'Opening Stock', field: 'OpeningStock', 'width': 100 },
+    { headerName: 'Opening Stock', field: 'OpeningStock', 'width': 130 },
     
   ];
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
 
   rowData = [
    
@@ -135,11 +150,12 @@ export class ProductViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    return this.http.post(APP_CONSTANT.PRODUCT_API.DELETE, product, httpOptions)
-      .subscribe((product) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.PRODUCT_API.DELETE, product, httpOptions)
+        .subscribe((product) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 

@@ -36,18 +36,18 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
-      {
-        path: 'Farmerinwardview',
-        loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
-      },
+      //{
+      //  path: 'Farmerinwardview',
+      //  loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
+      //},
       {
         path: 'Farmeroutwardview',
         loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
       },
-      {
-        path: 'Purchasebillview',
-        loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
-      },
+      //{
+      //  path: 'Purchasebillview',
+      //  loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
+      //},
 
       
       {
@@ -146,6 +146,46 @@ export const routes: Routes = [
           
         ]
       },
+      {
+        path: 'purchase',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Purchase'
+        },
+        children: [
+
+          {
+            path: 'Purchasebillview',
+            loadChildren: './purchase/purchasebill-view/purchasebill.module#PurchasebillModule'
+          },
+          {
+            path: 'Farmerinwardview',
+            loadChildren: './purchase/farmerinward-view/farmerinward.module#FarmerinwardModule'
+          },
+          {
+            path: 'Farmeroutwardview',
+            loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
+          },
+
+        ]
+      },
+
+      {
+        path: 'sale',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Sales'
+        },
+        children: [
+
+          {
+            path: 'Salechickeggbillview',
+            loadChildren: './sale/farmerchickeggsbill-view/farmerchickeggsbill.view.module#FarmerchickeggbillModule'
+          },
+
+
+        ]
+      },
 
       {
         path: 'account',
@@ -167,25 +207,22 @@ export const routes: Routes = [
             path: 'Purchasereturnreceiptview',
             loadChildren: './account/purchasereturnreceipt-view/purchasereturnreceipt.view.module#PurchasereturnReceiptViewModule'
           },
-        ]
-      },
-
-      {
-        path: 'sale',
-        component: SimpleLayoutComponent,
-        data: {
-          title: 'Sales'
-        },
-        children: [
-
           {
-            path: 'Salechickeggbillview',
-            loadChildren: './sale/farmerchickeggsbill-view/farmerchickeggsbill.view.module#FarmerchickeggbillModule'
+            path: 'Officeexpencedetails',
+            loadChildren: './account/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
           },
-          
-
+          {
+            path: 'Employeeadvanceview',
+            loadChildren: './account/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
+          },
+          {
+            path: 'Incomedetails',
+            loadChildren: './account/income-view/income.view.module#IncomeViewModule'
+          },
         ]
       },
+
+      
 
       //{
       //  path: 'cases',

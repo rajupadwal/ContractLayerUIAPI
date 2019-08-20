@@ -34,11 +34,11 @@ export class ProductMasterComponent implements OnInit {
       Unit         : [{}],
       PurchasePrice: ["0", Validators.required],
       SellingPrice: ["0", Validators.required],
-      Cgst: ["0", Validators.required],
-      Sgst: ["0", Validators.required],
+      Cgst: [0],
+      Sgst: [0],
       Igst         :  [0],
       MinimumQty   :  [0],
-      OpeningStock: ["0", Validators.required],
+      OpeningStock: [0],
       ProductId: [],
       UnitId: []
     });

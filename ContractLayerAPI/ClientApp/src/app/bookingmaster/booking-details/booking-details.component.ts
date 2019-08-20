@@ -39,7 +39,7 @@ export class BookingDetailsComponent implements OnInit {
           this.bookingdetailsForm.controls['RecordNo'].patchValue(booking);
         });
     }
-    
+
     this.bookingdetailsForm = this.formBuilder.group({
       PkId  : [0],
       RecordNo  : [],
@@ -67,7 +67,7 @@ export class BookingDetailsComponent implements OnInit {
       PlanId: [],
       EmployeeId: [],
       DeliveryStatus  : [],
-      //IsDeleted       : [false] 
+      IsDeleted       : [false] 
     });
 
     if (this.config.isEditable==true) {
@@ -160,6 +160,7 @@ export class BookingDetailsComponent implements OnInit {
     booking.PlanId = booking.Plan.PlanId;
     booking.DeliveryStatus = 'Pending';
     booking.NoOfPlanCancel = '0';
+    booking.BookingDate = moment(booking.BookingDate).toString();
     //Object.assign(booking, this.bookingdetailsForm.value);
     
     delete booking.Location;

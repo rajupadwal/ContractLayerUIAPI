@@ -62,120 +62,127 @@
       </div>
     </div>
 
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <strong>Product Details</strong>
-            <div style="width:10px">
-            </div>
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Product Details</strong>
+          <div style="width:10px">
+          </div>
 
-          </div>
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="card-block ">
-                <div class="form-group">
-                  Product Name
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card-block ">
-                <div class="form-group">
-                  Standard Pack
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2">
-              <div class="card-block">
-                <div class="form-group">
-                  <span class="ui-float-label">
-                    Available Stock
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2">
-              <div class="card-block">
-                <div class="form-group">
-                  <span class="ui-float-label">
-                    Quantity
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-1">
-              <div class="card-block">
-                <div class="form-group">
-                  Action
-                </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="card-block ">
+              <div class="form-group">
+                Product Name
               </div>
             </div>
           </div>
-          <div class="row" *ngFor="let item of FarmerOutwardDetailsList">
-            <div class="col-sm-3">
-              <div class="card-block">
-                <div class="form-group">
-                  <span class="ui-float-label">
-                    <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
-                                    [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
-                    <label for="float-input"></label>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card-block">
-                <div class="form-group">
-                  <span class="ui-float-label">
-                    <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="item.productTypeList" (completeMethod)="searchProducttype($event,item)"
-                                    [dropdown]="true" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
-                    <label for="float-input"></label>
-                  </span>
-                  {{item.ProductTypeList| json}}
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2">
-              <div class="card-block">
-                <div class="form-group">
-                  <span class="ui-float-label">
-                    <input type="text" [(ngModel)]="item.AvailableStock" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2">
-              <div class="card-block">
-                <div class="form-group">
-                  <span class="ui-float-label">
-                    <input type="text" [(ngModel)]="item.Quantity" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-1">
-              <div class="card-block">
-                <div class="form-group">
-                  <button type="button" (click)="removeItem(item)">Delete</button>
-                  <i class="fa icon-trash" style="height:25px;width:20px;padding-top:10px;"></i>
-                </div>
+          <div class="col-sm-3">
+            <div class="card-block ">
+              <div class="form-group">
+                Standard Pack
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-10"></div>
-            <div class="col-sm-2">
-              <button type="button"(click)="addNewItem()">Add new</button>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  Available Stock
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  Quantity
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                Action
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <div class="row" *ngFor="let item of FarmerOutwardDetailsList">
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
+                                  [dropdown]="true" (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
+                  <label for="float-input"></label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="item.productTypeList" (completeMethod)="searchProducttype($event,item)"
+                                  [dropdown]="true" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
+                  <label for="float-input"></label>
+                </span>
+                {{item.ProductTypeList| json}}
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <input type="text" [(ngModel)]="item.AvailableStock" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <input type="text" [(ngModel)]="item.Quantity" pInputText id="ref_by" name="ref_by" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                <button type="button" class="btn btn-outline-primary" (click)="removeItem(item)">Delete</button>
 
-    <div class="row">
-      <div class="col-sm-10"></div>
-      <div class="col-sm-2">
-        <button type="button" (click)="saveItems()">save</button>
+                <i class="fa icon-trash" style="height:25px;width:20px;padding-top:10px;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10"></div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-outline-primary" (click)="addNewItem()">&nbsp;Add New</button>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <!--<div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-2">
+      <button type="button" (click)="saveItems()">save</button>
+    </div>
+  </div>-->
+    <div class="input-group-btn" dropdown>
+
+      <!--<button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>-->
+      <button type="button" class="btn btn-outline-primary" (click)="saveItems()">&nbsp; SAVE</button>
+
     </div>
     <!--</form>-->
   </div>

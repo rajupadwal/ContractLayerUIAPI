@@ -1,0 +1,148 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Income Details</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="incomedetailsForm" (ngSubmit)="saveIncomeDetails()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Record No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="RecordNo" type="text" pInputText id="recordno" name="recordno" class="form-control" rows="3" disabled />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Date :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="Date" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Location :</strong></label>
+              <p-autoComplete formControlName="Location" appValidationBorder [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                              [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Type Of Income :</strong></label>
+              <p-autoComplete formControlName="Income"  [suggestions]="incometypeList" (completeMethod)="searchIncomeType($event)"
+                              [dropdown]="true" [forceSelection]="true" field="IncomeType"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Title :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Title" appValidationBorder type="text" pInputText id="title" name="title" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-header">
+        <strong>Payment Details</strong>
+        <!--<small>Form</small>-->
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Payment Method :</strong></label>
+              <select formControlName="PaymentMethod" appValidationBorder id="select" name="select" class="form-control">
+                <option value="Please select">Please select</option>
+                <option value="Cash">Cash</option>
+                <option value="Cheque">Cheque</option>
+                <option value="Card">Card</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Cheque No :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="ChequeNo" type="text" pInputText id="chequeno" name="chequeno" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Amount :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Amount" appValidationBorder type="text" pInputText id="amount" name="amount" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Narration :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Narration" appValidationBorder type="text" pInputText id="narration" name="narration" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-group-btn" dropdown>
+        <button type="submit" [disabled]="!incomedetailsForm.valid" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

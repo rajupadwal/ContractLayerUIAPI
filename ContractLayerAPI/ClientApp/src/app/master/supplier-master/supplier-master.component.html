@@ -51,12 +51,12 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>State :</strong></label>
-              <select formControlName="State" appValidationBorder id="select" name="select" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujrat">Gujrat</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="State"  type="text" pInputText id="state" name="state" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Pin Code</label>-->
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -64,12 +64,12 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>District :</strong></label>
-              <select formControlName="District" appValidationBorder  id="select" name="select" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Pune">Pune</option>
-                <option value="Nashik">Nashik</option>
-                <option value="Nagpur">Nagpur</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="District"  type="text" pInputText id="district" name="district" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Pin Code</label>-->
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -79,11 +79,12 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Taluka :</strong></label>
-              <select formControlName="Taluka" appValidationBorder id="select" name="select" class="form-control">
-                <option value="">Please select</option>
-                <option value="Maval">Maval</option>
-                <option value="Khed">Khed</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Taluka"  type="text" pInputText id="taluka" name="taluka" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Pin Code</label>-->
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -91,12 +92,12 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>City :</strong></label>
-              <select formControlName="City" appValidationBorder id="select" name="select" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Pune">Pune</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Lonavala">Lonavala</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="City"  type="text" pInputText id="city" name="city" class="form-control" rows="3">
+                  <!--<label for="float-input">Please Enter Pin Code</label>-->
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -106,7 +107,7 @@
               <label for="select"><strong>Pin Code :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Pincode" appValidationBorder type="text" pInputText id="pincode" name="Pincode" class="form-control" rows="3">
+                  <input formControlName="Pincode"  type="text" pInputText id="pincode" name="Pincode" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter Pin Code</label>-->
                 </span>
               </div>
@@ -134,12 +135,17 @@
               <label for="select"><strong>PAN Number :</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PanNo" appValidationBorder type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
+                  <input formControlName="PanNo"  type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
                   <!--<label for="float-input">Please Enter PAN No</label>-->
                 </span>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="card-header">
+        <strong>Bank Details</strong>
+        <div style="width:10px">
         </div>
       </div>
       <div class=" row">
@@ -184,7 +190,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
               <label for="textarea-input"><strong>IFSC  Code:</strong></label>
@@ -197,7 +203,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Account Type :</strong></label>
@@ -213,7 +219,7 @@
       </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary" >&nbsp; SAVE </button>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SAVE </button>
       </div>
     </form>
   </div>

@@ -18,7 +18,9 @@ export class ProductdescViewComponent implements OnInit {
     console.log (param);
   
 }
- 
+  private gridApi;
+  private gridColumnApi;
+
   columnDefs = [
     //{
     //  headerName: 'Button Col 1', 'width':100,
@@ -34,7 +36,7 @@ export class ProductdescViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(ProductdescMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Product Description Master' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -50,7 +52,7 @@ export class ProductdescViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -63,13 +65,23 @@ export class ProductdescViewComponent implements OnInit {
       headerName: 'Sr.No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'ProductId', 'width': 100
+      field: 'ProductId', 'width': 130
     },
 
     
-    { headerName: 'Product Name ', field: 'ProductName', 'width': 100 }
+    {
+      headerName: 'Product Name ', field: 'ProductName', 'width': 650,
+
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    }
      
   ];
+
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
 
   rowData = [
    
@@ -109,11 +121,13 @@ export class ProductdescViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    
-    return this.http.post(APP_CONSTANT.PRODUCTDESC_API.DELETE, productdesc, httpOptions)
-      .subscribe((productdesc) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+
+      return this.http.post(APP_CONSTANT.PRODUCTDESC_API.DELETE, productdesc, httpOptions)
+        .subscribe((productdesc) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 

@@ -23,7 +23,7 @@ export class FarmeroutwardViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerOutwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Outward' }, isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -39,7 +39,7 @@ export class FarmeroutwardViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerOutwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Outward' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -51,7 +51,7 @@ export class FarmeroutwardViewComponent implements OnInit {
     },
 
     {
-      headerName: 'RecordNo', headerCheckboxSelection: true,
+      headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
       field: 'RecordNo', 'width': 130,
@@ -59,9 +59,9 @@ export class FarmeroutwardViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
 
-    { headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 120 },
+    { headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 130 },
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 120,
+      headerName: 'Location Name', field: 'LocationName', 'width': 140,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -71,7 +71,7 @@ export class FarmeroutwardViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Plan Name ', field: 'PlanName', 'width': 120,
+      headerName: 'Plan Name ', field: 'PlanName', 'width': 340,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -133,10 +133,11 @@ export class FarmeroutwardViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.DELETE, farmeroutward, httpOptions)
-      .subscribe((farmeroutward) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.DELETE, farmeroutward, httpOptions)
+        .subscribe((farmeroutward) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }

@@ -155,7 +155,7 @@ namespace ContractLayerFarm.Data.Repositories
             }
             if (master.PkId > 0)
             {
-                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.RecordNo.ToString());
+                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.RecordNo.ToString() && s.TranscationType== typeof(TblFarmerInwardMt).ToString());
                 RepositoryContext.RemoveRange(toBeDeleteStock);
                 this.RepositoryContext.SaveChanges();
                 this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
@@ -182,8 +182,8 @@ namespace ContractLayerFarm.Data.Repositories
 
         public void DeleteFarmerInward(TblFarmerInwardMt master)
         {
-                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.RecordNo.ToString());
-                RepositoryContext.RemoveRange(toBeDeleteStock);
+                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.RecordNo.ToString() && s.TranscationType == typeof(TblFarmerInwardMt).ToString());
+            RepositoryContext.RemoveRange(toBeDeleteStock);
                 this.RepositoryContext.SaveChanges();
 
                 var toBeDeleteDT = this.RepositoryContext.Set<TblFarmerInwardDt>().Where(s => s.RecordNo == master.PkId);
@@ -383,7 +383,7 @@ namespace ContractLayerFarm.Data.Repositories
             }
             if (master.BillId > 0)
             {
-                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.BatchNo.ToString());
+                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.BatchNo.ToString() && s.TranscationType == typeof(TblPurchaseBillMt).ToString());
                 RepositoryContext.RemoveRange(toBeDeleteStock);
                 this.RepositoryContext.SaveChanges();
                 var toBeDeleteDT = this.RepositoryContext.Set<TblPurchaseBillDt>().Where(s => s.BillId == master.BillId);
@@ -474,8 +474,12 @@ namespace ContractLayerFarm.Data.Repositories
 
         public void DeletePurchaseBill(TblPurchaseBillMt master)
         {
-            var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.BatchNo.ToString());
+            var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.BatchNo.ToString() && s.TranscationType == typeof(TblPurchaseBillMt).ToString());
             RepositoryContext.RemoveRange(toBeDeleteStock);
+            this.RepositoryContext.SaveChanges();
+
+            var toBeDeleteSuppTrans = this.RepositoryContext.Set<TblSupplierTransaction>().Where(s => s.BillId == master.BillId.ToString() && s.TransactionType == "Purchase Bill");
+            RepositoryContext.RemoveRange(toBeDeleteSuppTrans);
             this.RepositoryContext.SaveChanges();
 
             var toBeDeleteDT = this.RepositoryContext.Set<TblPurchaseBillDt>().Where(s => s.BillId == master.BillId);

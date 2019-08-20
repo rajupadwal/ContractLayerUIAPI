@@ -33,11 +33,11 @@ export class BookingViewComponent implements OnInit {
     //  }
     //},
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(BookingDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Booking Order' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -48,11 +48,11 @@ export class BookingViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         //newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);
@@ -63,24 +63,24 @@ export class BookingViewComponent implements OnInit {
     },
 
     {
-      headerName: 'RecordNo', headerCheckboxSelection: true,
+      headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 120,
+      field: 'RecordNo', 'width': 130,
       filter: "agNumberColumnFilter"
     },  
     {
-      headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150,
+      headerName: 'Location', field: 'Location.LocationName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150,
+      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'BookingDate ', field: 'BookingDate', valueFormatter: this.dateFormatter, 'width': 180,
+      headerName: 'Booking Date', field: 'BookingDate', valueFormatter: this.dateFormatter, 'width': 180,
       filter: "agDateColumnFilter",
       filterParams: {
         comparator: function (filterLocalDateAtMidnight, cellValue) {
@@ -103,20 +103,20 @@ export class BookingViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Plan Name   ', field: 'Plan.PlanName', 'width': 100,
+      headerName: 'Plan Name', field: 'Plan.PlanName', 'width': 100,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Unit Manager', field: 'Employee.EmployeeName', 'width': 100,
+      headerName: 'Unit Manager', field: 'Employee.EmployeeName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-    { headerName: 'No Of Plan    ', field: 'NoOfPlan' },
-    { headerName: 'No Of Plan Cancel    ', field: 'NoOfPlanCancel' },
-    { headerName: 'No Of Chicks    ', field: 'NoOfChicks' },
-    { headerName: 'Amount    ', field: 'Amount' },
-    { headerName: 'Delivery Status    ', field: 'DeliveryStatus' }
+    { headerName: 'No Of Plan', field: 'NoOfPlan', 'width': 100 },
+    { headerName: 'Plan Cancel', field: 'NoOfPlanCancel', 'width': 120 },
+    { headerName: 'No Of Chicks', field: 'NoOfChicks', 'width': 120 },
+    { headerName: 'Amount', field: 'Amount', 'width': 100 },
+    { headerName: 'Delivery Status    ', field: 'DeliveryStatus', 'width': 130 }
   ];
 
   defaultColDef = {
@@ -171,11 +171,13 @@ export class BookingViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
+    if (confirm("Are you sure do you want to delete record?")) {
 
-    return this.http.post(APP_CONSTANT.BOOKING_API.DELETE, booking, httpOptions)
-      .subscribe((booking) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.BOOKING_API.DELETE, booking, httpOptions)
+        .subscribe((booking) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 

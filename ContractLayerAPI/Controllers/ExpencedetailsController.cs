@@ -85,11 +85,11 @@ namespace ContractLayerAPI.Controllers
 
         }
         [HttpPost("Delete")]
-        public bool Delete([FromBody] TblOfficeExpencesDetails ExpencesNo)
+        public bool Delete([FromBody] TblOfficeExpencesDetails expencesDetails)
         {
             try
             {
-                this._repoWrapper.Expencedetails.Delete(ExpencesNo);
+                this._repoWrapper.Expencedetails.Delete(expencesDetails);
                 this._repoWrapper.Expencedetails.Save();
                 return true;
             }

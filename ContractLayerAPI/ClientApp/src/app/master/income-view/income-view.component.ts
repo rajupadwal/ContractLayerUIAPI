@@ -33,7 +33,7 @@ export class IncomeViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(IncomeDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Income Details' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -48,7 +48,7 @@ export class IncomeViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -119,11 +119,13 @@ export class IncomeViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
+    if (confirm("Are you sure do you want to delete record?")) {
 
-    return this.http.post(APP_CONSTANT.INCOME_API.DELETE, income, httpOptions)
-      .subscribe((income) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.INCOME_API.DELETE, income, httpOptions)
+        .subscribe((income) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 
