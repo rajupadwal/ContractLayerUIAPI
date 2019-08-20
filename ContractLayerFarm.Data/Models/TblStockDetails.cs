@@ -15,6 +15,7 @@ namespace ContractLayerFarm.Data.Models
         public string ProductType { get; set; }
         public decimal? InwardQty { get; set; }
         public decimal? OutwardQty { get; set; }
+        public decimal? RejectedQty { get; set; }
         public DateTime? TranscationDate { get; set; }
         public decimal? OpeningStock { get; set; }
         public decimal? CreditNoteQty { get; set; }

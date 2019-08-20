@@ -217,6 +217,15 @@ export const APP_CONSTANT={
     GETGRNNO: API_URL + 'Product/GetPurchaseBillGRNNo',
     DELETE: API_URL + 'Product/DeletePurchaseBill',
   },
+
+  PRODUCT_PURCHASE_BILLRETURNS_API: {
+    SAVEPURCHASEBILLRETURNMASTER: API_URL + 'Product/SavePurchaseBillReturnMaster',
+    SAVEPURCHASEBILLRETURNSDETAILS: API_URL + 'Product/SavePurchaseBillReturnsDetails',
+    GETALLPURCHASEBILLRETURNMASTERS: API_URL + 'Product/GetAllPurchaseBillReturnMasters',
+    GETALLPURCHASEBILLRETURNMASTEDETAILS: API_URL + 'Product/GetAllPurchaseBillReturnMasteDetails',
+    GETGRNNO: API_URL + 'Product/GetPurchaseBillReturnGRNNo',
+    DELETE: API_URL + 'Product/DeletePurchaseBillReturn',
+  },
   
   PURCHASEPAYMENT_API: {
     ADD: API_URL + 'Purchasepayment/Add',

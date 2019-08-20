@@ -17,6 +17,7 @@ namespace ContractLayerFarm.Data.Contract
         int GetFarmerInwardNo();
         int GetFarmerOutwardNo();
 
+        int GetPurchaseBillReturnGRNNo();
         int GetPurchaseBillGRNNo();
         decimal GetProductAvailableStock(TblFarmerOutwardDt master);
 
@@ -32,6 +33,7 @@ namespace ContractLayerFarm.Data.Contract
         void DeleteFarmerInward(TblFarmerInwardMt master);
         void DeleteFarmerOutward(TblFarmerOutwardMt master);
         void DeletePurchaseBill(TblPurchaseBillMt master);
+        void DeletePurchaseBillReturn(TblPurchaseBillReturnMt master);
         void DeleteSaleBill(TblSalesBillMt master);
         void SaveFarmerInwardMaster(TblFarmerInwardMt master);
         void SaveFarmerInwardDetails(TblFarmerInwardDt[] details);
@@ -60,11 +62,16 @@ namespace ContractLayerFarm.Data.Contract
         //Purchase Bill
 
         void SavePurchaseBillMaster(TblPurchaseBillMt master);
+
+        void SavePurchaseBillReturnMaster(TblPurchaseBillReturnMt master);
         void SavePurchaseBillDetails(TblPurchaseBillDt[] details);
 
         IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters();
 
+        IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillReturnMasters();
+
         IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails(int billid);
+        IEnumerable<TblPurchaseBillReturnDt> GetAllPurchaseBillReturnMasteDetails(int billid);
 
         decimal GetCustomerOutstandingAmt(TblSalesBillMt master);
 

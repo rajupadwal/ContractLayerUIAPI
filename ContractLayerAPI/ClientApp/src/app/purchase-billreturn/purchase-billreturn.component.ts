@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { CusotmerService } from "../master/customer-view/customer.service";
 import { ProductService } from "../master/product-view/product.service";
-import { PlanService } from "../master/plan-view/plan.service";
 import { LocationService } from "../master/location-view/location.service";
 import { DialogRef } from '../dialog/dialog-ref';
 import { DialogConfig } from '../dialog/dialog-config';
@@ -10,14 +8,14 @@ import * as moment from 'moment';
 import { ProductdescService } from '../master/productdesc-view/productdesc.service';
 import { SupplierService } from '../master/supplier-view/supplier.service';
 import { PrintService } from "../printing/print.service";
-import { PurchasebillService } from '../purchasebill-view/purchasebill.service';
+import { PurchasebillreturnService } from '../purchasebillreturn-view/purchasebillreturn.service';
 
 @Component({
-  selector: 'app-purchase-bill',
-  templateUrl: './purchase-bill.component.html',
-  styleUrls: ['./purchase-bill.component.css']
+  selector: 'app-purchase-billreturn',
+  templateUrl: './purchase-billreturn.component.html',
+  styleUrls: ['./purchase-billreturn.component.css']
 })
-export class PurchaseBillComponent implements OnInit {
+export class PurchaseBillReturnComponent implements OnInit {
   PurchaseBillDetailsList: any = [];
   PurchaseBillMaster: PurchaseBillMaster;
   supplierList;
@@ -25,7 +23,7 @@ export class PurchaseBillComponent implements OnInit {
   productlist;
   producttypelist;
   isEditable: boolean = false;
-  constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService, private purchasebillService: PurchasebillService,
+  constructor(private formBuilder: FormBuilder, private supplierservice: SupplierService, private purchasebillService: PurchasebillreturnService,
     private productService: ProductService, private productdescservice: ProductdescService,
     private locationService: LocationService, public dialog: DialogRef, private config: DialogConfig, private printService: PrintService ) { }
 
@@ -96,7 +94,7 @@ export class PurchaseBillComponent implements OnInit {
   }
 
   calculateTaxableAmount(event, item) {
-    item.TaxableAmt = parseFloat(item.Quantity) * parseFloat(item.Rate);
+    item.TaxableAmt = parseFloat(item.RejectedQty) * parseFloat(item.Rate);
     item.TotalAmount = item.TaxableAmt + (parseFloat(item.TaxableAmt) * (parseFloat(item.CgstPercentage) / 100))
       + (parseFloat(item.TaxableAmt) * (parseFloat(item.SgstPercentage) / 100));
 
@@ -119,7 +117,7 @@ export class PurchaseBillComponent implements OnInit {
   }
 
   getAllPurchasebillmastedetails() {
-    this.productService.getAllPurchasebillmastedetails(this.config.data).subscribe((response) => {
+    this.productService.getAllPurchasebillreturnmastedetails(this.config.data).subscribe((response) => {
       this.PurchaseBillDetailsList = response;
       this.loadProducts();
       this.loadProductTypes();
@@ -175,8 +173,6 @@ export class PurchaseBillComponent implements OnInit {
       });
   }
 
-  
-
   addNewItem = () => {
     let newDetails = new PurchaseBillDetail();
     newDetails.PkId = Date.now();
@@ -200,17 +196,17 @@ export class PurchaseBillComponent implements OnInit {
 
     delete this.PurchaseBillMaster.Location;
     delete this.PurchaseBillMaster.Supplier;
-    this.PurchaseBillMaster.TblPurchaseBillDt = this.PurchaseBillDetailsList;
+    this.PurchaseBillMaster.TblPurchaseBillReturnDt = this.PurchaseBillDetailsList;
 
 
-    this.PurchaseBillMaster.TblPurchaseBillDt.forEach((key: any, value: any) => {
+    this.PurchaseBillMaster.TblPurchaseBillReturnDt.forEach((key: any, value: any) => {
       key.Product = null;
       key.PkId = 0;
       key.Producttypeun = null;
     })
 
     //adding deleted records List
-    this.productService.savePurchaseBills(this.PurchaseBillMaster).subscribe((response) => {
+    this.productService.savePurchaseBillReturns(this.PurchaseBillMaster).subscribe((response) => {
       this.dialog.close("Purchase Bill master added successfully");
       if (isPrint && isPrint == true) {
         this.printService.printDocument("PurchaseBill","");
@@ -283,7 +279,8 @@ export class PurchaseBillDetail {
   ProductType: string = '';
   Unit: string;
   HsnCode: string = '';
-  Quantity: number=0;
+  Quantity: number = 0;
+  RejectedQty: number = 0;
   Rate: number = 0;
   Mrp: number = 0;
   Discount: number = 0;
@@ -322,6 +319,6 @@ export class PurchaseBillMaster {
   //following fields re used for selecting object in typo, User clicked on type field then below field will have customer object selected
   Location: any;
   Supplier: any;
-  TblPurchaseBillDt: PurchaseBillDetail[];
+  TblPurchaseBillReturnDt: PurchaseBillDetail[];
   deletedDetailsList: any[] = [];
 }

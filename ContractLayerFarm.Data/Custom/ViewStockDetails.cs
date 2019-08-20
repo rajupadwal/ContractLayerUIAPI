@@ -15,6 +15,7 @@ namespace ContractLayerFarm.Data.Models
         public decimal OpeningStock { get; set; }
         public decimal InwardQty { get; set; }
         public decimal OutwardQty { get; set; }
+        public decimal RejectedQty { get; set; }
         public decimal AvailableStock { get; set; }
 
 

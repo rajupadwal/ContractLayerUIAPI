@@ -67,7 +67,10 @@ export const routes: Routes = [
         loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
       },
 
-      
+      {
+        path: 'Purchasebillreturnview',
+        loadChildren: './purchasebillreturn-view/purchasebillreturn.module#PurchasebillreturnModule'
+      },
       {
         path: 'master',
         component: SimpleLayoutComponent,

@@ -41,6 +41,9 @@ export class StockdetailViewComponent implements OnInit {
       headerName: 'Outward Qty', field: 'OutwardQty', 'width': 120,
     },
     {
+      headerName: 'Rejected Qty', field: 'RejectedQty', 'width': 120,
+    },
+    {
       headerName: 'Available Stock', field: 'AvailableStock', 'width': 120,
     },
   ];

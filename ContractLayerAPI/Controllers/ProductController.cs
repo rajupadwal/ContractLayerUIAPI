@@ -77,6 +77,20 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpGet("[action]")]
+        public int GetPurchaseBillReturnGRNNo()
+        {
+            try
+            {
+                int GRNNo = this._repoWrapper.Product.GetPurchaseBillReturnGRNNo();
+                return GRNNo;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpGet("[action]")]
         public int GetPurchaseBillGRNNo()
         {
             try
@@ -236,6 +250,21 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
+        [HttpPost("DeletePurchaseBillReturn")]
+        public bool DeletePurchaseBillReturn([FromBody] TblPurchaseBillReturnMt purchasebill)
+        {
+            try
+            {
+                this._repoWrapper.Product.DeletePurchaseBillReturn(purchasebill);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         [HttpPost("DeleteChickEggsBill")]
         public bool DeleteChickEggsBill([FromBody] TblSalesBillMt salebill)
         {
@@ -341,7 +370,7 @@ namespace ContractLayerAPI.Controllers
             return this._repoWrapper.Product.GetAllFarmerOutwardMasteDetails(farmerOutwardMt.PkId);
         }
 
-        //------------------Purchase Bill Details-------------
+        //------------------Purchase Bill  && Purchase Return Details-------------
 
         [HttpPost("SavePurchaseBillMaster")]
         public bool SavePurchaseBillMaster([FromBody] TblPurchaseBillMt purchaseBillMt)
@@ -358,12 +387,32 @@ namespace ContractLayerAPI.Controllers
             }
         }
 
+        [HttpPost("SavePurchaseBillReturnMaster")]
+        public bool SavePurchaseBillReturnMaster([FromBody] TblPurchaseBillReturnMt purchaseBillMt)
+        {
+            try
+            {
+                this._repoWrapper.Product.SavePurchaseBillReturnMaster(purchaseBillMt);
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         [HttpGet("[action]")]
         public IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters()
         {
             return this._repoWrapper.Product.GetAllPurchaseBillMasters().ToList();
         }
 
+        [HttpGet("[action]")]
+        public IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillReturnMasters()
+        {
+            return this._repoWrapper.Product.GetAllPurchaseBillReturnMasters().ToList();
+        }
 
         [HttpPost("GetAllFarmerChickEggBillDetails")]
         public IEnumerable<TblSalesBillDt> GetAllFarmerChickEggBillDetails([FromBody] TblSalesBillDt salesBillDt)
@@ -375,6 +424,12 @@ namespace ContractLayerAPI.Controllers
         public IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails([FromBody] TblPurchaseBillMt purchaseBillMt)
         {
             return this._repoWrapper.Product.GetAllPurchaseBillMasteDetails(purchaseBillMt.BillId);
+        }
+
+        [HttpPost("GetAllPurchaseBillReturnMasteDetails")]
+        public IEnumerable<TblPurchaseBillReturnDt> GetAllPurchaseBillReturnMasteDetails([FromBody] TblPurchaseBillReturnMt purchaseBillMt)
+        {
+            return this._repoWrapper.Product.GetAllPurchaseBillReturnMasteDetails(purchaseBillMt.BillId);
         }
 
         [HttpPost("GetCustomerOutstandingAmt")]
