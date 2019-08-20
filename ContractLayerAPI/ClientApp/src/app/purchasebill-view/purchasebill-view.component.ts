@@ -6,6 +6,9 @@ import { DialogService } from '../dialog/dialog.service';
 import { PurchaseBillComponent } from '../purchase-bill/purchase-bill.component';
 import { PurchasebillService } from './purchasebill.service';
 import * as moment from 'moment';
+import { PrintService } from "../printing/print.service";
+
+
 
 @Component({
   selector: 'app-purchasebill-view',
@@ -23,7 +26,7 @@ export class PurchasebillViewComponent implements OnInit {
     //  cellRenderer: 'buttonRenderer',
     //},
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -38,7 +41,20 @@ export class PurchasebillViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Print', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("PurchaseBill", params.data);
+
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -111,7 +127,8 @@ export class PurchasebillViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private Purchasebillservice: PurchasebillService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private Purchasebillservice: PurchasebillService, public dialog: DialogService,
+    private printService: PrintService) { }
 
 
   ngOnInit() {

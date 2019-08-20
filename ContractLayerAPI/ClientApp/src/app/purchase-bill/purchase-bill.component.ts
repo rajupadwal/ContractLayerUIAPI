@@ -196,12 +196,12 @@ export class PurchaseBillComponent implements OnInit {
   saveItems = (isPrint) => {
 
     let purchaseDetails = {};
-    Object.assign(purchaseDetails, this.PurchaseBillMaster );
+    this.PurchaseBillMaster.TblPurchaseBillDt = this.PurchaseBillDetailsList;
+    purchaseDetails = JSON.parse(JSON.stringify(this.PurchaseBillMaster));
+    //Object.assign(purchaseDetails, this.PurchaseBillMaster);
 
     delete this.PurchaseBillMaster.Location;
     delete this.PurchaseBillMaster.Supplier;
-    this.PurchaseBillMaster.TblPurchaseBillDt = this.PurchaseBillDetailsList;
-
 
     this.PurchaseBillMaster.TblPurchaseBillDt.forEach((key: any, value: any) => {
       key.Product = null;

@@ -11,7 +11,7 @@ export class PrintService {
 
   printDocument(documentName: string, documentData: any) {
     this.isPrinting = true;
-    
+    this.documentData = documentData;
     switch (documentName) {
       case 'invoice': {
         this.router.navigate(['/',
@@ -23,7 +23,6 @@ export class PrintService {
         break;
       }
       case 'PurchaseBill': {
-        this.documentData = documentData;
         this.router.navigate(['/',
           {
             outlets: {
