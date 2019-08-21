@@ -153,14 +153,14 @@ export class BookingDetailsComponent implements OnInit {
       return;
     }
 
-    let booking = this.bookingdetailsForm.value;
+    let booking =JSON.parse(JSON.stringify( this.bookingdetailsForm.value));
     booking.EmployeeId = booking.Employee.EmployeeId;
     booking.LocationId = booking.Location.LocationId;
     booking.CustomerId = booking.Customer.CustomerId;
     booking.PlanId = booking.Plan.PlanId;
     booking.DeliveryStatus = 'Pending';
     booking.NoOfPlanCancel = '0';
-    booking.BookingDate = moment(booking.BookingDate).toString();
+   // booking.BookingDate = moment(booking.BookingDate).toString();
     //Object.assign(booking, this.bookingdetailsForm.value);
     
     delete booking.Location;
