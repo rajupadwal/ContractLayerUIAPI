@@ -192,14 +192,14 @@ export class FarmerOutwardComponent implements OnInit {
       });
     //model.AvailableStock=this.farmeroutwardService.getProductAvailableStock()
 
-    let newDetails = new FarmerOutwardDetail();
-    newDetails.ProductId = model.ProductId;
-    newDetails.ProductType = model.ProductType;
+    //let newDetails = new FarmerOutwardDetail();
+    //newDetails.ProductId = model.ProductId;
+    //newDetails.ProductType = model.ProductType;
 
-    this.farmeroutwardService.getProductAvailableStock(newDetails)
-      .subscribe((stock: any) => {
-        model.AvailableStock = stock;
-      });
+    //this.farmeroutwardService.getProductAvailableStock(newDetails)
+    //  .subscribe((stock: any) => {
+    //    model.AvailableStock = stock;
+    //  });
 
   };
 

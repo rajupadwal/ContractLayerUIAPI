@@ -6,7 +6,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { PurchaseBillComponent } from '../purchase-bill/purchase-bill.component';
 import { PurchasebillService } from './purchasebill.service';
 import * as moment from 'moment';
-import { PrintService } from "../printing/print.service";
+import { PrintService } from "../../printing/print.service";
 
 
 

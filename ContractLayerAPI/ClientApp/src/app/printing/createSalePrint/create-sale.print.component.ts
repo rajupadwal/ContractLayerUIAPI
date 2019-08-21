@@ -11,7 +11,7 @@ import * as moment from 'moment';
   styleUrls: ['./create-sale.print.component.css']
 })
 export class CreateSalePrintComponent implements OnInit {
-  FarmerChickEggsBillMaster = { deletedDetailsList: [] };
+  FarmerChickEggsBillMaster: any;
   FarmerChickEggsBillDetailList: any = [];
   productlist;
   producttypelist;

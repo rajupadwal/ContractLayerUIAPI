@@ -7,9 +7,9 @@ import { LocationService } from "../../master/location-view/location.service";
 import { DialogRef } from '../../dialog/dialog-ref';
 import { DialogConfig } from '../../dialog/dialog-config';
 import * as moment from 'moment';
-import { ProductdescService } from '../master/productdesc-view/productdesc.service';
-import { SupplierService } from '../master/supplier-view/supplier.service';
-import { PrintService } from "../printing/print.service";
+import { ProductdescService } from '../../master/productdesc-view/productdesc.service';
+import { SupplierService } from '../../master/supplier-view/supplier.service';
+import { PrintService } from "../../printing/print.service";
 import { PurchasebillService } from '../purchasebill-view/purchasebill.service';
 
 @Component({
