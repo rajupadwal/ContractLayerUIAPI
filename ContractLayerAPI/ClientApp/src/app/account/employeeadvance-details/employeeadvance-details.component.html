@@ -1,0 +1,90 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Employee Details</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="employeeadvanceForm" (ngSubmit)="saveEmployeeAdvance()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Record No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="RecordNo" id="recordno" name="recordno" class="form-control" disabled />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Record Date:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="RecordDate" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Location :</strong></label>
+              <p-autoComplete formControlName="Location" appValidationBorder [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                              [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Employee :</strong></label>
+              <p-autoComplete formControlName="Employee" appValidationBorder [suggestions]="employeeList" (completeMethod)="searchEmployee($event)"
+                              [dropdown]="true" [forceSelection]="true" field="EmployeeName"></p-autoComplete>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Advance :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Advance" appValidationBorder id="advance" name="advance" class="form-control" />
+                  <!--<label for="float-input">(Enter Pan Card No) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Narration :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Narration" appValidationBorder id="narration" name="narration" class="form-control" />
+                  <!--<label for="float-input">(Enter Pan Card No) </label>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

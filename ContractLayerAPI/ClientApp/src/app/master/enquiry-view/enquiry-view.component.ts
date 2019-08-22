@@ -33,7 +33,7 @@ export class EnquiryViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(EnquiryMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Enquiry' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -49,7 +49,7 @@ export class EnquiryViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -103,11 +103,12 @@ export class EnquiryViewComponent implements OnInit {
     };
     //let customer = this.customerForm.value;
     
-
-    return this.http.post(APP_CONSTANT.ENQUIRY_API.DELETE, enquiry, httpOptions)
-      .subscribe((enquiry) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.ENQUIRY_API.DELETE, enquiry, httpOptions)
+        .subscribe((enquiry) => {
+          this.RefreshGrid();
+        });
+    }
   }
 
   redirectToAddNew() {

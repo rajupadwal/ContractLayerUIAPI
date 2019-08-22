@@ -29,7 +29,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -70,7 +70,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       headerName: 'Bill No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'BillNo', 'width': 150,
+      field: 'BillNo', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -98,7 +98,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       }
     },
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 150,
+      headerName: 'Location ', field: 'LocationName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -118,21 +118,21 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Address ', field: 'Address', 'width': 130,
+      headerName: 'Address ', field: 'Address', 'width': 100,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Total Amount ', field: 'TotalAmount', 'width': 100
+      headerName: 'Total Amount ', field: 'TotalAmount', 'width': 120
+    },
+    //{
+    //  headerName: 'TDS Amount ', field: 'TdsAmount', 'width': 100
+    //},
+    {
+      headerName: 'Admin Charges', field: 'AdminChargesAmt', 'width': 130
     },
     {
-      headerName: 'TDS Amount ', field: 'TdsAmount', 'width': 100
-    },
-    {
-      headerName: 'Admin Charges Amount ', field: 'AdminChargesAmt', 'width': 100
-    },
-    {
-      headerName: 'Grand Total Amount ', field: 'GrandTotal', 'width': 100
+      headerName: 'Grand Total', field: 'GrandTotal', 'width': 120
     },
   ];
 
@@ -193,11 +193,13 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
+    if (confirm("Are you sure do you want to delete record?")) {
 
-    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.DELETE, salebill, httpOptions)
-      .subscribe((salebill) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.DELETE, salebill, httpOptions)
+        .subscribe((salebill) => {
+          this.RefreshGrid();
+        });
+    }
   }
 
 }

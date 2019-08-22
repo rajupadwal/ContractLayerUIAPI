@@ -11,7 +11,7 @@ import * as moment from 'moment';
   styleUrls: ['./purchase-bill.print.component.css']
 })
 export class PurchaseBillPrintComponent implements OnInit {
-  PurchaseBillMaster = { deletedDetailsList: []};
+  PurchaseBillMaster :any;
   PurchaseBillDetailsList: any = [];
   productlist;
   producttypelist;

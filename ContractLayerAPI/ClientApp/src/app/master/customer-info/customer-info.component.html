@@ -51,12 +51,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>State :</strong></label>
-              <select formControlName="State" appValidationBorder id="select" name="select" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujrat">Gujrat</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="State"  type="text" pInputText id="state" name="state" class="form-control">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -64,12 +63,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>District :</strong></label>
-              <select formControlName="District" appValidationBorder id="select" name="select" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Pune">Pune</option>
-                <option value="Nashik">Nashik</option>
-                <option value="Nagpur">Nagpur</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="District" type="text" pInputText id="district" name="district" class="form-control">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -77,11 +75,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Taluka :</strong></label>
-              <select formControlName="Taluka" appValidationBorder id="select" name="select" class="form-control">
-                <option value="">Please select</option>
-                <option value="Maval">Maval</option>
-                <option value="Khed">Khed</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Taluka"  type="text" pInputText id="taluka" name="taluka" class="form-control">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -92,12 +90,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>City :</strong></label>
-              <select formControlName="City"  appValidationBorder id="select" name="select" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Pune">Pune</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Lonavala">Lonavala</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="City"  type="text" pInputText id="city" name="city" class="form-control">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -107,7 +104,7 @@
               <label for="textarea-input"><strong>PIN Code:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="Pincode"  appValidationBorder type="text" pInputText id="pincode" name="pincode" class="form-control">
+                  <input formControlName="Pincode"  type="text" pInputText id="pincode" name="pincode" class="form-control">
 
                 </span>
 
@@ -119,7 +116,7 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Location :</strong></label>
-              <p-autoComplete formControlName="Location"  appValidationBorder [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+              <p-autoComplete formControlName="Location" appValidationBorder [suggestions]="locationList" (completeMethod)="searchLocation($event)"
                               [dropdown]="true" [forceSelection]="true" field="LocationName"></p-autoComplete>
 
             </div>
@@ -134,7 +131,7 @@
               <label for="textarea-input"><strong>GST No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="GstNo"  type="text" pInputText id="gstno" name="gstno" class="form-control">
+                  <input formControlName="GstNo" type="text" pInputText id="gstno" name="gstno" class="form-control">
 
                 </span>
               </div>
@@ -147,7 +144,7 @@
               <label for="textarea-input"><strong>PAN No:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="PanNo"  type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
+                  <input formControlName="PanNo" type="text" pInputText id="panno" name="panno" class="form-control" rows="3">
 
                 </span>
               </div>
@@ -155,7 +152,11 @@
           </div>
         </div>
       </div>
-
+      <div class="card-header">
+        <strong>Contact Person Details</strong>
+        <div style="width:10px">
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="card-block">
@@ -201,7 +202,6 @@
         <strong>Bank Details</strong>
         <div style="width:10px">
         </div>
-
       </div>
 
       <div class="row">
@@ -211,7 +211,7 @@
               <label for="textarea-input"><strong>Account Holder Name:</strong></label>
               <div>
                 <span class="ui-float-label">
-                  <input formControlName="AccountHolderName"  id="accountholdername" name="accountholdername" class="form-control" />
+                  <input formControlName="AccountHolderName" id="accountholdername" name="accountholdername" class="form-control" />
 
                 </span>
               </div>
@@ -266,16 +266,17 @@
               <div>
                 <span class="ui-float-label">
                   <input formControlName="AccountNo" id="accountno" name="accountno" class="form-control" />
-
                 </span>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        </div>
 
       <div class="input-group-btn" dropdown>
-        <button type="submit"  class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+
       </div>
     </form>
   </div>

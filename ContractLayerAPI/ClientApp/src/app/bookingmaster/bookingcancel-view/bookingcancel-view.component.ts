@@ -33,11 +33,11 @@ export class BookingcancelViewComponent implements OnInit {
     //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(BookingcancelDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Booking Cancel' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -48,11 +48,11 @@ export class BookingcancelViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         //newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);
@@ -65,13 +65,13 @@ export class BookingcancelViewComponent implements OnInit {
       headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 120,
+      field: 'RecordNo', 'width': 130,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
 
     {
-      headerName: 'Location Name ', field: 'Location.LocationName', 'width': 120,
+      headerName: 'Location', field: 'Location.LocationName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -103,14 +103,14 @@ export class BookingcancelViewComponent implements OnInit {
       }
     },
     {
-      headerName: 'Plan    ', field: 'Plan.PlanName', 'width': 120,
+      headerName: 'Plan', field: 'Plan.PlanName', 'width': 120,
       filter: "agTextColumnFilter",
-      filterParams: { defaultOption: "startsWith" }
+      filterParams: { defaultOption: "startsWith", 'width': 120 }
     },
-    { headerName: 'NoOfPlan    ', field: 'NoOfPlan' },
-    { headerName: 'No Of Plan Cancel   ', field: 'CancelNoOfPlan' },
-    { headerName: 'NoOfChicks    ', field: 'NoOfChicks' },
-    { headerName: 'Amount    ', field: 'Amonut' }
+    { headerName: 'No Of Plan', field: 'NoOfPlan', 'width': 120 },
+    { headerName: 'Plan Cancel', field: 'CancelNoOfPlan', 'width': 120 },
+    { headerName: 'No Of Chicks    ', field: 'NoOfChicks', 'width': 120 },
+    { headerName: 'Amount    ', field: 'Amonut', 'width': 120 }
     
   ];
 
@@ -167,11 +167,12 @@ export class BookingcancelViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    return this.http.post(APP_CONSTANT.BOOKINGCANCEL_API.DELETE, bookingcancel, httpOptions)
-      .subscribe((bookingcancel) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.BOOKINGCANCEL_API.DELETE, bookingcancel, httpOptions)
+        .subscribe((bookingcancel) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 

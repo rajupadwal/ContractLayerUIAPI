@@ -29,16 +29,16 @@ export class EmployeeInfoComponent implements OnInit {
       EmployeeName: ["", Validators.required],
       PersonalContactNo: ["", Validators.required],
       Address: ["", Validators.required],
-      EducationDetails: ["", Validators.required],
+      EducationDetails: [],
       PastWorkExp           : [],
       PanCardNo             : [],
-      AadharId: ["", Validators.required],
+      AadharId: [],
       VoterId               : [],
       BloodGroup            : [],
       MaritialStatus        : [],
       Salary                : [],
       DateOfJoining: ["", Validators.required],
-      DateOfLeaving: ["", Validators.required],
+      DateOfLeaving: [],
       Role                  : [],
       Location              : [{}],
       UserId: ["", Validators.required],
@@ -46,18 +46,18 @@ export class EmployeeInfoComponent implements OnInit {
       CompanyMobileNo       : [],
       Post                  : [],
       Remarks               : [],
-      District: ["", Validators.required],
-      Taluka: ["", Validators.required],
-      City: ["", Validators.required],
+      District: [],
+      Taluka: [],
+      City: [],
       EmergencyContactName  : [],
       EmergencyNo           : [],
       Relation              : [],
-      BankName: ["", Validators.required],
-      AccountNo: ["", Validators.required],
-      IfscCode: ["", Validators.required],
+      BankName: [],
+      AccountNo: [],
+      IfscCode: [],
       MicrCode              : [],
-      BranchName: ["", Validators.required],
-      AccountType: ["", Validators.required],
+      BranchName: [],
+      AccountType: [],
       LocationId:[]
     });
 
@@ -89,10 +89,10 @@ export class EmployeeInfoComponent implements OnInit {
   }
 
   saveEmployee() {
-
     if (!this.dialog.validateForm4(this.employeeForm)) {
       return;
     }
+
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

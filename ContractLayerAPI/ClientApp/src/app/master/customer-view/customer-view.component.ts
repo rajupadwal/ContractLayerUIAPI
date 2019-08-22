@@ -34,7 +34,7 @@ export class CustomerViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(CustomerInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Customer' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -50,7 +50,7 @@ export class CustomerViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -175,11 +175,13 @@ export class CustomerViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
+    if (confirm("Are you sure do you want to delete record?")) {
 
-    return this.http.post(APP_CONSTANT.CUSOTMER_API.DELETE, customer, httpOptions)
-      .subscribe((customer) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.CUSOTMER_API.DELETE, customer, httpOptions)
+        .subscribe((customer) => {
+          this.RefreshGrid();
+        });
+    }
   }
 
   }

@@ -14,8 +14,9 @@ namespace ContractLayerFarm.Data.Repositories
     {
         private ContractLayerDBContext ktConContext;
         public ProductRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext; }
-        //string connectionString = "Data Source=216.10.240.149;Initial Catalog=ktconin_ContractLayerDB;user id=ContarctLayer;password=Layer@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;"
-        string connectionString = "Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        string connectionString = "Data Source=IDCSQL6.znetlive.com,1234;Initial Catalog=a1079e563_ContractLayer;user id=Contractpro;password=Contract@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        //string connectionString = "Data Source=216.10.240.149;Initial Catalog=ktconin_ContractLayerDB;user id=ContarctLayer;password=Layer@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        //string connectionString = "Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
 
         //public IEnumerable<TblProductTypeMaster> SearchProduct(string searchString)
         //{
@@ -736,8 +737,12 @@ namespace ContractLayerFarm.Data.Repositories
             RepositoryContext.RemoveRange(toBeDeleteStock);
             this.RepositoryContext.SaveChanges();
 
+            //var toBeDeleteSuppTrans = this.RepositoryContext.Set<TblSupplierTransaction>().Where(s => s.BillId == master.BillId.ToString() && s.TransactionType == "Purchase Bill");
+            //RepositoryContext.RemoveRange(toBeDeleteStock);
+            //this.RepositoryContext.SaveChanges();
+
             var toBeDeleteSuppTrans = this.RepositoryContext.Set<TblSupplierTransaction>().Where(s => s.BillId == master.BillId.ToString() && s.TransactionType == "Purchase Bill");
-            RepositoryContext.RemoveRange(toBeDeleteStock);
+            RepositoryContext.RemoveRange(toBeDeleteSuppTrans);
             this.RepositoryContext.SaveChanges();
 
             var toBeDeleteDT = this.RepositoryContext.Set<TblPurchaseBillDt>().Where(s => s.BillId == master.BillId);

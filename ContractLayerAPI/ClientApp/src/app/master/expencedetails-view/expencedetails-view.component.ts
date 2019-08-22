@@ -39,7 +39,7 @@ export class ExpencedetailsViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil  style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(ExpencedetailsMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Expence Details' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -55,7 +55,7 @@ export class ExpencedetailsViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -116,12 +116,13 @@ export class ExpencedetailsViewComponent implements OnInit {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     //let customer = this.customerForm.value;
+    if (confirm("Are you sure do you want to delete record?")) {
 
-
-    return this.http.post(APP_CONSTANT.EXPENCEDETAILS_API.DELETE, expencedetails, httpOptions)
-      .subscribe((expencedetails) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.EXPENCEDETAILS_API.DELETE, expencedetails, httpOptions)
+        .subscribe((expencedetails) => {
+          this.RefreshGrid();
+        });
+    }
   }
 
 

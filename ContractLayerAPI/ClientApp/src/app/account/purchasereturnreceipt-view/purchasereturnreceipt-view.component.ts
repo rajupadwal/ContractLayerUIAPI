@@ -23,21 +23,13 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
   private gridColumnApi;
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
-
+    
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(PurchasereturnreceiptDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Return Receipt' }, isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -48,12 +40,12 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 80,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
        // newTH.innerHTML = 'Delete';
-        newTH.className = "pi pi-times";
+        newTH.innerHTML = ' <i class="pi pi-trash"  style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -66,7 +58,7 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
       headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 100,
+      field: 'RecordNo', 'width': 130,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -95,7 +87,7 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
       }
     },
     {
-      headerName: 'Location Name', field: 'Location.LocationName', ' width': 120,
+      headerName: 'Location', field: 'Location.LocationName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -107,11 +99,11 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
     //{
     //  headerName: 'PaymentType    ', field: 'PaymentType', 'width': 100
     //},
-    { headerName: 'Bill Ref No    ', field: 'BillRefNo' },
-    { headerName: 'Payment Method    ', field: 'PaymentMethod' },
-    { headerName: 'Cheque No    ', field: 'ChequeNo' },
-    { headerName: 'Amount Received    ', field: 'AmountReceived' },
-    { headerName: 'Narration    ', field: 'Narration' }
+    { headerName: 'Bill Ref No    ', field: 'BillRefNo', 'width': 120 },
+    { headerName: 'Payment Method    ', field: 'PaymentMethod', 'width': 140 },
+    { headerName: 'Cheque No    ', field: 'ChequeNo', 'width': 120 },
+    { headerName: 'Amount Received    ', field: 'AmountReceived', 'width': 140 },
+    { headerName: 'Narration    ', field: 'Narration', 'width': 120 }
   ];
 
   rowData;

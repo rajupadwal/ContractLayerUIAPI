@@ -40,7 +40,7 @@ export class ExpencetypeViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(ExpencetypeMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Expence TYpe Master' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -55,7 +55,7 @@ export class ExpencetypeViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -71,7 +71,7 @@ export class ExpencetypeViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Expence Type ', field: 'ExpenceType', 'width': 400,
+      headerName: 'Expence Type ', field: 'ExpenceType', 'width': 580,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     }
@@ -140,11 +140,12 @@ export class ExpencetypeViewComponent implements OnInit {
     };
     //let customer = this.customerForm.value;
 
-
-    return this.http.post(APP_CONSTANT.EXPENCETYPE_API.DELETE, expencetype, httpOptions)
-      .subscribe((expencetype) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.EXPENCETYPE_API.DELETE, expencetype, httpOptions)
+        .subscribe((expencetype) => {
+          this.RefreshGrid();
+        });
+    }
   }
   
 }

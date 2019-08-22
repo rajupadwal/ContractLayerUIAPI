@@ -60,18 +60,18 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
-      {
-        path: 'Farmerinwardview',
-        loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
-      },
+      //{
+      //  path: 'Farmerinwardview',
+      //  loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
+      //},
       {
         path: 'Farmeroutwardview',
         loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
       },
-      {
-        path: 'Purchasebillview',
-        loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
-      },
+      //{
+      //  path: 'Purchasebillview',
+      //  loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
+      //},
 
       {
         path: 'Purchasebillreturnview',
@@ -171,27 +171,27 @@ export const routes: Routes = [
           
         ]
       },
-
       {
-        path: 'account',
+        path: 'purchase',
         component: SimpleLayoutComponent,
         data: {
-          title: 'Account'
+          title: 'Purchase'
         },
         children: [
 
           {
-            path: 'Salesreceiptview',
-            loadChildren: './account/salesreceipt-view/salesreceipt.view.module#SalesReceiptViewModule'
+            path: 'Purchasebillview',
+            loadChildren: './purchase/purchasebill-view/purchasebill.module#PurchasebillModule'
           },
           {
-            path: 'Purchasepaymentview',
-            loadChildren: './account/purchasepayment-view/purchasepayment.view.module#PurchasePaymentViewModule'
+            path: 'Farmerinwardview',
+            loadChildren: './purchase/farmerinward-view/farmerinward.module#FarmerinwardModule'
           },
           {
-            path: 'Purchasereturnreceiptview',
-            loadChildren: './account/purchasereturnreceipt-view/purchasereturnreceipt.view.module#PurchasereturnReceiptViewModule'
+            path: 'Farmeroutwardview',
+            loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
           },
+
         ]
       },
 
@@ -234,6 +234,43 @@ export const routes: Routes = [
           },
         ]
       },
+
+      {
+        path: 'account',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Account'
+        },
+        children: [
+
+          {
+            path: 'Salesreceiptview',
+            loadChildren: './account/salesreceipt-view/salesreceipt.view.module#SalesReceiptViewModule'
+          },
+          {
+            path: 'Purchasepaymentview',
+            loadChildren: './account/purchasepayment-view/purchasepayment.view.module#PurchasePaymentViewModule'
+          },
+          {
+            path: 'Purchasereturnreceiptview',
+            loadChildren: './account/purchasereturnreceipt-view/purchasereturnreceipt.view.module#PurchasereturnReceiptViewModule'
+          },
+          {
+            path: 'Officeexpencedetails',
+            loadChildren: './account/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
+          },
+          {
+            path: 'Employeeadvanceview',
+            loadChildren: './account/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
+          },
+          {
+            path: 'Incomedetails',
+            loadChildren: './account/income-view/income.view.module#IncomeViewModule'
+          },
+        ]
+      },
+
+      
 
       //{
       //  path: 'cases',
