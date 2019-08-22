@@ -158,11 +158,11 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Product.SaveOpeningStockDetails(product);
+                
                 this._repoWrapper.Product.Create(product);
                 this._repoWrapper.Product.Save();
-
-                
+                this._repoWrapper.Product.SaveOpeningStockDetails(product);
+                this._repoWrapper.Product.Save();
 
                 return true;
             }
