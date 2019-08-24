@@ -128,6 +128,11 @@ export class ProductViewComponent implements OnInit {
         this.rowData = product;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'ProductDetails');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(ProductMasterComponent, { modalConfig: { title: 'Add/Edit Product Master' },isEditable: false });
     ref.afterClosed.subscribe(result => {

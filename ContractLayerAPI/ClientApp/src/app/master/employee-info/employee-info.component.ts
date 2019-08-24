@@ -98,6 +98,17 @@ export class EmployeeInfoComponent implements OnInit {
     };
     let employee = this.employeeForm.value;
     employee.LocationId = employee.Location.LocationId;
+
+    var a = new Date(employee.DateOfJoining);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    employee.DateOfJoining = moment(b).toDate();
+
+    var c = new Date(employee.DateOfLeaving);
+    var d = new Date(c.getTime() + day);
+    employee.DateOfLeaving = moment(d).toDate();
+
     delete employee.Location;
     return this.http.post(this.isEditable ? APP_CONSTANT.EMPLOYEE_API.EDIT : APP_CONSTANT.EMPLOYEE_API.ADD, employee, httpOptions)
       .subscribe((employee) => {

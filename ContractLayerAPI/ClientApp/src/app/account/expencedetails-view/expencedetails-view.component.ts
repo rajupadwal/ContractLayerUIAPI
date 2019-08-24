@@ -7,6 +7,7 @@ import { DialogConfig } from '../../dialog/dialog-config';
 import { DialogRef } from '../../dialog/dialog-ref';
 import { ExpencedetailsMasterComponent } from '../expencedetails-master/expencedetails-master.component';
 import { ExpencedetailsService } from './expencedetails.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 
 @Component({
@@ -96,7 +97,7 @@ export class ExpencedetailsViewComponent implements OnInit {
 
   ];
 
-  constructor(private router: Router, private http: HttpClient, private ExpencedetailsService: ExpencedetailsService, public dialog: DialogService, private config: DialogConfig, public dialogref: DialogRef) { }
+  constructor(private router: Router, private http: HttpClient, private ExpencedetailsService: ExpencedetailsService, public dialog: DialogService, private config: DialogConfig, public dialogref: DialogRef, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -125,6 +126,9 @@ export class ExpencedetailsViewComponent implements OnInit {
     }
   }
 
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'ExpenceDetails');
+  }
 
   redirectToAddNew() {
     const ref = this.dialog.open(ExpencedetailsMasterComponent, { modalConfig: { title: 'Add/Edit Expence Details' },isEditable: false });

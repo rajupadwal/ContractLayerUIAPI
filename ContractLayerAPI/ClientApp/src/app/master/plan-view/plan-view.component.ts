@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { PlanService } from './plan.service';
 import { DialogService } from '../../dialog/dialog.service';
 import { PlanMasterComponent } from '../plan-master/plan-master.component';
+import { ProductService } from '../product-view/product.service';
 
 @Component({
   selector: 'app-plan-view',
@@ -20,14 +21,6 @@ export class PlanViewComponent implements OnInit {
 }
  
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
 
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
@@ -89,7 +82,7 @@ export class PlanViewComponent implements OnInit {
    
   ];
     
-  constructor(private router: Router, private http: HttpClient, private planservice: PlanService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private planservice: PlanService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -102,6 +95,11 @@ export class PlanViewComponent implements OnInit {
         this.rowData = plan;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'PlanDetails');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(PlanMasterComponent, { modalConfig: { title: 'Add/Edit Plan Master' },isEditable: false });
     ref.afterClosed.subscribe(result => {

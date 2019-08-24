@@ -7,6 +7,7 @@ import { SalesReceiptService } from './salesreceipt.service';
 import { SalesReceiptDetailsComponent } from '../salesreceipt-details/salesreceipt-details.component';
 import * as moment from 'moment';
 import { PrintService } from '../../printing/print.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 @Component({
   selector: 'app-salesreceipt-view',
@@ -53,7 +54,7 @@ export class SalesreceiptViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size: large;"></i>';
         newTH.onclick = () => {
           this.printService.printDocument("CustomerReceipt", params.data);
 
@@ -127,7 +128,7 @@ export class SalesreceiptViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private salesreceiptservice: SalesReceiptService, public dialog: DialogService, public printService:PrintService) { }
+  constructor(private router: Router, private http: HttpClient, private salesreceiptservice: SalesReceiptService, public dialog: DialogService, public printService: PrintService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -140,6 +141,11 @@ export class SalesreceiptViewComponent implements OnInit {
         this.rowData = salereceipt;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'SaleReceipt');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(SalesReceiptDetailsComponent, { modalConfig: { title: 'Add/Edit Sale Receipt' } ,isEditable: false });
     ref.afterClosed.subscribe(result => {

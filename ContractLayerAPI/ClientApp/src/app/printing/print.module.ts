@@ -11,6 +11,8 @@ import { PurchaseBillPrintComponent } from './purchaseBillPrint/purchase-bill.pr
 import { CreateSalePrintComponent } from './createSalePrint/create-sale.print.component';
 import { CustomerReceiptPrintComponent } from './customerReceiptPrint/customer-receipt.print.component';
 import { SupplierReceiptPrintComponent } from './supplierReceiptPrint/supplier-receipt.print.component';
+import { FarmerInwardPrintComponent } from './farmerInwardPrint/farmer-inward.print.component';
+import { FarmerOutwardPrintComponent } from './farmerOutwardPrint/farmer-outward.print.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,7 +27,9 @@ import { SupplierReceiptPrintComponent } from './supplierReceiptPrint/supplier-r
     PurchaseBillPrintComponent,
     CreateSalePrintComponent,
     CustomerReceiptPrintComponent,
-    SupplierReceiptPrintComponent
+    SupplierReceiptPrintComponent,
+    FarmerInwardPrintComponent,
+    FarmerOutwardPrintComponent
   ],
   providers: [
     PrintService

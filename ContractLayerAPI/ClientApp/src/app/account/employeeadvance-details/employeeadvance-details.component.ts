@@ -93,19 +93,18 @@ export class EmployeeadvanceDetailsComponent implements OnInit {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     let employeeadvance = this.employeeadvanceForm.value;
-    //Object.assign(employeeadvance, this.employeeadvanceForm.value);
+
+    var a = new Date(employeeadvance.RecordDate);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    employeeadvance.RecordDate = moment(b).toDate();
+
     employeeadvance.EmployeeId = employeeadvance.Employee.EmployeeId;
     employeeadvance.LocationId = employeeadvance.Location.LocationId;
     delete employeeadvance.Location;
     delete employeeadvance.Employee;
-    //this.employeeadvanceService.saveEmployeeAdvance(employeeadvance, this.isEditable).subscribe((employeeadvance) => {
-    //  // login successful if there's a jwt token in the response
-    //  if (employeeadvance) {
-    //    // store user details and jwt token in local storage to keep user logged in between page refreshes
-    //    this.dialog.close(employeeadvance);
-    //  }
-    //  return employeeadvance;
-    //});
+     
     return this.http.post(this.isEditable ? APP_CONSTANT.EMPLOYEEADVANCE_API.EDIT : APP_CONSTANT.EMPLOYEEADVANCE_API.ADD, employeeadvance, httpOptions)
       .subscribe((employeeadvance) => {
         // login successful if there's a jwt token in the response

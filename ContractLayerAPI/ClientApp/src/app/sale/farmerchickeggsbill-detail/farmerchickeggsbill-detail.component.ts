@@ -62,7 +62,7 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
   setDataForEdit = () => {
     this.isEditable = true;
     this.FarmerChickEggsBillMaster = this.config.data;
-    this.FarmerChickEggsBillMaster.BillDate = moment(this.config.data.Date).toDate();
+    this.FarmerChickEggsBillMaster.BillDate = moment(this.config.data.BillDate).toDate();
     this.getAllFarmerchickeggbilldetails();
   }
 
@@ -136,6 +136,8 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
     this.FarmerChickEggsBillMaster.TotalAmount = 0;
 
     this.FarmerChickEggsBillDetailList.forEach((key, value) => {
+
+      key.Amount = (parseFloat(key.Quantity) * parseFloat(key.Rate));
       this.FarmerChickEggsBillMaster.TotalAmount += (parseFloat(key.Quantity) * parseFloat(key.Rate));
 
      // this.FarmerChickEggsBillMaster.TdsAmount = (parseFloat(this.FarmerChickEggsBillMaster.TotalAmount.toString()) * 1 / 100);
@@ -163,8 +165,13 @@ export class FarmerchickeggsbillDetailComponent implements OnInit {
   }
   saveItems = () => {
 
-    delete this.FarmerChickEggsBillMaster.Location;
+    var a = new Date(this.FarmerChickEggsBillMaster.BillDate);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    this.FarmerChickEggsBillMaster.BillDate = moment(b).toDate();
 
+    delete this.FarmerChickEggsBillMaster.Location;
     delete this.FarmerChickEggsBillMaster.Plan;
     delete this.FarmerChickEggsBillMaster.Customer;
     this.FarmerChickEggsBillMaster.TblSalesBillDt = this.FarmerChickEggsBillDetailList;

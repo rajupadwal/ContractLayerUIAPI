@@ -7,6 +7,7 @@ import { PurchaseBillComponent } from '../purchase-bill/purchase-bill.component'
 import { PurchasebillService } from './purchasebill.service';
 import * as moment from 'moment';
 import { PrintService } from "../../printing/print.service";
+import { ProductService } from '../../master/product-view/product.service';
 
 
 
@@ -45,7 +46,7 @@ export class PurchasebillViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size: large;"></i>';
         newTH.onclick = () => {
           this.printService.printDocument("PurchaseBill", params.data);
 
@@ -154,7 +155,7 @@ export class PurchasebillViewComponent implements OnInit {
   }
 
   constructor(private router: Router, private http: HttpClient, private Purchasebillservice: PurchasebillService, public dialog: DialogService,
-    private printService: PrintService) { }
+    private printService: PrintService, public productService: ProductService) { }
 
 
   ngOnInit() {
@@ -169,6 +170,10 @@ export class PurchasebillViewComponent implements OnInit {
 
       }
     );
+  }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'PurchaseBill');
   }
 
   redirectToAddNew() {

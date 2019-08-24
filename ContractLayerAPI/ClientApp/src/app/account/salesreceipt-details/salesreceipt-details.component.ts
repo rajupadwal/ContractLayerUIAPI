@@ -102,6 +102,13 @@ export class SalesReceiptDetailsComponent implements OnInit {
     }
 
     let salereceiptdetails = this.salereceiptdetailsForm.value;
+
+    var a = new Date(salereceiptdetails.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    salereceiptdetails.Date = moment(b).toDate();
+
     salereceiptdetails.LocationId = salereceiptdetails.Location.LocationId;
     salereceiptdetails.CustomerId = salereceiptdetails.Customer.CustomerId;
     delete salereceiptdetails.Location;

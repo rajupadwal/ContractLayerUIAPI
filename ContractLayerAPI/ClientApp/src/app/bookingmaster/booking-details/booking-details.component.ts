@@ -140,7 +140,7 @@ export class BookingDetailsComponent implements OnInit {
       this.planList = data;
     });
   }
-
+    
   setDataForEdit = () => {
     this.isEditable = true;
     let bookingdetailsForm = this.config.data;
@@ -153,14 +153,21 @@ export class BookingDetailsComponent implements OnInit {
       return;
     }
 
-    let booking =JSON.parse(JSON.stringify( this.bookingdetailsForm.value));
+    let booking = JSON.parse(JSON.stringify(this.bookingdetailsForm.value));
+
+    var a = new Date(booking.BookingDate);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    booking.BookingDate = moment(b).toDate();
+
     booking.EmployeeId = booking.Employee.EmployeeId;
     booking.LocationId = booking.Location.LocationId;
     booking.CustomerId = booking.Customer.CustomerId;
     booking.PlanId = booking.Plan.PlanId;
     booking.DeliveryStatus = 'Pending';
     booking.NoOfPlanCancel = '0';
-   // booking.BookingDate = moment(booking.BookingDate).toString();
+   
     //Object.assign(booking, this.bookingdetailsForm.value);
     
     delete booking.Location;

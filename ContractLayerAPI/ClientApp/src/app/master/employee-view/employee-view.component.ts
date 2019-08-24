@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { EmployeeService } from './employee.service';
 import { DialogService } from '../../dialog/dialog.service';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
+import { ProductService } from '../product-view/product.service';
 
 @Component({
   selector: 'app-employee-view',
@@ -19,14 +20,7 @@ export class EmployeeViewComponent implements OnInit {
 }
  
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
+     
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
@@ -79,7 +73,7 @@ export class EmployeeViewComponent implements OnInit {
    
   ];
     
-  constructor(private router: Router, private http: HttpClient, private employeeService: EmployeeService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private employeeService: EmployeeService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -93,6 +87,11 @@ export class EmployeeViewComponent implements OnInit {
         this.rowData = employee;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'EmployeeDetails');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(EmployeeInfoComponent, { modalConfig: { title: 'Add/Edit Employee' },isEditable: false });
     ref.afterClosed.subscribe(result => {

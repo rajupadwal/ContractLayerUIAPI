@@ -7,6 +7,7 @@ import { PurchasepaymentDetailsComponent } from '../purchasepayment-details/purc
 import { PurchasePayemntService } from './purchasepayment.service';
 import * as moment from 'moment';
 import { PrintService } from '../../printing/print.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 @Component({
   selector: 'app-purchasepayment-view',
@@ -23,14 +24,6 @@ export class PurchasepaymentViewComponent implements OnInit {
   private gridColumnApi;
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
 
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
@@ -52,7 +45,7 @@ export class PurchasepaymentViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size: large;"></i>';
         newTH.onclick = () => {
           this.printService.printDocument("SupplierReceipt", params.data);
 
@@ -148,7 +141,7 @@ export class PurchasepaymentViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private purchasepayemntservice: PurchasePayemntService, public dialog: DialogService, public printService:PrintService) { }
+  constructor(private router: Router, private http: HttpClient, private purchasepayemntservice: PurchasePayemntService, public dialog: DialogService, public printService: PrintService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -161,6 +154,11 @@ export class PurchasepaymentViewComponent implements OnInit {
         this.rowData = purchasepayment;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'PurchasePayment');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(PurchasepaymentDetailsComponent, { modalConfig: { title: 'Add/Edit Purchase Payment' }, isEditable: false });
     ref.afterClosed.subscribe(result => {

@@ -6,6 +6,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { PurchasereturnreceiptDetailsComponent } from '../purchasereturnreceipt-details/purchasereturnreceipt-details.component';
 import { PurchasereturnReceiptService } from './purchasereturnreceipt.service';
 import * as moment from 'moment';
+import { ProductService } from '../../master/product-view/product.service';
 
 @Component({
   selector: 'app-purchasereturnreceipt-view',
@@ -25,7 +26,7 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
   columnDefs = [
     
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -40,7 +41,7 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -123,7 +124,7 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private purchasereturnreceiptService: PurchasereturnReceiptService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private purchasereturnreceiptService: PurchasereturnReceiptService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -136,6 +137,11 @@ export class PurchasereturnReceiptViewComponent implements OnInit {
         this.rowData = purchasereturnreceipt;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'PurchaseReturnPayment');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(PurchasereturnreceiptDetailsComponent, { modalConfig: { title: 'Add/Edit Purchase Return Receipt' }, isEditable: false });
     ref.afterClosed.subscribe(result => {

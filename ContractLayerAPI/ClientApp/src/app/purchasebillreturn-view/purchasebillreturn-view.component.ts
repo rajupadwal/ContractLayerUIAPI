@@ -6,6 +6,7 @@ import { DialogService } from '../dialog/dialog.service';
 import { PurchaseBillReturnComponent } from '../purchase-billreturn/purchase-billreturn.component';
 import { PurchasebillreturnService } from './purchasebillreturn.service';
 import * as moment from 'moment';
+import { ProductService } from '../master/product-view/product.service';
 
 @Component({
   selector: 'app-purchasebillreturn-view',
@@ -111,7 +112,7 @@ export class PurchasebillreturnViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private Purchasebillreturnservice: PurchasebillreturnService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private Purchasebillreturnservice: PurchasebillreturnService, public dialog: DialogService, public productService: ProductService) { }
 
 
   ngOnInit() {
@@ -126,6 +127,10 @@ export class PurchasebillreturnViewComponent implements OnInit {
 
       }
     );
+  }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'PurchaseBillReturn');
   }
 
   redirectToAddNew() {
