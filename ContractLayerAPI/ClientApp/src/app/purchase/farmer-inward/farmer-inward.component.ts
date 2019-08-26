@@ -140,8 +140,13 @@ export class FarmerInwardComponent implements OnInit {
   }
   saveItems = () => {
 
-    delete this.FarmerInwardMaster.Location;
+    var a = new Date(this.FarmerInwardMaster.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    this.FarmerInwardMaster.Date = moment(b).toDate();
 
+    delete this.FarmerInwardMaster.Location;
     delete this.FarmerInwardMaster.Plan;
     delete this.FarmerInwardMaster.Customer;
     this.FarmerInwardMaster.TblFarmerInwardDt = this.FarmerInwardDetailsList;

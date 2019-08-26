@@ -89,6 +89,17 @@ export class EnquiryMasterComponent implements OnInit {
     }
 
     let enquiry = this.enquiryForm.value;
+
+    var a = new Date(enquiry.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    enquiry.DateOfJoining = moment(b).toDate();
+
+    var c = new Date(enquiry.RemindDate);
+    var d = new Date(c.getTime() + day);
+    enquiry.RemindDate = moment(d).toDate();
+
     enquiry.LocationId = enquiry.Location.LocationId;
     delete enquiry.Location;
     this.enquiryService.saveEnquiry(enquiry, this.isEditable).subscribe((enquiry) => {

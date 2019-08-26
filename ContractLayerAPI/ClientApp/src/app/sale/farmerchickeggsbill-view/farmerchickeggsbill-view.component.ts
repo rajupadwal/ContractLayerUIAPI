@@ -7,6 +7,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import * as moment from 'moment';
 import { APP_CONSTANT } from '../../../config';
 import { PrintService } from '../../printing/print.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 
 @Component({
@@ -20,10 +21,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
   private gridColumnApi;
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //},
+     
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
@@ -31,7 +29,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ' },isEditable: true });
+          const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ', width: '90%' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             if (result == false) { return; } else this.RefreshGrid();
           });
@@ -44,7 +42,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-print"></i>';
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size:large;"></i>';
         newTH.onclick = () => {
           this.printService.printDocument("CreateSale", params.data);
 
@@ -57,7 +55,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size:initial;"></i>';
         newTH.onclick = () => {
         this.delete(params.data);
 
@@ -154,7 +152,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
   }
 
 
-  constructor(private router: Router, private http: HttpClient, private farmerchikeggbillservice: FarmerchikeggbillService, public dialog: DialogService, private printService: PrintService) { }
+  constructor(private router: Router, private http: HttpClient, private farmerchikeggbillservice: FarmerchikeggbillService, public dialog: DialogService, private printService: PrintService, public productService: ProductService) { }
 
 
   ngOnInit() {
@@ -171,8 +169,12 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
     );
   }
 
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'CreateBill');
+  }
+
   redirectToAddNew() {
-    const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { modalConfig: { title: 'Add/Edit sale' },isEditable: false });
+    const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { modalConfig: { title: 'Add/Edit sale', width: '90%'},isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

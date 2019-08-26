@@ -14,9 +14,9 @@ namespace ContractLayerFarm.Data.Repositories
     {
         private ContractLayerDBContext ktConContext;
         public ProductRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext; }
-        string connectionString = "Data Source=IDCSQL6.znetlive.com,1234;Initial Catalog=a1079e563_ContractLayer;user id=Contractpro;password=Contract@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        //string connectionString = "Data Source=IDCSQL6.znetlive.com,1234;Initial Catalog=a1079e563_ContractLayer;user id=Contractpro;password=Contract@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
         //string connectionString = "Data Source=216.10.240.149;Initial Catalog=ktconin_ContractLayerDB;user id=ContarctLayer;password=Layer@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
-        //string connectionString = "Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        string connectionString = "Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
 
         //public IEnumerable<TblProductTypeMaster> SearchProduct(string searchString)
         //{
@@ -87,7 +87,7 @@ namespace ContractLayerFarm.Data.Repositories
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string sqlQuery = "SELECT cm.CustmerName, cm.Address,cm.CustomerMobileNo,sum(ct.BookingAmount) as BookingAmount,sum(ct.BookingReceivedAmt) as BookingReceivedAmt,,sum(ct.CancelBookingAmt) as CancelBookingAmt,(sum(ct.BookingAmount) - sum(ct.BookingReceivedAmt) - sum(ct.CancelBookingAmt)) as Outstanding FROM tbl_CustomerMaster cm inner join tbl_CustomerTransaction ct on cm.CustomerId = ct.CustomerId group by cm.CustmerName, cm.Address,cm.CustomerMobileNo";
+                string sqlQuery = "SELECT cm.CustmerName, cm.Address,cm.CustomerMobileNo,sum(ct.BookingAmount) as BookingAmount,sum(ct.BookingReceivedAmt) as BookingReceivedAmt,sum(ct.CancelBookingAmt) as CancelBookingAmt,(sum(ct.BookingAmount) - sum(ct.BookingReceivedAmt) - sum(ct.CancelBookingAmt)) as Outstanding FROM tbl_CustomerMaster cm inner join tbl_CustomerTransaction ct on cm.CustomerId = ct.CustomerId group by cm.CustmerName, cm.Address,cm.CustomerMobileNo";
                 SqlCommand cmd = new SqlCommand(sqlQuery, con);
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();

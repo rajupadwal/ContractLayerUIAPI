@@ -95,7 +95,12 @@ export class IncomeDetailsComponent implements OnInit {
     };
     let income = this.incomedetailsForm.value;
 
-    //let expencedetails = this.expencedetailsForm.value;
+    var a = new Date(income.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    income.Date = moment(b).toDate();
+
     income.LocationId = income.Location.LocationId;
     income.IncomeId = income.Income.IncomeId;
     delete income.Location;

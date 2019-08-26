@@ -6,6 +6,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { BookingDetailsComponent } from '../booking-details/booking-details.component';
 import { BookingService } from './booking.service';
 import * as moment from 'moment';
+import { ProductService } from '../../master/product-view/product.service';
 
 @Component({
   selector: 'app-booking-view',
@@ -16,22 +17,14 @@ export class BookingViewComponent implements OnInit {
 
   onBtnClick1 = (param) => {
     alert('i am clicked');
-    console.log(param);
+    console.log (param);
   }
 
   private gridApi;
   private gridColumnApi;
-  private columnTypes;
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
+   
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
 
@@ -80,7 +73,7 @@ export class BookingViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'BookingDate ', field: 'BookingDate', valueFormatter: this.dateFormatter, 'width': 180, 
+      headerName: 'Booking Date ', field: 'BookingDate', valueFormatter: this.dateFormatter, 'width': 180,
       filter: "agDateColumnFilter",
       filterParams: {
         comparator: function (filterLocalDateAtMidnight, cellValue) {
@@ -136,7 +129,7 @@ export class BookingViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private bookingService: BookingService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private bookingService: BookingService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -149,6 +142,11 @@ export class BookingViewComponent implements OnInit {
         this.rowData = booking;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'BookingDetails');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(BookingDetailsComponent, { modalConfig: { title: 'Add/Edit Booking Order' },isEditable: false });
     ref.afterClosed.subscribe(result => {

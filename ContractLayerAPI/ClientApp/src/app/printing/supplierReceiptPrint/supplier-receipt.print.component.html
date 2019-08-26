@@ -2,67 +2,61 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="invoice-title">
-        <h4>Supplier Payment Receipt</h4>
+        <h5>Supplier Payment Receipt</h5>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div style="width:60%">
-      <strong>ReceiptNo : {{SupplierReceiptMaster.ReceiptNo}}</strong>
-    </div>
-    <div style="width:40%">
-      <strong>Date : {{SupplierReceiptMaster.Date| date:'dd/MM/yyyy'}}</strong>
-    </div>
-  </div>
 
-  <div class="row">
-    <div style="width:60%">
-      <div style="width:40%">
-        <strong> Location : {{SupplierReceiptMaster.Location.LocationName}}</strong>
-      </div>
-    </div>
-    <div style="width:40%">
-      <strong>Supplier Name : {{SupplierReceiptMaster.Supplier.SupplierName}}</strong>
-    </div>
-  </div>
-  <div class="row">
-    <div style="width:60%">
-      <strong>Payment Type : {{SupplierReceiptMaster.PaymentType}}</strong>
-    </div>
-    <div style="width:40%">
-      <strong>Bill Ref No : {{SupplierReceiptMaster.BillRefNo}}</strong>
-    </div>
-  </div>
-  <div class="row">
-    <div style="width:60%">
-      <strong>Payment Method : {{SupplierReceiptMaster.PaymentMethod}}</strong>
-    </div>
-    <div style="width:40%">
-      <strong>Cheque No : {{SupplierReceiptMaster.ChequeNo}}</strong>
-    </div>
-  </div>
+  <table border='0' width='690px' cellpadding='0' cellspacing='0' align='center'>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left' width="80px"><strong>ReceiptNo </strong></td>
+      <td width="5px">:- </td>
+      <td width="120px"><strong>{{SupplierReceiptMaster.ReceiptNo}}</strong></td>
+      <td align='right' width="80px"><strong>Date </strong></td>
+      <td width="20px" align="right"> :-  </td>
+      <td width="120px"><strong>{{SupplierReceiptMaster.Date| date:'dd/MM/yyyy'}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left'><strong>Supplier Name </strong></td>
+      <td>:- </td>
+      <td><strong>{{SupplierReceiptMaster.Supplier.SupplierName}}</strong></td>
+      <td align='right'><strong>Location  </strong></td>
+      <td align="right"> :-  </td>
+      <td><strong>{{SupplierReceiptMaster.Location.LocationName}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left'><strong>Payment Type </strong></td>
+      <td>:- </td>
+      <td><strong>{{SupplierReceiptMaster.PaymentType}}</strong></td>
+      <td align='right'><strong>BillRefNo</strong></td>
+      <td align="right"> :-  </td>
+      <td><strong>{{SupplierReceiptMaster.BillRefNo}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left'><strong>Payment Method </strong></td>
+      <td>:- </td>
+      <td><strong>{{SupplierReceiptMaster.PaymentMethod}}</strong></td>
+      <td align='right'><strong>Cheque No</strong></td>
+      <td align="right"> :-  </td>
+      <td><strong>{{SupplierReceiptMaster.ChequeNo}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left'><strong>Amount Paid </strong></td>
+      <td>:- </td>
+      <td><strong>{{SupplierReceiptMaster.AmountPaid}}</strong></td>
+      <td align='right'><strong>Narration </strong></td>
+      <td align="right"> :-  </td>
+      <td><strong>{{SupplierReceiptMaster.Narration}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
 
-  <div class="row">
-    <div style="width:60%">
-      <strong>Amount : {{SupplierReceiptMaster.AmountPaid}}</strong>
-    </div>
-    <div style="width:40%">
-      <strong>Narration : {{SupplierReceiptMaster.Narration}}</strong>
-    </div>
-  </div>
+  </table>
   <hr>
-  <div class="row">
-    <div style="width:50%">
-    </div>
-    <div style="width:50%">
-    </div>
-  </div>
 
-  <div class="row">
-    <div style="width:50%">
-    </div>
-    <div style="width:50%">
-      <strong>Authorized Signature</strong>
-    </div>
-  </div>
 </div>
+

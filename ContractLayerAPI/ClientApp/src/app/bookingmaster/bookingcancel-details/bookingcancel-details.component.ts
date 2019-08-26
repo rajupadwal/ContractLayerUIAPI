@@ -147,6 +147,13 @@ export class BookingcancelDetailsComponent implements OnInit {
     }
 
     let bookingcancel = this.bookingcancelForm.value;
+
+    var a = new Date(bookingcancel.BookungCancelDate);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    bookingcancel.BookungCancelDate = moment(b).toDate();
+
     bookingcancel.LocationId = bookingcancel.Location.LocationId;
     bookingcancel.CustomerId = bookingcancel.Customer.CustomerId;
     bookingcancel.PlanId = bookingcancel.Plan.PlanId;

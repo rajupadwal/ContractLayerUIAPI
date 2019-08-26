@@ -133,6 +133,12 @@ export class FarmerOutwardComponent implements OnInit {
   }
   saveItems = () => {
 
+    var a = new Date(this.FarmerOutwardMaster.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    this.FarmerOutwardMaster.Date = moment(b).toDate();
+
     delete this.FarmerOutwardMaster.Location;
 
     delete this.FarmerOutwardMaster.Plan;

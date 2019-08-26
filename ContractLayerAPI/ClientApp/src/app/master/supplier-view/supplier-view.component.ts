@@ -7,6 +7,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { SupplierMasterComponent } from '../supplier-master/supplier-master.component';
 import { DialogConfig } from '../../dialog/dialog-config';
 import { DialogRef } from '../../dialog/dialog-ref';
+import { ProductService } from '../product-view/product.service';
 
 
 @Component({
@@ -24,17 +25,7 @@ export class SupplierViewComponent implements OnInit {
 
 
   columnDefs = [
-    //{
-
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
-
-
+     
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
 
@@ -71,11 +62,7 @@ export class SupplierViewComponent implements OnInit {
       checkboxSelection: true,
       field: 'SupplierId', 'width': 150
     },
-
-    
-
-    
-
+         
     { headerName: 'Supplier Name ', field: 'SupplierName', 'width': 150 },
     {
       headerName: 'Supplier Mobile No', field: 'SupplierMobileNo', ' width': 150
@@ -104,7 +91,7 @@ export class SupplierViewComponent implements OnInit {
 
   ];
 
-  constructor(private router: Router, private http: HttpClient, private SupplierService: SupplierService, public dialog: DialogService, private config: DialogConfig, public dialogref: DialogRef) { }
+  constructor(private router: Router, private http: HttpClient, private SupplierService: SupplierService, public dialog: DialogService, private config: DialogConfig, public dialogref: DialogRef, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -133,6 +120,9 @@ export class SupplierViewComponent implements OnInit {
     }
   }
 
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'SupplieMaster');
+  }
 
   redirectToAddNew() {
     const ref = this.dialog.open(SupplierMasterComponent, { modalConfig: { title: 'Add/Edit Supplier' },isEditable: false });

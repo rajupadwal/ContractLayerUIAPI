@@ -2,54 +2,60 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="invoice-title">
-        <h4>Booking/Bill Customer Receipt</h4>
+        <h5>Booking/Bill Customer Receipt</h5>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div style="width:60%">
-      <strong>ReceiptNo : {{CustomerReceiptMaster.ReceiptNo}}</strong>
-    </div>
-    <div style="width:40%">
-      <strong>Date : {{CustomerReceiptMaster.Date| date:'dd/MM/yyyy'}}</strong>
-    </div>
-  </div>
 
-  <div class="row">
-    <div style="width:60%">
-      <div style="width:40%">
-        <strong> Location : {{CustomerReceiptMaster.Location.LocationName}}</strong>
-      </div>
-    </div>
-    <div style="width:40%">
-      <strong>Customer Name : {{CustomerReceiptMaster.Customer.CustmerName}}</strong>
-    </div>
-  </div>
-  <div class="row">
-    <div style="width:60%">
-      <strong>Payment Type : {{CustomerReceiptMaster.PaymentType}}</strong>
-    </div>
-    <div style="width:40%">
-      <strong>Booking/Bill No : {{CustomerReceiptMaster.BillRefNo}}</strong>
-    </div>
-  </div>
-  <div class="row">
-    <div style="width:60%">
-      <strong>Payment Method : {{CustomerReceiptMaster.PaymentMethod}}</strong>
-    </div>
-    <div style="width:40%">
-      <strong>Cheque No : {{CustomerReceiptMaster.ChequeNo}}</strong>
-    </div>
-  </div>
+  <table border='0' width='690px' cellpadding='0' cellspacing='0' align='center'>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left' width="80px"><strong>ReceiptNo </strong></td>
+      <td width="5px">:- </td>
+      <td width="120px"><strong>{{CustomerReceiptMaster.ReceiptNo}}</strong></td>
+      <td align='right' width="80px"><strong>Date </strong></td>
+      <td width="20px" align="right"> :-  </td>
+      <td width="120px"><strong>{{CustomerReceiptMaster.Date| date:'dd/MM/yyyy'}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left'><strong>Customer Name </strong></td>
+      <td>:- </td>
+      <td><strong>{{CustomerReceiptMaster.Customer.CustmerName}}</strong></td>
+      <td align='right'><strong>Location  </strong></td>
+      <td align="right"> :-  </td>
+      <td><strong>{{CustomerReceiptMaster.Location.LocationName}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left'><strong>Payment Type </strong></td>
+      <td>:- </td>
+      <td><strong>{{CustomerReceiptMaster.PaymentType}}</strong></td>
+      <td align='right'><strong>BillRefNo</strong></td>
+      <td align="right"> :-  </td>
+      <td><strong>{{CustomerReceiptMaster.BillRefNo}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left'><strong>Payment Method </strong></td>
+      <td>:- </td>
+      <td><strong>{{CustomerReceiptMaster.PaymentMethod}}</strong></td>
+      <td align='right'><strong>Cheque No</strong></td>
+      <td align="right"> :-  </td>
+      <td><strong>{{CustomerReceiptMaster.ChequeNo}}</strong></td>
+    </tr>
+    <tr> <td colspan="6"></td></tr>
+    <tr>
+      <td align='left'><strong>Cash Amount </strong></td>
+      <td>:- </td>
+      <td><strong>{{CustomerReceiptMaster.CashAmount}}</strong></td>
+      <td align='right'><strong>Narration </strong></td>
+      <td align="right"> :-  </td>
+      <td><strong>{{CustomerReceiptMaster.Narration}}</strong></td>
+    </tr>
+    <tr> <td colspan="4"></td></tr>
 
-  <div class="row">
-    <div style="width:60%">
-      <strong>Amount : {{CustomerReceiptMaster.CashAmount}}</strong>
-    </div>
-    <div style="width:40%">
-      <strong>Narration : {{CustomerReceiptMaster.Narration}}</strong>
-    </div>
-  </div>
+  </table>
   <hr>
 
 </div>

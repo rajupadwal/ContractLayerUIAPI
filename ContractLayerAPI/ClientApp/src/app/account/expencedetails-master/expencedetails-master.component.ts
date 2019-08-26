@@ -118,6 +118,13 @@ export class ExpencedetailsMasterComponent implements OnInit {
     };
     //let customer = this.customerForm.value;
     let expencedetails = this.expencedetailsForm.value;
+
+    var a = new Date(expencedetails.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    expencedetails.Date = moment(b).toDate();
+
     expencedetails.EmployeeId = expencedetails.Employee.EmployeeId;
     expencedetails.LocationId = expencedetails.Location.LocationId;
     expencedetails.ExpenceId = expencedetails.Expence.ExpenceId;

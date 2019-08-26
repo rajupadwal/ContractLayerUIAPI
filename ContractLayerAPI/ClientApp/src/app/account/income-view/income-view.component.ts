@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
 import { IncomeDetailsComponent } from '../income-details/income-details.component';
 import { IncomeService } from './income.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 @Component({
   selector: 'app-income-view',
@@ -19,15 +20,7 @@ export class IncomeViewComponent implements OnInit {
 }
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
-
+     
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
 
@@ -83,7 +76,7 @@ export class IncomeViewComponent implements OnInit {
    
   ];
     
-  constructor(private router: Router, private http: HttpClient, private incomeService: IncomeService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private incomeService: IncomeService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -97,6 +90,11 @@ export class IncomeViewComponent implements OnInit {
         this.rowData = income;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'IncomeDetails');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(IncomeDetailsComponent, { modalConfig: { title: 'Add/Edit Income Details' },isEditable: false });
     ref.afterClosed.subscribe(result => {

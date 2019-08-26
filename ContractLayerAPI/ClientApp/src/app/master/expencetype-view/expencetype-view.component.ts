@@ -6,6 +6,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { ExpencetypeMasterComponent } from '../expencetype-master/expencetype-master.component';
 import { from } from 'rxjs';
 import { ExpencetypeService } from './expencetype.service';
+import { ProductService } from '../product-view/product.service';
 //import "ag-grid-enterprise";
 
 @Component({
@@ -103,7 +104,7 @@ export class ExpencetypeViewComponent implements OnInit {
     this.gridApi.exportDataAsExcel(params);
   }
 
-  constructor(private router: Router, private http: HttpClient, private expencetypeservice: ExpencetypeService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private expencetypeservice: ExpencetypeService, public dialog: DialogService, public productService: ProductService,) { }
 
   ngOnInit() {
 
@@ -116,6 +117,12 @@ export class ExpencetypeViewComponent implements OnInit {
         this.rowData = expencetype;
       });
   }
+
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'ExpenceTypes');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(ExpencetypeMasterComponent, { modalConfig: { title: 'Add/Edit Expence TYpe Master' },isEditable: false });
     ref.afterClosed.subscribe(result => {

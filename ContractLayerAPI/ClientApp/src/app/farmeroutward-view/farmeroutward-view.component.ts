@@ -6,6 +6,8 @@ import { DialogService } from '../dialog/dialog.service';
 import { FarmeroutwardService } from './farmeroutward.service';
 import { FarmerOutwardComponent } from '../farmer-outward/farmer-outward.component';
 import * as moment from 'moment';
+import { PrintService } from '../printing/print.service';
+import { ProductService } from '../master/product-view/product.service';
 
 @Component({
   selector: 'app-farmeroutward-view',
@@ -19,7 +21,7 @@ export class FarmeroutwardViewComponent implements OnInit {
 
   columnDefs = [
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -33,9 +35,22 @@ export class FarmeroutwardViewComponent implements OnInit {
         return newTH;
       },
     },
+    {
+      headerName: 'Print', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size: large;"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("FarmerOutward", params.data);
+
+        };
+        return newTH;
+      },
+    },
 
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -115,7 +130,7 @@ export class FarmeroutwardViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private farmeroutwardService: FarmeroutwardService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private farmeroutwardService: FarmeroutwardService, public dialog: DialogService, public printService: PrintService, public productService: ProductService) { }
 
 
   ngOnInit() {
@@ -130,6 +145,10 @@ export class FarmeroutwardViewComponent implements OnInit {
 
       }
     );
+  }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'farmeroutward');
   }
 
   redirectToAddNew() {

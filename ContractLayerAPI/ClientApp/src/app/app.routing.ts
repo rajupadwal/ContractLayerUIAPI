@@ -13,6 +13,9 @@ import { PurchaseBillPrintComponent} from './printing/purchaseBillPrint/purchase
 import { CreateSalePrintComponent } from './printing/createSalePrint/create-sale.print.component';
 import { CustomerReceiptPrintComponent } from './printing/customerReceiptPrint/customer-receipt.print.component';
 import { SupplierReceiptPrintComponent } from './printing/supplierReceiptPrint/supplier-receipt.print.component';
+import { FarmerInwardPrintComponent } from './printing/farmerInwardPrint/farmer-inward.print.component';
+import { FarmerOutwardPrintComponent } from './printing/farmerOutwardPrint/farmer-outward.print.component';
+
 import {AuthGuard } from './auth.guard';
 export const routes: Routes = [
 
@@ -28,6 +31,8 @@ export const routes: Routes = [
       { path: 'CreateSale/:createSales', component: CreateSalePrintComponent },
       { path: 'CustomerReceipt/:customerReceipts', component: CustomerReceiptPrintComponent },
       { path: 'SupplierReceipt/:supplierReceipts', component: SupplierReceiptPrintComponent },
+      { path: 'FarmerInward/:farmerInwards', component: FarmerInwardPrintComponent },
+      { path: 'FarmerOutward/:farmerOutwards', component: FarmerOutwardPrintComponent },
     ]
   },
   {
@@ -139,32 +144,18 @@ export const routes: Routes = [
             loadChildren: './master/product-view/product.view.module#ProductViewModule'
             , canActivate: [AuthGuard] 
           },
-          {
-            path: 'Employeeadvanceview',
-            loadChildren: './master/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
-            , canActivate: [AuthGuard] 
-          },
+           
           {
             path: 'Expencetypeview',
             loadChildren: './master/expencetype-view/expencetype.view.module#ExpencetypeViewModule'
             , canActivate: [AuthGuard] 
           },
-          {
-            path: 'Officeexpencedetails',
-            loadChildren: './master/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
-            , canActivate: [AuthGuard] 
-          },
+           
           {
             path: 'Eggsrangedetails',
             loadChildren: './master/eggsrange-view/eggsrange.view.module#EggsrangeViewModule'
             , canActivate: [AuthGuard] 
           },
-          {
-            path: 'Incomedetails',
-            loadChildren: './master/income-view/income.view.module#IncomeViewModule'
-            , canActivate: [AuthGuard] 
-          },
-                           
         ]
       },
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -60,17 +60,37 @@ export class PrintService {
           }]);
         break;
       }
+
+      case 'FarmerInward': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
+      case 'FarmerOutward': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
     }
-   
   }
-  
+
 
 
   onDataReady() {
     setTimeout(() => {
       window.print();
       this.isPrinting = false;
-      this.router.navigate([{ outlets: { print: null }}]);
+      this.router.navigate([{ outlets: { print: null } }]);
     });
   }
 }

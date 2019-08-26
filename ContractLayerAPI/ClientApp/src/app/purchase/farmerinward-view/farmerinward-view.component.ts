@@ -6,6 +6,8 @@ import { DialogService } from '../../dialog/dialog.service';
 import { FarmerInwardComponent } from '../farmer-inward/farmer-inward.component';
 import { FarmerinwardService } from './farmerinward.service';
 import * as moment from 'moment';
+import { PrintService } from '../../printing/print.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 @Component({
   selector: 'app-farmerinward-view',
@@ -18,13 +20,9 @@ export class FarmerinwardViewComponent implements OnInit {
   private gridColumnApi;
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //},
-
+    
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -34,6 +32,19 @@ export class FarmerinwardViewComponent implements OnInit {
           ref.afterClosed.subscribe(result => {
             if (result == false) { return;}else this.RefreshGrid();
           });
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Print', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size: large;"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("FarmerInward", params.data);
+
         };
         return newTH;
       },
@@ -124,7 +135,7 @@ export class FarmerinwardViewComponent implements OnInit {
   }
 
 
-  constructor(private router: Router, private http: HttpClient, private farmerinwardService: FarmerinwardService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private farmerinwardService: FarmerinwardService, public dialog: DialogService, public printService: PrintService, public productService: ProductService) { }
 
 
   ngOnInit() {
@@ -139,6 +150,10 @@ export class FarmerinwardViewComponent implements OnInit {
 
       }
     );
+  }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'FarmerInward');
   }
 
   redirectToAddNew() {

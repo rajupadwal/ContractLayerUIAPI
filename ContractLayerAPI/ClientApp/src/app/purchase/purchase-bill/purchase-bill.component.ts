@@ -113,8 +113,8 @@ export class PurchaseBillComponent implements OnInit {
     this.isEditable = true;
     this.PurchaseBillMaster = this.config.data;
     this.PurchaseBillMaster.deletedDetailsList = [];
-    this.PurchaseBillMaster.BillDate = moment(this.config.data.Date).toDate();
-    this.PurchaseBillMaster.GRNDate = moment(this.config.data.Date).toDate();
+    this.PurchaseBillMaster.BillDate = moment(this.config.data.BillDate).toDate();
+    this.PurchaseBillMaster.GRNDate = moment(this.config.data.GRNDate).toDate();
     this.getAllPurchasebillmastedetails();
   }
 
@@ -198,7 +198,16 @@ export class PurchaseBillComponent implements OnInit {
     let purchaseDetails = {};
     this.PurchaseBillMaster.TblPurchaseBillDt = this.PurchaseBillDetailsList;
     purchaseDetails = JSON.parse(JSON.stringify(this.PurchaseBillMaster));
-    //Object.assign(purchaseDetails, this.PurchaseBillMaster);
+
+    var a = new Date(this.PurchaseBillMaster.BillDate);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    this.PurchaseBillMaster.BillDate = moment(b).toDate();
+
+    var c = new Date(this.PurchaseBillMaster.GRNDate);
+    var d = new Date(c.getTime() + day);
+    this.PurchaseBillMaster.GRNDate = moment(d).toDate();
 
     delete this.PurchaseBillMaster.Location;
     delete this.PurchaseBillMaster.Supplier;

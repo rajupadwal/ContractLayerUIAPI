@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
 import { EmployeeadvanceDetailsComponent } from '../employeeadvance-details/employeeadvance-details.component';
 import { EmployeeadvanceService } from './employeeadvance.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 @Component({
   selector: 'app-employeeadvance-view',
@@ -77,7 +78,7 @@ export class EmployeeadvanceViewComponent implements OnInit {
    
   ];
     
-  constructor(private router: Router, private http: HttpClient, private employeeadvanceService: EmployeeadvanceService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private employeeadvanceService: EmployeeadvanceService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -90,6 +91,11 @@ export class EmployeeadvanceViewComponent implements OnInit {
         this.rowData = employeeadvance;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'EmployeeAdvance');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(EmployeeadvanceDetailsComponent, { modalConfig: { title: 'Add/Edit Employee Advance' },isEditable: false });
     ref.afterClosed.subscribe(result => {
