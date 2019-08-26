@@ -27,7 +27,8 @@ namespace ContractLayerFarm.Data.Repositories
         //}
         public IEnumerable<TblUserInfo> SearchLogin(TblUserInfo user)
         {
-            return this.ktConContext.Set<TblUserInfo>().Where(info => info.Username==user.Username && info.Userpassword==user.Userpassword);
+            return this.ktConContext.Set<TblUserInfo>().Where(info => info.Username == user.Username
+            && info.Userpassword == user.Userpassword).Include(userInfo => userInfo.UserRole).ThenInclude(userinfo => userinfo.UserRolePermission);
         }
 
         public int GetChickEggsBillNo()
