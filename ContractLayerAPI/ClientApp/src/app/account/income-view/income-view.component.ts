@@ -53,7 +53,7 @@ export class IncomeViewComponent implements OnInit {
       headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 130
+      field: 'RecordNo', 'width': 120
     },
 
     

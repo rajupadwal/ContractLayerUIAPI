@@ -651,6 +651,53 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
 
+        public void SavePurchaseBillReturnMaster(TblPurchaseBillReturnMt master)
+        {
+            List<TblStockDetails> stockList = new List<TblStockDetails>();
+
+            foreach (var details in master.TblPurchaseBillReturnDt)
+            {
+                stockList.Add(new TblStockDetails()
+                {
+                    InwardDocNo = "",
+                    OutwardDocNo = master.BatchNo.ToString(),
+                    DebitNoteNo = "",
+                    CreditNoteNo = "",
+                    TranscationType = typeof(TblPurchaseBillReturnMt).ToString(),
+                    ProductId = details.ProductId,
+                    ProductType = details.ProductType,
+                    InwardQty = 0,
+                    OutwardQty = 0,
+                    RejectedQty=details.RejectedQty,
+                    TranscationDate = master.BillDate,
+                    OpeningStock = 0,
+                    CreditNoteQty = 0,
+                    DebitNoteQty = 0,
+                    Unit = details.Unit,
+                });
+            }
+            if (master.BillId > 0)
+            {
+                var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.OutwardDocNo == master.BatchNo.ToString() && s.TranscationType == typeof(TblPurchaseBillReturnMt).ToString());
+                RepositoryContext.RemoveRange(toBeDeleteStock);
+                this.RepositoryContext.SaveChanges();
+                var toBeDeleteDT = this.RepositoryContext.Set<TblPurchaseBillReturnDt>().Where(s => s.BillId == master.BillId);
+                RepositoryContext.RemoveRange(toBeDeleteDT);
+                this.RepositoryContext.SaveChanges();
+
+                this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
+                this.RepositoryContext.Set<TblPurchaseBillReturnMt>().Update(master);
+                this.RepositoryContext.SaveChanges();
+
+            }
+            else
+            {
+                this.RepositoryContext.Set<TblPurchaseBillReturnMt>().Add(master);
+                this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
+                this.RepositoryContext.SaveChanges();
+            }
+        }
+
         public void SavePurchaseBillDetails(TblPurchaseBillDt[] details)
         {
             this.RepositoryContext.Set<TblPurchaseBillDt>().AddRange(details);

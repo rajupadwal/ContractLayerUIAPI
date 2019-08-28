@@ -16,6 +16,7 @@ import { SupplierReceiptPrintComponent } from './printing/supplierReceiptPrint/s
 import { FarmerInwardPrintComponent } from './printing/farmerInwardPrint/farmer-inward.print.component';
 import { FarmerOutwardPrintComponent } from './printing/farmerOutwardPrint/farmer-outward.print.component';
 
+import {AuthGuard } from './auth.guard';
 export const routes: Routes = [
 
   
@@ -25,7 +26,7 @@ export const routes: Routes = [
     outlet: 'print',
     component: PrintLayoutComponent,
     children: [
-      { path: 'invoice/:invoiceIds', component: InvoiceComponent },
+      { path: 'invoice/:invoiceIds', component: InvoiceComponent},
       { path: 'PurchaseBill/:purchaseDetails', component: PurchaseBillPrintComponent },
       { path: 'CreateSale/:createSales', component: CreateSalePrintComponent },
       { path: 'CustomerReceipt/:customerReceipts', component: CustomerReceiptPrintComponent },
@@ -71,6 +72,7 @@ export const routes: Routes = [
       {
         path: 'Farmeroutwardview',
         loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
+         ,canActivate: [AuthGuard] 
       },
       //{
       //  path: 'Purchasebillview',
@@ -80,6 +82,7 @@ export const routes: Routes = [
       {
         path: 'Purchasebillreturnview',
         loadChildren: './purchasebillreturn-view/purchasebillreturn.module#PurchasebillreturnModule'
+        , canActivate: [AuthGuard] 
       },
       {
         path: 'master',
@@ -91,56 +94,67 @@ export const routes: Routes = [
           {
             path: 'Enquiryview',
             loadChildren: './master/enquiry-view/enquiry.view.module#EnquiryViewModule'
+            , canActivate: [AuthGuard] 
           },
 
           {
             path: 'Customerview',
             loadChildren: './master/customer-view/customer.module#CusotmerModule'
+            , canActivate: [AuthGuard] 
           },
 
           {
             path: 'Supplierview',
             loadChildren: './master/supplier-view/supplier.view.module#SupplierViewModule'
+            , canActivate: [AuthGuard] 
           },
 
           {
             path: 'Locationview',
             loadChildren: './master/location-view/location.view.module#LocationViewModule'
+            , canActivate: [AuthGuard] 
           },
 
           {
             path: 'Planview',
             loadChildren: './master/plan-view/plan.view.module#PlanViewModule'
+            , canActivate: [AuthGuard] 
           },
 
           {
             path: 'Productdescview',
             loadChildren: './master/productdesc-view/productdesc.view.module#ProductdescViewModule'
+            , canActivate: [AuthGuard] 
           },
 
           {
             path: 'Profileview',
             loadChildren: './master/profile-view/profile.view.module#ProfileViewModule'
+            , canActivate: [AuthGuard] 
           },
           
           {
             path: 'Employeeview',
             loadChildren: './master/employee-view/employee.view.module#EmployeeViewModule'
+            , canActivate: [AuthGuard] 
           },
           
           {
             path: 'Productview',
             loadChildren: './master/product-view/product.view.module#ProductViewModule'
+            , canActivate: [AuthGuard] 
           },
            
           {
             path: 'Expencetypeview',
             loadChildren: './master/expencetype-view/expencetype.view.module#ExpencetypeViewModule'
+            , canActivate: [AuthGuard] 
           },
            
           {
             path: 'Eggsrangedetails',
             loadChildren: './master/eggsrange-view/eggsrange.view.module#EggsrangeViewModule'
+            , canActivate: [AuthGuard] 
           },
         ]
       },
@@ -156,10 +170,12 @@ export const routes: Routes = [
           {
             path: 'Bookingview',
             loadChildren: './bookingmaster/booking-view/booking.view.module#BookingViewModule'
+            , canActivate: [AuthGuard] 
           },
           {
             path: 'Bookingcancelview',
             loadChildren: './bookingmaster/bookingcancel-view/bookingcancel.view.module#BookingcancelViewModule'
+            , canActivate: [AuthGuard] 
           },
           
         ]
@@ -175,14 +191,17 @@ export const routes: Routes = [
           {
             path: 'Purchasebillview',
             loadChildren: './purchase/purchasebill-view/purchasebill.module#PurchasebillModule'
+            , canActivate: [AuthGuard] 
           },
           {
             path: 'Farmerinwardview',
             loadChildren: './purchase/farmerinward-view/farmerinward.module#FarmerinwardModule'
+            , canActivate: [AuthGuard] 
           },
           {
             path: 'Farmeroutwardview',
             loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
+            , canActivate: [AuthGuard] 
           },
 
         ]
@@ -199,6 +218,7 @@ export const routes: Routes = [
           {
             path: 'Salechickeggbillview',
             loadChildren: './sale/farmerchickeggsbill-view/farmerchickeggsbill.view.module#FarmerchickeggbillModule'
+            , canActivate: [AuthGuard] 
           },
         ]
       },
@@ -214,16 +234,19 @@ export const routes: Routes = [
           {
             path: 'Stockdetailview',
             loadChildren: './reports/stockdetail-view/stockdetail.module#StockdetailModule'
+            , canActivate: [AuthGuard] 
           },
 
           {
             path: 'Customerbookingoutstandingview',
             loadChildren: './reports/customerbookingoutstanding-view/customerbookingoutstanding.module#CustomerbookingoutstandingModule'
+            , canActivate: [AuthGuard] 
           },
 
           {
             path: 'Customerbilloutstandingview',
             loadChildren: './reports/customerbilloutstanding-view/customerbilloutstanding.module#CustomerbilloutstandingModule'
+            , canActivate: [AuthGuard] 
           },
         ]
       },
@@ -239,26 +262,32 @@ export const routes: Routes = [
           {
             path: 'Salesreceiptview',
             loadChildren: './account/salesreceipt-view/salesreceipt.view.module#SalesReceiptViewModule'
+            , canActivate: [AuthGuard] 
           },
           {
             path: 'Purchasepaymentview',
             loadChildren: './account/purchasepayment-view/purchasepayment.view.module#PurchasePaymentViewModule'
+            , canActivate: [AuthGuard] 
           },
           {
             path: 'Purchasereturnreceiptview',
             loadChildren: './account/purchasereturnreceipt-view/purchasereturnreceipt.view.module#PurchasereturnReceiptViewModule'
+            , canActivate: [AuthGuard] 
           },
           {
             path: 'Officeexpencedetails',
             loadChildren: './account/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
+            , canActivate: [AuthGuard] 
           },
           {
             path: 'Employeeadvanceview',
             loadChildren: './account/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
+            , canActivate: [AuthGuard] 
           },
           {
             path: 'Incomedetails',
             loadChildren: './account/income-view/income.view.module#IncomeViewModule'
+            , canActivate: [AuthGuard] 
           },
         ]
       },
