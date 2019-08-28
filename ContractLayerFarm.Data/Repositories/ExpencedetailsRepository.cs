@@ -37,5 +37,12 @@ namespace ContractLayerFarm.Data.Repositories
             int maxExpenceNo = this.ktConContext.TblOfficeExpencesDetails.Select(p => p.ExpencesNo).DefaultIfEmpty(0).Max() + 1;
             return maxExpenceNo;
         }
+
+        public void DeleteOfficeExpense(TblOfficeExpencesDetails master)
+        {
+            var toBeDeleteofficeexp = this.RepositoryContext.Set<TblOfficeExpencesDetails>().Where(s => s.PkId == master.PkId );
+            RepositoryContext.RemoveRange(toBeDeleteofficeexp);
+            this.RepositoryContext.SaveChanges();
+        }
     }
 }

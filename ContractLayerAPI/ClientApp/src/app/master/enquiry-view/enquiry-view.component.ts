@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
 import { EnquiryMasterComponent } from '../enquiry-master/enquiry-master.component';
 import { EnquiryService } from './enquiry.service';
+import { ProductService } from '../product-view/product.service';
 
 
 @Component({
@@ -20,20 +21,13 @@ export class EnquiryViewComponent implements OnInit {
   }
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
+    
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(EnquiryMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Enquiry' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -45,11 +39,11 @@ export class EnquiryViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -84,7 +78,7 @@ export class EnquiryViewComponent implements OnInit {
 
   rowData;
 
-  constructor(private router: Router, private http: HttpClient, private enquiryService: EnquiryService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private enquiryService: EnquiryService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -103,11 +97,16 @@ export class EnquiryViewComponent implements OnInit {
     };
     //let customer = this.customerForm.value;
     
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.ENQUIRY_API.DELETE, enquiry, httpOptions)
+        .subscribe((enquiry) => {
+          this.RefreshGrid();
+        });
+    }
+  }
 
-    return this.http.post(APP_CONSTANT.ENQUIRY_API.DELETE, enquiry, httpOptions)
-      .subscribe((enquiry) => {
-        this.RefreshGrid();
-      });
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'EnquiryDetails');
   }
 
   redirectToAddNew() {

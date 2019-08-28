@@ -1,0 +1,536 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Purchase Bill</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <!--<form [formGroup]="bookingdetailsForm" (ngSubmit)="saveBookingDetails()">-->
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>GRN No:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.BatchNo" type="text" pInputText id="batchno" name="batchno" class="form-control" rows="3" disabled>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Bill No:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.BillNo" type="text" pInputText id="billno" name="billno" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>GRN Date :</strong></label>
+            <div>
+              
+                <p-calendar [(ngModel)]="PurchaseBillMaster.GRNDate" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="select"><strong>Location :</strong></label>
+            <p-autoComplete [(ngModel)]="PurchaseBillMaster.Location" [suggestions]="locationList" (completeMethod)="searchLocation($event)"
+                            [dropdown]="true" (onSelect)="onSelectLocations($event)" [forceSelection]="true" field="LocationName"></p-autoComplete>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Date :</strong></label>
+            <div>
+              
+                <p-calendar [(ngModel)]="PurchaseBillMaster.BillDate" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="select"><strong>Supplier Name :</strong></label>
+            <p-autoComplete [(ngModel)]="PurchaseBillMaster.Supplier" [suggestions]="supplierList" (completeMethod)="searchSupplier($event)"
+                            [dropdown]="true" (onSelect)="onSelectSuppliers($event)" [forceSelection]="true" field="SupplierName"></p-autoComplete>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="detailsGrid" class="col-sm-12">
+      <div class="card">
+
+        <div class="card-header">
+          <strong>Product Details</strong>
+          <div style="width:10px">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-2">
+            <div class="card-block ">
+              <div class="form-group">
+                Product Name
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                Standard Pack
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                Hsn Code
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                
+                  Quantity
+                 
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                
+                  Rate
+                 
+              </div>
+            </div>
+          </div>
+          
+          <!--<div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                
+                  Disc(%)
+                 
+              </div>
+            </div>
+          </div>-->
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                
+                  Taxable Amt
+                 
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                
+                  CGST(%)
+                 
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                
+                  SGST(%)
+                 
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                
+                  IGST(%)
+                 
+              </div>
+            </div>
+          </div>-->
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                
+                  Total
+                 
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                Action
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngFor="let item of PurchaseBillDetailsList">
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+
+                <p-autoComplete [(ngModel)]="item.Product" [suggestions]="productlist" (completeMethod)="searchProduct($event)"
+                                [dropdown]="true"  (onSelect)="onSelectProducts($event,item)" [forceSelection]="true" field="ProductName"></p-autoComplete>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="card-block">
+              <div class="form-group">
+                <span class="ui-float-label">
+                  <p-autoComplete [(ngModel)]="item.Producttypeun" [suggestions]="item.productTypeList" (completeMethod)="searchProducttype($event,item)"
+                                  [dropdown]="true" (change)="calculateTaxableAmount($event,item)" (onSelect)="onSelectProducttypes($event,item)" [forceSelection]="true" field="ProductTypeUnit"></p-autoComplete>
+                  <label for="float-input"></label>
+                </span>
+                {{item.ProductTypeList| json}}
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" [(ngModel)]="item.HsnCode" pInputText id="hsncode" name="hsncode" class="form-control" rows="3">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" (change)="calculateTaxableAmount($event,item)" [(ngModel)]="item.Quantity" pInputText id="quantity" name="quantity" class="form-control" rows="3">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" (change)="calculateTaxableAmount($event,item)" [(ngModel)]="item.Rate" pInputText id="rate" name="rate" class="form-control" rows="3">
+
+              </div>
+            </div>
+          </div>
+          
+          <!--<div class="col-sm-1">
+    <div class="card-block">
+      <div class="form-group">
+
+          <input type="text" [(ngModel)]="item.Discount" pInputText id="discount" name="discount" class="form-control" rows="3">
+
+      </div>
+    </div>
+  </div>-->
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" [(ngModel)]="item.TaxableAmt" pInputText id="taxableamt" name="taxableamt" class="form-control" rows="3">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" [(ngModel)]="item.CgstPercentage" (change)="calculateTaxableAmount($event,item)" pInputText id="cgstpercentage" name="cgstpercentage" class="form-control" rows="3">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" [(ngModel)]="item.SgstPercentage" (change)="calculateTaxableAmount($event,item)" pInputText id="sgstpercentage" name="sgstpercentage" class="form-control" rows="3">
+
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-sm-1">
+    <div class="card-block">
+      <div class="form-group">
+
+          <input type="text" [(ngModel)]="item.IgstPercentage" pInputText id="igstpercentage" name="igstpercentage" class="form-control" rows="3">
+
+      </div>
+    </div>
+  </div>-->
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+
+                <input type="text" [(ngModel)]="item.TotalAmount" pInputText id="totalamount" name="totalamount" class="form-control" rows="3">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="card-block">
+              <div class="form-group">
+                <button type="button" (click)="removeItem(item)"><i class="pi pi-times" style="font-size:large;"></i></button>
+                <i class="fa icon-trash" style="height:25px;width:20px;padding-top:10px;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10"></div>
+          <div class="col-sm-2">
+            <button type="button" (click)="addNewItem()">Add New</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Amount Before Tax:</strong></label>
+            <div>
+                <input [(ngModel)]="PurchaseBillMaster.BeforeTaxAmt" type="text" pInputText id="beforetaxamt" name="beforetaxamt" class="form-control" rows="3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Transportation Cost:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.TransportationCost" (change)="calculateTransportAmount($event)" type="text" pInputText id="transportationcost" name="transportationcost" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Transportation GST:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.TransportationGSTPer" (change)="calculateTransportAmount($event)" type="text" pInputText id="transportationgstPer" name="transportationgstPer" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Transportation GST Amt:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.TransportationGSTAmt" type="text" pInputText id="transportationgstamt" name="transportationgstamt" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Total Transportation:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.TotalTransportAmt" type="text" pInputText id="totaltransportamt" name="totaltransportamt" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Total CGST:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.TotalCGSTAmt" type="text" pInputText id="totalcgstamt" name="totalcgstamt" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Total SGST:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.TotalSGSTAmt" type="text" pInputText id="totalsgstamt" name="totalsgstamt" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Total IGST:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.TotalIGSTAmt" type="text" pInputText id="totaligstamt" name="totaligstamt" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Other Charges:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.OtherCharges" (change)="calculateTransportAmount($event)" type="text" pInputText id="othercharges" name="othercharges" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Round Off:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.Roundoff" type="text" pInputText id="roundoff" name="roundoff" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Grand Total:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.GrandTotal" type="text" pInputText id="grandtotal" name="grandtotal" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="textarea-input"><strong>Narration:</strong></label>
+            <div>
+              
+                <input [(ngModel)]="PurchaseBillMaster.Narration" type="text" pInputText id="narration" name="narration" class="form-control" rows="3">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="card-block">
+          <div class="form-group">
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-10"></div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-outline-primary" (click)="saveItems(false)">SAVE</button>
+      </div>
+      
+    </div>
+    <!--</form>-->
+  </div>
+</div>
+

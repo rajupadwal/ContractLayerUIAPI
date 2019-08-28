@@ -103,6 +103,13 @@ export class PurchasepaymentDetailsComponent implements OnInit {
       return;
     }
     let purchasepayementdetails = this.purchasepaymentdetailsForm.value;
+
+    var a = new Date(purchasepayementdetails.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    purchasepayementdetails.Date = moment(b).toDate();
+
     purchasepayementdetails.LocationId = purchasepayementdetails.Location.LocationId;
     purchasepayementdetails.SupplierId = purchasepayementdetails.Supplier.SupplierId;
     delete purchasepayementdetails.Location;

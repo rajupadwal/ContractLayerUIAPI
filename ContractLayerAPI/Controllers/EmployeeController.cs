@@ -40,13 +40,12 @@ namespace ContractLayerAPI.Controllers
             return Employee;
         }
 
-        
-
         [HttpPost("Add")]
         public bool Add([FromBody]TblEmployeeMaster employee)
         {
             try
             {
+                this._repoWrapper.Employee.SaveLoginDetails(employee);
                 this._repoWrapper.Employee.Create(employee);
                 this._repoWrapper.Employee.Save();
                 return true;

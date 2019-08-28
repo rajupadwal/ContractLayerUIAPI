@@ -93,6 +93,13 @@ export class PurchasereturnreceiptDetailsComponent implements OnInit {
   
   savePurchasereturnreceipt() {
     let purchasereturnreceipt = this.purchasereturnreceiptForm.value;
+
+    var a = new Date(purchasereturnreceipt.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    purchasereturnreceipt.Date = moment(b).toDate();
+
     purchasereturnreceipt.LocationId = purchasereturnreceipt.Location.LocationId;
     purchasereturnreceipt.SupplierId = purchasereturnreceipt.Supplier.SupplierId;
     delete purchasereturnreceipt.Location;

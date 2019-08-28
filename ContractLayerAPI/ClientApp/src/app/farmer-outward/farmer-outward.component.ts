@@ -133,6 +133,12 @@ export class FarmerOutwardComponent implements OnInit {
   }
   saveItems = () => {
 
+    var a = new Date(this.FarmerOutwardMaster.Date);
+    // seconds * minutes * hours * milliseconds = 1 day 
+    var day = 60 * 60 * 24 * 1000;
+    var b = new Date(a.getTime() + day);
+    this.FarmerOutwardMaster.Date = moment(b).toDate();
+
     delete this.FarmerOutwardMaster.Location;
 
     delete this.FarmerOutwardMaster.Plan;
@@ -182,6 +188,24 @@ export class FarmerOutwardComponent implements OnInit {
     model.ProductId = model.Product.ProductId;
     model.ProductType = model.Producttypeun.ProductType;
     model.Unit = model.Producttypeun.Unit.UnitId;
+    let newDetails = new FarmerOutwardDetail();
+    newDetails.ProductId = model.ProductId;
+    newDetails.ProductType = model.ProductType;
+
+    this.farmeroutwardService.getProductAvailableStock(newDetails)
+      .subscribe((stock: any) => {
+        model.AvailableStock = stock;
+      });
+    //model.AvailableStock=this.farmeroutwardService.getProductAvailableStock()
+
+    //let newDetails = new FarmerOutwardDetail();
+    //newDetails.ProductId = model.ProductId;
+    //newDetails.ProductType = model.ProductType;
+
+    //this.farmeroutwardService.getProductAvailableStock(newDetails)
+    //  .subscribe((stock: any) => {
+    //    model.AvailableStock = stock;
+    //  });
 
   };
 

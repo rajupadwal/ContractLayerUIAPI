@@ -6,6 +6,8 @@ import { DialogService } from '../dialog/dialog.service';
 import { FarmeroutwardService } from './farmeroutward.service';
 import { FarmerOutwardComponent } from '../farmer-outward/farmer-outward.component';
 import * as moment from 'moment';
+import { PrintService } from '../printing/print.service';
+import { ProductService } from '../master/product-view/product.service';
 
 @Component({
   selector: 'app-farmeroutward-view',
@@ -19,11 +21,11 @@ export class FarmeroutwardViewComponent implements OnInit {
 
   columnDefs = [
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerOutwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Outward' }, isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -33,13 +35,26 @@ export class FarmeroutwardViewComponent implements OnInit {
         return newTH;
       },
     },
-
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Print', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size: large;"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("FarmerOutward", params.data);
+
+        };
+        return newTH;
+      },
+    },
+
+    {
+      headerName: 'Delete', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(FarmerOutwardComponent, { data: params.data, modalConfig: { title: 'Add/Edit Farmer Outward' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -51,7 +66,7 @@ export class FarmeroutwardViewComponent implements OnInit {
     },
 
     {
-      headerName: 'RecordNo', headerCheckboxSelection: true,
+      headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
       field: 'RecordNo', 'width': 130,
@@ -59,9 +74,30 @@ export class FarmeroutwardViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
 
-    { headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 120 },
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 120,
+      headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 180,
+      filter: "agDateColumnFilter",
+      filterParams: {
+        comparator: function (filterLocalDateAtMidnight, cellValue) {
+          var dateAsString = moment(cellValue).format('DD/MM/YYYY');
+          if (dateAsString == null) return -1;
+          var dateParts = dateAsString.split("/");
+          var cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
+          if (filterLocalDateAtMidnight.getTime() == cellDate.getTime()) {
+            return 0;
+          }
+          if (cellDate < filterLocalDateAtMidnight) {
+            return -1;
+          }
+          if (cellDate > filterLocalDateAtMidnight) {
+            return 1;
+          }
+        },
+        browserDatePicker: true
+      }
+    },
+    {
+      headerName: 'Location Name', field: 'LocationName', 'width': 140,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -71,7 +107,7 @@ export class FarmeroutwardViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Plan Name ', field: 'PlanName', 'width': 120,
+      headerName: 'Plan Name ', field: 'PlanName', 'width': 340,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -94,7 +130,7 @@ export class FarmeroutwardViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private farmeroutwardService: FarmeroutwardService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private farmeroutwardService: FarmeroutwardService, public dialog: DialogService, public printService: PrintService, public productService: ProductService) { }
 
 
   ngOnInit() {
@@ -109,6 +145,10 @@ export class FarmeroutwardViewComponent implements OnInit {
 
       }
     );
+  }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'farmeroutward');
   }
 
   redirectToAddNew() {
@@ -133,10 +173,11 @@ export class FarmeroutwardViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.DELETE, farmeroutward, httpOptions)
-      .subscribe((farmeroutward) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.PRODUCT_FARMER_OUTWARDS_API.DELETE, farmeroutward, httpOptions)
+        .subscribe((farmeroutward) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }

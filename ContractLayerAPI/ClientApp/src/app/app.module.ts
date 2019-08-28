@@ -26,9 +26,7 @@ import { ValidationBorderModule } from './validation-border';
 
 
 import { LoaderService } from './app.loading.service';
-
-
-
+import { printingModule } from './printing/print.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -49,7 +47,9 @@ import { LoaderService } from './app.loading.service';
         PENDING: 'yellow',
         DISABLED: 'silver'
       }
-    })
+    }),
+    printingModule,
+   // PrintRoutingModule,
   ],
   declarations: [
     AppComponent,
@@ -60,10 +60,7 @@ import { LoaderService } from './app.loading.service';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     ErrorDirective,
-    
-    
-
-  ],
+    ],
   providers: [
     AuthService,
     {
@@ -75,7 +72,7 @@ import { LoaderService } from './app.loading.service';
     useClass: TokenInterceptor,
     multi: true
   },
-  LoaderService
+    LoaderService,
   ],
   bootstrap: [AppComponent]
 })

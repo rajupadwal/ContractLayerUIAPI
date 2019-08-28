@@ -49,10 +49,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Enquiry :</strong></label>
-              <select formControlName="Enquiry" id="select" name="enquiry" class="form-control" >
-                <option value="Please select">Please select</option>
-                <option value="Plan">Plan</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Enquiry" type="text" pInputText id="enquiry" name="enquiry" class="form-control" rows="3">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -72,12 +73,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>District :</strong></label>
-              <select formControlName="District" id="select" name="district" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Pune">Pune</option>
-                <option value="Satara">Satara</option>
-                <option value="Sangali">Sangali</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="District" type="text" pInputText id="district" name="district" class="form-control" rows="3">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -88,12 +88,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>Taluka :</strong></label>
-              <select formControlName="Taluka" id="select" name="Taluka" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Maval">Maval </option>
-                <option value="Khed">Khed</option>
-                <option value="Mulashi">Mulashi</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Taluka" type="text" pInputText id="taluka" name="taluka" class="form-control" rows="3">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -101,12 +100,11 @@
           <div class="card-block">
             <div class="form-group">
               <label for="select"><strong>City :</strong></label>
-              <select formControlName="City" id="select" name="city" class="form-control">
-                <option value="Please select">Please select</option>
-                <option value="Talegaon Dabhade">Talegaon Dabhade</option>
-                <option value="Lonavala">Lonavala</option>
-                <option value="Vadgaon">Vadgaon</option>
-              </select>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="City" type="text" pInputText id="city" name="city" class="form-control" rows="3">
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -171,7 +169,7 @@
               <select formControlName="EnquiryType" id="select" name="enquirytype" class="form-control">
                 <option value="Please select">Please select</option>
                 <option value="Telephonic">Telephonic</option>
-                <option value="Refferal">Refferal</option>
+                <option value="Refferal">Online</option>
               </select>
             </div>
           </div>

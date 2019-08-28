@@ -30,11 +30,11 @@ export class EggsrangeViewComponent implements OnInit {
     //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(EggsrangeMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Eggs Range Master' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -46,11 +46,11 @@ export class EggsrangeViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
         };
@@ -66,9 +66,9 @@ export class EggsrangeViewComponent implements OnInit {
     },
 
     
-    { headerName: 'Eggs Range From ', field: 'EggsRangeFrom', 'width': 150 },
-    { headerName: 'Eggs Range To ', field: 'EggsRangeTo', 'width': 150 },
-    { headerName: 'Eggs Rate ', field: 'EggsRate', 'width': 150 },
+    { headerName: 'Eggs Range From ', field: 'EggsRangeFrom', 'width': 180 },
+    { headerName: 'Eggs Range To ', field: 'EggsRangeTo', 'width': 180 },
+    { headerName: 'Eggs Rate ', field: 'EggsRate', 'width': 180 },
   ];
 
   rowData = [
@@ -109,11 +109,13 @@ export class EggsrangeViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    
-    return this.http.post(APP_CONSTANT.EGGSRANGE_API.DELETE, eggsrange, httpOptions)
-      .subscribe((eggsrange) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+
+      return this.http.post(APP_CONSTANT.EGGSRANGE_API.DELETE, eggsrange, httpOptions)
+        .subscribe((eggsrange) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 

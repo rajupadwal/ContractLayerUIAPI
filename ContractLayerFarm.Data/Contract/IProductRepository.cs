@@ -10,15 +10,22 @@ namespace ContractLayerFarm.Data.Contract
 
         bool Authenticate();
 
-       // IEnumerable<TblProductTypeMaster> SearchProduct(string searchString);
+        IEnumerable<TblUserInfo> SearchLogin(TblUserInfo user);
         IEnumerable<TblUnitMaster> GetUnits();
 
         int GetChickEggsBillNo();
         int GetFarmerInwardNo();
         int GetFarmerOutwardNo();
+
+        int GetPurchaseBillReturnGRNNo();
+        int GetPurchaseBillGRNNo();
         decimal GetProductAvailableStock(TblFarmerOutwardDt master);
 
         void SaveOpeningStockDetails(TblProductTypeMaster master);
+
+        IEnumerable<ViewStockDetails> GetProductwiseAvailableStock();
+        IEnumerable<ViewStockDetails> GetCustomerBookingOutstanding();
+        IEnumerable<ViewStockDetails> GetCustomerBillOutstanding();
 
         IEnumerable<TblProductTypeMaster> GetAllProduct();
         IEnumerable<TblProductTypeMaster> GetAllProductTypeForProduct(TblProductTypeMaster master);
@@ -26,6 +33,7 @@ namespace ContractLayerFarm.Data.Contract
         void DeleteFarmerInward(TblFarmerInwardMt master);
         void DeleteFarmerOutward(TblFarmerOutwardMt master);
         void DeletePurchaseBill(TblPurchaseBillMt master);
+        void DeletePurchaseBillReturn(TblPurchaseBillReturnMt master);
         void DeleteSaleBill(TblSalesBillMt master);
         void SaveFarmerInwardMaster(TblFarmerInwardMt master);
         void SaveFarmerInwardDetails(TblFarmerInwardDt[] details);
@@ -54,11 +62,16 @@ namespace ContractLayerFarm.Data.Contract
         //Purchase Bill
 
         void SavePurchaseBillMaster(TblPurchaseBillMt master);
+
+        void SavePurchaseBillReturnMaster(TblPurchaseBillReturnMt master);
         void SavePurchaseBillDetails(TblPurchaseBillDt[] details);
 
         IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters();
 
+        IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillReturnMasters();
+
         IEnumerable<TblPurchaseBillDt> GetAllPurchaseBillMasteDetails(int billid);
+        IEnumerable<TblPurchaseBillReturnDt> GetAllPurchaseBillReturnMasteDetails(int billid);
 
         decimal GetCustomerOutstandingAmt(TblSalesBillMt master);
 

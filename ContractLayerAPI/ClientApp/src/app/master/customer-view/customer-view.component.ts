@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { CusotmerService } from './customer.service';
 import { CustomerInfoComponent } from '../customer-info/customer-info.component';
 import { DialogService} from '../../dialog/dialog.service';
+import { ProductService } from '../product-view/product.service';
 
 
 @Component({
@@ -23,18 +24,13 @@ export class CustomerViewComponent implements OnInit {
   private gridColumnApi;
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //},
-
-
+     
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(CustomerInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Customer' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -46,11 +42,11 @@ export class CustomerViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -66,9 +62,7 @@ export class CustomerViewComponent implements OnInit {
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-
     
-    //{ headerName: 'CustomerId', field: 'CustomerId' },
     {
       headerName: 'Customer Name ', field: 'CustmerName', 'width': 180,
       filter: "agTextColumnFilter",
@@ -84,8 +78,6 @@ export class CustomerViewComponent implements OnInit {
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-    //{
-    //  headerName: 'PlantAddress    ', field: 'PlantAddress','width': 100 },
     
     {
       headerName: 'Location           ', field: 'Location.LocationName',
@@ -139,7 +131,7 @@ export class CustomerViewComponent implements OnInit {
     this.ngOnInit();
   }
     
-  constructor(private router: Router, private http: HttpClient, private cusotmerService: CusotmerService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private cusotmerService: CusotmerService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -154,6 +146,11 @@ export class CustomerViewComponent implements OnInit {
         this.rowData = customer;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'CustomerRecord');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(CustomerInfoComponent, {modalConfig: { title: 'Add/Edit Customer' },isEditable: false });
     ref.afterClosed.subscribe(result => {
@@ -175,11 +172,13 @@ export class CustomerViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
+    if (confirm("Are you sure do you want to delete record?")) {
 
-    return this.http.post(APP_CONSTANT.CUSOTMER_API.DELETE, customer, httpOptions)
-      .subscribe((customer) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.CUSOTMER_API.DELETE, customer, httpOptions)
+        .subscribe((customer) => {
+          this.RefreshGrid();
+        });
+    }
   }
 
   }

@@ -6,6 +6,8 @@ import { FarmerchikeggbillService } from './farmerchickeggsbill.service';
 import { DialogService } from '../../dialog/dialog.service';
 import * as moment from 'moment';
 import { APP_CONSTANT } from '../../../config';
+import { PrintService } from '../../printing/print.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 
 @Component({
@@ -19,18 +21,15 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
   private gridColumnApi;
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //},
+     
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ' },isEditable: true });
+          const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { data: params.data, modalConfig: { title: 'Add/Edit Sale ', width: '90%' },isEditable: true });
           ref.afterClosed.subscribe(result => {
             if (result == false) { return; } else this.RefreshGrid();
           });
@@ -39,11 +38,24 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Print', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size:large;"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("CreateSale", params.data);
+
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Delete', 'width': 50,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size:initial;"></i>';
         newTH.onclick = () => {
         this.delete(params.data);
 
@@ -56,16 +68,35 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       headerName: 'Bill No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'BillNo', 'width': 150,
+      field: 'BillNo', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-
-
     
-    { headerName: 'Date ', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 120 },
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 150,
+      headerName: 'Date ', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 180,
+      filter: "agDateColumnFilter",
+      filterParams: {
+        comparator: function (filterLocalDateAtMidnight, cellValue) {
+          var dateAsString = moment(cellValue).format('DD/MM/YYYY');
+          if (dateAsString == null) return -1;
+          var dateParts = dateAsString.split("/");
+          var cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
+          if (filterLocalDateAtMidnight.getTime() == cellDate.getTime()) {
+            return 0;
+          }
+          if (cellDate < filterLocalDateAtMidnight) {
+            return -1;
+          }
+          if (cellDate > filterLocalDateAtMidnight) {
+            return 1;
+          }
+        },
+        browserDatePicker: true
+      }
+    },
+    {
+      headerName: 'Location ', field: 'LocationName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -85,21 +116,21 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Address ', field: 'Address', 'width': 130,
+      headerName: 'Address ', field: 'Address', 'width': 100,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Total Amount ', field: 'TotalAmount', 'width': 100
+      headerName: 'Total Amount ', field: 'TotalAmount', 'width': 120
+    },
+    //{
+    //  headerName: 'TDS Amount ', field: 'TdsAmount', 'width': 100
+    //},
+    {
+      headerName: 'Admin Charges', field: 'AdminChargesAmt', 'width': 130
     },
     {
-      headerName: 'TDS Amount ', field: 'TdsAmount', 'width': 100
-    },
-    {
-      headerName: 'Admin Charges Amount ', field: 'AdminChargesAmt', 'width': 100
-    },
-    {
-      headerName: 'Grand Total Amount ', field: 'GrandTotal', 'width': 100
+      headerName: 'Grand Total', field: 'GrandTotal', 'width': 120
     },
   ];
 
@@ -121,7 +152,7 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
   }
 
 
-  constructor(private router: Router, private http: HttpClient, private farmerchikeggbillservice: FarmerchikeggbillService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private farmerchikeggbillservice: FarmerchikeggbillService, public dialog: DialogService, private printService: PrintService, public productService: ProductService) { }
 
 
   ngOnInit() {
@@ -138,8 +169,12 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
     );
   }
 
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'CreateBill');
+  }
+
   redirectToAddNew() {
-    const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { modalConfig: { title: 'Add/Edit sale' },isEditable: false });
+    const ref = this.dialog.open(FarmerchickeggsbillDetailComponent, { modalConfig: { title: 'Add/Edit sale', width: '90%'},isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();
@@ -160,11 +195,13 @@ export class FarmerchickeggsbillViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
+    if (confirm("Are you sure do you want to delete record?")) {
 
-    return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.DELETE, salebill, httpOptions)
-      .subscribe((salebill) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.DELETE, salebill, httpOptions)
+        .subscribe((salebill) => {
+          this.RefreshGrid();
+        });
+    }
   }
 
 }

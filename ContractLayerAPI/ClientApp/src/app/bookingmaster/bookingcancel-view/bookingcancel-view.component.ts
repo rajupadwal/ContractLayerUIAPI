@@ -6,6 +6,8 @@ import { DialogService } from '../../dialog/dialog.service';
 import { BookingcancelDetailsComponent } from '../bookingcancel-details/bookingcancel-details.component';
 import { BookingcancelService } from './bookingcancel.service';
 import * as moment from 'moment';
+import { ProductdescService } from '../../master/productdesc-view/productdesc.service';
+import { ProductService } from '../../master/product-view/product.service';
 
 @Component({
   selector: 'app-bookingcancel-view',
@@ -16,7 +18,7 @@ export class BookingcancelViewComponent implements OnInit {
 
   onBtnClick1 = (param) => {
     alert('i am clicked');
-    console.log (param);
+    console.log(param);
   }
 
   private gridApi;
@@ -33,13 +35,13 @@ export class BookingcancelViewComponent implements OnInit {
     //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(BookingcancelDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Booking Cancel' },isEditable: true });
+          const ref = this.dialog.open(BookingcancelDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Booking Cancel' }, isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -48,11 +50,11 @@ export class BookingcancelViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         //newTH.className = "pi pi-times";
         newTH.onclick = () => {
           this.delete(params.data);
@@ -65,13 +67,13 @@ export class BookingcancelViewComponent implements OnInit {
       headerName: 'Record No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'RecordNo', 'width': 120,
+      field: 'RecordNo', 'width': 130,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
 
     {
-      headerName: 'Location Name ', field: 'Location.LocationName', 'width': 120,
+      headerName: 'Location', field: 'Location.LocationName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -81,18 +83,37 @@ export class BookingcancelViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'BookingDate ', field: 'BookungCancelDate', valueFormatter: this.dateFormatter, 'width': 100
+      headerName: 'Cancel Date ', field: 'BookungCancelDate', valueFormatter: this.dateFormatter, 'width': 180,
+      filter: "agDateColumnFilter",
+      filterParams: {
+        comparator: function (filterLocalDateAtMidnight, cellValue) {
+          var dateAsString = moment(cellValue).format('DD/MM/YYYY');
+          if (dateAsString == null) return -1;
+          var dateParts = dateAsString.split("/");
+          var cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
+          if (filterLocalDateAtMidnight.getTime() == cellDate.getTime()) {
+            return 0;
+          }
+          if (cellDate < filterLocalDateAtMidnight) {
+            return -1;
+          }
+          if (cellDate > filterLocalDateAtMidnight) {
+            return 1;
+          }
+        },
+        browserDatePicker: true
+      }
     },
     {
-      headerName: 'Plan    ', field: 'Plan.PlanName', 'width': 120,
+      headerName: 'Plan', field: 'Plan.PlanName', 'width': 120,
       filter: "agTextColumnFilter",
-      filterParams: { defaultOption: "startsWith" }
+      filterParams: { defaultOption: "startsWith", 'width': 120 }
     },
-    { headerName: 'NoOfPlan    ', field: 'NoOfPlan' },
-    { headerName: 'No Of Plan Cancel   ', field: 'CancelNoOfPlan' },
-    { headerName: 'NoOfChicks    ', field: 'NoOfChicks' },
-    { headerName: 'Amount    ', field: 'Amonut' }
-    
+    { headerName: 'No Of Plan', field: 'NoOfPlan', 'width': 120 },
+    { headerName: 'Plan Cancel', field: 'CancelNoOfPlan', 'width': 120 },
+    { headerName: 'No Of Chicks    ', field: 'NoOfChicks', 'width': 120 },
+    { headerName: 'Amount    ', field: 'Amonut', 'width': 120 }
+
   ];
 
   rowData;
@@ -111,8 +132,8 @@ export class BookingcancelViewComponent implements OnInit {
   dateFormatter(params) {
     return moment(params.value).format('DD/MM/YYYY');
   }
-    
-  constructor(private router: Router, private http: HttpClient, private bookingcancelService: BookingcancelService, public dialog: DialogService) { }
+
+  constructor(private router: Router, private http: HttpClient, private bookingcancelService: BookingcancelService, public dialog: DialogService, public productService: ProductService ) { }
 
   ngOnInit() {
 
@@ -126,8 +147,13 @@ export class BookingcancelViewComponent implements OnInit {
         this.rowData = bookingcancel;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'BookingCancel');
+  }
+
   redirectToAddNew() {
-    const ref = this.dialog.open(BookingcancelDetailsComponent, { modalConfig: { title: 'Add/Edit Booking Cancel Order' },isEditable: false });
+    const ref = this.dialog.open(BookingcancelDetailsComponent, { modalConfig: { title: 'Add/Edit Booking Cancel Order' }, isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();
@@ -148,15 +174,16 @@ export class BookingcancelViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    return this.http.post(APP_CONSTANT.BOOKINGCANCEL_API.DELETE, bookingcancel, httpOptions)
-      .subscribe((bookingcancel) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.BOOKINGCANCEL_API.DELETE, bookingcancel, httpOptions)
+        .subscribe((bookingcancel) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 
 
-  
+
 
 

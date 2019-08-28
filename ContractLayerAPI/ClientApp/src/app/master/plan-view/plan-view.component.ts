@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { PlanService } from './plan.service';
 import { DialogService } from '../../dialog/dialog.service';
 import { PlanMasterComponent } from '../plan-master/plan-master.component';
+import { ProductService } from '../product-view/product.service';
 
 @Component({
   selector: 'app-plan-view',
@@ -20,21 +21,13 @@ export class PlanViewComponent implements OnInit {
 }
  
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(PlanMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Plan Master' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -45,11 +38,11 @@ export class PlanViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -59,37 +52,37 @@ export class PlanViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Sr.No', headerCheckboxSelection: true,
+      headerName: 'Sr No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'PlanId', 'width': 100
+      field: 'PlanId', 'width': 120
     },
 
     
 
     { headerName: 'Plan Name ', field: 'PlanName', 'width': 150 },
     {
-      headerName: 'Chick Age In Days', field: 'ChickAgeInDays',' width': 150 },
+      headerName: 'Chick Age In Days', field: 'ChickAgeInDays',' width': 130 },
     {
-      headerName: 'Duration In Days ', field: 'DurationInDays' ,'width': 120},
+      headerName: 'Duration In Days ', field: 'DurationInDays' ,'width': 135},
     {
-      headerName: 'No Of Chicks    ', field: 'NoOfChicks', 'width': 120},
+      headerName: 'No Of Chicks    ', field: 'NoOfChicks', 'width': 125},
 
-    { headerName: 'Eggs Return           ', field: 'EggsReturn' , 'width': 120 },
+    { headerName: 'Eggs Return           ', field: 'EggsReturn' , 'width': 110 },
     {
-      headerName: 'Chicks Return Rate ', field: 'ChicksReturnRate', 'width': 140
+      headerName: 'Chicks Return Rate ', field: 'ChicksReturnRate', 'width': 150
     },
     {
-      headerName: 'Amount    ', field: 'Amount', 'width': 100
+      headerName: 'Amount    ', field: 'Amount', 'width': 120
     },
-    { headerName: 'Admin Charges           ', field: 'AdminCharges' , 'width': 150 }
+    { headerName: 'Admin Charges           ', field: 'AdminCharges' , 'width': 130 }
   ];
 
   rowData = [
    
   ];
     
-  constructor(private router: Router, private http: HttpClient, private planservice: PlanService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private planservice: PlanService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -102,6 +95,11 @@ export class PlanViewComponent implements OnInit {
         this.rowData = plan;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'PlanDetails');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(PlanMasterComponent, { modalConfig: { title: 'Add/Edit Plan Master' },isEditable: false });
     ref.afterClosed.subscribe(result => {
@@ -125,12 +123,13 @@ export class PlanViewComponent implements OnInit {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     //let customer = this.customerForm.value;
+    if (confirm("Are you sure do you want to delete record?")) {
 
-
-    return this.http.post(APP_CONSTANT.PLAN_API.DELETE, plan, httpOptions)
-      .subscribe((plan) => {
-        this.RefreshGrid();
-      });
+      return this.http.post(APP_CONSTANT.PLAN_API.DELETE, plan, httpOptions)
+        .subscribe((plan) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 

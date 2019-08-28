@@ -5,6 +5,7 @@ import { APP_CONSTANT } from '../../../config';
 import { EmployeeService } from './employee.service';
 import { DialogService } from '../../dialog/dialog.service';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
+import { ProductService } from '../product-view/product.service';
 
 @Component({
   selector: 'app-employee-view',
@@ -19,20 +20,13 @@ export class EmployeeViewComponent implements OnInit {
 }
  
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
+     
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(EmployeeInfoComponent, { data: params.data, modalConfig: { title: 'Add/Edit Employee' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -43,11 +37,11 @@ export class EmployeeViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
           this.delete(params.data);
 
@@ -79,7 +73,7 @@ export class EmployeeViewComponent implements OnInit {
    
   ];
     
-  constructor(private router: Router, private http: HttpClient, private employeeService: EmployeeService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, private employeeService: EmployeeService, public dialog: DialogService, public productService: ProductService) { }
 
   ngOnInit() {
 
@@ -93,6 +87,11 @@ export class EmployeeViewComponent implements OnInit {
         this.rowData = employee;
       });
   }
+
+  exportAsXLSX(): void {
+    this.productService.exportAsExcelFile(this.rowData, 'EmployeeDetails');
+  }
+
   redirectToAddNew() {
     const ref = this.dialog.open(EmployeeInfoComponent, { modalConfig: { title: 'Add/Edit Employee' },isEditable: false });
     ref.afterClosed.subscribe(result => {
@@ -115,11 +114,12 @@ export class EmployeeViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    return this.http.post(APP_CONSTANT.EMPLOYEE_API.DELETE, employee, httpOptions)
-      .subscribe((employee) => {
-        this.RefreshGrid();
-      });
+    if (confirm("Are you sure do you want to delete record?")) {
+      return this.http.post(APP_CONSTANT.EMPLOYEE_API.DELETE, employee, httpOptions)
+        .subscribe((employee) => {
+          this.RefreshGrid();
+        });
+    }
   }
 }
 

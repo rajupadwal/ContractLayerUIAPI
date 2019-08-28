@@ -4,8 +4,36 @@ import { Routes, RouterModule } from '@angular/router';
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
+// Layouts
+import { PrintLayoutComponent } from "./printing/print-layout/print-layout.component";
+import { InvoiceComponent } from "./printing/invoice/invoice.component";
+import { AppMainComponent } from "./app.main.component";
+
+import { PurchaseBillPrintComponent} from './printing/purchaseBillPrint/purchase-bill.print.component'
+import { CreateSalePrintComponent } from './printing/createSalePrint/create-sale.print.component';
+import { CustomerReceiptPrintComponent } from './printing/customerReceiptPrint/customer-receipt.print.component';
+import { SupplierReceiptPrintComponent } from './printing/supplierReceiptPrint/supplier-receipt.print.component';
+import { FarmerInwardPrintComponent } from './printing/farmerInwardPrint/farmer-inward.print.component';
+import { FarmerOutwardPrintComponent } from './printing/farmerOutwardPrint/farmer-outward.print.component';
 
 export const routes: Routes = [
+
+  
+
+  {
+    path: 'print',
+    outlet: 'print',
+    component: PrintLayoutComponent,
+    children: [
+      { path: 'invoice/:invoiceIds', component: InvoiceComponent },
+      { path: 'PurchaseBill/:purchaseDetails', component: PurchaseBillPrintComponent },
+      { path: 'CreateSale/:createSales', component: CreateSalePrintComponent },
+      { path: 'CustomerReceipt/:customerReceipts', component: CustomerReceiptPrintComponent },
+      { path: 'SupplierReceipt/:supplierReceipts', component: SupplierReceiptPrintComponent },
+      { path: 'FarmerInward/:farmerInwards', component: FarmerInwardPrintComponent },
+      { path: 'FarmerOutward/:farmerOutwards', component: FarmerOutwardPrintComponent },
+    ]
+  },
   {
     path: '',
     component: SimpleLayoutComponent,
@@ -36,20 +64,23 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
-      {
-        path: 'Farmerinwardview',
-        loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
-      },
+      //{
+      //  path: 'Farmerinwardview',
+      //  loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
+      //},
       {
         path: 'Farmeroutwardview',
         loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
       },
-      {
-        path: 'Purchasebillview',
-        loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
-      },
+      //{
+      //  path: 'Purchasebillview',
+      //  loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
+      //},
 
-      
+      {
+        path: 'Purchasebillreturnview',
+        loadChildren: './purchasebillreturn-view/purchasebillreturn.module#PurchasebillreturnModule'
+      },
       {
         path: 'master',
         component: SimpleLayoutComponent,
@@ -101,29 +132,16 @@ export const routes: Routes = [
             path: 'Productview',
             loadChildren: './master/product-view/product.view.module#ProductViewModule'
           },
-          {
-            path: 'Employeeadvanceview',
-            loadChildren: './master/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
-          },
+           
           {
             path: 'Expencetypeview',
             loadChildren: './master/expencetype-view/expencetype.view.module#ExpencetypeViewModule'
           },
-          {
-            path: 'Officeexpencedetails',
-            loadChildren: './master/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
-          },
+           
           {
             path: 'Eggsrangedetails',
             loadChildren: './master/eggsrange-view/eggsrange.view.module#EggsrangeViewModule'
           },
-          {
-            path: 'Incomedetails',
-            loadChildren: './master/income-view/income.view.module#IncomeViewModule'
-          },
-
-          
-         
         ]
       },
 
@@ -144,6 +162,69 @@ export const routes: Routes = [
             loadChildren: './bookingmaster/bookingcancel-view/bookingcancel.view.module#BookingcancelViewModule'
           },
           
+        ]
+      },
+      {
+        path: 'purchase',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Purchase'
+        },
+        children: [
+
+          {
+            path: 'Purchasebillview',
+            loadChildren: './purchase/purchasebill-view/purchasebill.module#PurchasebillModule'
+          },
+          {
+            path: 'Farmerinwardview',
+            loadChildren: './purchase/farmerinward-view/farmerinward.module#FarmerinwardModule'
+          },
+          {
+            path: 'Farmeroutwardview',
+            loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
+          },
+
+        ]
+      },
+
+      {
+        path: 'sale',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Sales'
+        },
+        children: [
+
+          {
+            path: 'Salechickeggbillview',
+            loadChildren: './sale/farmerchickeggsbill-view/farmerchickeggsbill.view.module#FarmerchickeggbillModule'
+          },
+        ]
+      },
+
+      {
+        path: 'report',
+        component: SimpleLayoutComponent,
+        data: {
+          title: 'Reports'
+        },
+        children: [
+
+          {
+            path: 'Stockdetailview',
+            loadChildren: './reports/stockdetail-view/stockdetail.module#StockdetailModule'
+          },
+
+          {
+            path: 'Customerbookingoutstandingview',
+            loadChildren: './reports/customerbookingoutstanding-view/customerbookingoutstanding.module#CustomerbookingoutstandingModule'
+          },
+
+          {
+            path: 'Customerbilloutstandingview',
+            loadChildren: './reports/customerbilloutstanding-view/customerbilloutstanding.module#CustomerbilloutstandingModule'
+          },
         ]
       },
 
@@ -167,25 +248,22 @@ export const routes: Routes = [
             path: 'Purchasereturnreceiptview',
             loadChildren: './account/purchasereturnreceipt-view/purchasereturnreceipt.view.module#PurchasereturnReceiptViewModule'
           },
-        ]
-      },
-
-      {
-        path: 'sale',
-        component: SimpleLayoutComponent,
-        data: {
-          title: 'Sales'
-        },
-        children: [
-
           {
-            path: 'Salechickeggbillview',
-            loadChildren: './sale/farmerchickeggsbill-view/farmerchickeggsbill.view.module#FarmerchickeggbillModule'
+            path: 'Officeexpencedetails',
+            loadChildren: './account/expencedetails-view/expencedetails.view.module#ExpencedetailsViewModule'
           },
-          
-
+          {
+            path: 'Employeeadvanceview',
+            loadChildren: './account/employeeadvance-view/employeeadvance.view.module#EmployeeadvanceViewModule'
+          },
+          {
+            path: 'Incomedetails',
+            loadChildren: './account/income-view/income.view.module#IncomeViewModule'
+          },
         ]
       },
+
+      
 
       //{
       //  path: 'cases',

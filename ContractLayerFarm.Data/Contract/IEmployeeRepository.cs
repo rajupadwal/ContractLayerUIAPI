@@ -11,5 +11,7 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<TblEmployeeMaster> SearchEmployee(string searchString);
         IEnumerable<TblEmployeeMaster> GetAllEmployee();
         bool Authenticate();
+
+        void SaveLoginDetails(TblEmployeeMaster master);
     }
 }
