@@ -27,7 +27,7 @@ export class CustomerbilloutstandingViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'MobileNo', field: 'MobileNo', 'width': 150,
+      headerName: 'Mobile No', field: 'MobileNo', 'width': 150,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -35,10 +35,10 @@ export class CustomerbilloutstandingViewComponent implements OnInit {
       headerName: 'Bill Amount', field: 'BillAmount', 'width': 150,
     },
     {
-      headerName: 'Paid Amount', field: 'BillPaidAmt', 'width': 120,
+      headerName: 'Paid Amount', field: 'BillPaidAmt', 'width': 150,
     },
     {
-      headerName: 'Outstanding', field: 'BillOutstanding', 'width': 120,
+      headerName: 'Outstanding Amount', field: 'BillOutstanding', 'width': 170,
     },
     
   ];

@@ -30,7 +30,7 @@ export class EggsrangeViewComponent implements OnInit {
     //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -46,7 +46,7 @@ export class EggsrangeViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -66,9 +66,9 @@ export class EggsrangeViewComponent implements OnInit {
     },
 
     
-    { headerName: 'Eggs Range From ', field: 'EggsRangeFrom', 'width': 150 },
-    { headerName: 'Eggs Range To ', field: 'EggsRangeTo', 'width': 150 },
-    { headerName: 'Eggs Rate ', field: 'EggsRate', 'width': 150 },
+    { headerName: 'Eggs Range From ', field: 'EggsRangeFrom', 'width': 180 },
+    { headerName: 'Eggs Range To ', field: 'EggsRangeTo', 'width': 180 },
+    { headerName: 'Eggs Rate ', field: 'EggsRate', 'width': 180 },
   ];
 
   rowData = [

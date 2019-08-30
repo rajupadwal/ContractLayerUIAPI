@@ -59,7 +59,7 @@ export class PurchasebillViewComponent implements OnInit {
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
          this.delete(params.data);
 

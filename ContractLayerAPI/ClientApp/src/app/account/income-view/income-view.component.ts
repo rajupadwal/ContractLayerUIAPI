@@ -22,7 +22,7 @@ export class IncomeViewComponent implements OnInit {
   columnDefs = [
      
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -37,7 +37,7 @@ export class IncomeViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -62,12 +62,12 @@ export class IncomeViewComponent implements OnInit {
       headerName: 'Date ', field: 'Date', 'width': 120
     },
     {
-      headerName: 'Type Of Income', field: 'Income.IncomeType', 'width': 120
+      headerName: 'Type Of Income', field: 'Income.IncomeType', 'width': 130
     },
     {
       headerName: 'Title    ', field: 'Title', 'width': 130
     },
-    { headerName: 'Payment Method    ', field: 'PaymentMethod', 'width': 100 },
+    { headerName: 'Payment Method    ', field: 'PaymentMethod', 'width': 140 },
     { headerName: 'Cheque No    ', field: 'ChequeNo', 'width': 120 },
     { headerName: 'Amount    ', field: 'Amount', 'width': 120 }
   ];

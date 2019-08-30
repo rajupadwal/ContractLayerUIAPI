@@ -56,7 +56,9 @@ namespace ContractLayerFarm.Data.Models
         public virtual DbSet<TblSupplierMaster> TblSupplierMaster { get; set; }
         public virtual DbSet<TblUnitMaster> TblUnitMaster { get; set; }
         public virtual DbSet<TblUserInfo> TblUserInfo { get; set; }
-       
+        public virtual DbSet<UserRole> UserRole { get; set; }
+        public virtual DbSet<UserRolePermission> UserRolePermission { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -1141,11 +1143,38 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.UserEmail).HasMaxLength(50);
 
-                entity.Property(e => e.UserType).HasMaxLength(50);
+                entity.Property(e => e.RoleId).HasMaxLength(50);
 
                 entity.Property(e => e.Username).HasMaxLength(50);
 
                 entity.Property(e => e.Userpassword).HasMaxLength(50);
+
+                entity.HasOne(d => d.UserRole)
+                   .WithMany(p => p.TblUserInfo)
+                   .HasForeignKey(d => d.RoleId)
+                   .HasConstraintName("FK_tbl_tbl_UserInfo_tbl_UserRoles");
+            });
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(e => e.RoleId);
+
+                entity.ToTable("tbl_UserRole");
+
+                entity.Property(e => e.RoleName).HasMaxLength(100);
+
+            });
+            modelBuilder.Entity<UserRolePermission>(entity =>
+            {
+                entity.HasKey(e => e.PkId);
+
+                entity.ToTable("tbl_UserRolePermission");
+
+                entity.Property(e => e.RolePagesPermission).HasMaxLength(500);
+
+                entity.HasOne(d => d.UserRole)
+                    .WithMany(p => p.UserRolePermission)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("FK_tbl_UserRolePermission_tbl_UserRoles");
             });
         }
     }

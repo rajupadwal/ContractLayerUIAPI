@@ -20,6 +20,7 @@ export class AuthenticationService {
         if (user) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('Token', JSON.stringify(user.Token));
+          localStorage.setItem('UsereRoles', JSON.stringify(user[0].UserRole.UserRolePermission[0].RolePagesPermission));
         }
         return user;
       }));

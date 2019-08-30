@@ -23,7 +23,7 @@ export class EnquiryViewComponent implements OnInit {
   columnDefs = [
     
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -39,7 +39,7 @@ export class EnquiryViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');

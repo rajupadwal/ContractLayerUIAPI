@@ -22,6 +22,7 @@ export class BookingViewComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
+  
 
   columnDefs = [
    
@@ -109,12 +110,16 @@ export class BookingViewComponent implements OnInit {
     { headerName: 'Plan Cancel', field: 'NoOfPlanCancel', 'width': 120 },
     { headerName: 'No Of Chicks', field: 'NoOfChicks', 'width': 120 },
     { headerName: 'Amount', field: 'Amount', 'width': 100 },
+    { headerName: 'Paid Amount', field: 'PaidAmount', 'width': 130 },
+
     { headerName: 'Delivery Status    ', field: 'DeliveryStatus', 'width': 130 }
   ];
 
   defaultColDef = {
     sortable: true,
     filter: true
+    
+    
   };
 
   rowData;

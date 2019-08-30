@@ -35,7 +35,7 @@ export class BookingcancelViewComponent implements OnInit {
     //},
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -50,7 +50,7 @@ export class BookingcancelViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');

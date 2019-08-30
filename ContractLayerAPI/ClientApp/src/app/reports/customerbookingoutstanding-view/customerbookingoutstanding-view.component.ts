@@ -27,7 +27,7 @@ export class CustomerbookingoutstandingViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'MobileNo', field: 'MobileNo', 'width': 150,
+      headerName: 'Mobile No', field: 'MobileNo', 'width': 150,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -35,13 +35,13 @@ export class CustomerbookingoutstandingViewComponent implements OnInit {
       headerName: 'Booking Amount', field: 'BookingAmount', 'width': 150,
     },
     {
-      headerName: 'Received Amount', field: 'BookingReceivedAmt', 'width': 120,
+      headerName: 'Received Amount', field: 'BookingReceivedAmt', 'width': 150,
     },
     {
-    headerName: 'CancelBookingAmt', field: 'CancelBookingAmt', 'width': 120,
+    headerName: 'Cancel Booking Amt', field: 'CancelBookingAmt', 'width': 170,
     },
     {
-      headerName: 'Outstanding', field: 'BookingOutstanding', 'width': 120,
+      headerName: 'Outstanding Amount', field: 'BookingOutstanding', 'width': 170,
     },
     
   ];

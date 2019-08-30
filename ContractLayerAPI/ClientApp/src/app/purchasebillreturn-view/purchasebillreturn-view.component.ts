@@ -24,11 +24,11 @@ export class PurchasebillreturnViewComponent implements OnInit {
     //  cellRenderer: 'buttonRenderer',
     //},
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 100,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = '<i class="pi pi-pencil"></i>';
+        newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
           const ref = this.dialog.open(PurchaseBillReturnComponent, { data: params.data, modalConfig: { title: 'Add/Edit Purchase Bill Return', width: '90%' },isEditable: true });
           ref.afterClosed.subscribe(result => {
@@ -39,11 +39,11 @@ export class PurchasebillreturnViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 100,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
-        newTH.innerHTML = ' <i class="pi pi-trash"></i>';
+        newTH.innerHTML = ' <i class="pi pi-trash" style="font-size: initial;"></i>';
         newTH.onclick = () => {
          this.delete(params.data);
 

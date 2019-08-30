@@ -26,7 +26,7 @@ export class ProductViewComponent implements OnInit {
 
        
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -42,7 +42,7 @@ export class ProductViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -67,7 +67,7 @@ export class ProductViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Product Type', field: 'ProductType', 'width': 140,
+      headerName: 'Product Type', field: 'ProductType', 'width': 180,
 
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }

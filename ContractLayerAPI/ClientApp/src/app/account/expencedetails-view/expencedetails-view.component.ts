@@ -27,7 +27,7 @@ export class ExpencedetailsViewComponent implements OnInit {
   columnDefs = [
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -43,7 +43,7 @@ export class ExpencedetailsViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -75,7 +75,7 @@ export class ExpencedetailsViewComponent implements OnInit {
     {
       headerName: 'Employee Name    ', field: 'Employee.EmployeeName', 'width': 140
     },
-    { headerName: 'Payment Method           ', field: 'PaymentMethod', 'width': 130 },
+    { headerName: 'Payment Method           ', field: 'PaymentMethod', 'width': 160 },
 
     { headerName: 'Cheque No           ', field: 'ChequeNo', 'width': 120 },
     { headerName: 'Amount           ', field: 'Amount', 'width': 120 },

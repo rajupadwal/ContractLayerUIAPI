@@ -46,13 +46,13 @@ namespace ContractLayerFarm.Data.Repositories
             if (master.EmployeeId > 0)
             {
 
-                var entity = this.ktConContext.TblUserInfo.FirstOrDefault(item => item.UserType == master.EmployeeId.ToString() && item.Username == master.UserId.ToString() && item.Userpassword == master.Password);
+                var entity = this.ktConContext.TblUserInfo.FirstOrDefault(item =>  item.Username == master.UserId.ToString() && item.Userpassword == master.Password);
 
                 if (entity != null)
                 {
                     entity.Userpassword = master.Password;
                     entity.Username = master.UserId;
-                    entity.UserType = master.EmployeeId.ToString();
+                   // entity.UserType = master.EmployeeId.ToString();
                     ktConContext.TblUserInfo.Update(entity);
                     ktConContext.SaveChanges();
                 }
@@ -62,7 +62,7 @@ namespace ContractLayerFarm.Data.Repositories
                 TblUserInfo custransList = new TblUserInfo()
                 {
                     Userpassword = master.Password,
-                    UserType = master.EmployeeId.ToString(),
+                   // UserType = master.EmployeeId.ToString(),
                     Username = master.UserId
                 };
                 this.RepositoryContext.Set<TblUserInfo>().Add(custransList);

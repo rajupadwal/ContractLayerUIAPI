@@ -9,8 +9,9 @@ namespace ContractLayerFarm.Data.Models
         public string Username { get; set; }
         public string Userpassword { get; set; }
         public string UserEmail { get; set; }
-        public string UserType { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
+        public int RoleId { get; set; }
+        public UserRole UserRole { get; set; }
     }
 }

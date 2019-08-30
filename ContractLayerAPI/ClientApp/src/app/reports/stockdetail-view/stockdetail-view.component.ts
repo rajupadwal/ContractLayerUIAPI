@@ -22,7 +22,7 @@ export class StockdetailViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Product Type', field: 'ProductType', 'width': 150,
+      headerName: 'Product Type', field: 'ProductType', 'width': 180,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
@@ -44,7 +44,7 @@ export class StockdetailViewComponent implements OnInit {
       headerName: 'Rejected Qty', field: 'RejectedQty', 'width': 120,
     },
     {
-      headerName: 'Available Stock', field: 'AvailableStock', 'width': 120,
+      headerName: 'Available Stock', field: 'AvailableStock', 'width': 150,
     },
   ];
 
