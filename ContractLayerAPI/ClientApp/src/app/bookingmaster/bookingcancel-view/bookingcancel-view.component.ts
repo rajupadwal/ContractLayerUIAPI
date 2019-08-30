@@ -78,7 +78,7 @@ export class BookingcancelViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 150,
+      headerName: 'Customer Name', field: 'Customer.CustmerName', 'width': 150,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },

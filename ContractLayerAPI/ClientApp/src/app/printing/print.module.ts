@@ -13,6 +13,8 @@ import { CustomerReceiptPrintComponent } from './customerReceiptPrint/customer-r
 import { SupplierReceiptPrintComponent } from './supplierReceiptPrint/supplier-receipt.print.component';
 import { FarmerInwardPrintComponent } from './farmerInwardPrint/farmer-inward.print.component';
 import { FarmerOutwardPrintComponent } from './farmerOutwardPrint/farmer-outward.print.component';
+import { SupplierLedgerPrintComponent } from './supplierLedgerPrint/supplier-ledger.print.component';
+import { CustomerLedgerPrintComponent } from './customerLedgerPrint/customer-ledger.print.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -29,7 +31,9 @@ import { FarmerOutwardPrintComponent } from './farmerOutwardPrint/farmer-outward
     CustomerReceiptPrintComponent,
     SupplierReceiptPrintComponent,
     FarmerInwardPrintComponent,
-    FarmerOutwardPrintComponent
+    FarmerOutwardPrintComponent,
+    SupplierLedgerPrintComponent,
+    CustomerLedgerPrintComponent
   ],
   providers: [
     PrintService

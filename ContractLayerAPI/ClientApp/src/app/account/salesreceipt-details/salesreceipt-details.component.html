@@ -47,7 +47,7 @@
             <div class="form-group">
               <label for="select"><strong>Customer Name :</strong></label>
               <p-autoComplete formControlName="Customer" [suggestions]="customerList" (completeMethod)="searchCustomer($event)"
-                              [dropdown]="true" [forceSelection]="true" field="CustmerName"></p-autoComplete>
+                              (onSelect)="calculateSettlementAmount($event)" (change)="($event)" [dropdown]="true" [forceSelection]="true" field="CustmerName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -121,7 +121,6 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="row">
@@ -150,10 +149,41 @@
             </div>
           </div>
         </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Bill Settlement Amount :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="BillSettlementAmount" type="text" pInputText id="billsettlementamount" name="billsettlementamount" class="form-control" disabled>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="input-group-btn" dropdown>
-        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      <div class="row">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">
+          <strong>
+            <u>NOTE FOR Bill Settlement:-</u> I. (+) Select Payment Type Against Bill.
+          </strong>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="input-group-btn" dropdown>
+            <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <strong>
+            &nbsp;&nbsp;II. (-) Select Payment Type Against Booking.
+          </strong>
+        </div>
+      </div>
+     
+
     </form>
   </div>
 </div>

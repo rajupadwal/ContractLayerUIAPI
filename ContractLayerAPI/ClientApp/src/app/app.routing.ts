@@ -15,6 +15,8 @@ import { CustomerReceiptPrintComponent } from './printing/customerReceiptPrint/c
 import { SupplierReceiptPrintComponent } from './printing/supplierReceiptPrint/supplier-receipt.print.component';
 import { FarmerInwardPrintComponent } from './printing/farmerInwardPrint/farmer-inward.print.component';
 import { FarmerOutwardPrintComponent } from './printing/farmerOutwardPrint/farmer-outward.print.component';
+import { SupplierLedgerPrintComponent } from './printing/supplierLedgerPrint/supplier-ledger.print.component';
+import { CustomerLedgerPrintComponent } from './printing/customerLedgerPrint/customer-ledger.print.component';
 
 export const routes: Routes = [
 
@@ -32,6 +34,8 @@ export const routes: Routes = [
       { path: 'SupplierReceipt/:supplierReceipts', component: SupplierReceiptPrintComponent },
       { path: 'FarmerInward/:farmerInwards', component: FarmerInwardPrintComponent },
       { path: 'FarmerOutward/:farmerOutwards', component: FarmerOutwardPrintComponent },
+      { path: 'SupplierLedger/:supplierLedgers', component: SupplierLedgerPrintComponent },
+      { path: 'CustomerLedger/:customerLedgers', component: CustomerLedgerPrintComponent },
     ]
   },
   {
@@ -64,19 +68,12 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
-      //{
-      //  path: 'Farmerinwardview',
-      //  loadChildren: './farmerinward-view/farmerinward.module#FarmerinwardModule'
-      //},
+       
       {
         path: 'Farmeroutwardview',
         loadChildren: './farmeroutward-view/farmeroutward.module#FarmeroutwardViewModule'
       },
-      //{
-      //  path: 'Purchasebillview',
-      //  loadChildren: './purchasebill-view/purchasebill.module#PurchasebillModule'
-      //},
-
+       
       {
         path: 'Purchasebillreturnview',
         loadChildren: './purchasebillreturn-view/purchasebillreturn.module#PurchasebillreturnModule'
@@ -224,6 +221,21 @@ export const routes: Routes = [
           {
             path: 'Customerbilloutstandingview',
             loadChildren: './reports/customerbilloutstanding-view/customerbilloutstanding.module#CustomerbilloutstandingModule'
+          },
+
+          {
+            path: 'Supplierbilloutstandingview',
+            loadChildren: './reports/supplierbilloutstanding-view/supplierbilloutstanding.module#SupplierbilloutstandingModule'
+          },
+
+          {
+            path: 'Supplierledgerview',
+            loadChildren: './reports/supplierledger-view/supplierledger.module#SupplierledgerModule'
+          },
+
+          {
+            path: 'Customerledgerview',
+            loadChildren: './reports/customerledger-view/customerledger.module#CustomerledgerModule'
           },
         ]
       },

@@ -99,9 +99,9 @@
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Salesreceiptview']"><i class="fa fa-envelope-o"></i> Sales Receipt<span class="badge badge-success"></span></a>
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Purchasepaymentview']"><i class="fa fa-envelope-o"></i> Supplier Payment<span class="badge badge-success"></span></a>
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Purchasereturnreceiptview']"><i class="fa fa-envelope-o"></i> Purchase Debit Note<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Officeexpencedetails']"><i class="fa fa-envelope-o"></i> Office Expences Details<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Incomedetails']"><i class="fa fa-envelope-o"></i> Income Details<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Employeeadvanceview']"><i class="fa fa-envelope-o"></i> Employee Advance<span class="badge badge-success"></span></a>
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Officeexpencedetails']"><i class="fa fa-envelope-o"></i> Office Expences Details<span class="badge badge-success"></span></a>
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Incomedetails']"><i class="fa fa-envelope-o"></i> Income Details<span class="badge badge-success"></span></a>
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Employeeadvanceview']"><i class="fa fa-envelope-o"></i> Employee Advance<span class="badge badge-success"></span></a>
       </div>
     </li>
 
@@ -111,13 +111,14 @@
         <span class="d-md-down-none">Reports</span>
       </a>
       <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown">
-        <div class="dropdown-header text-center"><strong>Booing Details Report</strong></div>
+        <div class="dropdown-header text-center"><strong>Report Details</strong></div>
 
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Stockdetailview']"><i class="fa fa-envelope-o"></i> Productwise Stock Detail<span class="badge badge-success"></span></a>
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerbookingoutstandingview']"><i class="fa fa-envelope-o"></i> Customer Booking Outstanding<span class="badge badge-success"></span></a>
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerbilloutstandingview']"><i class="fa fa-envelope-o"></i>Customer Bill Outstanding<span class="badge badge-success"></span></a>
-
-
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Supplierbilloutstandingview']"><i class="fa fa-envelope-o"></i>Supplier Bill Outstanding<span class="badge badge-success"></span></a>
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Supplierledgerview']"><i class="fa fa-envelope-o"></i>Supplier Ledger<span class="badge badge-success"></span></a>
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerledgerview']"><i class="fa fa-envelope-o"></i>Customer Ledger<span class="badge badge-success"></span></a>
 
         <!--<div class="dropdown-header text-center"><strong>Sale</strong></div>
         <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Create Bill<span class="badge badge-info"></span></a>-->
@@ -357,13 +358,13 @@
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Purchasereturnreceiptview']"><i class="icon-star"></i> Debit Note</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Employeeadvanceview']"><i class="icon-star"></i> Employee Advance</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Employeeadvanceview']"><i class="icon-star"></i> Employee Advance</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Officeexpencedetails']"><i class="icon-star"></i> Office Expences</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Officeexpencedetails']"><i class="icon-star"></i> Office Expences</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Incomedetails']"><i class="icon-star"></i> Income Detail</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Incomedetails']"><i class="icon-star"></i> Income Detail</a>
             </li>
           </ul>
 
@@ -389,6 +390,15 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerbilloutstandingview']"><i class="icon-star"></i> Bill Outstanding</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Supplierbilloutstandingview']"><i class="icon-star"></i> Supplier Outstanding</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Supplierledgerview']"><i class="icon-star"></i> Supplier Ledger</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerledgerview']"><i class="icon-star"></i> Customer Ledger</a>
             </li>
           </ul>
         </li>

@@ -17,7 +17,7 @@ export class CustomerbookingoutstandingViewComponent implements OnInit {
 
   columnDefs = [
     {
-      headerName: 'CustomerName ', field: 'CustomerName', ' width': 150,
+      headerName: 'CustomerName ', field: 'CustomerName', 'width': 150,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },

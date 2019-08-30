@@ -59,7 +59,7 @@ export class EmployeeViewComponent implements OnInit {
     
     { headerName: 'Employee Name ', field: 'EmployeeName', 'width': 150 },
     {
-      headerName: 'Mobile No', field: 'PersonalContactNo',' width': 150 },
+      headerName: 'Mobile No', field: 'PersonalContactNo','width': 150 },
     {
       headerName: 'Address ', field: 'Address' ,'width': 100},
     {

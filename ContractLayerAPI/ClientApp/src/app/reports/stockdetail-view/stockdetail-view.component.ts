@@ -17,7 +17,7 @@ export class StockdetailViewComponent implements OnInit {
 
   columnDefs = [
     {
-      headerName: 'Product Name ', field: 'ProductName', ' width': 150,
+      headerName: 'Product Name ', field: 'ProductName', 'width': 150,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },

@@ -60,7 +60,7 @@ export class EnquiryViewComponent implements OnInit {
 
     { headerName: 'Date ', field: 'Date', 'width': 100 },
     {
-      headerName: 'Customer Name', field: 'CustomerName', ' width': 100
+      headerName: 'Customer Name', field: 'CustomerName', 'width': 100
     },
     {
       headerName: 'Enquiry ', field: 'Enquiry', 'width': 100

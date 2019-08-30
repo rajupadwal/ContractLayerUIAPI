@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ContractLayerFarm.Data.Models
 {
-   public class ViewStockDetails
+    public class ViewStockDetails
     {
         
         //----------------ProductwiseStock Details------------------
@@ -26,12 +26,26 @@ namespace ContractLayerFarm.Data.Models
         public decimal BookingAmount { get; set; }
         public decimal CancelBookingAmt { get; set; }
         public decimal BookingReceivedAmt { get; set; }
-
+        public string BookingId { get; set; }
+        public string ReceiptNo { get; set; }
         public decimal BookingOutstanding { get; set; }
 
         //----------------Customerwise Booking Outstanding------------------
         public decimal BillAmount { get; set; }
         public decimal BillPaidAmt { get; set; }
         public decimal BillOutstanding { get; set; }
+
+        //----------------Supplier Outstanding------------------------------
+        public string SupplierName { get; set; }
+        public decimal PurchaseAmount { get; set; }
+        public decimal PurchasePaidAmt { get; set; }
+        public decimal PurchaseOutstanding { get; set; }
+
+        public DateTime TransactionDate { get; set; }
+        public string TransactionType { get; set; }
+        public string BillId { get; set; }
+        public string PaymentVocherNo { get; set; }
+        public string PaymentType { get; set; }
+        public string Narration { get; set; }
     }
 }

@@ -25,15 +25,6 @@ export class ExpencedetailsViewComponent implements OnInit {
 
 
   columnDefs = [
-    //{
-
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
 
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
@@ -76,7 +67,7 @@ export class ExpencedetailsViewComponent implements OnInit {
     
     { headerName: 'Date ', field: 'Date', 'width': 120 },
     {
-      headerName: 'Expence Type', field: 'Expence.ExpenceType', ' width': 120
+      headerName: 'Expence Type', field: 'Expence.ExpenceType', 'width': 120
     },
     {
       headerName: 'Location', field: 'Location.LocationName', 'width': 120

@@ -95,6 +95,7 @@ namespace ContractLayerFarm.Data.Repositories
                 {
                     entity.BookingReceivedAmt = bookReceiptAmt;
                     entity.BillPaidAmt = billPaidAmt;
+                    entity.CancelBookingAmt = 0;
                     ktConContext.TblCustomerTransactions.Update(entity);
                     ktConContext.SaveChanges();
                 }
@@ -108,6 +109,7 @@ namespace ContractLayerFarm.Data.Repositories
                     TransactionType = typeof(TblSalesReceipt).ToString(),
                     BookingId = "0",
                     BookingAmount = 0,
+                    CancelBookingAmt=0,
                     BookingReceivedAmt = bookReceiptAmt,
                     BillId = "0",
                     BillAmount = 0,

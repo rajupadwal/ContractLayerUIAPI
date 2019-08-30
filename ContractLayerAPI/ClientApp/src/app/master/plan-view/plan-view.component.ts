@@ -62,7 +62,7 @@ export class PlanViewComponent implements OnInit {
 
     { headerName: 'Plan Name ', field: 'PlanName', 'width': 150 },
     {
-      headerName: 'Chick Age In Days', field: 'ChickAgeInDays',' width': 130 },
+      headerName: 'Chick Age In Days', field: 'ChickAgeInDays','width': 130 },
     {
       headerName: 'Duration In Days ', field: 'DurationInDays' ,'width': 135},
     {

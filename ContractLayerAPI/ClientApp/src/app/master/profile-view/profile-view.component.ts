@@ -67,7 +67,7 @@ export class ProfileViewComponent implements OnInit {
     
     { headerName: 'CompanyName ', field: 'CompanyName', 'width': 150 },
     {
-      headerName: 'PhoneNo', field: 'PhoneNo',' width': 150 },
+      headerName: 'PhoneNo', field: 'PhoneNo','width': 150 },
     {
       headerName: 'Address ', field: 'Address' ,'width': 100},
     {

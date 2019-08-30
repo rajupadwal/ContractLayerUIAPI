@@ -38,6 +38,10 @@ export class SalesReceiptService {
   getCustOutstanding(formValues: any) {
     return this.http.post(APP_CONSTANT.SALERECEIPT_API.GETCUSTOUTSTANDING, formValues);
   }
+
+  getCustSettlementAmount(formValues: any) {
+    return this.http.post(APP_CONSTANT.SALERECEIPT_API.GETCUSTSETTLEMENTAMOUNT, formValues);
+  }
 }
 
 

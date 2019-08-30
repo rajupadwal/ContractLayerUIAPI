@@ -81,6 +81,25 @@ export class PrintService {
         break;
       }
 
+      case 'SupplierLedger': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
+      case 'CustomerLedger': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
     }
   }
 

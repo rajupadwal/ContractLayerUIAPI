@@ -65,7 +65,7 @@ export class SupplierViewComponent implements OnInit {
          
     { headerName: 'Supplier Name ', field: 'SupplierName', 'width': 150 },
     {
-      headerName: 'Supplier Mobile No', field: 'SupplierMobileNo', ' width': 150
+      headerName: 'Supplier Mobile No', field: 'SupplierMobileNo', 'width': 150
     },
     { headerName: 'Address    ', field: 'Address', 'width': 100 },
     {

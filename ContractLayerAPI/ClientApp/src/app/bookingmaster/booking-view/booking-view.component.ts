@@ -26,7 +26,7 @@ export class BookingViewComponent implements OnInit {
   columnDefs = [
    
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 80,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -41,7 +41,7 @@ export class BookingViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 80,
+      headerName: 'Delete', 'width': 50,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -68,7 +68,7 @@ export class BookingViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Customer Name', field: 'Customer.CustmerName', ' width': 120,
+      headerName: 'Customer Name', field: 'Customer.CustmerName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },

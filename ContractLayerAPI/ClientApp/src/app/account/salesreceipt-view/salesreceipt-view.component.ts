@@ -86,7 +86,7 @@ export class SalesreceiptViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     
-    { headerName: 'Date', field: 'Date', 'width': 120 },
+    { headerName: 'Date', field: 'Date', valueFormatter: this.dateFormatter,'width': 120 },
     {
       headerName: 'Location', field: 'Location.LocationName', 'width': 120,
       filter: "agTextColumnFilter",

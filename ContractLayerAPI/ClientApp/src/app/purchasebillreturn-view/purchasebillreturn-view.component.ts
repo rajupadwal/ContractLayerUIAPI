@@ -84,7 +84,7 @@ export class PurchasebillreturnViewComponent implements OnInit {
       }
     },
     {
-      headerName: 'Location Name', field: 'LocationName', ' width': 150,
+      headerName: 'Location Name', field: 'LocationName', 'width': 150,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },

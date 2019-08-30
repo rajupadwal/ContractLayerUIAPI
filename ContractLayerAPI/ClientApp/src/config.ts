@@ -166,6 +166,8 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Salesreceipt/Delete',
     GETSALERECEIPTNO: API_URL + 'Salesreceipt/GetSaleReceiptNo',
     GETCUSTOUTSTANDING: API_URL + 'Salesreceipt/GetCustomerOutstandingAmt',
+
+    GETCUSTSETTLEMENTAMOUNT: API_URL + 'Product/GetCustomerSettlementAmt',
   },
   FARMERCHIKEGGBILL_API: {
     ADD: API_URL + 'Salesreceipt/Add',
@@ -196,6 +198,10 @@ export const APP_CONSTANT={
     GETPRODUCTWISEAVAILABLESTOCK: API_URL + 'Product/GetProductwiseAvailableStock',
     GETCUSTBOOKINGOUTSTANDING: API_URL + 'Product/GetCustomerBookingOutstanding',
     GETCUSTBILLOUTSTANDING: API_URL + 'Product/GetCustomerBillOutstanding',
+
+    GETSUPPBILLOUTSTANDING: API_URL + 'Product/GetSupplierBillOutstanding',
+    GETSUPPBILLLEDGER: API_URL + 'Product/GetSupplierLedger',
+    GETCUSTBILLLEDGER: API_URL + 'Product/GetCustomerLedger',
   },
 
   PRODUCT_FARMER_CHICKEGGBILL_API: {

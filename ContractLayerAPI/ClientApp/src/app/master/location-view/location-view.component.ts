@@ -62,7 +62,7 @@ export class LocationViewComponent implements OnInit {
     
     { headerName: 'Location Name', field: 'LocationName', 'width': 100 },
     {
-      headerName: 'Location Code', field: 'LocationCode', ' width': 100
+      headerName: 'Location Code', field: 'LocationCode', 'width': 100
     },
     {
       headerName: 'Pin Code ', field: 'PinCode', 'width': 100

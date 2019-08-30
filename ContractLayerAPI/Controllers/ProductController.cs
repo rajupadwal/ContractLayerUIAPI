@@ -140,6 +140,27 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpGet("[action]")]
+        public IEnumerable<ViewStockDetails> GetSupplierBillOutstanding()
+        {
+            var Product = this._repoWrapper.Product.GetSupplierBillOutstanding();
+            return Product;
+        }
+
+        [HttpPost("GetSupplierLedger")]
+        public IEnumerable<ViewStockDetails> GetSupplierLedger([FromBody] TblPurchasepayment purchase)
+        {
+            var Product = this._repoWrapper.Product.GetSupplierLedger(Convert.ToInt32(purchase.SupplierId));
+            return Product;
+        }
+
+        [HttpPost("GetCustomerLedger")]
+        public IEnumerable<ViewStockDetails> GetCustomerLedger([FromBody] TblBookingMaster boooking)
+        {
+            var Product = this._repoWrapper.Product.GetCustomerLedger(Convert.ToInt32(boooking.CustomerId));
+            return Product;
+        }
+
+        [HttpGet("[action]")]
         public IEnumerable<TblProductTypeMaster> GetAll()
         {
             var Product = this._repoWrapper.Product.GetAllProduct();
@@ -439,6 +460,20 @@ namespace ContractLayerAPI.Controllers
             {
                 decimal oustanding = this._repoWrapper.Product.GetCustomerOutstandingAmt(salebill);
                 return oustanding;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        [HttpPost("GetCustomerSettlementAmt")]
+        public decimal GetCustomerSettlementAmt([FromBody] TblSalesBillMt salebill)
+        {
+            try
+            {
+                decimal settlementamt = this._repoWrapper.Product.GetCustomerSettlementAmt(salebill);
+                return settlementamt;
             }
             catch (Exception e)
             {

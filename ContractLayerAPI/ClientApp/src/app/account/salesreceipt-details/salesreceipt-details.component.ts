@@ -45,6 +45,7 @@ export class SalesReceiptDetailsComponent implements OnInit {
       PaymentMethod: ["", Validators.required],
       ChequeNo: [],
       OutstandingAmount: [],
+      BillSettlementAmount: [],
       CashAmount: ["", Validators.required],
       Narration: ["", Validators.required],
       IsDeleted: [false],
@@ -93,6 +94,14 @@ export class SalesReceiptDetailsComponent implements OnInit {
     this.salesreceiptservice.getCustOutstanding(salereceiptdetails)
       .subscribe((salereceipt: any) => {
         this.salereceiptdetailsForm.controls['OutstandingAmount'].patchValue(salereceipt);
+      });
+  }
+
+  calculateSettlementAmount(event) {
+    let salereceiptdetails = this.salereceiptdetailsForm.value;
+    this.salesreceiptservice.getCustSettlementAmount(salereceiptdetails)
+      .subscribe((salereceipt: any) => {
+        this.salereceiptdetailsForm.controls['BillSettlementAmount'].patchValue(salereceipt);
       });
   }
 

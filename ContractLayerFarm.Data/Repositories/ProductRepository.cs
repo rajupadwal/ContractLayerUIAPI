@@ -7,6 +7,7 @@ using ContractLayerFarm.Data.Models;
 using ContractLayerFarm.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace ContractLayerFarm.Data.Repositories
 {
@@ -18,13 +19,7 @@ namespace ContractLayerFarm.Data.Repositories
         //string connectionString = "Data Source=216.10.240.149;Initial Catalog=ktconin_ContractLayerDB;user id=ContarctLayer;password=Layer@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
         string connectionString = "Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
 
-        //public IEnumerable<TblProductTypeMaster> SearchProduct(string searchString)
-        //{
-        //    if (string.IsNullOrEmpty(searchString))
-        //    { return new List<TblProductTypeMaster>(); }
-
-        //   // return this.ktConContext.Set<TblProductTypeMaster>().Where(product => product.ProductName.ToLower().Contains(searchString.ToLower()));
-        //}
+        
         public IEnumerable<TblUserInfo> SearchLogin(TblUserInfo user)
         {
             return this.ktConContext.Set<TblUserInfo>().Where(info => info.Username==user.Username && info.Userpassword==user.Userpassword);
@@ -132,6 +127,153 @@ namespace ContractLayerFarm.Data.Repositories
 
                     lstcustBillOut.Add(stockDetails);
                 }
+                con.Close();
+            }
+            return lstcustBillOut;
+        }
+
+        IEnumerable<ViewStockDetails> IProductRepository.GetSupplierBillOutstanding()
+        {
+            List<ViewStockDetails> lstcustBillOut = new List<ViewStockDetails>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string sqlQuery = "SELECT sm.SupplierName, sm.Address,sm.SupplierMobileNo,sum(st.PurchaseAmount) as PurchaseAmount,sum(st.PurchasePaidAmt) as PurchasePaidAmt,(sum(st.PurchaseAmount) - sum(st.PurchasePaidAmt)) as Outstanding FROM tbl_SupplierMaster sm inner join tbl_SupplierTransaction st on sm.SupplierId = st.SupplierId group by sm.SupplierName, sm.Address,sm.SupplierMobileNo";
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ViewStockDetails stockDetails = new ViewStockDetails();
+
+                    stockDetails.SupplierName = (rdr["SupplierName"].ToString());
+                    stockDetails.Address = (rdr["Address"].ToString());
+                    stockDetails.MobileNo = (rdr["SupplierMobileNo"].ToString());
+                    stockDetails.PurchaseAmount = Convert.ToDecimal(rdr["PurchaseAmount"]);
+                    stockDetails.PurchasePaidAmt = Convert.ToDecimal(rdr["PurchasePaidAmt"]);
+                    stockDetails.PurchaseOutstanding = Convert.ToDecimal(rdr["Outstanding"]);
+
+                    lstcustBillOut.Add(stockDetails);
+                }
+                con.Close();
+            }
+            return lstcustBillOut;
+        }
+
+        IEnumerable<ViewStockDetails> IProductRepository.GetSupplierLedger(int supplierid)
+        {
+            decimal outstandingAmt = 0;
+
+            var entryPoint = (from ct in ktConContext.TblSupplierTransaction
+                              where ct.SupplierId == supplierid
+                              select new
+                              {
+                                  purchaseamt = ct.PurchaseAmount,
+                                  purchasepaid = ct.PurchasePaidAmt
+                              });
+
+            outstandingAmt = Convert.ToDecimal(entryPoint.Sum(x => Convert.ToDecimal(x.purchaseamt)) - entryPoint.Sum(k => Convert.ToDecimal(k.purchasepaid)));
+
+
+            List<ViewStockDetails> lstcustBillOut = new List<ViewStockDetails>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                 
+                string sqlQuery = "SELECT sm.SupplierName, st.TransactionDate,st.TransactionType,st.BillId ,st.PurchaseAmount,st.PaymentVocherNo,st.PurchasePaidAmt,st.PaymentType,st.Narration FROM tbl_SupplierTransaction st inner join tbl_SupplierMaster sm on st.SupplierId = sm.SupplierId where st.SupplierId=@SupplierID order by st.PkId";
+                
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                cmd.Parameters.Add("@SupplierID",System.Data.SqlDbType.Int).Value =supplierid;
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ViewStockDetails stockDetails = new ViewStockDetails();
+
+                    stockDetails.SupplierName = (rdr["SupplierName"].ToString());
+                    stockDetails.TransactionDate = Convert.ToDateTime(rdr["TransactionDate"]);
+                    stockDetails.TransactionType = (rdr["TransactionType"].ToString());
+                    stockDetails.BillId = (rdr["BillId"].ToString());
+                    stockDetails.PaymentVocherNo = (rdr["PaymentVocherNo"].ToString());
+                    stockDetails.PaymentType = (rdr["PaymentType"].ToString());
+                    stockDetails.Narration = (rdr["Narration"].ToString());
+                    stockDetails.PurchaseAmount = Convert.ToDecimal(rdr["PurchaseAmount"]);
+                    stockDetails.PurchasePaidAmt = Convert.ToDecimal(rdr["PurchasePaidAmt"]);
+
+                    lstcustBillOut.Add(stockDetails);
+                }
+                lstcustBillOut.Add(new ViewStockDetails() { PurchaseAmount = outstandingAmt, BillId = "Closing Balance" });
+                con.Close();
+            }
+            return lstcustBillOut;
+        }
+
+        IEnumerable<ViewStockDetails> IProductRepository.GetCustomerLedger(int customerid)
+        {
+            decimal settlementAmt = 0;
+
+            var entryPoint = (from ct in ktConContext.TblCustomerTransaction
+                              where ct.CustomerId ==customerid
+                              select new
+                              {
+                                  billamt = ct.BillAmount,
+                                  billpaid = ct.BillPaidAmt,
+                                  bookingamt = ct.BookingAmount,
+                                  bookingpaid = ct.BookingReceivedAmt,
+                                  cancelbookamt = ct.CancelBookingAmt
+                              });
+
+            settlementAmt = Convert.ToDecimal(entryPoint.Sum(x => Convert.ToDecimal(x.billamt)) - entryPoint.Sum(k => Convert.ToDecimal(k.billpaid)) - entryPoint.Sum(k => Convert.ToDecimal(k.bookingamt)) + entryPoint.Sum(k => Convert.ToDecimal(k.bookingpaid)) + entryPoint.Sum(k => Convert.ToDecimal(k.cancelbookamt)));
+
+            List<ViewStockDetails> lstcustBillOut = new List<ViewStockDetails>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+
+                string sqlQuery = "SELECT cm.CustmerName, ct.TransactionDate,ct.TransactionType,ct.BookingId ,ct.BookingAmount,ct.ReceiptNo,ct.BookingReceivedAmt,ct.CancelBookingAmt,ct.BillId,ct.BillAmount,ct.BillPaidAmt,ct.PaymentType,ct.Narration FROM tbl_CustomerTransaction ct inner join tbl_CustomerMaster cm on ct.CustomerId = cm.CustomerId where ct.CustomerId=@CustomerID order by ct.PkId";
+
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                cmd.Parameters.Add("@CustomerID", System.Data.SqlDbType.Int).Value = customerid;
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ViewStockDetails stockDetails = new ViewStockDetails();
+
+                    stockDetails.CustomerName = (rdr["CustmerName"].ToString());
+                    stockDetails.TransactionDate = Convert.ToDateTime(rdr["TransactionDate"]);
+                    if (rdr["TransactionType"].ToString() == "ContractLayerFarm.Data.Models.TblBookingMaster")
+                    {
+                        stockDetails.TransactionType = "Booking Order";
+                    }
+                    if (rdr["TransactionType"].ToString() == "ContractLayerFarm.Data.Models.TblSalesBillMt")
+                    {
+                        stockDetails.TransactionType = "Sale Bill";
+                    }
+                    if (rdr["TransactionType"].ToString() == "ContractLayerFarm.Data.Models.TblBookingCancelMaster")
+                    {
+                        stockDetails.TransactionType = "Booking Cancel";
+                    }
+                    if (rdr["TransactionType"].ToString() == "ContractLayerFarm.Data.Models.TblSalesReceipt")
+                    {
+                        stockDetails.TransactionType = "Sale Receipt";
+                    }
+                     
+                    stockDetails.BookingId = (rdr["BookingId"].ToString());
+                    stockDetails.BookingAmount = Convert.ToDecimal(rdr["BookingAmount"]);
+                    stockDetails.ReceiptNo = (rdr["ReceiptNo"].ToString());
+                    stockDetails.BookingReceivedAmt = Convert.ToDecimal(rdr["BookingReceivedAmt"]);
+                    stockDetails.CancelBookingAmt = Convert.ToDecimal(rdr["CancelBookingAmt"]);
+                    stockDetails.BillId = (rdr["BillId"].ToString());
+                    stockDetails.BillAmount = Convert.ToDecimal(rdr["BillAmount"]);
+                    stockDetails.BillPaidAmt = Convert.ToDecimal(rdr["BillPaidAmt"]);
+                    stockDetails.PaymentType = (rdr["PaymentType"].ToString());
+                    stockDetails.Narration = (rdr["Narration"].ToString());
+
+                    lstcustBillOut.Add(stockDetails);
+                    
+                }
+                lstcustBillOut.Add(new ViewStockDetails() { BookingAmount = settlementAmt, BookingId = "Closing Balance" });
                 con.Close();
             }
             return lstcustBillOut;
@@ -791,9 +933,11 @@ namespace ContractLayerFarm.Data.Repositories
                 BookingId = "",
                 BookingAmount = 0,
                 BookingReceivedAmt = 0,
+                CancelBookingAmt=0,
                 BillId = master.BillNo,
                 BillAmount = master.GrandTotal,
                 BillPaidAmt = 0,
+                ReceiptNo="",
                 PaymentType = "",
                 Narration = master.Narration,
             };
@@ -891,6 +1035,26 @@ namespace ContractLayerFarm.Data.Repositories
                 outstandingAmt = Convert.ToDecimal(entryPoint.Sum(x => Convert.ToDecimal(x.billamt)) - entryPoint.Sum(k => Convert.ToDecimal(k.billpaid)));
 
             return outstandingAmt;
+        }
+
+        public decimal GetCustomerSettlementAmt(TblSalesBillMt master)
+        {
+            decimal settlementAmt = 0;
+
+            var entryPoint = (from ct in ktConContext.TblCustomerTransaction
+                              where ct.CustomerId == master.Customer.CustomerId
+                              select new
+                              {
+                                  billamt = ct.BillAmount,
+                                  billpaid = ct.BillPaidAmt,
+                                  bookingamt=ct.BookingAmount,
+                                  bookingpaid=ct.BookingReceivedAmt,
+                                  cancelbookamt=ct.CancelBookingAmt
+                              });
+
+            settlementAmt = Convert.ToDecimal(entryPoint.Sum(x => Convert.ToDecimal(x.billamt)) - entryPoint.Sum(k => Convert.ToDecimal(k.billpaid)) - entryPoint.Sum(k => Convert.ToDecimal(k.bookingamt)) + entryPoint.Sum(k => Convert.ToDecimal(k.bookingpaid)) + entryPoint.Sum(k => Convert.ToDecimal(k.cancelbookamt)));
+
+            return settlementAmt;
         }
     }
 }

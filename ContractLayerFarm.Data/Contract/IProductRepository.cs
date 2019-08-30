@@ -27,6 +27,10 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<ViewStockDetails> GetCustomerBookingOutstanding();
         IEnumerable<ViewStockDetails> GetCustomerBillOutstanding();
 
+        IEnumerable<ViewStockDetails> GetCustomerLedger(int customerid);
+        IEnumerable<ViewStockDetails> GetSupplierLedger(int supplierid);
+        IEnumerable<ViewStockDetails> GetSupplierBillOutstanding();
+
         IEnumerable<TblProductTypeMaster> GetAllProduct();
         IEnumerable<TblProductTypeMaster> GetAllProductTypeForProduct(TblProductTypeMaster master);
 
@@ -74,6 +78,8 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<TblPurchaseBillReturnDt> GetAllPurchaseBillReturnMasteDetails(int billid);
 
         decimal GetCustomerOutstandingAmt(TblSalesBillMt master);
+
+        decimal GetCustomerSettlementAmt(TblSalesBillMt master);
 
     }
 }
