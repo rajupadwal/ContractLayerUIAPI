@@ -17,9 +17,9 @@ namespace ContractLayerFarm.Data.Repositories
         public ProductRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext; }
         //string connectionString = "Data Source=IDCSQL6.znetlive.com,1234;Initial Catalog=a1079e563_ContractLayer;user id=Contractpro;password=Contract@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
         //string connectionString = "Data Source=216.10.240.149;Initial Catalog=ktconin_ContractLayerDB;user id=ContarctLayer;password=Layer@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
-        string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        // string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        string connectionString = "Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
 
-        
         public IEnumerable<TblUserInfo> SearchLogin(TblUserInfo user)
         {
             return this.ktConContext.Set<TblUserInfo>().Where(info => info.Username == user.Username
