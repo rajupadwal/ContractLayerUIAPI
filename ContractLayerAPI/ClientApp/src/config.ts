@@ -43,6 +43,8 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Supplier/Delete',
     SEARCH_SUPPLIER: API_URL + 'Supplier/SearchSupplier',
   },
+
+
   PLAN_API: {
     ADD: API_URL + 'Plan/Add',
     GETALL: API_URL + 'Plan/GetAll',
