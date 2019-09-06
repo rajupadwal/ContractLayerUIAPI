@@ -27,7 +27,7 @@ export class PurchasebillViewComponent implements OnInit {
     //  cellRenderer: 'buttonRenderer',
     //},
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -42,7 +42,7 @@ export class PurchasebillViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Print', 'width': 50,
+      headerName: 'Print', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -55,7 +55,7 @@ export class PurchasebillViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 50,
+      headerName: 'Delete', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -76,9 +76,14 @@ export class PurchasebillViewComponent implements OnInit {
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-     
+    { headerName: 'GRN Date', field: 'GRNDate', valueFormatter: this.dateFormatter, 'width': 120, },
     {
-      headerName: 'Date ', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 180,
+      headerName: 'Bill No', field: 'BillNo', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Bill Date ', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 180,
       filter: "agDateColumnFilter",
       filterParams: {
         comparator: function (filterLocalDateAtMidnight, cellValue) {
@@ -99,7 +104,7 @@ export class PurchasebillViewComponent implements OnInit {
         browserDatePicker: true
       }
     },
-    { headerName: 'Date', field: 'BillDate', valueFormatter: this.dateFormatter,'width': 120 ,},
+    
     {
       headerName: 'Location', field: 'LocationName', 'width': 120,
       filter: "agTextColumnFilter",

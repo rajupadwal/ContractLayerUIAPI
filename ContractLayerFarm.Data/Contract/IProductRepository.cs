@@ -27,6 +27,9 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<ViewStockDetails> GetCustomerBookingOutstanding();
         IEnumerable<ViewStockDetails> GetCustomerBillOutstanding();
 
+        IEnumerable<ViewStockDetails> GetDatewiseExpencesDetails(TblEmployeeMaster master);
+        IEnumerable<ViewStockDetails> GetDatewiseFarmerInwardDetails(TblEmployeeMaster master);
+        IEnumerable<ViewStockDetails> GetDatewiseFarmerOutwardDetails(TblEmployeeMaster master);
         IEnumerable<ViewStockDetails> GetCustomerLedger(int customerid);
         IEnumerable<ViewStockDetails> GetSupplierLedger(int supplierid);
         IEnumerable<ViewStockDetails> GetSupplierBillOutstanding();
@@ -50,6 +53,7 @@ namespace ContractLayerFarm.Data.Contract
         void SaveFarmerChickEggBillMaster(TblSalesBillMt master);
         void SaveFarmerChickEggBillDetails(TblSalesBillDt[] details);
         IEnumerable<ViewFarmerChickEggBillMaster> GetAllFarmerChickEggBillMasters();
+        IEnumerable<ViewFarmerChickEggBillMaster> GetAllTopSale();
 
         IEnumerable<TblSalesBillDt> GetAllFarmerChickEggBillDetails(int billid);
 
@@ -71,6 +75,7 @@ namespace ContractLayerFarm.Data.Contract
         void SavePurchaseBillDetails(TblPurchaseBillDt[] details);
 
         IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters();
+        IEnumerable<ViewPurchaseBillMaster> GetAllTopPurchase();
 
         IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillReturnMasters();
 

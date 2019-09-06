@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CustomerledgerViewComponent } from './customerledger-view.component';
 
-import { CustomerledgerviewRoutingModule } from './customerledger.view.routing.module';
-
-describe('CustomerledgerviewRoutingModule', () => {
-  let component: CustomerledgerviewRoutingModule;
-  let fixture: ComponentFixture<CustomerledgerviewRoutingModule>;
+describe('CustomerledgerViewComponent', () => {
+  let component: CustomerledgerViewComponent;
+  let fixture: ComponentFixture<CustomerledgerViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomerledgerviewRoutingModule ]
+      declarations: [CustomerledgerViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomerledgerviewRoutingModule);
+    fixture = TestBed.createComponent(CustomerledgerViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

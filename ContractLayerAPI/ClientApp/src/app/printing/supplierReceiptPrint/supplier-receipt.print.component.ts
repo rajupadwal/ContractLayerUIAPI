@@ -26,7 +26,7 @@ export class SupplierReceiptPrintComponent implements OnInit {
 
 export class SupplierReceiptMaster {
   PkId: number = 0;
-  ReceiptNo: number = 0;
+  RecordNo: number = 0;
   Date: Date = new Date();
   Location: any;
   Supplier: any;

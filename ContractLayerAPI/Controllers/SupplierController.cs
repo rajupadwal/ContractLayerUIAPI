@@ -27,7 +27,7 @@ namespace ContractLayerAPI.Controllers
             var Supplier = this._repoWrapper.Supplier.FindAll().ToList();
             return Supplier;
         }
-        
+
         [HttpPost("GetByID")]
         public TblSupplierMaster GetByID([FromBody] int SupplierId)
         {
@@ -56,9 +56,8 @@ namespace ContractLayerAPI.Controllers
             {
                 return false;
             }
-           
-           
         }
+
         [HttpPost("Update")]
         public bool Update([FromBody] TblSupplierMaster supplier)
         {
@@ -73,9 +72,8 @@ namespace ContractLayerAPI.Controllers
             {
                 return false;
             }
-
-
         }
+
         [HttpPost("Delete")]
         public bool Delete([FromBody] TblSupplierMaster supplier)
         {
@@ -90,11 +88,6 @@ namespace ContractLayerAPI.Controllers
             {
                 return false;
             }
-
-
         }
-
-
-
     }
 }

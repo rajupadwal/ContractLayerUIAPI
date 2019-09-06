@@ -20,17 +20,9 @@ export class EggsrangeViewComponent implements OnInit {
 }
  
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
-
+    
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -46,7 +38,7 @@ export class EggsrangeViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 50,
+      headerName: 'Delete', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');

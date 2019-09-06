@@ -15,6 +15,10 @@ import { FarmerInwardPrintComponent } from './farmerInwardPrint/farmer-inward.pr
 import { FarmerOutwardPrintComponent } from './farmerOutwardPrint/farmer-outward.print.component';
 import { SupplierLedgerPrintComponent } from './supplierLedgerPrint/supplier-ledger.print.component';
 import { CustomerLedgerPrintComponent } from './customerLedgerPrint/customer-ledger.print.component';
+import { DatewiseFarmerInwardPrintComponent } from './datewiseFarmerInwardPrint/datewise-farmerinward.print.component';
+import { DatewiseFarmerOutwardPrintComponent } from './datewiseFarmerOutwardPrint/datewise-farmeroutward.print.component';
+import { DatewiseExpencesPrintComponent } from './datewiseExpencesPrint/datewise-expences.print.component';
+import { PurchaseBillReturnPrintComponent } from './purchaseBillReturnPrint/purchase-billreturn.print.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -33,7 +37,11 @@ import { CustomerLedgerPrintComponent } from './customerLedgerPrint/customer-led
     FarmerInwardPrintComponent,
     FarmerOutwardPrintComponent,
     SupplierLedgerPrintComponent,
-    CustomerLedgerPrintComponent
+    CustomerLedgerPrintComponent,
+    DatewiseFarmerInwardPrintComponent,
+    DatewiseFarmerOutwardPrintComponent,
+    DatewiseExpencesPrintComponent,
+    PurchaseBillReturnPrintComponent
   ],
   providers: [
     PrintService

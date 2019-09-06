@@ -6,6 +6,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { IncomeDetailsComponent } from '../income-details/income-details.component';
 import { IncomeService } from './income.service';
 import { ProductService } from '../../master/product-view/product.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-income-view',
@@ -22,7 +23,7 @@ export class IncomeViewComponent implements OnInit {
   columnDefs = [
      
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -37,7 +38,7 @@ export class IncomeViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 50,
+      headerName: 'Delete', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -59,7 +60,7 @@ export class IncomeViewComponent implements OnInit {
     
     { headerName: 'Location', field: 'Location.LocationName', 'width': 140 },
     {
-      headerName: 'Date ', field: 'Date', 'width': 120
+      headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter, 'width': 120
     },
     {
       headerName: 'Type Of Income', field: 'Income.IncomeType', 'width': 130
@@ -75,6 +76,10 @@ export class IncomeViewComponent implements OnInit {
   rowData = [
    
   ];
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
     
   constructor(private router: Router, private http: HttpClient, private incomeService: IncomeService, public dialog: DialogService, public productService: ProductService) { }
 

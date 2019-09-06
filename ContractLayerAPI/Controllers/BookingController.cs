@@ -43,6 +43,13 @@ namespace ContractLayerAPI.Controllers
             return Booking;
         }
 
+        [HttpGet("[action]")]
+        public IEnumerable<TblBookingMaster> GetAllTopBooking()
+        {
+            var Booking = this._repoWrapper.Booking.GetAllTopBooking();
+            return Booking;
+        }
+
         [HttpPost("GetPlanByCustID")]
         public IEnumerable<TblBookingMaster> GetPlanByCustID([FromBody] TblBookingMaster booking)
         {
@@ -62,9 +69,9 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Booking.SaveBookinginCustomerTransaction(booking);
                 this._repoWrapper.Booking.Create(booking);
                 this._repoWrapper.Booking.Save();
+                this._repoWrapper.Booking.SaveBookinginCustomerTransaction(booking);
                 return true;
             }
 

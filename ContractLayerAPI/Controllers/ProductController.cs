@@ -160,6 +160,27 @@ namespace ContractLayerAPI.Controllers
             return Product;
         }
 
+        [HttpPost("GetDatewiseFarmerInwardDetails")]
+        public IEnumerable<ViewStockDetails> GetDatewiseFarmerInwardDetails([FromBody] TblEmployeeMaster master)
+        {
+            var Product = this._repoWrapper.Product.GetDatewiseFarmerInwardDetails(master);
+            return Product;
+        }
+
+        [HttpPost("GetDatewiseFarmerOutwardDetails")]
+        public IEnumerable<ViewStockDetails> GetDatewiseFarmerOutwardDetails([FromBody] TblEmployeeMaster master)
+        {
+            var Product = this._repoWrapper.Product.GetDatewiseFarmerOutwardDetails(master);
+            return Product;
+        }
+
+        [HttpPost("GetDatewiseExpencesDetails")]
+        public IEnumerable<ViewStockDetails> GetDatewiseExpencesDetails([FromBody] TblEmployeeMaster master)
+        {
+            var Product = this._repoWrapper.Product.GetDatewiseExpencesDetails(master);
+            return Product;
+        }
+
         [HttpGet("[action]")]
         public IEnumerable<TblProductTypeMaster> GetAll()
         {
@@ -377,6 +398,12 @@ namespace ContractLayerAPI.Controllers
             return this._repoWrapper.Product.GetAllFarmerChickEggBillMasters().ToList();
         }
 
+        [HttpGet("[action]")]
+        public IEnumerable<ViewFarmerChickEggBillMaster> GetAllTopSale()
+        {
+            return this._repoWrapper.Product.GetAllTopSale().ToList();
+        }
+
 
         [HttpGet("[action]")]
         public IEnumerable<ViewFarmerInwardMaster> GetAllFarmerOutwardMasters()
@@ -427,6 +454,12 @@ namespace ContractLayerAPI.Controllers
         public IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters()
         {
             return this._repoWrapper.Product.GetAllPurchaseBillMasters().ToList();
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewPurchaseBillMaster> GetAllTopPurchase()
+        {
+            return this._repoWrapper.Product.GetAllTopPurchase().ToList();
         }
 
         [HttpGet("[action]")]

@@ -8,7 +8,7 @@ import { DialogRef } from '../../dialog/dialog-ref';
 import { ExpencedetailsMasterComponent } from '../expencedetails-master/expencedetails-master.component';
 import { ExpencedetailsService } from './expencedetails.service';
 import { ProductService } from '../../master/product-view/product.service';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-expencedetails-view',
@@ -27,7 +27,7 @@ export class ExpencedetailsViewComponent implements OnInit {
   columnDefs = [
 
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -43,7 +43,7 @@ export class ExpencedetailsViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 50,
+      headerName: 'Delete', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -55,17 +55,13 @@ export class ExpencedetailsViewComponent implements OnInit {
         return newTH;
       },
     },
-
-
     {
       headerName: 'Expence No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
       field: 'ExpencesNo', 'width': 140
     },
-
-    
-    { headerName: 'Date ', field: 'Date', 'width': 120 },
+    { headerName: 'Date ', field: 'Date', valueFormatter: this.dateFormatter,'width': 120 },
     {
       headerName: 'Expence Type', field: 'Expence.ExpenceType', 'width': 120
     },
@@ -73,9 +69,9 @@ export class ExpencedetailsViewComponent implements OnInit {
       headerName: 'Location', field: 'Location.LocationName', 'width': 120
     },
     {
-      headerName: 'Employee Name    ', field: 'Employee.EmployeeName', 'width': 140
+      headerName: 'Employee Name', field: 'Employee.EmployeeName', 'width': 140
     },
-    { headerName: 'Payment Method           ', field: 'PaymentMethod', 'width': 160 },
+    { headerName: 'Payment Method', field: 'PaymentMethod', 'width': 160 },
 
     { headerName: 'Cheque No           ', field: 'ChequeNo', 'width': 120 },
     { headerName: 'Amount           ', field: 'Amount', 'width': 120 },
@@ -87,6 +83,10 @@ export class ExpencedetailsViewComponent implements OnInit {
   rowData = [
 
   ];
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
 
   constructor(private router: Router, private http: HttpClient, private ExpencedetailsService: ExpencedetailsService, public dialog: DialogService, private config: DialogConfig, public dialogref: DialogRef, public productService: ProductService) { }
 

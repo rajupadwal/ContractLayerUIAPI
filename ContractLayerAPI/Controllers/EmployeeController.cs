@@ -45,8 +45,9 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Employee.SaveLoginDetails(employee);
                 this._repoWrapper.Employee.Create(employee);
+                this._repoWrapper.Employee.Save();
+                this._repoWrapper.Employee.SaveLoginDetails(employee);
                 this._repoWrapper.Employee.Save();
                 return true;
             }

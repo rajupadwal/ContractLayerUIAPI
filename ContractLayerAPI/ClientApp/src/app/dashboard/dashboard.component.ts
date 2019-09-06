@@ -1,12 +1,98 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PurchasebillService } from '../purchase/purchasebill-view/purchasebill.service';
+import * as moment from 'moment';
+import { FarmerchikeggbillService } from '../sale/farmerchickeggsbill-view/farmerchickeggsbill.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { APP_CONSTANT } from '../../config';
 
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
 
-  // constructor( ) { }
+  public TotalBooking: number = 0;
+  public TotalCustomer: number = 0;
+  public TotalProduct: number = 0;
+  public TotalSale: number = 0;
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
+
+  columnDefs1 = [
+    {
+      headerName: '<b>Date</b>', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 130,
+    },
+    {
+      headerName: '<b>Particulars</b>', field: 'SupplierName', 'width': 230,
+    },
+    {
+      headerName: '<b>Amount</b>', field: 'GrandTotal', 'width': 167,
+    },
+  ];
+
+  defaultColDef1 = {
+    sortable: true,
+    filter: true
+  };
+  rowData1;
+
+  columnDefs = [
+    {
+      headerName: '<b>Date</b>', field: 'BookingDate', valueFormatter: this.dateFormatter, 'width': 130,
+    },
+    {
+      headerName: '<b>Particulars</b>', field: 'Customer.CustmerName', 'width': 230,
+    },
+    {
+      headerName: '<b>Amount</b>', field: 'Amount', 'width': 167,
+    },
+  ];
+
+  defaultColDef = {
+    sortable: true,
+    filter: true
+  };
+  rowData;
+
+  columnDefs2 = [
+    {
+      headerName: '<b>Date</b>', field: 'Date', valueFormatter: this.dateFormatter, 'width': 130,
+    },
+    {
+      headerName: '<b>Particulars</b>', field: 'Expence.ExpenceType', 'width': 230,
+    },
+    {
+      headerName: '<b>Amount</b>', field: 'Amount', 'width': 167,
+    },
+  ];
+
+  defaultColDef2 = {
+    sortable: true,
+    filter: true
+  };
+  rowData2;
+
+  columnDefs3 = [
+    {
+      headerName: '<b>Date</b>', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 130,
+    },
+    {
+      headerName: '<b>Particulars</b>', field: 'CustmerName', 'width': 230,
+    },
+    {
+      headerName: '<b>Amount</b>', field: 'GrandTotal', 'width': 167,
+    },
+  ];
+
+  defaultColDef3 = {
+    sortable: true,
+    filter: true
+  };
+  rowData3;
+
+  constructor(private router: Router, private http: HttpClient, private Purchasebillservice: PurchasebillService, private farmerchikeggbillservice: FarmerchikeggbillService) { }
 
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
@@ -463,6 +549,48 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.Purchasebillservice.GetAllTopPurchase()
+      .subscribe((purchasebill: any) => {
+        this.rowData1 = purchasebill;
+      });
+
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    this.http.get(APP_CONSTANT.BOOKING_API.GETALLTOPBOOKING, httpOptions)
+      .subscribe((booking: any) => {
+        this.rowData = booking;
+      });
+
+    this.http.get(APP_CONSTANT.EXPENCEDETAILS_API.GETALLTOPEXPENSES, httpOptions)
+      .subscribe((expencedetails: any) => {
+        this.rowData2 = expencedetails;
+      });
+
+    this.farmerchikeggbillservice.GetAllTopSale()
+       .subscribe((salebill: any) => {
+         this.rowData3 = salebill;
+       });
+
+    //Total Booking,Customer,Product,Sale
+    this.http.get(APP_CONSTANT.BOOKING_API.GETALL, httpOptions)
+      .subscribe((booking: any) => {
+        this.TotalBooking = booking.length;
+      });
+    this.http.get(APP_CONSTANT.CUSOTMER_API.GETALL, httpOptions)
+      .subscribe((customer: any) => {
+        this.TotalCustomer = customer.length;
+      });
+    this.http.get(APP_CONSTANT.PRODUCT_API.GETALL, httpOptions)
+      .subscribe((product: any) => {
+        this.TotalProduct = product.length;
+      });
+    this.farmerchikeggbillservice.loadFarmerchickeggbillMaster()
+      .subscribe((salebill: any) => {
+        this.TotalSale = salebill.length;
+      });
+
     // generate random values for mainChart
     for (let i = 0; i <= this.mainChartElements; i++) {
       this.mainChartData1.push(this.random(50, 200));
@@ -471,3 +599,4 @@ export class DashboardComponent implements OnInit {
     }
   }
 }
+
