@@ -13,10 +13,11 @@ import { AuthService } from './auth.service';
 import { LoaderService } from "src/app/app.loading.service";
 import { map } from "rxjs/internal/operators/map";
 import { finalize } from "rxjs/internal/operators/finalize";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(public auth: AuthService, private loaderService: LoaderService) {}
+  constructor(public auth: AuthService, private loaderService: LoaderService, private router:Router) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     request = request.clone({
@@ -32,6 +33,10 @@ export class TokenInterceptor implements HttpInterceptor {
         return event;
       }),
       catchError((error: HttpErrorResponse) => {
+        if (error instanceof HttpErrorResponse && error.status == 404) {
+          this.router.navigateByUrl('/', { replaceUrl: true });
+        }
+
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
           // client-side error

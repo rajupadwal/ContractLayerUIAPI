@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-
-
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
@@ -13,12 +10,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using WebApi.Helpers;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ContractLayerAPI.Controllers
 {
-    [Authorize]
-    [Produces("application/json")]
+
+    [Authorize][Produces("application/json")]
     [Route("api/Product/")]
     public class ProductController : ControllerBase
     {
