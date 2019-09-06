@@ -1,30 +1,58 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using WebApi.Helpers;
+using Microsoft.Extensions.Options;
 
 namespace ContractLayerAPI.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Product/")]
-    public class ProductController : Controller
-    {
 
+    [Authorize][Produces("application/json")]
+    [Route("api/Product/")]
+    public class ProductController : ControllerBase
+    {
+        private readonly AppSettings _appSettings;
         private IRepositoryWrapper _repoWrapper;
 
-        public ProductController(IRepositoryWrapper repoWrapper)
+        public ProductController(IRepositoryWrapper repoWrapper, IOptions<AppSettings> appSettings)
         {
             _repoWrapper = repoWrapper;
+            _appSettings = appSettings.Value;
         }
 
+        [AllowAnonymous]
         [HttpPost("Login")]
-        public IEnumerable<TblUserInfo> SearchLogin([FromBody] TblUserInfo user)
+        public TblUserInfo SearchLogin([FromBody] TblUserInfo user)
         {
-            var login = this._repoWrapper.Product.SearchLogin(user);
+            var login = this._repoWrapper.Product.SearchLogin(user).FirstOrDefault();
+
+            if(login.UserId <= 0)
+            {
+                return null;
+            }
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = System.Text.Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, login.Username.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            login.Token = tokenHandler.WriteToken(token);
             return login;
+          
+
         }
 
         [HttpPost("GetTypeByProductID")]
@@ -157,6 +185,27 @@ namespace ContractLayerAPI.Controllers
         public IEnumerable<ViewStockDetails> GetCustomerLedger([FromBody] TblBookingMaster boooking)
         {
             var Product = this._repoWrapper.Product.GetCustomerLedger(Convert.ToInt32(boooking.CustomerId));
+            return Product;
+        }
+
+        [HttpPost("GetDatewiseFarmerInwardDetails")]
+        public IEnumerable<ViewStockDetails> GetDatewiseFarmerInwardDetails([FromBody] TblEmployeeMaster master)
+        {
+            var Product = this._repoWrapper.Product.GetDatewiseFarmerInwardDetails(master);
+            return Product;
+        }
+
+        [HttpPost("GetDatewiseFarmerOutwardDetails")]
+        public IEnumerable<ViewStockDetails> GetDatewiseFarmerOutwardDetails([FromBody] TblEmployeeMaster master)
+        {
+            var Product = this._repoWrapper.Product.GetDatewiseFarmerOutwardDetails(master);
+            return Product;
+        }
+
+        [HttpPost("GetDatewiseExpencesDetails")]
+        public IEnumerable<ViewStockDetails> GetDatewiseExpencesDetails([FromBody] TblEmployeeMaster master)
+        {
+            var Product = this._repoWrapper.Product.GetDatewiseExpencesDetails(master);
             return Product;
         }
 
@@ -370,11 +419,17 @@ namespace ContractLayerAPI.Controllers
                 return false;
             }
         }
-
+       
         [HttpGet("[action]")]
         public IEnumerable<ViewFarmerChickEggBillMaster> GetAllFarmerChickEggBillMasters()
         {
             return this._repoWrapper.Product.GetAllFarmerChickEggBillMasters().ToList();
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewFarmerChickEggBillMaster> GetAllTopSale()
+        {
+            return this._repoWrapper.Product.GetAllTopSale().ToList();
         }
 
 
@@ -427,6 +482,12 @@ namespace ContractLayerAPI.Controllers
         public IEnumerable<ViewPurchaseBillMaster> GetAllPurchaseBillMasters()
         {
             return this._repoWrapper.Product.GetAllPurchaseBillMasters().ToList();
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<ViewPurchaseBillMaster> GetAllTopPurchase()
+        {
+            return this._repoWrapper.Product.GetAllTopPurchase().ToList();
         }
 
         [HttpGet("[action]")]

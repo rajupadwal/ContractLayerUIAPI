@@ -31,6 +31,17 @@ export class PrintService {
           }]);
         break;
       }
+
+      case 'PurchaseBillReturn': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
       case 'CreateSale': {
         this.router.navigate(['/',
           {
@@ -92,6 +103,36 @@ export class PrintService {
       }
 
       case 'CustomerLedger': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
+      case 'DatewiseFarmerInward': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
+      case 'DatewiseFarmerOutward': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
+      case 'DatewiseExpences': {
         this.router.navigate(['/',
           {
             outlets: {

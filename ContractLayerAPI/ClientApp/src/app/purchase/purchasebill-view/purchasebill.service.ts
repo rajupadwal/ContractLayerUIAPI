@@ -14,6 +14,10 @@ export class PurchasebillService {
     return this.http.get(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.GETALLPURCHASEBILLMASTERS);
   }
 
+  GetAllTopPurchase() {
+    return this.http.get(APP_CONSTANT.PRODUCT_PURCHASE_BILLS_API.GETALLTOPPURCHASE);
+  }
+
   getCustomerByID(id) {
 //    return this.http.post(APP_CONSTANT.GETALLFARMERINWARDMASTERS.GETByID,id);
   }

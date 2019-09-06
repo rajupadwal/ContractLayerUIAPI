@@ -272,9 +272,133 @@ namespace ContractLayerFarm.Data.Repositories
                     stockDetails.Narration = (rdr["Narration"].ToString());
 
                     lstcustBillOut.Add(stockDetails);
-                    
                 }
                 lstcustBillOut.Add(new ViewStockDetails() { BookingAmount = settlementAmt, BookingId = "Closing Balance" });
+                con.Close();
+            }
+            return lstcustBillOut;
+        }
+
+        IEnumerable<ViewStockDetails> IProductRepository.GetDatewiseFarmerInwardDetails(TblEmployeeMaster master)
+        {
+            List<ViewStockDetails> lstcustBillOut = new List<ViewStockDetails>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string sqlQuery;
+                if (master.EmployeeId == 0)
+                {
+                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fi.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerInwardDT fi inner join tbl_FarmerInwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate)))";
+                }
+                else
+                {
+                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fi.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerInwardDT fi inner join tbl_FarmerInwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate))) AND (fm.CustomerId = @CustomerID)";
+                }
+
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                cmd.Parameters.Add("@CustomerID", System.Data.SqlDbType.Int).Value = master.EmployeeId;
+                cmd.Parameters.Add("@StartDate", System.Data.SqlDbType.DateTime).Value = master.DateOfJoining.Value.AddDays(1);
+                cmd.Parameters.Add("@EndDate", System.Data.SqlDbType.DateTime).Value = master.DateOfLeaving.Value.AddDays(1);
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ViewStockDetails stockDetails = new ViewStockDetails();
+
+                    stockDetails.CustomerName = (rdr["CustmerName"].ToString());
+                    stockDetails.PlanName = (rdr["PlanName"].ToString());
+                    stockDetails.TransactionDate = Convert.ToDateTime(rdr["Date"]);
+                    stockDetails.ProductName = (rdr["ProductName"].ToString());
+                    stockDetails.ProductTypeUnit = (rdr["ProductTypeUnit"].ToString());
+                    stockDetails.Quantity = Convert.ToDecimal(rdr["Quantity"]);
+
+                    lstcustBillOut.Add(stockDetails);
+                }
+                con.Close();
+            }
+            return lstcustBillOut;
+        }
+
+        IEnumerable<ViewStockDetails> IProductRepository.GetDatewiseFarmerOutwardDetails(TblEmployeeMaster master)
+        {
+            List<ViewStockDetails> lstcustBillOut = new List<ViewStockDetails>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string sqlQuery;
+                if (master.EmployeeId == 0)
+                {
+                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fi.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerOutwardDT fi inner join tbl_FarmerOutwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate)))";
+                }
+                else
+                {
+                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fi.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerOutwardDT fi inner join tbl_FarmerOutwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate))) AND (fm.CustomerId = @CustomerID)";
+                }
+
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                cmd.Parameters.Add("@CustomerID", System.Data.SqlDbType.Int).Value = master.EmployeeId;
+                cmd.Parameters.Add("@StartDate", System.Data.SqlDbType.DateTime).Value = master.DateOfJoining.Value.AddDays(1);
+                cmd.Parameters.Add("@EndDate", System.Data.SqlDbType.DateTime).Value = master.DateOfLeaving.Value.AddDays(1);
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ViewStockDetails stockDetails = new ViewStockDetails();
+
+                    stockDetails.CustomerName = (rdr["CustmerName"].ToString());
+                    stockDetails.PlanName = (rdr["PlanName"].ToString());
+                    stockDetails.TransactionDate = Convert.ToDateTime(rdr["Date"]);
+                    stockDetails.ProductName = (rdr["ProductName"].ToString());
+                    stockDetails.ProductTypeUnit = (rdr["ProductTypeUnit"].ToString());
+                    stockDetails.Quantity = Convert.ToDecimal(rdr["Quantity"]);
+
+                    lstcustBillOut.Add(stockDetails);
+                }
+                con.Close();
+            }
+            return lstcustBillOut;
+        }
+
+        IEnumerable<ViewStockDetails> IProductRepository.GetDatewiseExpencesDetails(TblEmployeeMaster master)
+        {
+            List<ViewStockDetails> lstcustBillOut = new List<ViewStockDetails>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string sqlQuery;
+                if (master.EmployeeId == 0)
+                {
+                    sqlQuery = "SELECT ex.ExpencesNo,convert(nvarchar,ex.Date,103) as Date,exm.ExpenceType,em.EmployeeName,lm.LocationName,ex.PaymentMethod,ex.Amount,ex.Narration FROM tbl_OfficeExpencesDetails ex inner join tbl_ExpenceTypeMaster exm on exm.ExpenceId = ex.ExpenceId inner join tbl_LocationMaster lm on ex.LocationId = lm.LocationId inner join tbl_EmployeeMaster em on ex.EmployeeId = em.EmployeeId where (DATEADD(D, 0, DATEDIFF(D, 0, ex.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, ex.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate)))";
+                }
+                else
+                {
+                    sqlQuery = "SELECT ex.ExpencesNo,convert(nvarchar,ex.Date,103) as Date,exm.ExpenceType,em.EmployeeName,lm.LocationName,ex.PaymentMethod,ex.Amount,ex.Narration FROM tbl_OfficeExpencesDetails ex inner join tbl_ExpenceTypeMaster exm on exm.ExpenceId = ex.ExpenceId inner join tbl_LocationMaster lm on ex.LocationId = lm.LocationId inner join tbl_EmployeeMaster em on ex.EmployeeId = em.EmployeeId where (DATEADD(D, 0, DATEDIFF(D, 0, ex.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, ex.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate))) AND (ex.ExpenceId = @ExpenceID)";
+                }
+
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                cmd.Parameters.Add("@ExpenceID", System.Data.SqlDbType.Int).Value = master.EmployeeId;
+                cmd.Parameters.Add("@StartDate", System.Data.SqlDbType.DateTime).Value = master.DateOfJoining.Value.AddDays(1);
+                cmd.Parameters.Add("@EndDate", System.Data.SqlDbType.DateTime).Value = master.DateOfLeaving.Value.AddDays(1);
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ViewStockDetails stockDetails = new ViewStockDetails();
+
+                    stockDetails.ExpencesNo = (rdr["ExpencesNo"].ToString());
+                    stockDetails.ExpenceType = (rdr["ExpenceType"].ToString());
+                    stockDetails.TransactionDate = Convert.ToDateTime(rdr["Date"]);
+                    stockDetails.EmployeeName = (rdr["EmployeeName"].ToString());
+                    stockDetails.LocationName = (rdr["LocationName"].ToString());
+                    stockDetails.PaymentMethod = (rdr["PaymentMethod"].ToString());
+                    stockDetails.Amount = Convert.ToDecimal(rdr["Amount"]);
+                    stockDetails.Narration = (rdr["Narration"].ToString());
+
+                    lstcustBillOut.Add(stockDetails);
+                }
                 con.Close();
             }
             return lstcustBillOut;
@@ -318,45 +442,7 @@ namespace ContractLayerFarm.Data.Repositories
             }
             return lstStockDetails;
 
-            /*var entryPoint = (from pt in ktConContext.TblProductTypeMaster
-                               join pm in ktConContext.TblProductMaster
-                               on pt.ProductId equals pm.ProductId
-                               join um in ktConContext.TblUnitMaster
-                               on pt.UnitId equals um.UnitId
-                               select new ViewStockDetails
-                               {
-                                   ProductName = pm.ProductName,
-                                   ProductType = pt.ProductType,
-                                   UnitDescription =um.UnitDescription,
-                               });
-
-             return entryPoint.ToList();
-            var entryPoint = (from pt in ktConContext.TblProductTypeMaster
-                               join pm in ktConContext.TblProductMaster
-                               on pt.ProductId equals pm.ProductId
-                               join um in ktConContext.TblUnitMaster
-                               on pt.UnitId equals um.UnitId
-                               join sd in ktConContext.TblStockDetails
-                               on new { pt.ProductId, pt.ProductType} equals new { sd.ProductId, sd.ProductType }
-                               group new { pt, pm, um, sd } by new
-                               {
-                                   pm.ProductName,
-                                   pt.ProductType,
-                                   um.UnitDescription,
-
-                               } into g
-                               select new ViewStockDetails
-                               {
-                                   ProductName = g.key.ProductName,
-                                   ProductType = g.key.ProductType,
-                                   UnitDescription = g.key.UnitDescription,
-                                   OpeningStock = Convert.ToDecimal(g.Sum(t3 => t3.OpeningStock)),
-                                   InwardQty = Convert.ToDecimal(g.Sum(t3 => t3.InwardQty)),
-                                   OutwardQty = Convert.ToDecimal(g.Sum(t3 => t3.OutwardQty)),
-                                   AvailableStock = Convert.ToDecimal(g.Sum(t3 => t3.OpeningStock)) + Convert.ToDecimal(g.Sum(t3 => t3.InwardQty)) - Convert.ToDecimal(g.Sum(t3 => t3.OutwardQty))
-                               });
-
-             return entryPoint.ToList();*/
+           
         }
 
 
@@ -794,53 +880,6 @@ namespace ContractLayerFarm.Data.Repositories
             }
         }
 
-        //public void SavePurchaseBillReturnMaster(TblPurchaseBillReturnMt master)
-        //{
-        //    List<TblStockDetails> stockList = new List<TblStockDetails>();
-
-        //    foreach (var details in master.TblPurchaseBillReturnDt)
-        //    {
-        //        stockList.Add(new TblStockDetails()
-        //        {
-        //            InwardDocNo = "",
-        //            OutwardDocNo = master.BatchNo.ToString(),
-        //            DebitNoteNo = "",
-        //            CreditNoteNo = "",
-        //            TranscationType = typeof(TblPurchaseBillReturnMt).ToString(),
-        //            ProductId = details.ProductId,
-        //            ProductType = details.ProductType,
-        //            InwardQty = 0,
-        //            OutwardQty = 0,
-        //            RejectedQty=details.RejectedQty,
-        //            TranscationDate = master.BillDate,
-        //            OpeningStock = 0,
-        //            CreditNoteQty = 0,
-        //            DebitNoteQty = 0,
-        //            Unit = details.Unit,
-        //        });
-        //    }
-        //    if (master.BillId > 0)
-        //    {
-        //        var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.OutwardDocNo == master.BatchNo.ToString() && s.TranscationType == typeof(TblPurchaseBillReturnMt).ToString());
-        //        RepositoryContext.RemoveRange(toBeDeleteStock);
-        //        this.RepositoryContext.SaveChanges();
-        //        var toBeDeleteDT = this.RepositoryContext.Set<TblPurchaseBillReturnDt>().Where(s => s.BillId == master.BillId);
-        //        RepositoryContext.RemoveRange(toBeDeleteDT);
-        //        this.RepositoryContext.SaveChanges();
-
-        //        this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
-        //        this.RepositoryContext.Set<TblPurchaseBillReturnMt>().Update(master);
-        //        this.RepositoryContext.SaveChanges();
-
-        //    }
-        //    else
-        //    {
-        //        this.RepositoryContext.Set<TblPurchaseBillReturnMt>().Add(master);
-        //        this.RepositoryContext.Set<TblStockDetails>().AddRange(stockList);
-        //        this.RepositoryContext.SaveChanges();
-        //    }
-        //}
-
         public void SavePurchaseBillDetails(TblPurchaseBillDt[] details)
         {
             this.RepositoryContext.Set<TblPurchaseBillDt>().AddRange(details);
@@ -857,6 +896,41 @@ namespace ContractLayerFarm.Data.Repositories
                               join e in ktConContext.TblSupplierMaster on ep.SupplierId equals e.SupplierId
                               join t in ktConContext.TblLocationMaster on ep.LocationId equals t.LocationId
                               //where e.OwnerID == user.UID
+                              select new ViewPurchaseBillMaster
+                              {
+                                  BillId = ep.BillId,
+                                  BillDate = ep.BillDate,
+                                  BillNo = ep.BillNo,
+                                  BatchNo = ep.BatchNo,
+                                  SupplierName = e.SupplierName,
+                                  LocationName = t.LocationName,
+                                  BeforeTaxAmt = ep.BeforeTaxAmt,
+                                  TransportationCost = ep.TransportationCost,
+                                  TransportationGSTPer = ep.TransportationGstper,
+                                  TransportationGSTAmt = ep.TransportationGstamt,
+                                  TotalTransportAmt = ep.TotalTransportAmt,
+                                  TotalCGSTAmt = ep.TotalCgstamt,
+                                  TotalSGSTAmt = ep.TotalSgstamt,
+                                  TotalIGSTAmt = ep.TotalIgstamt,
+                                  OtherCharges = ep.OtherCharges,
+                                  Roundoff = ep.Roundoff,
+                                  GrandTotal = ep.GrandTotal,
+                                  Narration = ep.Narration,
+                                  SupplierId = ep.SupplierId,
+                                  LocationId = ep.LocationId,
+                                  Supplier = new TblSupplierMaster { SupplierId = e.SupplierId, SupplierName = e.SupplierName },
+                                  Location = new TblLocationMaster { LocationId = t.LocationId, LocationName = t.LocationName },
+                              });
+
+            return entryPoint.ToList();
+        }
+
+        IEnumerable<ViewPurchaseBillMaster> IProductRepository.GetAllTopPurchase()
+        {
+            var entryPoint = (from ep in ktConContext.TblPurchaseBillMt
+                              join e in ktConContext.TblSupplierMaster on ep.SupplierId equals e.SupplierId
+                              join t in ktConContext.TblLocationMaster on ep.LocationId equals t.LocationId
+                              where ep.BillDate > Convert.ToDateTime(DateTime.Now.AddDays(0))
                               select new ViewPurchaseBillMaster
                               {
                                   BillId = ep.BillId,
@@ -926,10 +1000,6 @@ namespace ContractLayerFarm.Data.Repositories
             var toBeDeleteStock = this.RepositoryContext.Set<TblStockDetails>().Where(s => s.InwardDocNo == master.BatchNo.ToString() && s.TranscationType == typeof(TblPurchaseBillMt).ToString());
             RepositoryContext.RemoveRange(toBeDeleteStock);
             this.RepositoryContext.SaveChanges();
-
-            //var toBeDeleteSuppTrans = this.RepositoryContext.Set<TblSupplierTransaction>().Where(s => s.BillId == master.BillId.ToString() && s.TransactionType == "Purchase Bill");
-            //RepositoryContext.RemoveRange(toBeDeleteStock);
-            //this.RepositoryContext.SaveChanges();
 
             var toBeDeleteSuppTrans = this.RepositoryContext.Set<TblSupplierTransaction>().Where(s => s.BillId == master.BillId.ToString() && s.TransactionType == "Purchase Bill");
             RepositoryContext.RemoveRange(toBeDeleteSuppTrans);
@@ -1048,6 +1118,39 @@ namespace ContractLayerFarm.Data.Repositories
             return entryPoint.ToList();
         }
 
+        IEnumerable<ViewFarmerChickEggBillMaster> IProductRepository.GetAllTopSale()
+        {
+            var entryPoint = (from ep in ktConContext.TblSalesBillMt
+                              join e in ktConContext.TblCustomerMaster on ep.CustomerId equals e.CustomerId
+                              join t in ktConContext.TblLocationMaster on ep.LocationId equals t.LocationId
+                              join p in ktConContext.TblPlanMaster on ep.PlanId equals p.PlanId
+                              where ep.BillDate > Convert.ToDateTime(DateTime.Now.AddDays(0))
+                              select new ViewFarmerChickEggBillMaster
+                              {
+                                  BillNo = ep.BillNo,
+                                  BillId = ep.BillId,
+                                  BillDate = ep.BillDate,
+                                  CustmerName = e.CustmerName,
+                                  LocationName = t.LocationName,
+                                  PlanName = p.PlanName,
+                                  PlanId = ep.PlanId,
+                                  PlaceOfSupply = ep.PlaceOfSupply,
+                                  Address = ep.Address,
+                                  TotalAmount = ep.TotalAmount,
+                                  TdsAmount = ep.TdsAmount,
+                                  AdminChargesAmt = ep.AdminChargesAmt,
+                                  OtherCharges = ep.OtherCharges,
+                                  GrandTotal = ep.GrandTotal,
+                                  CustomerId = ep.CustomerId,
+                                  LocationId = ep.LocationId,
+                                  Customer = new TblCustomerMaster { CustomerId = e.CustomerId, CustmerName = e.CustmerName },
+                                  Plan = new TblPlanMaster { PlanId = p.PlanId, PlanName = p.PlanName },
+                                  Location = new TblLocationMaster { LocationId = t.LocationId, LocationName = t.LocationName },
+                              });
+
+            return entryPoint.ToList();
+        }
+
         public void DeleteSaleBill(TblSalesBillMt master)
         {
             var toBeDeletecustTrans = this.RepositoryContext.Set<TblCustomerTransaction>().Where(s => s.BillId == master.BillId.ToString() && s.TransactionType == typeof(TblSalesBillMt).ToString());
@@ -1104,5 +1207,45 @@ namespace ContractLayerFarm.Data.Repositories
 
             return settlementAmt;
         }
+
+        /*var entryPoint = (from pt in ktConContext.TblProductTypeMaster
+                              join pm in ktConContext.TblProductMaster
+                              on pt.ProductId equals pm.ProductId
+                              join um in ktConContext.TblUnitMaster
+                              on pt.UnitId equals um.UnitId
+                              select new ViewStockDetails
+                              {
+                                  ProductName = pm.ProductName,
+                                  ProductType = pt.ProductType,
+                                  UnitDescription =um.UnitDescription,
+                              });
+
+            return entryPoint.ToList();
+           var entryPoint = (from pt in ktConContext.TblProductTypeMaster
+                              join pm in ktConContext.TblProductMaster
+                              on pt.ProductId equals pm.ProductId
+                              join um in ktConContext.TblUnitMaster
+                              on pt.UnitId equals um.UnitId
+                              join sd in ktConContext.TblStockDetails
+                              on new { pt.ProductId, pt.ProductType} equals new { sd.ProductId, sd.ProductType }
+                              group new { pt, pm, um, sd } by new
+                              {
+                                  pm.ProductName,
+                                  pt.ProductType,
+                                  um.UnitDescription,
+
+                              } into g
+                              select new ViewStockDetails
+                              {
+                                  ProductName = g.key.ProductName,
+                                  ProductType = g.key.ProductType,
+                                  UnitDescription = g.key.UnitDescription,
+                                  OpeningStock = Convert.ToDecimal(g.Sum(t3 => t3.OpeningStock)),
+                                  InwardQty = Convert.ToDecimal(g.Sum(t3 => t3.InwardQty)),
+                                  OutwardQty = Convert.ToDecimal(g.Sum(t3 => t3.OutwardQty)),
+                                  AvailableStock = Convert.ToDecimal(g.Sum(t3 => t3.OpeningStock)) + Convert.ToDecimal(g.Sum(t3 => t3.InwardQty)) - Convert.ToDecimal(g.Sum(t3 => t3.OutwardQty))
+                              });
+
+            return entryPoint.ToList();*/
     }
 }

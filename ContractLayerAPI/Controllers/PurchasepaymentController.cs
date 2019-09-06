@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ContractLayerAPI.Controllers
 {
-    [Produces("application/json")]
+     [Authorize][Produces("application/json")]
     [Route("api/Purchasepayment/")]
     public class PurchasepaymentController : Controller
     {
@@ -68,8 +68,10 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Purchasepayment.SaveSupplierTransaction(purchasepayment);
+                
                 this._repoWrapper.Purchasepayment.Create(purchasepayment);
+                this._repoWrapper.Purchasepayment.Save();
+                this._repoWrapper.Purchasepayment.SaveSupplierTransaction(purchasepayment);
                 this._repoWrapper.Purchasepayment.Save();
                 return true;
             }

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ContractLayerAPI.Controllers
 {
-    [Produces("application/json")]
+     [Authorize][Produces("application/json")]
     [Route("api/Booking/")]
     public class BookingController : Controller
     {
@@ -43,6 +43,13 @@ namespace ContractLayerAPI.Controllers
             return Booking;
         }
 
+        [HttpGet("[action]")]
+        public IEnumerable<TblBookingMaster> GetAllTopBooking()
+        {
+            var Booking = this._repoWrapper.Booking.GetAllTopBooking();
+            return Booking;
+        }
+
         [HttpPost("GetPlanByCustID")]
         public IEnumerable<TblBookingMaster> GetPlanByCustID([FromBody] TblBookingMaster booking)
         {
@@ -62,9 +69,9 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Booking.SaveBookinginCustomerTransaction(booking);
                 this._repoWrapper.Booking.Create(booking);
                 this._repoWrapper.Booking.Save();
+                this._repoWrapper.Booking.SaveBookinginCustomerTransaction(booking);
                 return true;
             }
 

@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContractLayerAPI.Controllers
 {
-    [Produces("application/json")]
+     [Authorize][Produces("application/json")]
     [Route("api/Employee/")]
     public class EmployeeController : Controller
     {
@@ -45,8 +46,9 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Employee.SaveLoginDetails(employee);
                 this._repoWrapper.Employee.Create(employee);
+                this._repoWrapper.Employee.Save();
+                this._repoWrapper.Employee.SaveLoginDetails(employee);
                 this._repoWrapper.Employee.Save();
                 return true;
             }

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ContractLayerAPI.Controllers
 {
-    [Produces("application/json")]
+     [Authorize][Produces("application/json")]
     [Route("api/Bookingcancel/")]
     public class BookingcancelController : Controller
     {
@@ -53,10 +53,10 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
-                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 this._repoWrapper.Bookingcancel.Create(bookingcancel);
                 this._repoWrapper.Bookingcancel.Save();
+                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
+                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 return true;
             }
             catch (Exception e)
@@ -70,10 +70,10 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
-                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 this._repoWrapper.Bookingcancel.Update(bookingcancel);
                 this._repoWrapper.Bookingcancel.Save();
+                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
+                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 return true;
             }
             catch (Exception e)

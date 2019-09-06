@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ContractLayerAPI.Controllers
 {
-    [Produces("application/json")]
+     [Authorize][Produces("application/json")]
     [Route("api/Supplier/")]
     public class SupplierController : Controller
     {
@@ -27,7 +27,7 @@ namespace ContractLayerAPI.Controllers
             var Supplier = this._repoWrapper.Supplier.FindAll().ToList();
             return Supplier;
         }
-        
+
         [HttpPost("GetByID")]
         public TblSupplierMaster GetByID([FromBody] int SupplierId)
         {
@@ -56,9 +56,8 @@ namespace ContractLayerAPI.Controllers
             {
                 return false;
             }
-           
-           
         }
+
         [HttpPost("Update")]
         public bool Update([FromBody] TblSupplierMaster supplier)
         {
@@ -73,9 +72,8 @@ namespace ContractLayerAPI.Controllers
             {
                 return false;
             }
-
-
         }
+
         [HttpPost("Delete")]
         public bool Delete([FromBody] TblSupplierMaster supplier)
         {
@@ -90,11 +88,6 @@ namespace ContractLayerAPI.Controllers
             {
                 return false;
             }
-
-
         }
-
-
-
     }
 }

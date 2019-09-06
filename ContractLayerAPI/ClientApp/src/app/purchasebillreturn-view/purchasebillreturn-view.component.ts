@@ -7,6 +7,7 @@ import { PurchaseBillReturnComponent } from '../purchase-billreturn/purchase-bil
 import { PurchasebillreturnService } from './purchasebillreturn.service';
 import * as moment from 'moment';
 import { ProductService } from '../master/product-view/product.service';
+import { PrintService } from '../printing/print.service';
 
 @Component({
   selector: 'app-purchasebillreturn-view',
@@ -19,12 +20,9 @@ export class PurchasebillreturnViewComponent implements OnInit {
   private gridColumnApi;
 
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width': 100,
-    //  cellRenderer: 'buttonRenderer',
-    //},
+     
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -39,7 +37,19 @@ export class PurchasebillreturnViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 50,
+      headerName: 'Print', 'width': 40,
+
+      cellRenderer: (params) => {
+        var newTH = document.createElement('div');
+        newTH.innerHTML = ' <i class="pi pi-print" style="font-size: large;"></i>';
+        newTH.onclick = () => {
+          this.printService.printDocument("PurchaseBillReturn", params.data);
+        };
+        return newTH;
+      },
+    },
+    {
+      headerName: 'Delete', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -51,18 +61,23 @@ export class PurchasebillreturnViewComponent implements OnInit {
         return newTH;
       },
     },
-
     {
-      headerName: 'GRN No', headerCheckboxSelection: true,
+      headerName: 'PR No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
       field: 'BatchNo', 'width': 150,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-     
+    { headerName: 'PR Date', field: 'GRNDate', valueFormatter: this.dateFormatter, 'width': 120, },
     {
-      headerName: 'Date ', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 180,
+      headerName: 'Bill No', field: 'BillNo', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+ 
+    {
+      headerName: 'Bill Date ', field: 'BillDate', valueFormatter: this.dateFormatter, 'width': 180,
       filter: "agDateColumnFilter",
       filterParams: {
         comparator: function (filterLocalDateAtMidnight, cellValue) {
@@ -93,6 +108,31 @@ export class PurchasebillreturnViewComponent implements OnInit {
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
+    {
+      headerName: 'Before Tax Amt', field: 'BeforeTaxAmt', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'TotalTransport Amt', field: 'TotalTransportAmt', 'width': 150,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'TotalCGSTAmt', field: 'TotalCGSTAmt', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Total SGS TAmt', field: 'TotalSGSTAmt', 'width': 130,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Grand Total', field: 'GrandTotal', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
   ];
 
   rowData;
@@ -112,7 +152,7 @@ export class PurchasebillreturnViewComponent implements OnInit {
     return moment(params.value).format('DD/MM/YYYY');
   }
 
-  constructor(private router: Router, private http: HttpClient, private Purchasebillreturnservice: PurchasebillreturnService, public dialog: DialogService, public productService: ProductService) { }
+  constructor(private router: Router, private http: HttpClient, private printService: PrintService, private Purchasebillreturnservice: PurchasebillreturnService, public dialog: DialogService, public productService: ProductService) { }
 
 
   ngOnInit() {

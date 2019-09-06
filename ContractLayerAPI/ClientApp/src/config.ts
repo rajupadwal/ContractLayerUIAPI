@@ -43,6 +43,8 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Supplier/Delete',
     SEARCH_SUPPLIER: API_URL + 'Supplier/SearchSupplier',
   },
+
+
   PLAN_API: {
     ADD: API_URL + 'Plan/Add',
     GETALL: API_URL + 'Plan/GetAll',
@@ -112,6 +114,8 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Booking/Delete',
     GETBOOKINGNO: API_URL + 'Booking/GetBookingNo',
     GETPLANBYCUSTID: API_URL + 'Booking/GetPlanByCustID',
+
+    GETALLTOPBOOKING: API_URL + 'Booking/GetAllTopBooking',
   },
   BOOKINGCANCEL_API: {
     ADD: API_URL + 'Bookingcancel/Add',
@@ -156,7 +160,9 @@ export const APP_CONSTANT={
     GETByID: API_URL + 'Expencedetails/GetByID',
     EDIT: API_URL + 'Expencedetails/Update',
     DELETE: API_URL + 'Expencedetails/Delete',
-    GETEXPENCENO: API_URL + 'Expencedetails/GetExpenceNo'
+    GETEXPENCENO: API_URL + 'Expencedetails/GetExpenceNo',
+
+    GETALLTOPEXPENSES: API_URL + 'Expencedetails/GetAllTopExpenses',
   },
   SALERECEIPT_API: {
     ADD: API_URL + 'Salesreceipt/Add',
@@ -183,7 +189,10 @@ export const APP_CONSTANT={
     GETALLFARMERINWARDMASTERS: API_URL + 'Product/GetAllFarmerInwardMasters',
     GETALLFARMERINWARDMASTEDETAILS: API_URL + 'Product/GetAllFarmerInwardMasteDetails',
     GETFARMERINWARDNO: API_URL + 'Product/GetFarmerInwardNo',
-    DELETE: API_URL + 'Product/DeleteFarmerInward'
+    DELETE: API_URL + 'Product/DeleteFarmerInward',
+
+    GETDATEWISEFARMERINWARD: API_URL + 'Product/GetDatewiseFarmerInwardDetails',
+    GETDATEWISEEXPENCES: API_URL + 'Product/GetDatewiseExpencesDetails',
   },
 
   PRODUCT_FARMER_OUTWARDS_API: {
@@ -202,6 +211,8 @@ export const APP_CONSTANT={
     GETSUPPBILLOUTSTANDING: API_URL + 'Product/GetSupplierBillOutstanding',
     GETSUPPBILLLEDGER: API_URL + 'Product/GetSupplierLedger',
     GETCUSTBILLLEDGER: API_URL + 'Product/GetCustomerLedger',
+
+    GETDATEWISEFARMEROUTWARD: API_URL + 'Product/GetDatewiseFarmerOutwardDetails',
   },
 
   PRODUCT_FARMER_CHICKEGGBILL_API: {
@@ -212,6 +223,8 @@ export const APP_CONSTANT={
     GETALLFARMERCHICKEGGBILLNO: API_URL + 'Product/GetChickEggsBillNo',
     DELETE: API_URL + 'Product/DeleteChickEggsBill',
     GETCUSTOUTSTANDING: API_URL + 'Product/GetCustomerOutstandingAmt',
+
+    GETALLTOPSALE: API_URL + 'Product/GetAllTopSale',
   },
 
 
@@ -222,6 +235,8 @@ export const APP_CONSTANT={
     GETALLPURCHASEBILLMASTEDETAILS: API_URL + 'Product/GetAllPurchaseBillMasteDetails',
     GETGRNNO: API_URL + 'Product/GetPurchaseBillGRNNo',
     DELETE: API_URL + 'Product/DeletePurchaseBill',
+
+    GETALLTOPPURCHASE: API_URL + 'Product/GetAllTopPurchase',
   },
 
   PRODUCT_PURCHASE_BILLRETURNS_API: {

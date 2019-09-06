@@ -1149,6 +1149,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Userpassword).HasMaxLength(50);
 
+                entity.Property(e => e.Token).HasMaxLength(1000);
                 entity.HasOne(d => d.UserRole)
                    .WithMany(p => p.TblUserInfo)
                    .HasForeignKey(d => d.RoleId)

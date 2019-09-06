@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ContractLayerAPI.Controllers
 {
-    [Produces("application/json")]
+     [Authorize][Produces("application/json")]
     [Route("api/Expencedetails/")]
     public class ExpencedetailsController : Controller
     {
@@ -25,6 +25,13 @@ namespace ContractLayerAPI.Controllers
         public IEnumerable<TblOfficeExpencesDetails> GetAll()
         {
             var Expencedetails = this._repoWrapper.Expencedetails.GetAllExpenceType();
+            return Expencedetails;
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<TblOfficeExpencesDetails> GetAllTopExpenses()
+        {
+            var Expencedetails = this._repoWrapper.Expencedetails.GetAllTopExpenses();
             return Expencedetails;
         }
 

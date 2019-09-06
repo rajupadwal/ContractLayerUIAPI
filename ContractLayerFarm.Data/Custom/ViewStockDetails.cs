@@ -47,5 +47,17 @@ namespace ContractLayerFarm.Data.Models
         public string PaymentVocherNo { get; set; }
         public string PaymentType { get; set; }
         public string Narration { get; set; }
+
+        public string ProductTypeUnit { get; set; }
+        public string PlanName { get; set; }
+        public decimal Quantity { get; set; }
+
+        public string ExpencesNo { get; set; }
+        public string ExpenceType { get; set; }
+
+        public string EmployeeName { get; set; }
+        public string PaymentMethod { get; set; }
+        public decimal Amount { get; set; }
+        public string LocationName { get; set; }
     }
 }

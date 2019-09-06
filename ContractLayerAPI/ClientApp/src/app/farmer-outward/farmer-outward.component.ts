@@ -138,6 +138,7 @@ export class FarmerOutwardComponent implements OnInit {
     var day = 60 * 60 * 24 * 1000;
     var b = new Date(a.getTime() + day);
     this.FarmerOutwardMaster.Date = moment(b).toDate();
+    //this.FarmerOutwardDetailsList.Date = moment(b).toDate();
 
     delete this.FarmerOutwardMaster.Location;
 

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContractLayerFarm.Data.Contract;
 using ContractLayerFarm.Data.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ContractLayerAPI.Controllers
 {
-    [Produces("application/json")]
+     [Authorize][Produces("application/json")]
     [Route("api/Salesreceipt/")]
     public class SalesreceiptController : Controller
     {
@@ -69,6 +69,8 @@ namespace ContractLayerAPI.Controllers
                 this._repoWrapper.Salesreceipt.SaveCustomerTransaction(salesreceipt);
                 this._repoWrapper.Salesreceipt.Create(salesreceipt);
                 this._repoWrapper.Salesreceipt.Save();
+                this._repoWrapper.Salesreceipt.SaveCustomerTransaction(salesreceipt);
+                this._repoWrapper.Salesreceipt.Create(salesreceipt);
                 return true;
             }
 

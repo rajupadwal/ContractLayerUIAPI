@@ -18,7 +18,9 @@ export class AuthGuard implements CanActivate  {
 
     let currentRoute = next.url[0].path;
     let viewPermission:string = this.auth.getUserRoles();
-
+    if (!viewPermission || viewPermission == null) {
+      this.myRoute.navigateByUrl('/', { replaceUrl: true });
+    }
     if (viewPermission.indexOf(currentRoute )> 0) {
       return true;
     }

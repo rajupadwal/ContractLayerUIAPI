@@ -15,12 +15,12 @@ export class AuthenticationService {
     };
     let body = JSON.stringify({ Username: userName, Userpassword: userPassword });
     return this.http.post<UserInfo>(APP_CONSTANT.USER_APIS.LOGIN, body, httpOptions )
-      .pipe(map((user:UserInfo) => {
+      .pipe(map((user:any) => {
         // login successful if there's a jwt token in the response
         if (user) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('Token', JSON.stringify(user.Token));
-          localStorage.setItem('UsereRoles', JSON.stringify(user[0].UserRole.UserRolePermission[0].RolePagesPermission));
+          localStorage.setItem('Token', user.Token);
+          localStorage.setItem('UsereRoles', JSON.stringify(user.UserRole.UserRolePermission[0].RolePagesPermission));
         }
         return user;
       }));

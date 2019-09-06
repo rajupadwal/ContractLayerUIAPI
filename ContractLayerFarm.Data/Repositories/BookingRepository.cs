@@ -19,6 +19,18 @@ namespace ContractLayerFarm.Data.Repositories
             this.ktConContext = ktConContext;
         }
 
+        public IEnumerable<TblBookingMaster> GetAllTopBooking()
+        {
+
+            var TblBookingMaster = this.ktConContext.TblBookingMaster.Where(c => c.BookingDate > Convert.ToDateTime(DateTime.Now.AddDays(0)))
+                       .Include(blog => blog.Location)
+                       .Include(blog => blog.Customer)
+                       .Include(blog => blog.Plan)
+                       .Include(blog=>blog.Employee)
+                       .ToList();
+            return TblBookingMaster;
+        }
+
         public IEnumerable<TblBookingMaster> GetAllBooking()
         {
 
@@ -26,7 +38,8 @@ namespace ContractLayerFarm.Data.Repositories
                        .Include(blog => blog.Location)
                        .Include(blog => blog.Customer)
                        .Include(blog => blog.Plan)
-                       .Include(blog=>blog.Employee)
+                       .Include(blog => blog.Employee)
+                       
                        .ToList();
             return TblBookingMaster;
         }

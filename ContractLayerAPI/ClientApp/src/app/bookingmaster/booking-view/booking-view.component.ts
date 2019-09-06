@@ -27,7 +27,7 @@ export class BookingViewComponent implements OnInit {
   columnDefs = [
    
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -42,7 +42,7 @@ export class BookingViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Delete', 'width': 50,
+      headerName: 'Delete', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -95,7 +95,6 @@ export class BookingViewComponent implements OnInit {
         browserDatePicker: true
       }
     },
-
     {
       headerName: 'Plan Name', field: 'Plan.PlanName', 'width': 100,
       filter: "agTextColumnFilter",
@@ -111,7 +110,6 @@ export class BookingViewComponent implements OnInit {
     { headerName: 'No Of Chicks', field: 'NoOfChicks', 'width': 120 },
     { headerName: 'Amount', field: 'Amount', 'width': 100 },
     { headerName: 'Paid Amount', field: 'PaidAmount', 'width': 130 },
-
     { headerName: 'Delivery Status    ', field: 'DeliveryStatus', 'width': 130 }
   ];
 

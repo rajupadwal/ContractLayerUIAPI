@@ -6,6 +6,7 @@ import { DialogService } from '../../dialog/dialog.service';
 import { EmployeeadvanceDetailsComponent } from '../employeeadvance-details/employeeadvance-details.component';
 import { EmployeeadvanceService } from './employeeadvance.service';
 import { ProductService } from '../../master/product-view/product.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-employeeadvance-view',
@@ -20,18 +21,9 @@ export class EmployeeadvanceViewComponent implements OnInit {
 }
  
   columnDefs = [
-    //{
-    //  headerName: 'Button Col 1', 'width':100,
-    //  cellRenderer: 'buttonRenderer',
-    //  cellRendererParams: {
-    //    onClick: this.onBtnClick1.bind(this),
-    //    label: 'Click 1'
-    //  }
-    //},
-
-
+    
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -47,7 +39,7 @@ export class EmployeeadvanceViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 50,
+      headerName: 'Delete', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -66,17 +58,20 @@ export class EmployeeadvanceViewComponent implements OnInit {
     },
 
     
-    { headerName: 'Record Date ', field: 'RecordDate', 'width': 120 },
+    { headerName: 'Record Date ', field: 'RecordDate', valueFormatter: this.dateFormatter,'width': 120 },
     { headerName: 'Location Name ', field: 'Location.LocationName', 'width': 150 },
     { headerName: 'Employee Name ', field: 'Employee.EmployeeName', 'width': 170 },
     { headerName: 'Advance ', field: 'Advance', 'width': 150 },
     { headerName: 'Narration ', field: 'Narration', 'width': 200 },
-    
   ];
 
   rowData = [
    
   ];
+
+  dateFormatter(params) {
+    return moment(params.value).format('DD/MM/YYYY');
+  }
     
   constructor(private router: Router, private http: HttpClient, private employeeadvanceService: EmployeeadvanceService, public dialog: DialogService, public productService: ProductService) { }
 

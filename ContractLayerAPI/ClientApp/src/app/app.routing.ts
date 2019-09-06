@@ -19,6 +19,10 @@ import { SupplierLedgerPrintComponent } from './printing/supplierLedgerPrint/sup
 import { CustomerLedgerPrintComponent } from './printing/customerLedgerPrint/customer-ledger.print.component';
 
 import {AuthGuard } from './auth.guard';
+import { DatewiseFarmerInwardPrintComponent } from './printing/datewiseFarmerInwardPrint/datewise-farmerinward.print.component';
+import { DatewiseFarmerOutwardPrintComponent } from './printing/datewiseFarmerOutwardPrint/datewise-farmeroutward.print.component';
+import { DatewiseExpencesPrintComponent } from './printing/datewiseExpencesPrint/datewise-expences.print.component';
+import { PurchaseBillReturnPrintComponent } from './printing/purchaseBillReturnPrint/purchase-billreturn.print.component';
 export const routes: Routes = [
 
   
@@ -37,6 +41,10 @@ export const routes: Routes = [
       { path: 'FarmerOutward/:farmerOutwards', component: FarmerOutwardPrintComponent },
       { path: 'SupplierLedger/:supplierLedgers', component: SupplierLedgerPrintComponent },
       { path: 'CustomerLedger/:customerLedgers', component: CustomerLedgerPrintComponent },
+      { path: 'DatewiseFarmerInward/:datewiseFarmerInwards', component: DatewiseFarmerInwardPrintComponent },
+      { path: 'DatewiseFarmerOutward/:datewiseFarmerOutwards', component: DatewiseFarmerOutwardPrintComponent },
+      { path: 'DatewiseExpences/:datewiseExpences', component: DatewiseExpencesPrintComponent },
+      { path: 'PurchaseBillReturn/:purchaseBillReturns', component: PurchaseBillReturnPrintComponent },
     ]
   },
   {
@@ -259,6 +267,19 @@ export const routes: Routes = [
           {
             path: 'Customerledgerview',
             loadChildren: './reports/customerledger-view/customerledger.module#CustomerledgerModule'
+          },
+
+          {
+            path: 'Datewiseinwardview',
+            loadChildren: './reports/datewiseinward-view/datewiseinward.module#DatewiseinwardModule'
+          },
+          {
+            path: 'Datewiseoutwardview',
+            loadChildren: './reports/datewiseoutward-view/datewiseoutward.module#DatewiseoutwardModule'
+          },
+          {
+            path: 'Datewiseexpencesview',
+            loadChildren: './reports/datewiseexpences-view/datewiseexpences.module#DatewiseexpencesModule'
           },
         ]
       },
