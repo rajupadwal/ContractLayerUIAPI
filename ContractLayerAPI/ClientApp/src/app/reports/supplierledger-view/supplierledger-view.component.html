@@ -10,7 +10,7 @@
                           (onSelect)="viewSupplierLedgerDetails($event)" (change)="($event)" [dropdown]="true" [forceSelection]="true" field="SupplierName"></p-autoComplete>
         </div>
         <div class="col-sm-2">
-          <button type="button" class="btn btn-outline-primary" (click)="printLedger()"><i class="pi pi-print" style="font-size: large;"></i>&nbsp; PRINT</button>
+          <button type="button" class="btn btn-outline-primary" (click)="printLedger()"><i class="pi pi-print" style="font-size: large;"></i>&nbsp; Print</button>
         </div>
         <div class="col-sm-2">
           <button class="btn btn-outline-primary" (click)="exportAsXLSX()"><i class="fa fa-plus-circle"></i>Export To Excel</button>
@@ -20,7 +20,7 @@
   </form>
 </div>
 
-<ag-grid-angular style="width: 1150px; height: 500px;"
+<ag-grid-angular style="height: 500px;"
                  id="myGrid"
                  class="ag-theme-balham"
                  [rowData]="rowData"

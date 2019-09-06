@@ -32,6 +32,19 @@ namespace ContractLayerFarm.Data.Repositories
                        .ToList();
             return TblOfficexpencesDetails;
         }
+
+        public IEnumerable<TblOfficeExpencesDetails> GetAllTopExpenses()
+        {
+
+            var TblOfficexpencesDetails = this.ktConContext.TblOfficeExpencesDetails.Where(c => c.Date > Convert.ToDateTime(DateTime.Now.AddDays(0)))
+                       .Include(blog => blog.Location)
+                       .Include(blog => blog.Employee)
+                       .Include(blog => blog.Expence)
+                       .ToList();
+            return TblOfficexpencesDetails;
+        }
+
+        
         public int GetExpenceNo()
         {
             int maxExpenceNo = this.ktConContext.TblOfficeExpencesDetails.Select(p => p.ExpencesNo).DefaultIfEmpty(0).Max() + 1;

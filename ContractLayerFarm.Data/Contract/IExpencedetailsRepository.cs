@@ -10,6 +10,7 @@ namespace ContractLayerFarm.Data.Contract
         //UserInfo Authenticate(string username, string password);
         bool Authenticate();
         IEnumerable<TblOfficeExpencesDetails> GetAllExpenceType();
+        IEnumerable<TblOfficeExpencesDetails> GetAllTopExpenses();
 
         int GetExpenceNo();
         void DeleteOfficeExpense(TblOfficeExpencesDetails master);

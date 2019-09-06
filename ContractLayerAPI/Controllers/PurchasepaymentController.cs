@@ -68,8 +68,10 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Purchasepayment.SaveSupplierTransaction(purchasepayment);
+                
                 this._repoWrapper.Purchasepayment.Create(purchasepayment);
+                this._repoWrapper.Purchasepayment.Save();
+                this._repoWrapper.Purchasepayment.SaveSupplierTransaction(purchasepayment);
                 this._repoWrapper.Purchasepayment.Save();
                 return true;
             }

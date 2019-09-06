@@ -53,10 +53,10 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
-                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 this._repoWrapper.Bookingcancel.Create(bookingcancel);
                 this._repoWrapper.Bookingcancel.Save();
+                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
+                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 return true;
             }
             catch (Exception e)
@@ -70,10 +70,10 @@ namespace ContractLayerAPI.Controllers
         {
             try
             {
-                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
-                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 this._repoWrapper.Bookingcancel.Update(bookingcancel);
                 this._repoWrapper.Bookingcancel.Save();
+                this._repoWrapper.Bookingcancel.SaveBookingCancelDetails(bookingcancel);
+                this._repoWrapper.Bookingcancel.SaveCancelBookinginCustomerTransaction(bookingcancel);
                 return true;
             }
             catch (Exception e)

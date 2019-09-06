@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="invoice-title" >
+        
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Datewise Farmer Outward Report</strong></h3>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <td style="width:110px" class="text-left"><strong>Date</strong></td>
+                  <td style="width:150px"><strong>Customer Name</strong></td>
+                  <td class="text-left"><strong>Plan Name</strong></td>
+                  <td class="text-left"><strong>Product Name</strong></td>
+                  <td class="text-left"><strong>Product Type</strong></td>
+                  <td class="text-right"><strong>Quantity</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of DatewiseFarmerOutwardDetailsList">
+                  <td style="width:110px" class="text-left"><strong>{{item.TransactionDate | date:'dd/MM/yyyy'}}</strong></td>
+                  <td style="width:150px"><strong>{{item.CustomerName}}</strong></td>
+                  <td class="text-left"><strong>{{item.PlanName}}</strong></td>
+                  <td class="text-left"><strong>{{item.ProductName}}</strong></td>
+                  <td class="text-left"><strong>{{item.ProductTypeUnit}}</strong></td>
+                  <td class="text-right"><strong>{{item.Quantity}}</strong></td>
+                </tr>
+                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+</div>

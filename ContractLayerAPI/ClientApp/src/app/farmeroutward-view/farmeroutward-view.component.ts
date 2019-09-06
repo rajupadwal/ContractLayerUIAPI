@@ -21,7 +21,7 @@ export class FarmeroutwardViewComponent implements OnInit {
 
   columnDefs = [
     {
-      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 50,
+      headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -36,7 +36,7 @@ export class FarmeroutwardViewComponent implements OnInit {
       },
     },
     {
-      headerName: 'Print', 'width': 50,
+      headerName: 'Print', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');
@@ -50,7 +50,7 @@ export class FarmeroutwardViewComponent implements OnInit {
     },
 
     {
-      headerName: 'Delete', 'width': 50,
+      headerName: 'Delete', 'width': 40,
 
       cellRenderer: (params) => {
         var newTH = document.createElement('div');

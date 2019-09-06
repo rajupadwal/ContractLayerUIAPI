@@ -29,6 +29,13 @@ namespace ContractLayerAPI.Controllers
         }
 
         [HttpGet("[action]")]
+        public IEnumerable<TblOfficeExpencesDetails> GetAllTopExpenses()
+        {
+            var Expencedetails = this._repoWrapper.Expencedetails.GetAllTopExpenses();
+            return Expencedetails;
+        }
+
+        [HttpGet("[action]")]
         public int GetExpenceNo()
         {
             try

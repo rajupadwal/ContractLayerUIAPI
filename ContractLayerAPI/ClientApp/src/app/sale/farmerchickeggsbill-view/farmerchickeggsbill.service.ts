@@ -11,7 +11,10 @@ export class FarmerchikeggbillService {
 
   loadFarmerchickeggbillMaster() {
    return this.http.get(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.GETALLFARMERCHICKEGGBILLMASTERS);
+  }
 
+  GetAllTopSale() {
+    return this.http.get(APP_CONSTANT.PRODUCT_FARMER_CHICKEGGBILL_API.GETALLTOPSALE);
   }
 
   getChickEggsBillNo() {
