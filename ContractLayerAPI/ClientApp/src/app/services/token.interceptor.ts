@@ -33,8 +33,9 @@ export class TokenInterceptor implements HttpInterceptor {
         return event;
       }),
       catchError((error: HttpErrorResponse) => {
-        if (error instanceof HttpErrorResponse && error.status == 404) {
+        if (error.status == 401) {
           this.router.navigateByUrl('/', { replaceUrl: true });
+          return;
         }
 
         let errorMessage = '';
