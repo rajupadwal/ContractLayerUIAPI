@@ -13,5 +13,6 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? UpdateDate { get; set; }
         public int RoleId { get; set; }
         public UserRole UserRole { get; set; }
+        public string Token { get; set; }
     }
 }
