@@ -42,6 +42,16 @@ export class PrintService {
         break;
       }
 
+      case 'DatewisePurchaseReturn': {
+        this.router.navigate(['/',
+          {
+            outlets: {
+              'print': ['print', documentName, ""]
+            }
+          }]);
+        break;
+      }
+
       case 'CreateSale': {
         this.router.navigate(['/',
           {

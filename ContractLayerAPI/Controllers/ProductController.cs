@@ -188,6 +188,13 @@ namespace ContractLayerAPI.Controllers
             return Product;
         }
 
+        [HttpPost("GetDatewisePurchaseReturnDetails")]
+        public IEnumerable<ViewStockDetails> GetDatewisePurchaseReturnDetails([FromBody] TblEmployeeMaster master)
+        {
+            var Product = this._repoWrapper.Product.GetDatewisePurchaseReturnDetails(master);
+            return Product;
+        }
+
         [HttpPost("GetDatewiseFarmerInwardDetails")]
         public IEnumerable<ViewStockDetails> GetDatewiseFarmerInwardDetails([FromBody] TblEmployeeMaster master)
         {

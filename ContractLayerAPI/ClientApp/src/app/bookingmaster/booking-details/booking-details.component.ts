@@ -12,7 +12,7 @@ import { CusotmerService } from '../../master/customer-view/customer.service';
 import { PlanService } from '../../master/plan-view/plan.service';
 import * as moment from 'moment';
 import { EmployeeService } from '../../master/employee-view/employee.service';
-import { parse } from 'querystring';
+
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',

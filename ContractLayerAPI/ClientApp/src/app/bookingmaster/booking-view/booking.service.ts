@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { APP_CONSTANT } from '../../../config';
-import { ɵangular_packages_forms_forms_v } from '@angular/forms';
 
 @Injectable({
 providedIn :'root'

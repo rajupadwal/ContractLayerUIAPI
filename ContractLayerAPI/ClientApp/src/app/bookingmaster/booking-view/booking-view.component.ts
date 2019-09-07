@@ -23,9 +23,7 @@ export class BookingViewComponent implements OnInit {
   private gridApi;
   private gridColumnApi;
 
-
   columnDefs = [
-
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
@@ -116,8 +114,6 @@ export class BookingViewComponent implements OnInit {
   defaultColDef = {
     sortable: true,
     filter: true
-
-
   };
 
   rowData;

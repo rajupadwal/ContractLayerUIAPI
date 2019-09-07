@@ -69,7 +69,7 @@ export class PurchasebillreturnViewComponent implements OnInit {
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-    { headerName: 'PR Date', field: 'GRNDate', valueFormatter: this.dateFormatter, 'width': 120, },
+    { headerName: 'PR Date', field: 'Grndate', valueFormatter: this.dateFormatter, 'width': 120, },
     {
       headerName: 'Bill No', field: 'BillNo', 'width': 120,
       filter: "agTextColumnFilter",
@@ -124,7 +124,7 @@ export class PurchasebillreturnViewComponent implements OnInit {
       filterParams: { defaultOption: "startsWith" }
     },
     {
-      headerName: 'Total SGS TAmt', field: 'TotalSGSTAmt', 'width': 130,
+      headerName: 'Total SGST TAmt', field: 'TotalSGSTAmt', 'width': 130,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },

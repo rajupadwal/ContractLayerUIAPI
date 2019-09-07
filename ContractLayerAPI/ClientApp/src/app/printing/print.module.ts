@@ -19,6 +19,8 @@ import { DatewiseFarmerInwardPrintComponent } from './datewiseFarmerInwardPrint/
 import { DatewiseFarmerOutwardPrintComponent } from './datewiseFarmerOutwardPrint/datewise-farmeroutward.print.component';
 import { DatewiseExpencesPrintComponent } from './datewiseExpencesPrint/datewise-expences.print.component';
 import { PurchaseBillReturnPrintComponent } from './purchaseBillReturnPrint/purchase-billreturn.print.component';
+import { DatewisePurchaseReturnPrintComponent } from './datewisePurchaseReturnPrint/datewise-purchasereturn.print.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { PurchaseBillReturnPrintComponent } from './purchaseBillReturnPrint/purc
     DatewiseFarmerInwardPrintComponent,
     DatewiseFarmerOutwardPrintComponent,
     DatewiseExpencesPrintComponent,
-    PurchaseBillReturnPrintComponent
+    PurchaseBillReturnPrintComponent,
+    DatewisePurchaseReturnPrintComponent
   ],
   providers: [
     PrintService

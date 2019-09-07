@@ -17,8 +17,8 @@ namespace ContractLayerFarm.Data.Repositories
         public ProductRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext; }
         //string connectionString = "Data Source=IDCSQL6.znetlive.com,1234;Initial Catalog=a1079e563_ContractLayer;user id=Contractpro;password=Contract@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
         //string connectionString = "Data Source=216.10.240.149;Initial Catalog=ktconin_ContractLayerDB;user id=ContarctLayer;password=Layer@12345;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
-         string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
-        //string connectionString = "Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        // string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
+        string connectionString = "Server=CHINTAMANI-PC;Database=ContractLayerDB;user id=sa;password=raju;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;";
 
         public IEnumerable<TblUserInfo> SearchLogin(TblUserInfo user)
         {
@@ -279,6 +279,46 @@ namespace ContractLayerFarm.Data.Repositories
             return lstcustBillOut;
         }
 
+        IEnumerable<ViewStockDetails> IProductRepository.GetDatewisePurchaseReturnDetails(TblEmployeeMaster master)
+        {
+            List<ViewStockDetails> lstcustBillOut = new List<ViewStockDetails>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string sqlQuery;
+                if (master.EmployeeId == 0)
+                {
+                    sqlQuery = "SELECT cm.SupplierName,convert(nvarchar,fm.BillDate,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.RejectedQty FROM tbl_PurchaseBillReturnDT fi inner join tbl_PurchaseBillReturnMT fm on fi.BillId = fm.BillId inner join tbl_SupplierMaster cm on fm.SupplierId = cm.SupplierId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId where (DATEADD(D, 0, DATEDIFF(D, 0, fm.BillDate)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fm.BillDate)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate)))";
+                }
+                else
+                {
+                    sqlQuery = "SELECT cm.SupplierName,convert(nvarchar,fm.BillDate,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.RejectedQty FROM tbl_PurchaseBillReturnDT fi inner join tbl_PurchaseBillReturnMT fm on fi.BillId = fm.BillId inner join tbl_SupplierMaster cm on fm.SupplierId = cm.SupplierId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId where (DATEADD(D, 0, DATEDIFF(D, 0, fm.BillDate)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fm.BillDate)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate))) AND (fm.SupplierId = @SupplierID)";
+                }
+
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                cmd.Parameters.Add("@SupplierID", System.Data.SqlDbType.Int).Value = master.EmployeeId;
+                cmd.Parameters.Add("@StartDate", System.Data.SqlDbType.DateTime).Value = master.DateOfJoining.Value.AddDays(1);
+                cmd.Parameters.Add("@EndDate", System.Data.SqlDbType.DateTime).Value = master.DateOfLeaving.Value.AddDays(1);
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ViewStockDetails stockDetails = new ViewStockDetails();
+
+                    stockDetails.SupplierName = (rdr["SupplierName"].ToString());
+                    stockDetails.TransactionDate = Convert.ToDateTime(rdr["Date"]);
+                    stockDetails.ProductName = (rdr["ProductName"].ToString());
+                    stockDetails.ProductTypeUnit = (rdr["ProductTypeUnit"].ToString());
+                    stockDetails.Quantity = Convert.ToDecimal(rdr["RejectedQty"]);
+
+                    lstcustBillOut.Add(stockDetails);
+                }
+                con.Close();
+            }
+            return lstcustBillOut;
+        }
+
         IEnumerable<ViewStockDetails> IProductRepository.GetDatewiseFarmerInwardDetails(TblEmployeeMaster master)
         {
             List<ViewStockDetails> lstcustBillOut = new List<ViewStockDetails>();
@@ -288,11 +328,11 @@ namespace ContractLayerFarm.Data.Repositories
                 string sqlQuery;
                 if (master.EmployeeId == 0)
                 {
-                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fi.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerInwardDT fi inner join tbl_FarmerInwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate)))";
+                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fm.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerInwardDT fi inner join tbl_FarmerInwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fm.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate)))";
                 }
                 else
                 {
-                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fi.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerInwardDT fi inner join tbl_FarmerInwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate))) AND (fm.CustomerId = @CustomerID)";
+                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fm.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerInwardDT fi inner join tbl_FarmerInwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fm.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate))) AND (fm.CustomerId = @CustomerID)";
                 }
 
                 SqlCommand cmd = new SqlCommand(sqlQuery, con);
@@ -329,11 +369,11 @@ namespace ContractLayerFarm.Data.Repositories
                 string sqlQuery;
                 if (master.EmployeeId == 0)
                 {
-                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fi.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerOutwardDT fi inner join tbl_FarmerOutwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate)))";
+                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fm.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerOutwardDT fi inner join tbl_FarmerOutwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fm.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fm.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate)))";
                 }
                 else
                 {
-                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fi.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerOutwardDT fi inner join tbl_FarmerOutwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fi.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate))) AND (fm.CustomerId = @CustomerID)";
+                    sqlQuery = "SELECT cm.CustmerName,plm.PlanName,convert(nvarchar,fm.Date,103) as Date,pm.ProductName,fi.ProductType +'-'+ um.UnitDescription as ProductTypeUnit,fi.Quantity FROM tbl_FarmerOutwardDT fi inner join tbl_FarmerOutwardMT fm on fi.RecordNo = fm.RecordNo inner join tbl_CustomerMaster cm on fm.CustomerId = cm.CustomerId inner join tbl_UnitMaster um on fi.Unit = um.UnitId inner join tbl_ProductMaster pm on fi.ProductId = pm.ProductId inner join dbo.tbl_PlanMaster plm on fm.PlanID = plm.PlanId where (DATEADD(D, 0, DATEDIFF(D, 0, fm.Date)) >=  DATEADD(D, 0, DATEDIFF(D, 0, @StartDate)) AND DATEADD(D, 0, DATEDIFF(D, 0, fm.Date)) <=  DATEADD(D, 0, DATEDIFF(D, 0, @EndDate))) AND (fm.CustomerId = @CustomerID)";
                 }
 
                 SqlCommand cmd = new SqlCommand(sqlQuery, con);
@@ -901,6 +941,7 @@ namespace ContractLayerFarm.Data.Repositories
                                   BillId = ep.BillId,
                                   BillDate = ep.BillDate,
                                   BillNo = ep.BillNo,
+                                  Grndate = ep.Grndate,
                                   BatchNo = ep.BatchNo,
                                   SupplierName = e.SupplierName,
                                   LocationName = t.LocationName,
@@ -971,6 +1012,7 @@ namespace ContractLayerFarm.Data.Repositories
                                   BillId = ep.BillId,
                                   BillDate = ep.BillDate,
                                   BillNo = ep.BillNo,
+                                  Grndate=ep.Grndate,
                                   BatchNo = ep.BatchNo,
                                   SupplierName = e.SupplierName,
                                   LocationName = t.LocationName,

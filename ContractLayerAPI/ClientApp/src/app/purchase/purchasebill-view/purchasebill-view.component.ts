@@ -76,7 +76,7 @@ export class PurchasebillViewComponent implements OnInit {
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-    { headerName: 'GRN Date', field: 'GRNDate', valueFormatter: this.dateFormatter, 'width': 120, },
+    { headerName: 'GRN Date', field: 'Grndate', valueFormatter: this.dateFormatter, 'width': 120, },
     {
       headerName: 'Bill No', field: 'BillNo', 'width': 120,
       filter: "agTextColumnFilter",
