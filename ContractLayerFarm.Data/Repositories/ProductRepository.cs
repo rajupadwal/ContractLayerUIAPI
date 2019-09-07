@@ -979,7 +979,7 @@ namespace ContractLayerFarm.Data.Repositories
                                   TransportationGSTPer = ep.TransportationgstPer,
                                   TransportationGSTAmt = ep.TransportationgstAmt,
                                   TotalTransportAmt = ep.TotalTransportAmt,
-                                  TotalCGSTAmt = ep.TotalCgstTamt,
+                                  TotalCGSTAmt = ep.TotalCgstAmt,
                                   TotalSGSTAmt = ep.TotalSgstAmt,
                                   TotalIGSTAmt = ep.TotalIgstAmt,
                                   OtherCharges = ep.OtherCharges,

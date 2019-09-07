@@ -805,7 +805,7 @@ namespace ContractLayerFarm.Data.Models
 
                 entity.Property(e => e.Narration).HasMaxLength(50);
 
-                entity.Property(e => e.TotalCgstTamt).HasColumnName("TotalCgstTAmt");
+                entity.Property(e => e.TotalCgstAmt).HasColumnName("TotalCgstAmt");
 
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.TblPurchaseBillReturnMt)

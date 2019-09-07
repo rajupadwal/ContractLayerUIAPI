@@ -8,7 +8,7 @@ using ContractLayerFarm.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 namespace ContractLayerAPI.Controllers
 {
-     [Authorize][Produces("application/json")]
+    [Authorize][Produces("application/json")]
     [Route("api/Booking/")]
     public class BookingController : Controller
     {

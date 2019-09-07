@@ -35,19 +35,22 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error.status == 401) {
           this.router.navigateByUrl('/', { replaceUrl: true });
-          return;
+          return throwError("Please login back");
+        } else{
+          let errorMessage = '';
+          if (error.error instanceof ErrorEvent) {
+            // client-side error
+            errorMessage = `Error: ${error.error.message}`;
+          } else {
+            // server-side error
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+          }
+          window.alert(errorMessage);
+          return throwError(errorMessage);
         }
 
-        let errorMessage = '';
-        if (error.error instanceof ErrorEvent) {
-          // client-side error
-          errorMessage = `Error: ${error.error.message}`;
-        } else {
-          // server-side error
-          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-        }
-        window.alert(errorMessage);
-        return throwError(errorMessage);
+         
+         
       }),
 
 

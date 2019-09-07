@@ -17,15 +17,15 @@ export class BookingViewComponent implements OnInit {
 
   onBtnClick1 = (param) => {
     alert('i am clicked');
-    console.log (param);
+    console.log(param);
   }
 
   private gridApi;
   private gridColumnApi;
-  
+
 
   columnDefs = [
-   
+
     {
       headerName: 'Edit', valueFormatter: () => { return 'Edit' }, 'width': 40,
 
@@ -33,7 +33,7 @@ export class BookingViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(BookingDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Booking Order' },isEditable: true });
+          const ref = this.dialog.open(BookingDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Booking Order' }, isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -62,7 +62,7 @@ export class BookingViewComponent implements OnInit {
       checkboxSelection: true,
       field: 'RecordNo', 'width': 130,
       filter: "agNumberColumnFilter"
-    },  
+    },
     {
       headerName: 'Location', field: 'Location.LocationName', 'width': 120,
       filter: "agTextColumnFilter",
@@ -116,8 +116,8 @@ export class BookingViewComponent implements OnInit {
   defaultColDef = {
     sortable: true,
     filter: true
-    
-    
+
+
   };
 
   rowData;
@@ -151,7 +151,7 @@ export class BookingViewComponent implements OnInit {
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(BookingDetailsComponent, { modalConfig: { title: 'Add/Edit Booking Order' },isEditable: false });
+    const ref = this.dialog.open(BookingDetailsComponent, { modalConfig: { title: 'Add/Edit Booking Order' }, isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();
