@@ -7,10 +7,10 @@
         </div>
         <div class="col-sm-6">
           <p-autoComplete formControlName="Customer" [suggestions]="customerList" (completeMethod)="searchCustomer($event)"
-                          (onSelect)="viewCustomerLedgerDetails($event)" (change)="($event)" [dropdown]="true" [forceSelection]="true" field="CustmerName"></p-autoComplete>
+                          (onSelect)="viewCustomerLedgerDetails($event)" (change)="($event)" [dropdown]="true" [forceSelection]="true" field="CustmerName" ></p-autoComplete>
         </div>
         <div class="col-sm-2">
-          <button type="button" class="btn btn-outline-primary" (click)="printLedger()"><i class="pi pi-print" style="font-size: large;"></i>&nbsp; PRINT</button>
+          <button type="button" class="btn btn-outline-primary" (click)="printLedger()"><i class="pi pi-print" style="font-size: large;"></i>&nbsp; Print</button>
         </div>
         <div class="col-sm-2">
           <button class="btn btn-outline-primary" (click)="exportAsXLSX()"><i class="fa fa-plus-circle"></i>Export To Excel</button>
@@ -18,7 +18,8 @@
       </div>
     </div>
   </form>
-</div>
+</div><br />
+
 
 <ag-grid-angular style="height: 500px;"
                  id="myGrid"

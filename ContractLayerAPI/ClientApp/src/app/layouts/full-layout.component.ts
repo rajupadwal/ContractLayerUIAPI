@@ -19,5 +19,9 @@ export class FullLayoutComponent implements OnInit {
     this.status.isopen = !this.status.isopen;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+  public logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('Token');
+  }
 }
