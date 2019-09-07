@@ -246,6 +246,8 @@ export const APP_CONSTANT={
     GETALLPURCHASEBILLRETURNMASTEDETAILS: API_URL + 'Product/GetAllPurchaseBillReturnMasteDetails',
     GETGRNNO: API_URL + 'Product/GetPurchaseBillReturnGRNNo',
     DELETE: API_URL + 'Product/DeletePurchaseBillReturn',
+
+    GETDATEWISEPURCHASERETURN: API_URL + 'Product/GetDatewisePurchaseReturnDetails',
   },
   
   PURCHASEPAYMENT_API: {

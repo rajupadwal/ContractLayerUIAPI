@@ -23,7 +23,7 @@ namespace ContractLayerFarm.Data.Models
         public decimal? TransportationgstPer { get; set; }
         public decimal? TransportationgstAmt { get; set; }
         public decimal? TotalTransportAmt { get; set; }
-        public decimal? TotalCgstTamt { get; set; }
+        public decimal? TotalCgstAmt { get; set; }
         public decimal? TotalSgstAmt { get; set; }
         public decimal? TotalIgstAmt { get; set; }
         public decimal? OtherCharges { get; set; }

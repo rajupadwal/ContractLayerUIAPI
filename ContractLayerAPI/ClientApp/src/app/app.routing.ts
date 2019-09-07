@@ -23,6 +23,7 @@ import { DatewiseFarmerInwardPrintComponent } from './printing/datewiseFarmerInw
 import { DatewiseFarmerOutwardPrintComponent } from './printing/datewiseFarmerOutwardPrint/datewise-farmeroutward.print.component';
 import { DatewiseExpencesPrintComponent } from './printing/datewiseExpencesPrint/datewise-expences.print.component';
 import { PurchaseBillReturnPrintComponent } from './printing/purchaseBillReturnPrint/purchase-billreturn.print.component';
+import { DatewisePurchaseReturnPrintComponent } from './printing/datewisePurchaseReturnPrint/datewise-purchasereturn.print.component';
 export const routes: Routes = [
 
   
@@ -45,6 +46,7 @@ export const routes: Routes = [
       { path: 'DatewiseFarmerOutward/:datewiseFarmerOutwards', component: DatewiseFarmerOutwardPrintComponent },
       { path: 'DatewiseExpences/:datewiseExpences', component: DatewiseExpencesPrintComponent },
       { path: 'PurchaseBillReturn/:purchaseBillReturns', component: PurchaseBillReturnPrintComponent },
+      { path: 'DatewisePurchaseReturn/:datewisePurchaseReturns', component: DatewisePurchaseReturnPrintComponent },
     ]
   },
   {
@@ -280,6 +282,10 @@ export const routes: Routes = [
           {
             path: 'Datewiseexpencesview',
             loadChildren: './reports/datewiseexpences-view/datewiseexpences.module#DatewiseexpencesModule'
+          },
+          {
+            path: 'Datewisepurchasereturnview',
+            loadChildren: './reports/datewisepurchasereturn-view/datewisepurchasereturn.module#DatewisepurchasereturnModule'
           },
         ]
       },

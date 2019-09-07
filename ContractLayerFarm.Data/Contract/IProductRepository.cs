@@ -28,8 +28,9 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<ViewStockDetails> GetCustomerBillOutstanding();
 
         IEnumerable<ViewStockDetails> GetDatewiseExpencesDetails(TblEmployeeMaster master);
-        IEnumerable<ViewStockDetails> GetDatewiseFarmerInwardDetails(TblEmployeeMaster master);
-        IEnumerable<ViewStockDetails> GetDatewiseFarmerOutwardDetails(TblEmployeeMaster master);
+        IEnumerable<ViewStockDetails> GetDatewisePurchaseReturnDetails(TblEmployeeMaster master);
+        IEnumerable<ViewStockDetails> GetDatewiseFarmerInwardDetails(TblEmployeeMaster master); 
+         IEnumerable<ViewStockDetails> GetDatewiseFarmerOutwardDetails(TblEmployeeMaster master);
         IEnumerable<ViewStockDetails> GetCustomerLedger(int customerid);
         IEnumerable<ViewStockDetails> GetSupplierLedger(int supplierid);
         IEnumerable<ViewStockDetails> GetSupplierBillOutstanding();
