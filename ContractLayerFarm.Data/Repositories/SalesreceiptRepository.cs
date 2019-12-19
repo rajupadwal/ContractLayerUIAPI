@@ -89,14 +89,14 @@ namespace ContractLayerFarm.Data.Repositories
 
             if (master.PkId > 0)
             {
-                var entity = this.ktConContext.TblCustomerTransactions.FirstOrDefault(item => item.ReceiptNo == master.ReceiptNo.ToString() && item.TransactionType == typeof(TblSalesReceipt).ToString());
+                var entity = this.ktConContext.TblCustomerTransaction.FirstOrDefault(item => item.ReceiptNo == master.ReceiptNo.ToString() && item.TransactionType == typeof(TblSalesReceipt).ToString());
 
                 if (entity != null)
                 {
                     entity.BookingReceivedAmt = bookReceiptAmt;
                     entity.BillPaidAmt = billPaidAmt;
                     entity.CancelBookingAmt = 0;
-                    ktConContext.TblCustomerTransactions.Update(entity);
+                    ktConContext.TblCustomerTransaction.Update(entity);
                     ktConContext.SaveChanges();
                 }
             }

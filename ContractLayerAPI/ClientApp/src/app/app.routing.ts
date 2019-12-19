@@ -163,6 +163,17 @@ export const routes: Routes = [
             loadChildren: './master/eggsrange-view/eggsrange.view.module#EggsrangeViewModule'
             , canActivate: [AuthGuard] 
           },
+
+          {
+            path: 'Bankview',
+            loadChildren: './master/bank-view/bank.view.module#BankViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
+            path: 'Stateview',
+            loadChildren: './master/state-view/state.view.module#StateViewModule'
+            , canActivate: [AuthGuard]
+          },
         ]
       },
 

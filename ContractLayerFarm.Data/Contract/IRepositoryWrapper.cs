@@ -7,6 +7,8 @@ namespace ContractLayerFarm.Data.Contract
 
     public interface IRepositoryWrapper
     {
+        IStatemasterRepository Statemaster { get; }
+        IBankmasterRepository Bankmaster { get; }
         ICustomerRepository Customer { get; }
         IUnitRepository Unit { get; }
         ISupplierRepository Supplier { get; }

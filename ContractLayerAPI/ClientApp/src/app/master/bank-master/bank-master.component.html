@@ -1,0 +1,40 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Bank Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="bankmasterForm" (ngSubmit)="saveBankMaster()">
+      <div class="row">
+        <!--<div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Sr No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Bank Id" type="text" pInputText id="bankid" name="expenceid" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>-->
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Bank Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="BankName" appValidationBorder type="text" pInputText id="bankname" name="bankname" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -31,7 +31,38 @@ namespace ContractLayerFarm.Data.Repositories
         private PurchasepaymentRepository _purchasepayment;
         private PurchasereturnreceiptRepository _purchasereturnreceipt;
         private IncometypeRepository _incometype;
+        private BankmasterRepository _bankmaster;
+        private StatemasterRepository _statemaster;
 
+        public IStatemasterRepository Statemaster
+        {
+            get
+            {
+                if (_statemaster == null)
+                {
+                    _statemaster = new StatemasterRepository(_repoContext);
+                }
+
+                return _statemaster;
+            }
+        }
+        public IBankmasterRepository Bankmaster
+        {
+            get
+            {
+                if (_bankmaster == null)
+                {
+                    _bankmaster = new BankmasterRepository(_repoContext);
+                }
+
+                return _bankmaster;
+            }
+        }
+
+
+        /// <summary>
+        /// /////////Contract Layer Farm -----------
+        /// </summary>
         public IUnitRepository Unit
         {
             get

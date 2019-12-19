@@ -268,5 +268,28 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Purchasereturnreceipt/Delete',
     RETURNPURCHASEPAYMENTNO: API_URL + 'Purchasereturnreceipt/GetReturnPurchasePaymentNo',
   },
+
+
+  ///////////Social Application API-----------------------------------
+
+  BANKMASTER_API: {
+    ADD: API_URL + 'Bankmaster/Add',
+    GETALL: API_URL + 'Bankmaster/GetAll',
+    GETByID: API_URL + 'Bankmaster/GetByID',
+    EDIT: API_URL + 'Bankmaster/Update',
+    DELETE: API_URL + 'Bankmaster/Delete',
+    SEARCH_BANKNAME: API_URL + 'Bankmaster/SearchBankName',
+    GETBANKSRNO: API_URL + 'Bankmaster/GetBankSrNo'
+  },
+
+  STATEMASTER_API: {
+    ADD: API_URL + 'Statemaster/Add',
+    GETALL: API_URL + 'Statemaster/GetAll',
+    GETByID: API_URL + 'Statemaster/GetByID',
+    EDIT: API_URL + 'Statemaster/Update',
+    DELETE: API_URL + 'Statemaster/Delete',
+    SEARCH_STATENAME: API_URL + 'Statemaster/SearchStateName',
+    GETSTATESRNO: API_URL + 'Statemaster/GetStateSrNo'
+  },
                                                     
 }

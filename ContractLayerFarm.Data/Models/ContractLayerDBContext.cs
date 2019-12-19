@@ -15,11 +15,15 @@ namespace ContractLayerFarm.Data.Models
         {
         }
 
+        public virtual DbSet<TblBankMaster> TblBankMaster { get; set; }
+        public virtual DbSet<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
         public virtual DbSet<TblBookingCancelMaster> TblBookingCancelMaster { get; set; }
         public virtual DbSet<TblBookingMaster> TblBookingMaster { get; set; }
+        public virtual DbSet<TblBranchMaster> TblBranchMaster { get; set; }
         public virtual DbSet<TblCompanyProfile> TblCompanyProfile { get; set; }
         public virtual DbSet<TblCustomerMaster> TblCustomerMaster { get; set; }
         public virtual DbSet<TblCustomerTransaction> TblCustomerTransaction { get; set; }
+        public virtual DbSet<TblDistrictMaster> TblDistrictMaster { get; set; }
         public virtual DbSet<TblEggsRangeMaster> TblEggsRangeMaster { get; set; }
         public virtual DbSet<TblEmployeeAdvance> TblEmployeeAdvance { get; set; }
         public virtual DbSet<TblEmployeeMaster> TblEmployeeMaster { get; set; }
@@ -49,11 +53,15 @@ namespace ContractLayerFarm.Data.Models
         public virtual DbSet<TblSalesBillDt> TblSalesBillDt { get; set; }
         public virtual DbSet<TblSalesBillMt> TblSalesBillMt { get; set; }
         public virtual DbSet<TblSalesReceipt> TblSalesReceipt { get; set; }
+        public virtual DbSet<TblSchemeMaster> TblSchemeMaster { get; set; }
         public virtual DbSet<TblShedMaster> TblShedMaster { get; set; }
+        public virtual DbSet<TblStateMaster> TblStateMaster { get; set; }
         public virtual DbSet<TblStockDetails> TblStockDetails { get; set; }
         public virtual DbSet<TblCustomerTransaction> TblCustomerTransactions { get; set; }
         public virtual DbSet<TblSupplierTransaction> TblSupplierTransaction { get; set; }
+        public virtual DbSet<TblTalukaMaster> TblTalukaMaster { get; set; }
         public virtual DbSet<TblSupplierMaster> TblSupplierMaster { get; set; }
+        public virtual DbSet<TblSchemePaymentMaster> TblSchemePaymentMaster { get; set; }
         public virtual DbSet<TblUnitMaster> TblUnitMaster { get; set; }
         public virtual DbSet<TblUserInfo> TblUserInfo { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
@@ -71,6 +79,113 @@ namespace ContractLayerFarm.Data.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<TblBankMaster>(entity =>
+            {
+                entity.HasKey(e => e.BankId);
+
+                entity.ToTable("tblBankMaster");
+
+                entity.Property(e => e.BankName)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+            });
+
+
+            modelBuilder.Entity<TblSchemePaymentMaster>(entity =>
+            {
+                entity.HasKey(e => e.SrNo);
+
+                entity.ToTable("tblSchemePaymentMaster");
+
+                entity.Property(e => e.Amount).HasColumnType("decimal");
+
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<TblBeneficiaryMaster>(entity =>
+            {
+                entity.HasKey(e => e.BeneficiaryId);
+
+                entity.ToTable("tblBeneficiaryMaster");
+
+                entity.Property(e => e.BeneficiaryId).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BplNo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Cast)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.DateOfBirth).HasColumnType("datetime");
+
+                entity.Property(e => e.DueDate).HasColumnType("datetime");
+
+                entity.Property(e => e.IfscCode).HasMaxLength(50);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NameAsPerAadhar).HasMaxLength(200);
+
+                entity.Property(e => e.SanctionDate).HasColumnType("datetime");
+
+                entity.Property(e => e.SanctionOrderNo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SubCast)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Type)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Beneficiary)
+                    .WithOne(p => p.InverseBeneficiary)
+                    .HasForeignKey<TblBeneficiaryMaster>(d => d.BeneficiaryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tblpaymentid");
+
+                entity.HasOne(d => d.District)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.DistrictId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tbldistrictid");
+
+                entity.HasOne(d => d.Scheme)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.SchemeId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tblschemeid");
+
+                entity.HasOne(d => d.State)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.StateId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tblStateid");
+
+                entity.HasOne(d => d.Taluka)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.TalukaId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tbltalukaid");
+            });
+
             modelBuilder.Entity<TblBookingCancelMaster>(entity =>
             {
                 entity.HasKey(e => e.PkId);
@@ -137,6 +252,30 @@ namespace ContractLayerFarm.Data.Models
                     .WithMany(p => p.TblBookingMaster)
                     .HasForeignKey(d => d.PlanId)
                     .HasConstraintName("FK_tbl_BookingMaster_tbl_Plan");
+            });
+
+            modelBuilder.Entity<TblBranchMaster>(entity =>
+            {
+                entity.HasKey(e => e.BranchId);
+
+                entity.ToTable("tblBranchMaster");
+
+                entity.Property(e => e.BranchName)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.IfscCode)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Bank)
+                    .WithMany(p => p.TblBranchMaster)
+                    .HasForeignKey(d => d.BankId)
+                    .HasConstraintName("FK_tblBranchMaster_BankId");
             });
 
             modelBuilder.Entity<TblCompanyProfile>(entity =>
@@ -241,6 +380,26 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.TransactionDate).HasColumnType("datetime");
 
                 entity.Property(e => e.TransactionType).HasMaxLength(200);
+            });
+
+            modelBuilder.Entity<TblDistrictMaster>(entity =>
+            {
+                entity.HasKey(e => e.DistrictId);
+
+                entity.ToTable("tblDistrictMaster");
+
+                entity.Property(e => e.CreaeDate).HasColumnType("datetime");
+
+                entity.Property(e => e.DistrictName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.State)
+                    .WithMany(p => p.TblDistrictMaster)
+                    .HasForeignKey(d => d.StateId)
+                    .HasConstraintName("FK_tblDistrictMaster_StateId");
             });
 
             modelBuilder.Entity<TblEggsRangeMaster>(entity =>
@@ -942,6 +1101,21 @@ namespace ContractLayerFarm.Data.Models
                     .HasConstraintName("FK_tbl_SalesBillMT_tbl_PlanId");
             });
 
+            modelBuilder.Entity<TblStateMaster>(entity =>
+            {
+                entity.HasKey(e => e.StateId);
+
+                entity.ToTable("tblStateMaster");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.StateName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<TblSalesReceipt>(entity =>
             {
                 entity.HasKey(e => e.PkId);
@@ -969,6 +1143,29 @@ namespace ContractLayerFarm.Data.Models
                     .WithMany(p => p.TblSalesReceipt)
                     .HasForeignKey(d => d.LocationId)
                     .HasConstraintName("FK_tbl_SalesReceipt_tbl_Location");
+            });
+
+            modelBuilder.Entity<TblSchemeMaster>(entity =>
+            {
+                entity.HasKey(e => e.SchemeId);
+
+                entity.ToTable("tblSchemeMaster");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.DueDate).HasColumnType("datetime");
+
+                entity.Property(e => e.SanctionDate).HasColumnType("datetime");
+
+                entity.Property(e => e.SanctionOrderNo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SchemeName)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<TblShedMaster>(entity =>
@@ -1118,6 +1315,24 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.Taluka).HasMaxLength(20);
 
                 entity.Property(e => e.WebAddress).HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<TblTalukaMaster>(entity =>
+            {
+                entity.HasKey(e => e.TalukaId);
+
+                entity.ToTable("tblTalukaMaster");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.TalukaName).HasMaxLength(50);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.District)
+                    .WithMany(p => p.TblTalukaMaster)
+                    .HasForeignKey(d => d.DistrictId)
+                    .HasConstraintName("FK_tblTalukaMaster_stateidDistrictid");
             });
 
             modelBuilder.Entity<TblUnitMaster>(entity =>
