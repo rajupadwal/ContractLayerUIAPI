@@ -1,0 +1,39 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>District Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="districtForm" (ngSubmit)="saveDistrictMaster()">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>State :</strong></label>
+              <p-autoComplete formControlName="State" appValidationBorder [suggestions]="stateList" (completeMethod)="searchState($event)"
+                              [dropdown]="true" [forceSelection]="true" field="StateName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>District Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="DistrictName" appValidationBorder type="text" pInputText id="districtname" name="districtname" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="input-group-btn" dropdown>
+          <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        </div>
+    </form>
+  </div>
+</div>

@@ -7,7 +7,7 @@ namespace ContractLayerFarm.Data.Models
     {
         public TblSchemeMaster()
         {
-            TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
+            //TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
         }
 
         public int SchemeId { get; set; }
@@ -18,6 +18,6 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
+        //public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
     }
 }

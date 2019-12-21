@@ -43,7 +43,7 @@ export class BankViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(BankMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Bank Master' },isEditable: true });
+          const ref = this.dialog.open(BankMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit Bank Master', width: '60%'},isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -98,8 +98,8 @@ export class BankViewComponent implements OnInit {
 
   onBtExport() {
     var params = {
-      fileName: 'Navnath',
-      sheetName: 'Chintamani Soft'
+      fileName: ' ',
+      sheetName: ' '
     };
     this.gridApi.exportDataAsExcel(params);
   }
@@ -124,7 +124,7 @@ export class BankViewComponent implements OnInit {
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(BankMasterComponent, { modalConfig: { title: 'Add/Edit Bank Master' },isEditable: false });
+    const ref = this.dialog.open(BankMasterComponent, { modalConfig: { title: 'Add/Edit Bank Master', width: '60%' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

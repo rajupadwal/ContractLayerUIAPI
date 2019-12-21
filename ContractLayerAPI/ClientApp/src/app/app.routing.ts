@@ -170,8 +170,28 @@ export const routes: Routes = [
             , canActivate: [AuthGuard]
           },
           {
+            path: 'Branchview',
+            loadChildren: './master/branch-view/branch.view.module#BranchViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
             path: 'Stateview',
             loadChildren: './master/state-view/state.view.module#StateViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
+            path: 'Districtview',
+            loadChildren: './master/district-view/district.view.module#DistrictViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
+            path: 'Schemeview',
+            loadChildren: './master/scheme-view/scheme.view.module#SchemeViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
+            path: 'Schemepaymentview',
+            loadChildren: './master/schemepayment-view/schemepayment.view.module#SchemePaymentViewModule'
             , canActivate: [AuthGuard]
           },
         ]

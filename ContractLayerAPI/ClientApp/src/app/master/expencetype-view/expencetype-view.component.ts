@@ -98,8 +98,8 @@ export class ExpencetypeViewComponent implements OnInit {
 
   onBtExport() {
     var params = {
-      fileName: 'Navnath',
-      sheetName: 'Chintamani Soft'
+      fileName: ' ',
+      sheetName: ' '
     };
     this.gridApi.exportDataAsExcel(params);
   }

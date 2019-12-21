@@ -7,7 +7,7 @@ namespace ContractLayerFarm.Data.Models
     {
         public TblStateMaster()
         {
-            TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
+            //TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
             TblDistrictMaster = new HashSet<TblDistrictMaster>();
         }
 
@@ -16,7 +16,7 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
+        //public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
         public ICollection<TblDistrictMaster> TblDistrictMaster { get; set; }
     }
 }

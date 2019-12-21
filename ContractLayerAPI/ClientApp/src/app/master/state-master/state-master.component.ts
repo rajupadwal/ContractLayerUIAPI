@@ -30,9 +30,10 @@ export class StateMasterComponent implements OnInit {
     //}
 
     this.statemasterForm = this.formBuilder.group({
-      stateId: [0],
-      stateName: ["", Validators.required],
-      IsDeleted: [false]
+      StateId: [0],
+      StateName: ["", Validators.required],
+      CreateDate: [],
+      UpdateDate: []
 
     });
     if (this.config.isEditable == true) {
@@ -45,7 +46,7 @@ export class StateMasterComponent implements OnInit {
     this.statemasterForm.setValue(this.config.data);
   }
 
-  savestateMaster() {
+  saveStateMaster() {
     if (!this.dialog.validateForm(this.statemasterForm)) {
       return;
     }

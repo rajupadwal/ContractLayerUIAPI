@@ -32,7 +32,8 @@ export class BankMasterComponent implements OnInit {
     this.bankmasterForm = this.formBuilder.group({
       BankId: [0],
       BankName: ["", Validators.required],
-      IsDeleted: [false]
+      CreateDate: [],
+      UpdateDate: []
 
     });
     if (this.config.isEditable == true) {

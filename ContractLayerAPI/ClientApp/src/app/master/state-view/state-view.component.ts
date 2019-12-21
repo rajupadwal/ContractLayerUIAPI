@@ -43,7 +43,7 @@ export class StateViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(StateMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit State Master' },isEditable: true });
+          const ref = this.dialog.open(StateMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit State Master', width: '60%'},isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -98,8 +98,8 @@ export class StateViewComponent implements OnInit {
 
   onBtExport() {
     var params = {
-      fileName: 'Navnath',
-      sheetName: 'Chintamani Soft'
+      fileName: ' ',
+      sheetName: ' '
     };
     this.gridApi.exportDataAsExcel(params);
   }
@@ -124,7 +124,7 @@ export class StateViewComponent implements OnInit {
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(StateMasterComponent, { modalConfig: { title: 'Add/Edit State Master' },isEditable: false });
+    const ref = this.dialog.open(StateMasterComponent, { modalConfig: { title: 'Add/Edit State Master', width: '60%' },isEditable: false });
     ref.afterClosed.subscribe(result => {
       // this.rowData.push(result); //TODO this should be implemented like this
       this.RefreshGrid();

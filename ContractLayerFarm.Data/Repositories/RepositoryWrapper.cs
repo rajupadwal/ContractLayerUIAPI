@@ -33,6 +33,34 @@ namespace ContractLayerFarm.Data.Repositories
         private IncometypeRepository _incometype;
         private BankmasterRepository _bankmaster;
         private StatemasterRepository _statemaster;
+        private BranchRepository _branchmaster;
+        private SchemeRepository _schememaster;
+        private SchemepaymentRepository _schemepayment;
+        private IDistrictmasterRepository _districtmaster;
+
+        public ISchemeRepository Schememaster
+        {
+            get
+            {
+                if (_schememaster == null)
+                {
+                    _schememaster = new SchemeRepository(_repoContext);
+                }
+                return _schememaster;
+            }
+        }
+
+        public ISchemepaymentRepository Schemepayment
+        {
+            get
+            {
+                if (_schemepayment == null)
+                {
+                    _schemepayment = new SchemepaymentRepository(_repoContext);
+                }
+                return _schemepayment;
+            }
+        }
 
         public IStatemasterRepository Statemaster
         {
@@ -42,8 +70,18 @@ namespace ContractLayerFarm.Data.Repositories
                 {
                     _statemaster = new StatemasterRepository(_repoContext);
                 }
-
                 return _statemaster;
+            }
+        }
+        public IDistrictmasterRepository Districtmaster
+        {
+            get
+            {
+                if (_districtmaster == null)
+                {
+                    _districtmaster = new DisrictmasterRepository(_repoContext);
+                }
+                return _districtmaster;
             }
         }
         public IBankmasterRepository Bankmaster
@@ -54,11 +92,20 @@ namespace ContractLayerFarm.Data.Repositories
                 {
                     _bankmaster = new BankmasterRepository(_repoContext);
                 }
-
                 return _bankmaster;
             }
         }
-
+        public IBranchRepository Branchmaster
+        {
+            get
+            {
+                if (_branchmaster == null)
+                {
+                    _branchmaster = new BranchRepository(_repoContext);
+                }
+                return _branchmaster;
+            }
+        }
 
         /// <summary>
         /// /////////Contract Layer Farm -----------

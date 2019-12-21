@@ -1,0 +1,70 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Scheme Information Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="schemeForm" (ngSubmit)="saveScheme()">
+      <div class="row">
+        <div class="col-sm-10">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Scheme Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="SchemeName" appValidationBorder type="text" pInputText id="SchemeName" name="SchemeName" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Sanction Order No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="SanctionOrderNo" type="text" pInputText id="sanctionorderno" name="sanctionorderno" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Sanction Date:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="SanctionDate" [showIcon]="true" showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Due Date:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="DueDate" [showIcon]="true" showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit"  class="btn btn-outline-primary" style="float">&nbsp; SAVE </button>
+      </div>
+    </form>
+</div>
+</div>

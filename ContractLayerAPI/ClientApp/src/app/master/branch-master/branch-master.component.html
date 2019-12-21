@@ -1,0 +1,54 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Branch Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="branchForm" (ngSubmit)="saveBranch()">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Bank Name :</strong></label>
+              <p-autoComplete formControlName="Bank" appValidationBorder [suggestions]="bankList" (completeMethod)="searchBank($event)"
+                              [dropdown]="true" [forceSelection]="true" field="BankName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Branch Name :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="BranchName" appValidationBorder type="text" pInputText id="branchname" name="branchname" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>IFSC Code :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="IfscCode" type="text" pInputText id="ifsccode" name="ifsccode" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

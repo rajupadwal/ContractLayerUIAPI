@@ -291,5 +291,53 @@ export const APP_CONSTANT={
     SEARCH_STATENAME: API_URL + 'Statemaster/SearchStateName',
     GETSTATESRNO: API_URL + 'Statemaster/GetStateSrNo'
   },
+
+  BRANCH_API: {
+    ADD: API_URL + 'Branch/Add',
+    GETALL: API_URL + 'Branch/GetAll',
+    GETByID: API_URL + 'Branch/GetByIdAll',
+    EDIT: API_URL + 'Branch/Update',
+    DELETE: API_URL + 'Branch/Delete',
+    GETBRANCHBYBRANCHID: API_URL + 'Branch/GetTypeByBankID',
+  },
+
+  SCHEME_API: {
+    ADD: API_URL + 'Scheme/Add',
+    GETALL: API_URL + 'Scheme/GetAll',
+    GETByID: API_URL + 'Scheme/GetByID',
+    EDIT: API_URL + 'Scheme/Update',
+    DELETE: API_URL + 'Scheme/Delete',
+    SEARCH_SCHEME: API_URL + 'Scheme/SearchScheme',
+  },
+
+  SCHEMEPAYMENTDETAILS_API: {
+    ADD: API_URL + 'Schemepaymentdetails/Add',
+    GETALL: API_URL + 'Schemepaymentdetails/GetAll',
+    GETByID: API_URL + 'Schemepaymentdetails/GetByID',
+    EDIT: API_URL + 'Schemepaymentdetails/Update',
+    DELETE: API_URL + 'Schemepaymentdetails/Delete'
+    //SEARCH_BANKNAME: API_URL + 'Districtmaster/SearchBankName',
+    //GETBANKSRNO: API_URL + 'Districtmaster/GetBankSrNo'
+  },
+
+  DISTRICTMASTER_API: {
+    ADD: API_URL + 'Districtmaster/Add',
+    GETALL: API_URL + 'Districtmaster/GetAll',
+    GETByID: API_URL + 'Districtmaster/GetByID',
+    EDIT: API_URL + 'Districtmaster/Update',
+    DELETE: API_URL + 'Districtmaster/Delete',
+    GETSTATEBYSTATEID: API_URL + 'Districtmaster/GetTypeByStateID',
+     
+  },
+
+  TALUKAMASTER_API: {
+    ADD: API_URL + 'Talukamaster/Add',
+    GETALL: API_URL + 'Talukamaster/GetAll',
+    GETByID: API_URL + 'Talukamaster/GetByID',
+    EDIT: API_URL + 'Talukamaster/Update',
+    DELETE: API_URL + 'Talukamaster/Delete',
+    GETSTATEBYSTATEID: API_URL + 'Talukamaster/GetTypeByTalukaID',
+
+  },
                                                     
 }
