@@ -57,20 +57,23 @@ export class TalukaViewComponent implements OnInit {
       headerName: 'Sr.No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'DistrictId', 'width': 150
+      field: 'TalukaId', 'width': 150
     },
     {
       headerName: 'State Name ', field: 'State.StateName', 'width': 280,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-
     {
       headerName: 'District Name ', field: 'District.DistrictName', 'width': 280,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Taluka Name ', field: 'TalukaName', 'width': 280,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
     }
-
   ];
 
   defaultColDef = {
@@ -106,9 +109,9 @@ export class TalukaViewComponent implements OnInit {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.get(APP_CONSTANT.DISTRICTMASTER_API.GETALL, httpOptions)
-      .subscribe((districtdetails: any) => {
-        this.rowData = districtdetails;
+    return this.http.get(APP_CONSTANT.TALUKAMASTER_API.GETALL, httpOptions)
+      .subscribe((talukadetails: any) => {
+        this.rowData = talukadetails;
       });
   }
 
@@ -129,20 +132,20 @@ export class TalukaViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.get(APP_CONSTANT.DISTRICTMASTER_API.GETALL, httpOptions)
-      .subscribe((districtdetails: any) => {
-        this.rowData = districtdetails;
+    return this.http.get(APP_CONSTANT.TALUKAMASTER_API.GETALL, httpOptions)
+      .subscribe((talukadetails: any) => {
+        this.rowData = talukadetails;
       });
   }
 
-  delete(districtdetails) {
+  delete(talukadetails) {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
     if (confirm("Are you sure do you want to delete record?")) {
-      return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.DELETE, districtdetails, httpOptions)
-        .subscribe((districtdetails) => {
+      return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.DELETE, talukadetails, httpOptions)
+        .subscribe((talukadetails) => {
           this.RefreshGrid();
         });
     }

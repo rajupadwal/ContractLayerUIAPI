@@ -37,6 +37,7 @@ namespace ContractLayerFarm.Data.Repositories
         private SchemeRepository _schememaster;
         private SchemepaymentRepository _schemepayment;
         private IDistrictmasterRepository _districtmaster;
+        private ITalukamasterRepository _talukamaster;
 
         public ISchemeRepository Schememaster
         {
@@ -84,6 +85,19 @@ namespace ContractLayerFarm.Data.Repositories
                 return _districtmaster;
             }
         }
+
+        public ITalukamasterRepository Talukamaster
+        {
+            get
+            {
+                if (_talukamaster == null)
+                {
+                    _talukamaster = new TalukamasterRepository(_repoContext);
+                }
+                return _talukamaster;
+            }
+        }
+
         public IBankmasterRepository Bankmaster
         {
             get

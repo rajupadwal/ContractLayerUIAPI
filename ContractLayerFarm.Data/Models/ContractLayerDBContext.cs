@@ -60,6 +60,7 @@ namespace ContractLayerFarm.Data.Models
         public virtual DbSet<TblCustomerTransaction> TblCustomerTransactions { get; set; }
         public virtual DbSet<TblSupplierTransaction> TblSupplierTransaction { get; set; }
         public virtual DbSet<TblSupplierMaster> TblSupplierMaster { get; set; }
+        public virtual DbSet<TblTalukaMaster> TblTalukaMaster { get; set; }
         public virtual DbSet<TblUnitMaster> TblUnitMaster { get; set; }
         public virtual DbSet<TblUserInfo> TblUserInfo { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
@@ -1240,7 +1241,29 @@ namespace ContractLayerFarm.Data.Models
                 entity.Property(e => e.WebAddress).HasMaxLength(20);
             });
 
-            
+            modelBuilder.Entity<TblTalukaMaster>(entity =>
+            {
+                entity.HasKey(e => e.TalukaId);
+
+                entity.ToTable("tblTalukaMaster");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.TalukaName).HasMaxLength(50);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.District)
+                    .WithMany(p => p.TblTalukaMaster)
+                    .HasForeignKey(d => d.DistrictId)
+                    .HasConstraintName("FK_tblTalukaMaster_stateidDistrictid");
+
+                entity.HasOne(d => d.State)
+                    .WithMany(p => p.TblTalukaMaster)
+                    .HasForeignKey(d => d.StateId)
+                    .HasConstraintName("FK_tblTalukaMaster_stateid");
+            });
+
             modelBuilder.Entity<TblUnitMaster>(entity =>
             {
                 entity.HasKey(e => e.UnitId);

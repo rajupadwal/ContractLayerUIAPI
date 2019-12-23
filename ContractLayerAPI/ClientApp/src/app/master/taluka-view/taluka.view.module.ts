@@ -8,10 +8,10 @@ import { CalendarModule } from 'primeng/calendar';
 import { ValidationBorderModule } from '../../validation-border/validation-border.module';
 //import { AutoCompleteModule } from 'primeng';
 import { DialogModule } from '../../dialog/dialog.module';
-import { DistrictMasterModule } from '../district-master/district.master.module';
 import { TalukaService } from './taluka.service';
 import { TalukaViewComponent } from './taluka-view.component';
 import { TalukaViewRoutingModule } from './taluka.view.routing.module';
+import { TalukaMasterModule } from '../taluka-master/taluka.master.module';
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import { TalukaViewRoutingModule } from './taluka.view.routing.module';
     ReactiveFormsModule,
     ValidationBorderModule,
     CommonModule,
-    DistrictMasterModule
+    TalukaMasterModule
   ],
   declarations: [TalukaViewComponent],
   providers: [TalukaService]

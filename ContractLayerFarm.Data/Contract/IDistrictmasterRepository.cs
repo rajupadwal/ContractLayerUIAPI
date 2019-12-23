@@ -7,9 +7,8 @@ namespace ContractLayerFarm.Data.Contract
        public interface IDistrictmasterRepository : IRepositoryBase<TblDistrictMaster>
     {
         bool Authenticate();
-
         IEnumerable<TblDistrictMaster> GetAllDistrict();
-        IEnumerable<TblDistrictMaster> GetAllStateNameForDistrict(TblDistrictMaster master);
-
+        IEnumerable<TblDistrictMaster> GetAllDistrictForState(TblDistrictMaster master);
+        IEnumerable<TblDistrictMaster> SearchDistrictName(string searchString);
     }
 }

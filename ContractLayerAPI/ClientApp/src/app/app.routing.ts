@@ -185,6 +185,11 @@ export const routes: Routes = [
             , canActivate: [AuthGuard]
           },
           {
+            path: 'Talukaview',
+            loadChildren: './master/taluka-view/taluka.view.module#TalukaViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
             path: 'Schemeview',
             loadChildren: './master/scheme-view/scheme.view.module#SchemeViewModule'
             , canActivate: [AuthGuard]

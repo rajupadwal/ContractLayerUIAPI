@@ -10,16 +10,20 @@ import { APP_CONSTANT } from '../../../config';
 export class TalukaService {
   constructor(private http: HttpClient) { }
 
-  loadDistrict = () => {
-    return this.http.get(APP_CONSTANT.DISTRICTMASTER_API.GETALL);
+  loadTaluka = () => {
+    return this.http.get(APP_CONSTANT.TALUKAMASTER_API.GETALL);
   }
 
   getDistrictByID(id) {
-    return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.GETByID, id);
+    return this.http.post(APP_CONSTANT.TALUKAMASTER_API.GETByID, id);
   }
 
   geStateNameByStateID(master) {
-    return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.GETSTATEBYSTATEID, master);
+    return this.http.post(APP_CONSTANT.TALUKAMASTER_API.GETSTATEBYSTATEID, master);
+  }
+
+  getDistrictByStateID(master) {
+    return this.http.post(APP_CONSTANT.TALUKAMASTER_API.GETDISTRICTBYSTATEID, master);
   }
 
 }

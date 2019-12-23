@@ -29,13 +29,21 @@ namespace ContractLayerFarm.Data.Repositories
             return tbldistrictmaster;
         }
 
-        public IEnumerable<TblDistrictMaster> GetAllStateNameForDistrict(TblDistrictMaster master)
+        public IEnumerable<TblDistrictMaster> GetAllDistrictForState(TblDistrictMaster master)
         {
             var tblDistrictmaster = this.ktConContext.TblDistrictMaster
                        .Include(blog => blog.State)
                        .Where(s => s.StateId == master.StateId)
                        .ToList();
             return tblDistrictmaster;
+        }
+
+        public IEnumerable<TblDistrictMaster> SearchDistrictName(string searchString)
+        {
+            if (string.IsNullOrEmpty(searchString))
+            { return this.ktConContext.Set<TblDistrictMaster>(); }
+
+            return this.ktConContext.Set<TblDistrictMaster>().Where(districtname => districtname.DistrictName.ToLower().Contains(searchString.ToLower()));
         }
     }
 }

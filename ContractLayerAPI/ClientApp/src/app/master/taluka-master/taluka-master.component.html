@@ -11,7 +11,7 @@
             <div class="form-group">
               <label for="select"><strong>State :</strong></label>
               <p-autoComplete formControlName="State" appValidationBorder [suggestions]="stateList" (completeMethod)="searchState($event)"
-                              [dropdown]="true" [forceSelection]="true" field="StateName"></p-autoComplete>
+                              [dropdown]="true" [forceSelection]="true" (onSelect)="onSelectState($event)" field="StateName"></p-autoComplete>
             </div>
           </div>
         </div>
@@ -20,12 +20,21 @@
         <div class="col-sm-8">
           <div class="card-block">
             <div class="form-group">
-              <label for="textarea-input"><strong>District Name:</strong></label>
-              <div>
-                <span class="ui-float-label">
-                  <input formControlName="DistrictName" appValidationBorder type="text" pInputText id="districtname" name="districtname" class="form-control" rows="3">
-                </span>
-              </div>
+              <label for="select"><strong>District :</strong></label>
+              <p-autoComplete formControlName="District" appValidationBorder [suggestions]="districtList" (completeMethod)="searchDistrict($event)"
+                              [dropdown]="true" [forceSelection]="true" field="DistrictName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Taluka Name:</strong></label>
+              <span class="ui-float-label">
+                <input formControlName="TalukaName" appValidationBorder type="text" pInputText id="talukaname" name="talukaname" class="form-control" rows="3">
+              </span>
             </div>
           </div>
         </div>

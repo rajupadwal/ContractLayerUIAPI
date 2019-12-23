@@ -14,14 +14,13 @@ export class DistrictService {
     return this.http.get(APP_CONSTANT.DISTRICTMASTER_API.GETALL);
   }
 
-  getDistrictByID(id) {
-    return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.GETByID, id);
+  getDistrictByStateID(id) { 
+    return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.GETDISTRICTBYSTATEID, id);
   }
 
-  geStateNameByStateID(master) {
-    return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.GETSTATEBYSTATEID, master);
+  searchDistrictName(searchString) {
+    return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.SEARCH_DISTRICTNAME, JSON.stringify(searchString));
   }
-
 }
 
 

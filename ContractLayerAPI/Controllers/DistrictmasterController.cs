@@ -27,10 +27,10 @@ namespace ContractLayerAPI.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpPost("GetStateNameByStateID")]
-        public IEnumerable<TblDistrictMaster> GetStateNameByStateID([FromBody] TblDistrictMaster district)
+        [HttpPost("GetDistrictByStateID")]
+        public IEnumerable<TblDistrictMaster> GetDistrictByStateID([FromBody] TblDistrictMaster district)
         {
-            var statename = this._repoWrapper.Districtmaster.GetAllStateNameForDistrict(district);
+            var statename = this._repoWrapper.Districtmaster.GetAllDistrictForState(district);
             return statename;
         }
 
@@ -40,12 +40,20 @@ namespace ContractLayerAPI.Controllers
             var branch = this._repoWrapper.Districtmaster.GetAllDistrict();
             return branch;
         }
-        
+ 
+
         [HttpGet("[action]")] 
         public TblDistrictMaster GetByID(int stateId)
         {
             var district = this._repoWrapper.Districtmaster.FindByCondition(x=> x.StateId == stateId).FirstOrDefault();
             return district;
+        }
+
+        [HttpPost("SearchDistrictName")]
+        public IEnumerable<TblDistrictMaster> SearchDistrictName([FromBody]string searchString)
+        {
+            var Districtdetails = this._repoWrapper.Districtmaster.SearchDistrictName(searchString).ToList();
+            return Districtdetails;
         }
 
         [HttpPost("Add")]
