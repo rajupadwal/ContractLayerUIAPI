@@ -33,12 +33,65 @@ namespace ContractLayerFarm.Data.Repositories
         private IncometypeRepository _incometype;
         private BankmasterRepository _bankmaster;
         private StatemasterRepository _statemaster;
+        private CastemasterRepository _castemaster;
         private BranchRepository _branchmaster;
         private SchemeRepository _schememaster;
         private SchemepaymentRepository _schemepayment;
-        private IDistrictmasterRepository _districtmaster;
-        private ITalukamasterRepository _talukamaster;
+        private DistrictmasterRepository _districtmaster;
+        private TalukamasterRepository _talukamaster;
+        private SubcastemasterRepository _subcastemaster;
+        private TypemasterRepository _type;
 
+        private ISubtypemasterRepository _subtype;
+
+
+        public ISubtypemasterRepository Subtype
+        {
+            get
+            {
+                if (_subtype == null)
+                {
+                    _subtype = new SubtypemasterRepository(_repoContext);
+                }
+                return _subtype;
+            }
+        }
+
+        public ITypemasterRepository Type
+        {
+            get
+            {
+                if (_type == null)
+                {
+                    _type = new TypemasterRepository(_repoContext);
+                }
+                return _type;
+            }
+        }
+
+        public ISubcastemasterRepository Subcastemaster
+        {
+            get
+            {
+                if (_subcastemaster == null)
+                {
+                    _subcastemaster = new SubcastemasterRepository(_repoContext);
+                }
+                return _subcastemaster;
+            }
+        }
+
+        public ICastemasterRepository Castemaster
+        {
+            get
+            {
+                if (_castemaster == null)
+                {
+                    _castemaster = new CastemasterRepository(_repoContext);
+                }
+                return _castemaster;
+            }
+        }
         public ISchemeRepository Schememaster
         {
             get
@@ -80,7 +133,7 @@ namespace ContractLayerFarm.Data.Repositories
             {
                 if (_districtmaster == null)
                 {
-                    _districtmaster = new DisrictmasterRepository(_repoContext);
+                    _districtmaster = new DistrictmasterRepository(_repoContext);
                 }
                 return _districtmaster;
             }

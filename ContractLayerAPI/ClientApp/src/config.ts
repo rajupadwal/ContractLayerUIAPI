@@ -310,6 +310,47 @@ export const APP_CONSTANT={
     //GETBANKSRNO: API_URL + 'Districtmaster/GetBankSrNo'
   },
 
+
+
+  CASTEMASTER_API: {
+    ADD: API_URL + 'Castemaster/Add',
+    GETALL: API_URL + 'Castemaster/GetAll',
+    GETByID: API_URL + 'Castemaster/GetByID',
+    EDIT: API_URL + 'Castemaster/Update',
+    DELETE: API_URL + 'Castemaster/Delete',
+    SEARCH_CASTENAME: API_URL + 'Castemaster/SearchCasteName',
+    GETCASTESRNO: API_URL + 'Castemaster/GetStateSrNo'
+  },
+
+  SUBCASTEMASTER_API: {
+    ADD: API_URL + 'Subcastemaster/Add',
+    GETALL: API_URL + 'Subcastemaster/GetAll',
+    GETSUBCASTEBYCASTEID: API_URL + 'Subcastemaster/GetSubCasteByCasteID',
+    EDIT: API_URL + 'Subcastemaster/Update',
+    DELETE: API_URL + 'Subcastemaster/Delete',
+    SEARCH_SUBCASTENAME: API_URL + 'Subcastemaster/SearchSubCasteName',
+  },
+
+  TYPEMASTER_API: {
+    ADD: API_URL + 'Typemaster/Add',
+    GETALL: API_URL + 'Typemaster/GetAll',
+    GETByID: API_URL + 'Typemaster/GetByID',
+    EDIT: API_URL + 'Typemaster/Update',
+    DELETE: API_URL + 'Typemaster/Delete',
+    SEARCH_TYPENAME: API_URL + 'Typemaster/SearchTypeName',
+    //GETSTATESRNO: API_URL + 'Statemaster/GetStateSrNo'
+  },
+
+  SUBTYPEMASTER_API: {
+    ADD: API_URL + 'Subtypemaster/Add',
+    GETALL: API_URL + 'Subtypemaster/GetAll',
+    GETByID: API_URL + 'Subtypemaster/GetByID',
+    EDIT: API_URL + 'Subtypemaster/Update',
+    DELETE: API_URL + 'Subtypemaster/Delete'
+    //SEARCH_BANKNAME: API_URL + 'Districtmaster/SearchBankName',
+    //GETBANKSRNO: API_URL + 'Districtmaster/GetBankSrNo'
+  },
+
   STATEMASTER_API: {
     ADD: API_URL + 'Statemaster/Add',
     GETALL: API_URL + 'Statemaster/GetAll',
@@ -328,7 +369,7 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Districtmaster/Delete',
     SEARCH_DISTRICTNAME: API_URL + 'Districtmaster/SearchDistrictName',
   },
-
+   
   TALUKAMASTER_API: {
     ADD: API_URL + 'Talukamaster/Add',
     GETALL: API_URL + 'Talukamaster/GetAll',

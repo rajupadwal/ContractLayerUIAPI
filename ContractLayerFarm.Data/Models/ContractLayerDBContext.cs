@@ -19,6 +19,10 @@ namespace ContractLayerFarm.Data.Models
         public virtual DbSet<TblBookingCancelMaster> TblBookingCancelMaster { get; set; }
         public virtual DbSet<TblBookingMaster> TblBookingMaster { get; set; }
         public virtual DbSet<TblBranchMaster> TblBranchMaster { get; set; }
+        public virtual DbSet<TblTypeMaster> TblTypeMaster { get; set; }
+        public virtual DbSet<TblSubTypeMaster> TblSubTypeMaster { get; set; }
+        public virtual DbSet<TblCasteMaster> TblCasteMaster { get; set; }
+        public virtual DbSet<TblSubCasteMaster> TblSubCasteMaster { get; set; }
         public virtual DbSet<TblCompanyProfile> TblCompanyProfile { get; set; }
         public virtual DbSet<TblCustomerMaster> TblCustomerMaster { get; set; }
         public virtual DbSet<TblCustomerTransaction> TblCustomerTransaction { get; set; }
@@ -188,6 +192,40 @@ namespace ContractLayerFarm.Data.Models
                     .HasConstraintName("FK_tblBranchMaster_BankId");
             });
 
+            modelBuilder.Entity<TblCasteMaster>(entity =>
+            {
+                entity.HasKey(e => e.CasteId);
+
+                entity.ToTable("tblCasteMaster");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.CasteName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<TblSubCasteMaster>(entity =>
+            {
+                entity.HasKey(e => e.SubCasteId);
+
+                entity.ToTable("tblSubCasteMaster");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.SubCasteName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Caste)
+                    .WithMany(p => p.TblSubCasteMaster)
+                    .HasForeignKey(d => d.CasteId)
+                    .HasConstraintName("FK_tblSubCasteMaster_casteid");
+            });
 
             modelBuilder.Entity<TblCompanyProfile>(entity =>
             {
@@ -1010,6 +1048,41 @@ namespace ContractLayerFarm.Data.Models
                     .WithMany(p => p.TblSalesBillMt)
                     .HasForeignKey(d => d.PlanId)
                     .HasConstraintName("FK_tbl_SalesBillMT_tbl_PlanId");
+            });
+
+            modelBuilder.Entity<TblSubTypeMaster>(entity =>
+            {
+                entity.HasKey(e => e.SubTypeId);
+
+                entity.ToTable("tblSubTypeMaster");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.SubType)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.TblSubTypeMaster)
+                    .HasForeignKey(d => d.TypeId)
+                    .HasConstraintName("FK_tblSubTypeMaster_TypeId");
+            });
+
+            modelBuilder.Entity<TblTypeMaster>(entity =>
+            {
+                entity.HasKey(e => e.TypeId);
+
+                entity.ToTable("tblTypeMaster");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.TypeName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<TblStateMaster>(entity =>

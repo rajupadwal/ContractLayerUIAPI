@@ -1,0 +1,40 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Caste Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="castemasterForm" (ngSubmit)="saveCasteMaster()">
+      <div class="row">
+        <!--<div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Sr No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Bank Id" type="text" pInputText id="bankid" name="expenceid" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>-->
+        <div class="col-sm-8">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Caste Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="CasteName" appValidationBorder type="text" pInputText id="castename" name="castename" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+      </div>
+    </form>
+  </div>
+</div>

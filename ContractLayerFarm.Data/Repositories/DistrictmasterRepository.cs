@@ -11,10 +11,10 @@ using System.Data.SqlTypes;
 
 namespace ContractLayerFarm.Data.Repositories
 {
-    public class DisrictmasterRepository : RepositoryBase<TblDistrictMaster>, IDistrictmasterRepository
+    public class DistrictmasterRepository : RepositoryBase<TblDistrictMaster>, IDistrictmasterRepository
     {
         private ContractLayerDBContext ktConContext;
-        public DisrictmasterRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext; }
+        public DistrictmasterRepository(ContractLayerDBContext ktConContext) : base(ktConContext) { this.ktConContext = ktConContext; }
 
         bool IDistrictmasterRepository.Authenticate()
         {

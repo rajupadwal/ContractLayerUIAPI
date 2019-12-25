@@ -1,0 +1,39 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Sub Caste Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="subcasteForm" (ngSubmit)="saveSubcasteMaster()">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Caste :</strong></label>
+              <p-autoComplete formControlName="Caste" appValidationBorder [suggestions]="casteList" (completeMethod)="searchCaste($event)"
+                              [dropdown]="true" [forceSelection]="true" field="CasteName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Sub Caste Name:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="SubCasteName" appValidationBorder type="text" pInputText id="subcastename" name="subcastename" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="input-group-btn" dropdown>
+          <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+        </div>
+    </form>
+  </div>
+</div>

@@ -9,7 +9,11 @@ namespace ContractLayerFarm.Data.Contract
     {
         ITalukamasterRepository Talukamaster { get; }
         IDistrictmasterRepository Districtmaster { get; }
+        ITypemasterRepository Type { get; }
+        ISubtypemasterRepository Subtype { get; }
+        ISubcastemasterRepository Subcastemaster { get; }
         IStatemasterRepository Statemaster { get; }
+        ICastemasterRepository Castemaster { get; }
         IBankmasterRepository Bankmaster { get; }
         IBranchRepository Branchmaster { get; }
         ISchemeRepository Schememaster { get; }

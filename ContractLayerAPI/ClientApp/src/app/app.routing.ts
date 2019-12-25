@@ -175,6 +175,26 @@ export const routes: Routes = [
             , canActivate: [AuthGuard]
           },
           {
+            path: 'Typeview',
+            loadChildren: './master/type-view/type.view.module#TypeViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
+            path: 'Subtypeview',
+            loadChildren: './master/subtype-view/subtype.view.module#SubtypeViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
+            path: 'Casteview',
+            loadChildren: './master/caste-view/caste.view.module#CasteViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
+            path: 'Subcasteview',
+            loadChildren: './master/subcaste-view/subcaste.view.module#SubcasteViewModule'
+            , canActivate: [AuthGuard]
+          },
+          {
             path: 'Stateview',
             loadChildren: './master/state-view/state.view.module#StateViewModule'
             , canActivate: [AuthGuard]
