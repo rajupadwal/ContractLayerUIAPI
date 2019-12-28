@@ -7,7 +7,7 @@ namespace ContractLayerFarm.Data.Models
     {
         public TblSubTypeMaster()
         {
-            
+            TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
         }
 
         public int SubTypeId { get; set; }
@@ -17,6 +17,7 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? UpdateDate { get; set; }
 
         public TblTypeMaster Type { get; set; }
-                     
+        public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
+
     }
 }

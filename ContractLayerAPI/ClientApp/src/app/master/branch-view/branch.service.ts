@@ -21,7 +21,10 @@ export class BranchService {
   geBankNameByBankID(master) {
     return this.http.post(APP_CONSTANT.BRANCH_API.GETBRANCHBYBRANCHID, master);
   }
-   
+
+  searchBranchName(searchString) {
+    return this.http.post(APP_CONSTANT.BRANCH_API.SEARCH_BRANCHNAME, JSON.stringify(searchString));
+  }
 }
 
 

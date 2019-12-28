@@ -10,6 +10,6 @@ namespace ContractLayerFarm.Data.Contract
 
         IEnumerable<TblSubTypeMaster> GetAllType();
         IEnumerable<TblSubTypeMaster> GetAllTypeForSubtype(TblSubTypeMaster master);
-
+        IEnumerable<TblSubTypeMaster> SearchSubTypeName(string searchString);
     }
 }

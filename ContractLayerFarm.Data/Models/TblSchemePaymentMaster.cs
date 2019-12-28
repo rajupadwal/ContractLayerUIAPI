@@ -7,7 +7,7 @@ namespace ContractLayerFarm.Data.Models
     {
         public TblSchemePaymentMaster()
         {
-            
+            TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
         }
 
         public int SrNo { get; set; }
@@ -15,6 +15,6 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-       
+        public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
     }
 }

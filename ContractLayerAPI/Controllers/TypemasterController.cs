@@ -51,7 +51,6 @@ namespace ContractLayerAPI.Controllers
             return Typedetails;
         }
 
-
         [HttpPost("GetByID")]
         public TblTypeMaster GetByID([FromBody] int TypeId) 
         {

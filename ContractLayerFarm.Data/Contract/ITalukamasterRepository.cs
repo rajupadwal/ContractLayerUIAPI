@@ -11,5 +11,6 @@ namespace ContractLayerFarm.Data.Contract
         IEnumerable<TblTalukaMaster> GetAllTaluka();
         IEnumerable<TblDistrictMaster> GetAllStateNameForDistrict(TblDistrictMaster master);
         IEnumerable<TblDistrictMaster> GetAllDistrictForState(TblTalukaMaster master);
+        IEnumerable<TblTalukaMaster> SearchTalukaName(string searchString);
     }
 }

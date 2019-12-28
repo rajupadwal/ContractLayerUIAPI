@@ -8,6 +8,7 @@ namespace ContractLayerFarm.Data.Models
         public TblBankMaster()
         {
             TblBranchMaster = new HashSet<TblBranchMaster>();
+            TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
         }
 
         public int BankId { get; set; }
@@ -16,5 +17,6 @@ namespace ContractLayerFarm.Data.Models
         public DateTime? UpdateDate { get; set; }
 
         public ICollection<TblBranchMaster> TblBranchMaster { get; set; }
+        public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
     }
 }

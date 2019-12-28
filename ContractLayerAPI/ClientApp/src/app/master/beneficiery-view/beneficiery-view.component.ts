@@ -4,16 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_CONSTANT } from '../../../config';
 import { DialogService } from '../../dialog/dialog.service';
 import { from } from 'rxjs';
-import { DistrictMasterComponent } from '../district-master/district-master.component';
-import { DistrictService } from './district.service';
+import { BeneficieryDetailsComponent } from '../beneficiery-details/beneficiery-details.component';
 //import "ag-grid-enterprise";
 
 @Component({
-  selector: 'app-district-view',
-  templateUrl: './district-view.component.html',
-  styleUrls: ['./district-view.component.css']
+  selector: 'app-beneficiery-view',
+  templateUrl: './beneficiery-view.component.html',
+  styleUrls: ['./beneficiery-view.component.css']
 })
-export class DistrictViewComponent implements OnInit {
+export class BeneficieryViewComponent implements OnInit {
 
   onBtnClick1 = (param) => {
     alert('i am clicked');
@@ -32,7 +31,7 @@ export class DistrictViewComponent implements OnInit {
         var newTH = document.createElement('div');
         newTH.innerHTML = '<i class="pi pi-pencil" style="font-size: large;"></i>';
         newTH.onclick = () => {
-          const ref = this.dialog.open(DistrictMasterComponent, { data: params.data, modalConfig: { title: 'Add/Edit District Master', width: '50%' }, isEditable: true });
+          const ref = this.dialog.open(BeneficieryDetailsComponent, { data: params.data, modalConfig: { title: 'Add/Edit Beneficiery Master' }, isEditable: true });
           ref.afterClosed.subscribe(result => {
             this.RefreshGrid();
           });
@@ -57,20 +56,43 @@ export class DistrictViewComponent implements OnInit {
       headerName: 'Sr.No', headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
-      field: 'DistrictId', 'width': 150
+      field: 'BeneficiaryId', 'width': 150
     },
     {
-      headerName: 'State Name ', field: 'State.StateName', 'width': 280,
+      headerName: 'Name ', field: 'Name', 'width': 280,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     },
-
     {
-      headerName: 'District Name ', field: 'DistrictName', 'width': 280,
+      headerName: 'Address ', field: 'Address', 'width': 160,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'State Name ', field: 'State.StateName', 'width': 160,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'District Name ', field: 'District.DistrictName', 'width': 160,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Taluka Name ', field: 'Taluka.TalukaName', 'width':160,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'Caste ', field: 'Caste.CasteName', 'width': 120,
+      filter: "agTextColumnFilter",
+      filterParams: { defaultOption: "startsWith" }
+    },
+    {
+      headerName: 'SubCasteName ', field: 'Subcaste.SubCasteName', 'width': 120,
       filter: "agTextColumnFilter",
       filterParams: { defaultOption: "startsWith" }
     }
-
   ];
 
   defaultColDef = {
@@ -98,7 +120,7 @@ export class DistrictViewComponent implements OnInit {
     this.gridApi.exportDataAsExcel(params);
   }
 
-  constructor(private router: Router, private http: HttpClient, private districtservice: DistrictService, public dialog: DialogService) { }
+  constructor(private router: Router, private http: HttpClient, public dialog: DialogService) { }
 
   ngOnInit() {
 
@@ -106,19 +128,18 @@ export class DistrictViewComponent implements OnInit {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.get(APP_CONSTANT.DISTRICTMASTER_API.GETALL, httpOptions)
-      .subscribe((districtdetails: any) => {
-        this.rowData = districtdetails;
+    return this.http.get(APP_CONSTANT.BENEFICIERYMASTER_API.GETALL, httpOptions)
+      .subscribe((beneficierydetails: any) => {
+        this.rowData = beneficierydetails;
       });
   }
-
 
   exportAsXLSX(): void {
     //this.productService.exportAsExcelFile(this.rowData, 'BankName');
   }
 
   redirectToAddNew() {
-    const ref = this.dialog.open(DistrictMasterComponent, { modalConfig: { title: 'Add/Edit District Master', width: '50%' }, isEditable: false });
+    const ref = this.dialog.open(BeneficieryDetailsComponent, { modalConfig: { title: 'Add/Edit Beneficiery Master'}, isEditable: false });
     ref.afterClosed.subscribe(result => {
       this.RefreshGrid();
     });
@@ -128,20 +149,20 @@ export class DistrictViewComponent implements OnInit {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.get(APP_CONSTANT.DISTRICTMASTER_API.GETALL, httpOptions)
-      .subscribe((districtdetails: any) => {
-        this.rowData = districtdetails;
+    return this.http.get(APP_CONSTANT.BENEFICIERYMASTER_API.GETALL, httpOptions)
+      .subscribe((beneficierydetails: any) => {
+        this.rowData = beneficierydetails;
       });
   }
 
-  delete(districtdetails) {
+  delete(beneficierydetails) {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
     if (confirm("Are you sure do you want to delete record?")) {
-      return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.DELETE, districtdetails, httpOptions)
-        .subscribe((districtdetails) => {
+      return this.http.post(APP_CONSTANT.BENEFICIERYMASTER_API.DELETE, beneficierydetails, httpOptions)
+        .subscribe((beneficierydetails) => {
           this.RefreshGrid();
         });
     }

@@ -26,11 +26,9 @@ export class SchemePaymentService {
   //  return this.http.post(APP_CONSTANT.BANKMASTER_API.GETByID, id);
   //}
 
-  //searchBankName(searchString) {
-  //  return this.http.post(APP_CONSTANT.BANKMASTER_API.SEARCH_BANKNAME, JSON.stringify(searchString));
-  //}
-
- 
+  searchSchemePayment(searchString) {
+    return this.http.post(APP_CONSTANT.SCHEMEPAYMENTDETAILS_API.SEARCH_SCHEMEPAYMENT, JSON.stringify(searchString));
+  }
 }
 
 

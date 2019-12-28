@@ -34,6 +34,13 @@ namespace ContractLayerAPI.Controllers
             return typename;
         }
 
+        [HttpPost("SearchSubTypeName")]
+        public IEnumerable<TblSubTypeMaster> SearchSubTypeName([FromBody]string searchString)
+        {
+            var subtype = this._repoWrapper.Subtype.SearchSubTypeName(searchString).ToList();
+            return subtype;
+        }
+
         [HttpGet("[action]")]
         public IEnumerable<TblSubTypeMaster> GetAll()
         {

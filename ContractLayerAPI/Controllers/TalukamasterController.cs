@@ -32,6 +32,12 @@ namespace ContractLayerAPI.Controllers
         {
             var districtdet = this._repoWrapper.Talukamaster.GetAllDistrictForState(taluka);
             return districtdet;
+        } 
+        [HttpPost("SearchTalukaName")]
+        public IEnumerable<TblTalukaMaster> SearchTalukaName([FromBody]string searchString)
+        {
+            var talukadetails = this._repoWrapper.Talukamaster.SearchTalukaName(searchString).ToList();
+            return talukadetails;
         }
 
         [HttpGet("[action]")]

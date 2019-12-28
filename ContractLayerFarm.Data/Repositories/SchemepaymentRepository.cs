@@ -36,10 +36,13 @@ namespace ContractLayerFarm.Data.Repositories
             int maxSchemepaymentSrNo = this.ktConContext.TblSchemePaymentMaster.Select(p => p.SrNo).DefaultIfEmpty(0).Max() + 1;
             return maxSchemepaymentSrNo;
         }
-
+ 
         public IEnumerable<TblSchemePaymentMaster> SearchSchemePayment(string searchString)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(searchString))
+            { return this.ktConContext.Set<TblSchemePaymentMaster>(); }
+
+            return this.ktConContext.Set<TblSchemePaymentMaster>().Where(schemepay => schemepay.Amount.Equals(searchString.ToLower()));
         }
     }
 }

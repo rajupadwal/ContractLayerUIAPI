@@ -26,6 +26,14 @@ export class TalukaService {
     return this.http.post(APP_CONSTANT.TALUKAMASTER_API.GETDISTRICTBYSTATEID, master);
   }
 
+  getTalukaByStateDistrictID(master) {
+    return this.http.post(APP_CONSTANT.TALUKAMASTER_API.GETDISTRICTBYSTATEID, master);
+  }
+
+  searchTalukaName(searchString) {
+    return this.http.post(APP_CONSTANT.TALUKAMASTER_API.SEARCH_TALUKANAME, JSON.stringify(searchString));
+  }
+
 }
 
 

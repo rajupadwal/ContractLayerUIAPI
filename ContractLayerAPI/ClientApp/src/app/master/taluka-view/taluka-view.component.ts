@@ -144,7 +144,7 @@ export class TalukaViewComponent implements OnInit {
     };
 
     if (confirm("Are you sure do you want to delete record?")) {
-      return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.DELETE, talukadetails, httpOptions)
+      return this.http.post(APP_CONSTANT.TALUKAMASTER_API.DELETE, talukadetails, httpOptions)
         .subscribe((talukadetails) => {
           this.RefreshGrid();
         });

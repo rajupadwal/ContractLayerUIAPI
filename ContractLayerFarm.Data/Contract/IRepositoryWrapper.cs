@@ -9,6 +9,7 @@ namespace ContractLayerFarm.Data.Contract
     {
         ITalukamasterRepository Talukamaster { get; }
         IDistrictmasterRepository Districtmaster { get; }
+        IBeneficieryRepository Beneficiery { get; }
         ITypemasterRepository Type { get; }
         ISubtypemasterRepository Subtype { get; }
         ISubcastemasterRepository Subcastemaster { get; }
@@ -39,10 +40,5 @@ namespace ContractLayerFarm.Data.Contract
         IPurchasepaymentRepository Purchasepayment { get; }
         IIncometypeRepository Incometype { get; }
         IPurchasereturnreceiptRepository Purchasereturnreceipt { get;  }
-
-        //IItemGroupDetailRepository IItemGroupDetail { get; }
-        //IDPRRepository IDPRRepository { get; }
-
-    }
-
+    } 
 }

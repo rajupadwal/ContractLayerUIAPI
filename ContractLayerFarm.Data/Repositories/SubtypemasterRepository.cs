@@ -37,5 +37,13 @@ namespace ContractLayerFarm.Data.Repositories
                        .ToList();
             return tblsubtypemaster;
         }
+
+        public IEnumerable<TblSubTypeMaster> SearchSubTypeName(string searchString)
+        {
+            if (string.IsNullOrEmpty(searchString))
+            { return this.ktConContext.Set<TblSubTypeMaster>(); }
+
+            return this.ktConContext.Set<TblSubTypeMaster>().Where(subtypename => subtypename.SubType.ToLower().Contains(searchString.ToLower()));
+        }
     }
 }

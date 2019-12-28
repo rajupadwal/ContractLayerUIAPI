@@ -39,5 +39,13 @@ namespace ContractLayerFarm.Data.Repositories
                        .ToList();
             return tblBranchmaster;
         }
+
+        public IEnumerable<TblBranchMaster> SearchBranchName(string searchString)
+        {
+            if (string.IsNullOrEmpty(searchString))
+            { return this.ktConContext.Set<TblBranchMaster>(); }
+
+            return this.ktConContext.Set<TblBranchMaster>().Where(branchname => branchname.BranchName.ToLower().Contains(searchString.ToLower()));
+        }
     }
 }

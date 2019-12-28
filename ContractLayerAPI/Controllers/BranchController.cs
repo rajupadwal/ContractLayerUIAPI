@@ -35,7 +35,12 @@ namespace ContractLayerAPI.Controllers
             return prodtype;
         }
 
-         
+        [HttpPost("SearchBranchName")]
+        public IEnumerable<TblBranchMaster> SearchBranchName([FromBody]string searchString)
+        {
+            var Branchdetails = this._repoWrapper.Branchmaster.SearchBranchName(searchString).ToList();
+            return Branchdetails;
+        }
 
         [HttpGet("[action]")]
         public IEnumerable<TblBranchMaster> GetAll()

@@ -22,6 +22,9 @@ export class SubTypeService {
   //  return this.http.post(APP_CONSTANT.DISTRICTMASTER_API.GETSTATEBYSTATEID, master);
   //}
 
+  searchSubtypeName(searchString) {
+    return this.http.post(APP_CONSTANT.SUBTYPEMASTER_API.SEARCH_SUBTYPENAME, JSON.stringify(searchString));
+  }
 }
 
 

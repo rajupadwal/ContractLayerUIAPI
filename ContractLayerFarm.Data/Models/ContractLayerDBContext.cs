@@ -16,6 +16,7 @@ namespace ContractLayerFarm.Data.Models
         }
 
         public virtual DbSet<TblBankMaster> TblBankMaster { get; set; }
+        public virtual DbSet<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
         public virtual DbSet<TblBookingCancelMaster> TblBookingCancelMaster { get; set; }
         public virtual DbSet<TblBookingMaster> TblBookingMaster { get; set; }
         public virtual DbSet<TblBranchMaster> TblBranchMaster { get; set; }
@@ -98,7 +99,97 @@ namespace ContractLayerFarm.Data.Models
             });
 
 
-            
+            modelBuilder.Entity<TblBeneficiaryMaster>(entity =>
+            {
+                entity.HasKey(e => e.BeneficiaryId);
+
+                entity.ToTable("tblBeneficiaryMaster");
+
+                entity.Property(e => e.BeneficiaryId).ValueGeneratedOnAdd();
+                entity.Property(e => e.Name)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DateOfBirth).HasColumnType("datetime");
+                entity.Property(e => e.AadharNo);
+                entity.Property(e => e.NameAsPerAadhar).HasMaxLength(200);
+                entity.Property(e => e.NoOfChild);
+                entity.Property(e => e.DisablePercentage).HasColumnType("decimal");
+                entity.Property(e => e.BplNo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SanctionOrderNo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.SanctionDate).HasColumnType("datetime");
+                entity.Property(e => e.DueDate).HasColumnType("datetime");
+                entity.Property(e => e.IfscCode).HasMaxLength(50);
+                entity.Property(e => e.AccountNo);
+                entity.Property(e => e.KhataNo);
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.State)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.StateId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tblStateid");
+
+                entity.HasOne(d => d.District)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.DistrictId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tbldistrictid");
+
+                entity.HasOne(d => d.Taluka)
+                   .WithMany(p => p.TblBeneficiaryMaster)
+                   .HasForeignKey(d => d.TalukaId)
+                   .HasConstraintName("FK_tblBeneficiaryMaster_tbltalukaid");
+
+                entity.HasOne(d => d.Caste)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.CasteId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_casteid");
+
+                entity.HasOne(d => d.Subcaste)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.SubCasteId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_subcasteid");
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.TypeId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_typeid");
+
+                entity.HasOne(d => d.Subtype)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.SubTypeId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_subtypeid");
+
+                entity.HasOne(d => d.Scheme)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.SchemeId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tblschemeid");
+
+                entity.HasOne(d => d.Payment)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.PaymentId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_tblpaymentid");
+
+                entity.HasOne(d => d.Bank)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.BankId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_bankid");
+
+                entity.HasOne(d => d.Branch)
+                    .WithMany(p => p.TblBeneficiaryMaster)
+                    .HasForeignKey(d => d.BranchId)
+                    .HasConstraintName("FK_tblBeneficiaryMaster_branchid");
+            });
 
             modelBuilder.Entity<TblBookingCancelMaster>(entity =>
             {

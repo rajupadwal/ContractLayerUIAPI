@@ -27,7 +27,7 @@ namespace ContractLayerFarm.Data.Repositories
                        .Include(blog => blog.State)
                        .ToList();
             return tbldistrictmaster;
-        }
+        } 
 
         public IEnumerable<TblDistrictMaster> GetAllDistrictForState(TblDistrictMaster master)
         {

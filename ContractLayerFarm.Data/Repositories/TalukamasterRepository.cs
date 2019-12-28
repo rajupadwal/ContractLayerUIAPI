@@ -47,5 +47,13 @@ namespace ContractLayerFarm.Data.Repositories
                        .ToList();
             return tblDistrictmaster;
         }
+
+        public IEnumerable<TblTalukaMaster> SearchTalukaName(string searchString)
+        {
+            if (string.IsNullOrEmpty(searchString))
+            { return this.ktConContext.Set<TblTalukaMaster>(); }
+
+            return this.ktConContext.Set<TblTalukaMaster>().Where(talukaname => talukaname.TalukaName.ToLower().Contains(searchString.ToLower()));
+        }
     }
 }

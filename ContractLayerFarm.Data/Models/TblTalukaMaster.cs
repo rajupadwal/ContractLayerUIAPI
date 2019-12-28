@@ -7,7 +7,7 @@ namespace ContractLayerFarm.Data.Models
     {
         public TblTalukaMaster()
         {
-            //TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
+            TblBeneficiaryMaster = new HashSet<TblBeneficiaryMaster>();
         }
 
         public int TalukaId { get; set; }
@@ -19,6 +19,6 @@ namespace ContractLayerFarm.Data.Models
 
         public TblDistrictMaster District { get; set; }
         public TblStateMaster State { get; set; }
-        //public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
+        public ICollection<TblBeneficiaryMaster> TblBeneficiaryMaster { get; set; }
     }
 }

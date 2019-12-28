@@ -1,0 +1,323 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <strong>Beneficiery Master</strong>
+      <!--<small>Form</small>-->
+    </div>
+    <form [formGroup]="beneficieryForm" (ngSubmit)="saveBeneficiery()">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Khata No :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="KhataNo" appValidationBorder type="text" pInputText id="khatano" name="khatano" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Beneficiery Full Name :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="Name" appValidationBorder type="text" pInputText id="name" name="name" class="form-control" rows="3">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-block">
+            <div class="form-group ">
+              <label for="textarea-input"><strong>Address Details:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <textarea formControlName="Address" appValidationBorder id="textarea-input" name="textarea-input" rows="2" class="form-control"></textarea>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>State :</strong></label>
+              <p-autoComplete formControlName="State" appValidationBorder [suggestions]="stateList" (completeMethod)="searchState($event)"
+                              [dropdown]="true" [forceSelection]="true"  field="StateName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>District :</strong></label>
+              <p-autoComplete formControlName="District" appValidationBorder [suggestions]="districtList" (completeMethod)="searchDistrict($event)"
+                              [dropdown]="true" [forceSelection]="true" field="DistrictName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Taluka :</strong></label>
+              <p-autoComplete formControlName="Taluka" appValidationBorder [suggestions]="talukaList" (completeMethod)="searchTaluka($event)"
+                              [dropdown]="true" [forceSelection]="true" field="TalukaName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-header">
+        <strong>Aadhar Details</strong>
+        <div style="width:10px">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Date Of Birth :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="DateOfBirth" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Aadhar No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="AadharNo" type="text" pInputText id="aadharno" name="aadharno" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Name As Per Aadhar Card:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="NameAsPerAadhar" type="text" pInputText id="nameasperaadhar" name="nameasperaadhar" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Caste :</strong></label>
+              <p-autoComplete formControlName="Caste" appValidationBorder [suggestions]="casteList" (completeMethod)="searchCaste($event)"
+                              [dropdown]="true" [forceSelection]="true" field="CasteName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Sub Caste :</strong></label>
+              <p-autoComplete formControlName="Subcaste" appValidationBorder [suggestions]="subcasteList" (completeMethod)="searchSubcaste($event)"
+                              [dropdown]="true" [forceSelection]="true"  field="SubCasteName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Type :</strong></label>
+              <p-autoComplete formControlName="Type" appValidationBorder [suggestions]="typeList" (completeMethod)="searchType($event)"
+                              [dropdown]="true" [forceSelection]="true" field="TypeName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Sub Type :</strong></label>
+              <p-autoComplete formControlName="Subtype" appValidationBorder [suggestions]="subtypeList" (completeMethod)="searchSubtype($event)"
+                              [dropdown]="true" [forceSelection]="true" field="SubType"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>No. Of Child :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="NoOfChild" type="text" pInputText id="noofchild" name="noofchild" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Disable Percentage:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="DisablePercentage" type="text" pInputText id="disablepercentage" name="disablepercentage" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>BPL No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="BplNo" type="text" pInputText id="bplno" name="bplno" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-header">
+        <strong>Scheme Details</strong>
+        <div style="width:10px">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Scheme :</strong></label>
+              <p-autoComplete formControlName="Scheme" appValidationBorder [suggestions]="schemeList" (completeMethod)="searchScheme($event)"
+                              [dropdown]="true" (onSelect)="onSelectScheme($event)" [forceSelection]="true" field="SchemeName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Payment :</strong></label>
+              <p-autoComplete formControlName="Payment" appValidationBorder [suggestions]="paymentList" (completeMethod)="searchPayment($event)"
+                              [dropdown]="true" [forceSelection]="true" field="Amount"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Sanction Order No :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="SanctionOrderNo" type="text" pInputText id="sanctionorderno" name="sanctionorderno" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Sanction Date:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="SanctionDate" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Due Date:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <p-calendar formControlName="DueDate" [showIcon]="true" appValidationBorder showButtonBar="true"></p-calendar>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Bank Name :</strong></label>
+              <p-autoComplete formControlName="Bank" appValidationBorder [suggestions]="bankList" (completeMethod)="searchBank($event)"
+                              [dropdown]="true" [forceSelection]="true" field="BankName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="select"><strong>Branch Name:</strong></label>
+              <p-autoComplete formControlName="Branch" appValidationBorder [suggestions]="branchList" (completeMethod)="searchBranch($event)"
+                              [dropdown]="true" (onSelect)="onSelectBranch($event)" [forceSelection]="true" field="BranchName"></p-autoComplete>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>IFSC Code :</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="IfscCode" type="text" pInputText id="ifsccode" name="ifsccode" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-block">
+            <div class="form-group">
+              <label for="textarea-input"><strong>Account No:</strong></label>
+              <div>
+                <span class="ui-float-label">
+                  <input formControlName="AccountNo" type="text" pInputText id="accountno" name="accountno" class="form-control">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group-btn" dropdown>
+
+        <button type="submit" class="btn btn-outline-primary">&nbsp; SUBMIT </button>
+
+      </div>
+    </form>
+  </div>
+</div>

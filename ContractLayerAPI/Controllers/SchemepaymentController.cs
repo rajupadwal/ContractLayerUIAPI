@@ -43,13 +43,13 @@ namespace ContractLayerAPI.Controllers
                 return 0;
             }
         }
-        //[HttpPost("SearchBankName")]
-        //public IEnumerable<TblBankMaster> SearchBankName([FromBody]string searchString)
-        //{
-        //    var bankdetails = this._repoWrapper.Bankmaster.SearchBankName(searchString).ToList();
-        //    return bankdetails;
-        //}
 
+        [HttpPost("SearchSchemePayment")]
+        public IEnumerable<TblSchemePaymentMaster> SearchSchemePayment([FromBody]string searchString)
+        {
+            var schemepay = this._repoWrapper.Schemepayment.SearchSchemePayment(searchString).ToList();
+            return schemepay;
+        }
 
         [HttpPost("GetByID")]
         public TblSchemePaymentMaster GetByID([FromBody] int SrNo)

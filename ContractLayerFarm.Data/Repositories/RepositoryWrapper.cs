@@ -31,6 +31,8 @@ namespace ContractLayerFarm.Data.Repositories
         private PurchasepaymentRepository _purchasepayment;
         private PurchasereturnreceiptRepository _purchasereturnreceipt;
         private IncometypeRepository _incometype;
+
+
         private BankmasterRepository _bankmaster;
         private StatemasterRepository _statemaster;
         private CastemasterRepository _castemaster;
@@ -41,9 +43,20 @@ namespace ContractLayerFarm.Data.Repositories
         private TalukamasterRepository _talukamaster;
         private SubcastemasterRepository _subcastemaster;
         private TypemasterRepository _type;
-
         private ISubtypemasterRepository _subtype;
+        private IBeneficieryRepository _beneficiery;
 
+        public IBeneficieryRepository Beneficiery
+        {
+            get
+            {
+                if (_beneficiery == null)
+                {
+                    _beneficiery = new BeneficieryRepository(_repoContext);
+                }
+                return _beneficiery;
+            }
+        } 
 
         public ISubtypemasterRepository Subtype
         {

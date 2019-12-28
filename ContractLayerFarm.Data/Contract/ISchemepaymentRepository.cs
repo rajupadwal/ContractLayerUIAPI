@@ -9,7 +9,7 @@ namespace ContractLayerFarm.Data.Contract
         //Boolean IsValidUser(UserInfo userInfo);
         //UserInfo Authenticate(string username, string password);
         bool Authenticate();
-        //IEnumerable<TblSchemePaymentMaster> SearchSchemePayment(string searchString);
+        IEnumerable<TblSchemePaymentMaster> SearchSchemePayment(string searchString);
 
         int GetSchemePaymentSrNo();
 

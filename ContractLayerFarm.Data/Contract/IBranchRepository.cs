@@ -12,5 +12,6 @@ namespace ContractLayerFarm.Data.Contract
 
         IEnumerable<TblBranchMaster> GetAllBranch();
         IEnumerable<TblBranchMaster> GetAllBranchNameForBank(TblBranchMaster master);
+        IEnumerable<TblBranchMaster> SearchBranchName(string searchString);
     }
 }

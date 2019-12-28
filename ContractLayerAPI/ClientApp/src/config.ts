@@ -289,6 +289,7 @@ export const APP_CONSTANT={
     EDIT: API_URL + 'Branch/Update',
     DELETE: API_URL + 'Branch/Delete',
     GETBRANCHBYBRANCHID: API_URL + 'Branch/GetTypeByBankID',
+    SEARCH_BRANCHNAME: API_URL + 'Branch/SearchBranchName',
   },
 
   SCHEME_API: {
@@ -305,13 +306,11 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Schemepaymentdetails/GetAll',
     GETByID: API_URL + 'Schemepaymentdetails/GetByID',
     EDIT: API_URL + 'Schemepaymentdetails/Update',
-    DELETE: API_URL + 'Schemepaymentdetails/Delete'
-    //SEARCH_BANKNAME: API_URL + 'Districtmaster/SearchBankName',
+    DELETE: API_URL + 'Schemepaymentdetails/Delete',
+    SEARCH_SCHEMEPAYMENT: API_URL + 'Schemepaymentdetails/SearchSchemePayment',
     //GETBANKSRNO: API_URL + 'Districtmaster/GetBankSrNo'
   },
-
-
-
+   
   CASTEMASTER_API: {
     ADD: API_URL + 'Castemaster/Add',
     GETALL: API_URL + 'Castemaster/GetAll',
@@ -346,8 +345,8 @@ export const APP_CONSTANT={
     GETALL: API_URL + 'Subtypemaster/GetAll',
     GETByID: API_URL + 'Subtypemaster/GetByID',
     EDIT: API_URL + 'Subtypemaster/Update',
-    DELETE: API_URL + 'Subtypemaster/Delete'
-    //SEARCH_BANKNAME: API_URL + 'Districtmaster/SearchBankName',
+    DELETE: API_URL + 'Subtypemaster/Delete',
+    SEARCH_SUBTYPENAME: API_URL + 'Subtypemaster/SearchSubTypeName',
     //GETBANKSRNO: API_URL + 'Districtmaster/GetBankSrNo'
   },
 
@@ -378,6 +377,21 @@ export const APP_CONSTANT={
     DELETE: API_URL + 'Talukamaster/Delete',
     GETSTATEBYSTATEID: API_URL + 'Talukamaster/GetTypeByTalukaID',
     GETDISTRICTBYSTATEID: API_URL + 'Talukamaster/GetDistrictByStateID',
+    GETTALUKABYSTATEDISTRICTID: API_URL + 'Talukamaster/GetTalukaByStateDistrictID',
+    SEARCH_TALUKANAME: API_URL + 'Talukamaster/SearchTalukaName',
+  },
+
+  BENEFICIERYMASTER_API: {
+    ADD: API_URL + 'Beneficiery/Add',
+    GETALL: API_URL + 'Beneficiery/GetAll',
+    GETByID: API_URL + 'Beneficiery/GetByID',
+    EDIT: API_URL + 'Beneficiery/Update',
+    DELETE: API_URL + 'Beneficiery/Delete',
+    GETDISTRICTBYSTATEID: API_URL + 'Beneficiery/GetDistrictByStateID',
+    GETTALUKABYSTATEDISTRICTID: API_URL + 'Beneficiery/GetTalukaByStateDistrictID',
+    GETSUBCASTEBYCASTEID: API_URL + 'Beneficiery/GetSubCasteByCasteID',
+    GETSUBTYPEBYTYPEID: API_URL + 'Beneficiery/GetSubTypeNameByTypeID',
+    GETBRANCHBYBANKID: API_URL + 'Beneficiery/GetBranchByBankID',
   },
                                                     
 }

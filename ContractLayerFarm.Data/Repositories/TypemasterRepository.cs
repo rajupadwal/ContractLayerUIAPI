@@ -11,8 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ContractLayerFarm.Data.Repositories
 {
     public class TypemasterRepository : RepositoryBase<TblTypeMaster>, ITypemasterRepository
-    {
-
+    { 
         private ContractLayerDBContext ktConContext;
         public TypemasterRepository(ContractLayerDBContext ktConContext) : base(ktConContext)
         {
@@ -30,7 +29,8 @@ namespace ContractLayerFarm.Data.Repositories
         bool ITypemasterRepository.Authenticate()
         {
             return true;
-        }
+        } 
+
         public int GetTypeNo()
         {
             int maxTypeNo = this.ktConContext.TblTypeMaster.Select(p => p.TypeId).DefaultIfEmpty(0).Max() + 1;

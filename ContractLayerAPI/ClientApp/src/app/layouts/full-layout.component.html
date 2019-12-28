@@ -14,17 +14,17 @@
       </a>
       <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown" aria-haspopup="true" aria-expanded="false">
         <!--<div class="dropdown-header text-center"><strong>Customer</strong></div>-->
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Customerview']"><i class="fa fa-envelope-o"></i> Customer Master<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Supplierview']"><i class="fa fa-envelope-o"></i> Supplier Master<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Employeeview']"><i class="fa fa-envelope-o"></i> Employee Details<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Locationview']"><i class="fa fa-envelope-o"></i> Location Master<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Planview']"><i class="fa fa-envelope-o"></i> Plan Master<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Productdescview']"><i class="fa fa-envelope-o"></i> Product Master<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Productview']"><i class="fa fa-envelope-o"></i> Product Details<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Eggsrangedetails']"><i class="fa fa-envelope-o"></i> Eggs Range<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Profileview']"><i class="fa fa-envelope-o"></i> Company Profile<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Expencetypeview']"><i class="fa fa-envelope-o"></i> Expence Type<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Enquiryview']"><i class="fa fa-bell-o"></i> Enquiry<span class="badge badge-info"></span></a>
+        <!--<a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Customerview']"><i class="fa fa-envelope-o"></i> Customer Master<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Supplierview']"><i class="fa fa-envelope-o"></i> Supplier Master<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Employeeview']"><i class="fa fa-envelope-o"></i> Employee Details<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Locationview']"><i class="fa fa-envelope-o"></i> Location Master<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Planview']"><i class="fa fa-envelope-o"></i> Plan Master<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Productdescview']"><i class="fa fa-envelope-o"></i> Product Master<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Productview']"><i class="fa fa-envelope-o"></i> Product Details<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Eggsrangedetails']"><i class="fa fa-envelope-o"></i> Eggs Range<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Profileview']"><i class="fa fa-envelope-o"></i> Company Profile<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Expencetypeview']"><i class="fa fa-envelope-o"></i> Expence Type<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Enquiryview']"><i class="fa fa-bell-o"></i> Enquiry<span class="badge badge-info"></span></a>-->
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Bankview']"><i class="fa fa-envelope-o"></i> Bank Master<span class="badge badge-success"></span></a>
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Branchview']"><i class="fa fa-envelope-o"></i> Branch Master<span class="badge badge-success"></span></a>
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Typeview']"><i class="fa fa-envelope-o"></i> Type Master<span class="badge badge-success"></span></a>
@@ -35,86 +35,90 @@
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Districtview']"><i class="fa fa-envelope-o"></i> District Master<span class="badge badge-success"></span></a>
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Talukaview']"><i class="fa fa-envelope-o"></i> Taluka Master<span class="badge badge-success"></span></a>
         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Schemeview']"><i class="fa fa-envelope-o"></i> Scheme Master<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Schemepaymentview']"><i class="fa fa-envelope-o"></i> Scheme Payment Master<span class="badge badge-success"></span></a>
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Schemepaymentview']"><i class="fa fa-envelope-o"></i> Scheme Payment<span class="badge badge-success"></span></a>
+        
+      </div>
+    </li>
+    <li style="width:20px">&nbsp;</li>
+    <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+      <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
+        <span class="d-md-down-none">Beneficiery</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown">
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/master/Beneficieryview']"><i class="fa fa-envelope-o"></i> Beneficiery Details<span class="badge badge-success"></span></a>
+        <!--<div class="dropdown-header text-center"><strong>Customer</strong></div>-->
+        <!--<a class="dropdown-item" routerLinkActive="active" [routerLink]="['/purchase/Purchasebillview']"><i class="fa fa-envelope-o"></i> Purchase Bill<span class="badge badge-success"></span></a>
+  <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/Purchasebillreturnview']"><i class="fa fa-envelope-o"></i> Purchase Return Bill<span class="badge badge-success"></span></a>
+  <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/purchase/Farmerinwardview']"><i class="fa fa-envelope-o"></i> Farmer Inward <span class="badge badge-success"></span></a>
+  <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="fa fa-envelope-o"></i> Farmer Outward<span class="badge badge-success"></span></a>-->
       </div>
     </li>
 
-
     <!--<li class="nav-item">
-      <a class="nav-link" ><i class="icon-star"></i> Profile Master</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Employeeadvanceview']"><i class="icon-star"></i> Employee Advance</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Expencetypeview']"><i class="icon-star"></i> Expence Type</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Officeexpencedetails']"><i class="icon-star"></i> Office Expences</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" ><i class="icon-star"></i> EggsRange Detail</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Incomedetails']"><i class="icon-star"></i> Income Detail</a>
-    </li>-->
-
-
-
-
+    <a class="nav-link" ><i class="icon-star"></i> Profile Master</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Employeeadvanceview']"><i class="icon-star"></i> Employee Advance</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Expencetypeview']"><i class="icon-star"></i> Expence Type</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Officeexpencedetails']"><i class="icon-star"></i> Office Expences</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" ><i class="icon-star"></i> EggsRange Detail</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Incomedetails']"><i class="icon-star"></i> Income Detail</a>
+  </li>-->
 
     <li style="width:20px">&nbsp;</li>
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
       <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
-        <span class="d-md-down-none">Purchase</span>
+        <span class="d-md-down-none">Billing</span>
       </a>
       <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown">
         <!--<div class="dropdown-header text-center"><strong>Customer</strong></div>-->
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/purchase/Purchasebillview']"><i class="fa fa-envelope-o"></i> Purchase Bill<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/Purchasebillreturnview']"><i class="fa fa-envelope-o"></i> Purchase Return Bill<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/purchase/Farmerinwardview']"><i class="fa fa-envelope-o"></i> Farmer Inward <span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="fa fa-envelope-o"></i> Farmer Outward<span class="badge badge-success"></span></a>
+        <!--<a class="dropdown-item" routerLinkActive="active" [routerLink]="['/purchase/Purchasebillview']"><i class="fa fa-envelope-o"></i> Purchase Bill<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/Purchasebillreturnview']"><i class="fa fa-envelope-o"></i> Purchase Return Bill<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/purchase/Farmerinwardview']"><i class="fa fa-envelope-o"></i> Farmer Inward <span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="fa fa-envelope-o"></i> Farmer Outward<span class="badge badge-success"></span></a>-->
       </div>
     </li>
-    <li style="width:20px">&nbsp;</li>
-    <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
-      <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
-        <span class="d-md-down-none">Booking</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown">
-        <!--<div class="dropdown-header text-center"><strong>Products</strong></div>-->
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/bookingmaster/Bookingview']"><i class="fa fa-envelope-o"></i> Booking Order<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/bookingmaster/Bookingcancelview']"><i class="fa fa-envelope-o"></i> Booking Cancel<span class="badge badge-success"></span></a>
-      </div>
-    </li>
-    <li style="width:20px">&nbsp;</li>
-    <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
-      <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
-        <span class="d-md-down-none">Sales</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown" aria-haspopup="true" aria-expanded="false">
-        <!--<div class="dropdown-header text-center"><strong>Out</strong></div>-->
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/sale/Salechickeggbillview']"><i class="fa fa-envelope-o"></i> Create Bill<span class="badge badge-success"></span></a>
-        <!--<div class="dropdown-header text-center"><strong>In</strong></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Incoming Details<span class="badge badge-info"></span></a>-->
-      </div>
-    </li>
-
-    <li style="width:20px">&nbsp;</li>
-    <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
-      <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
-        <span class="d-md-down-none">Account</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown">
-        <!--<div class="dropdown-header text-center"><strong>Booking</strong></div>-->
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Salesreceiptview']"><i class="fa fa-envelope-o"></i> Sales Receipt<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Purchasepaymentview']"><i class="fa fa-envelope-o"></i> Supplier Payment<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Purchasereturnreceiptview']"><i class="fa fa-envelope-o"></i> Purchase Debit Note<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Officeexpencedetails']"><i class="fa fa-envelope-o"></i> Office Expences Details<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Incomedetails']"><i class="fa fa-envelope-o"></i> Income Details<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Employeeadvanceview']"><i class="fa fa-envelope-o"></i> Employee Advance<span class="badge badge-success"></span></a>
-      </div>
-    </li>
+    <!--<li style="width:20px">&nbsp;</li>
+  <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+    <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
+      <span class="d-md-down-none">Booking</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown">
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/bookingmaster/Bookingview']"><i class="fa fa-envelope-o"></i> Booking Order<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/bookingmaster/Bookingcancelview']"><i class="fa fa-envelope-o"></i> Booking Cancel<span class="badge badge-success"></span></a>
+    </div>
+  </li>-->
+    <!--<li style="width:20px">&nbsp;</li>
+  <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+    <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
+      <span class="d-md-down-none">Sales</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/sale/Salechickeggbillview']"><i class="fa fa-envelope-o"></i> Create Bill<span class="badge badge-success"></span></a>
+    </div>
+  </li>-->
+    <!--<li style="width:20px">&nbsp;</li>
+  <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+    <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
+      <span class="d-md-down-none">Account</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown">
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Salesreceiptview']"><i class="fa fa-envelope-o"></i> Sales Receipt<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Purchasepaymentview']"><i class="fa fa-envelope-o"></i> Supplier Payment<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Purchasereturnreceiptview']"><i class="fa fa-envelope-o"></i> Purchase Debit Note<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Officeexpencedetails']"><i class="fa fa-envelope-o"></i> Office Expences Details<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Incomedetails']"><i class="fa fa-envelope-o"></i> Income Details<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/account/Employeeadvanceview']"><i class="fa fa-envelope-o"></i> Employee Advance<span class="badge badge-success"></span></a>
+    </div>
+  </li>-->
 
     <li style="width:20px">&nbsp;</li>
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
@@ -124,33 +128,32 @@
       <div class="dropdown-menu dropdown-menu-left" *dropdownMenu aria-labelledby="simple-dropdown">
         <div class="dropdown-header text-center"><strong>Report Details</strong></div>
 
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Stockdetailview']"><i class="fa fa-envelope-o"></i> Productwise Stock Detail<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerbookingoutstandingview']"><i class="fa fa-envelope-o"></i> Customer Booking Outstanding<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerbilloutstandingview']"><i class="fa fa-envelope-o"></i>Customer Bill Outstanding<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Supplierbilloutstandingview']"><i class="fa fa-envelope-o"></i>Supplier Bill Outstanding<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Supplierledgerview']"><i class="fa fa-envelope-o"></i>Supplier Ledger<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerledgerview']"><i class="fa fa-envelope-o"></i>Customer Ledger<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Datewiseinwardview']"><i class="fa fa-envelope-o"></i>Datewise Inward<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Datewiseoutwardview']"><i class="fa fa-envelope-o"></i>Datewise Outward<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Datewiseexpencesview']"><i class="fa fa-envelope-o"></i>Datewise Expences<span class="badge badge-success"></span></a>
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Datewisepurchasereturnview']"><i class="fa fa-envelope-o"></i>Datewise Purchase Return<span class="badge badge-success"></span></a>
-
+        <!--<a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Stockdetailview']"><i class="fa fa-envelope-o"></i> Productwise Stock Detail<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerbookingoutstandingview']"><i class="fa fa-envelope-o"></i> Customer Booking Outstanding<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerbilloutstandingview']"><i class="fa fa-envelope-o"></i>Customer Bill Outstanding<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Supplierbilloutstandingview']"><i class="fa fa-envelope-o"></i>Supplier Bill Outstanding<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Supplierledgerview']"><i class="fa fa-envelope-o"></i>Supplier Ledger<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Customerledgerview']"><i class="fa fa-envelope-o"></i>Customer Ledger<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Datewiseinwardview']"><i class="fa fa-envelope-o"></i>Datewise Inward<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Datewiseoutwardview']"><i class="fa fa-envelope-o"></i>Datewise Outward<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Datewiseexpencesview']"><i class="fa fa-envelope-o"></i>Datewise Expences<span class="badge badge-success"></span></a>
+      <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/report/Datewisepurchasereturnview']"><i class="fa fa-envelope-o"></i>Datewise Purchase Return<span class="badge badge-success"></span></a>-->
         <!--<div class="dropdown-header text-center"><strong>Sale</strong></div>
-  <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Create Bill<span class="badge badge-info"></span></a>-->
+      <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Create Bill<span class="badge badge-info"></span></a>-->
       </div>
     </li>
 
 
 
     <!--<li class="nav-item px-3">
-      <a class="nav-link" href="#">Dashboard</a>
-    </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Users</a>
-    </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Settings</a>
-    </li>-->
+    <a class="nav-link" href="#">Dashboard</a>
+  </li>
+  <li class="nav-item px-3">
+    <a class="nav-link" href="#">Users</a>
+  </li>
+  <li class="nav-item px-3">
+    <a class="nav-link" href="#">Settings</a>
+  </li>-->
   </ul>
   <ul class="nav navbar-nav ml-auto">
     <!--<li class="nav-item d-md-down-none">
@@ -205,126 +208,126 @@
         <li class="divider"></li>
 
         <!-- <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/CustomerInfo']"><i class="icon-puzzle"></i> Cusotmer Info</a>
-        </li> -->
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/CustomerInfo']"><i class="icon-puzzle"></i> Cusotmer Info</a>
+  </li> -->
         <!--<li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/cases']"><i class="icon-puzzle"></i> Cases</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/team']"><i class="icon-puzzle"></i> Team</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/clients']"><i class="icon-puzzle"></i> Clients</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/calendar']"><i class="icon-puzzle"></i> Calendar </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/todo']"><i class="icon-puzzle"></i> To Do</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/documents']"><i class="icon-puzzle"></i> Documents</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/invoices']"><i class="icon-puzzle"></i> Invoices </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/causelist']"><i class="icon-puzzle"></i> Cause List</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/casediary']"><i class="icon-puzzle"></i> Case Diary</a>
-        </li>-->
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/cases']"><i class="icon-puzzle"></i> Cases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/team']"><i class="icon-puzzle"></i> Team</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/clients']"><i class="icon-puzzle"></i> Clients</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/calendar']"><i class="icon-puzzle"></i> Calendar </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/todo']"><i class="icon-puzzle"></i> To Do</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/documents']"><i class="icon-puzzle"></i> Documents</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/invoices']"><i class="icon-puzzle"></i> Invoices </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/causelist']"><i class="icon-puzzle"></i> Cause List</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/casediary']"><i class="icon-puzzle"></i> Case Diary</a>
+  </li>-->
         <!--<li class="nav-title">
-          ui elements
-        </li>-->
+    ui elements
+  </li>-->
         <!--
-        <li class="nav-item nav-dropdown" routerlinkactive="open" appnavdropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appnavdropdowntoggle><i class="icon-puzzle"></i> get my</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/buttons']"><i class="icon-puzzle"></i> buttons</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/social-buttons']"><i class="icon-puzzle"></i> social buttons</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/cards']"><i class="icon-puzzle"></i> cards</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/forms']"><i class="icon-puzzle"></i> forms</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/modals']"><i class="icon-puzzle"></i> modals</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/switches']"><i class="icon-puzzle"></i> switches</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/tables']"><i class="icon-puzzle"></i> tables</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/tabs']"><i class="icon-puzzle"></i> tabs</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item nav-dropdown" routerlinkactive="open" appnavdropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appnavdropdowntoggle><i class="icon-star"></i> icons</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/icons/font-awesome']"><i class="icon-star"></i> font awesome</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerlinkactive="active" [routerlink]="['/icons/simple-line-icons']"><i class="icon-star"></i> simple line icons</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerlinkactive="active" [routerlink]="['/widgets']"><i class="icon-calculator"></i> widgets <span class="badge badge-info">new</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerlinkactive="active" [routerlink]="['/charts']"><i class="icon-pie-chart"></i> charts</a>
-        </li>
-        <li class="divider"></li>
-        <li class="nav-title">
-          extras
-        </li>-->
+  <li class="nav-item nav-dropdown" routerlinkactive="open" appnavdropdown>
+    <a class="nav-link nav-dropdown-toggle" href="#" appnavdropdowntoggle><i class="icon-puzzle"></i> get my</a>
+    <ul class="nav-dropdown-items">
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/buttons']"><i class="icon-puzzle"></i> buttons</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/social-buttons']"><i class="icon-puzzle"></i> social buttons</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/cards']"><i class="icon-puzzle"></i> cards</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/forms']"><i class="icon-puzzle"></i> forms</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/modals']"><i class="icon-puzzle"></i> modals</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/switches']"><i class="icon-puzzle"></i> switches</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/tables']"><i class="icon-puzzle"></i> tables</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/components/tabs']"><i class="icon-puzzle"></i> tabs</a>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item nav-dropdown" routerlinkactive="open" appnavdropdown>
+    <a class="nav-link nav-dropdown-toggle" href="#" appnavdropdowntoggle><i class="icon-star"></i> icons</a>
+    <ul class="nav-dropdown-items">
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/icons/font-awesome']"><i class="icon-star"></i> font awesome</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerlinkactive="active" [routerlink]="['/icons/simple-line-icons']"><i class="icon-star"></i> simple line icons</a>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerlinkactive="active" [routerlink]="['/widgets']"><i class="icon-calculator"></i> widgets <span class="badge badge-info">new</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerlinkactive="active" [routerlink]="['/charts']"><i class="icon-pie-chart"></i> charts</a>
+  </li>
+  <li class="divider"></li>
+  <li class="nav-title">
+    extras
+  </li>-->
         <li class="nav-item nav-dropdown" appNavDropdown>
           <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Master</a>
           <ul class="nav-dropdown-items">
 
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Customerview']"><i class="icon-star"></i> Customer Master</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Supplierview']"><i class="icon-star"></i> Supplier Master</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Employeeview']"><i class="icon-star"></i> Employee Master</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Locationview']"><i class="icon-star"></i> Location Master</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Planview']"><i class="icon-star"></i> Plan Master</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Productdescview']"><i class="icon-star"></i> Product Master</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Productview']"><i class="icon-star"></i> Product Details</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Profileview']"><i class="icon-star"></i> Profile Master</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Expencetypeview']"><i class="icon-star"></i> Expence Type</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Eggsrangedetails']"><i class="icon-star"></i> EggsRange Detail</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Enquiryview']"><i class="icon-star"></i> Enquiry Master</a>
-            </li>
+            <!--<li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Customerview']"><i class="icon-star"></i> Customer Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Supplierview']"><i class="icon-star"></i> Supplier Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Employeeview']"><i class="icon-star"></i> Employee Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Locationview']"><i class="icon-star"></i> Location Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Planview']"><i class="icon-star"></i> Plan Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Productdescview']"><i class="icon-star"></i> Product Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Productview']"><i class="icon-star"></i> Product Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Profileview']"><i class="icon-star"></i> Profile Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Expencetypeview']"><i class="icon-star"></i> Expence Type</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Eggsrangedetails']"><i class="icon-star"></i> EggsRange Detail</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Enquiryview']"><i class="icon-star"></i> Enquiry Master</a>
+      </li>-->
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Bankview']"><i class="icon-star"></i> Bank Master</a>
             </li>
@@ -356,38 +359,146 @@
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Schemeview']"><i class="icon-star"></i> Scheme Master</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Schemepaymentview']"><i class="icon-star"></i> Scheme Payment Master</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Schemepaymentview']"><i class="icon-star"></i> Scheme Payment</a>
             </li>
+            
           </ul>
         </li>
         <li class="nav-item nav-dropdown" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Purchase</a>
+          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Beneficiery</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/purchase/Purchasebillview']"><i class="icon-star"></i> Purchase Bill</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/Beneficieryview']"><i class="icon-star"></i> Beneficiery Details</a>
             </li>
+            <!--<li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/purchase/Purchasebillview']"><i class="icon-star"></i> Purchase Bill</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillreturnview']"><i class="icon-star"></i> Purchase Bill Return</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/purchase/Farmerinwardview']"><i class="icon-star"></i> Farmer Inward</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="icon-star"></i> Farmer Outward</a>
+            </li>-->
+          </ul>
+        </li>
+        <li class="nav-item nav-dropdown" appNavDropdown>
+          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Billing</a>
+          <ul class="nav-dropdown-items">
+            <!--<li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/purchase/Purchasebillview']"><i class="icon-star"></i> Purchase Bill</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillreturnview']"><i class="icon-star"></i> Purchase Bill Return</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/purchase/Farmerinwardview']"><i class="icon-star"></i> Farmer Inward</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="icon-star"></i> Farmer Outward</a>
+      </li>-->
+          </ul>
+        </li>
+
+        <!--<li class="nav-item nav-dropdown" appNavDropdown>
+    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Booking</a>
+    <ul class="nav-dropdown-items">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/bookingmaster/Bookingview']"><i class="icon-star"></i> Booking Order</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/bookingmaster/Bookingcancelview']"><i class="icon-star"></i> Booking Cancel</a>
+      </li>
+
+    </ul>
+  </li>-->
+        <!--<li class="nav-item nav-dropdown" appNavDropdown>
+    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Account</a>
+    <ul class="nav-dropdown-items">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Salesreceiptview']"><i class="icon-star"></i> Sales Receipt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Purchasepaymentview']"><i class="icon-star"></i> Purchase Payment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Purchasereturnreceiptview']"><i class="icon-star"></i> Debit Note</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Employeeadvanceview']"><i class="icon-star"></i> Employee Advance</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Officeexpencedetails']"><i class="icon-star"></i> Office Expences</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Incomedetails']"><i class="icon-star"></i> Income Detail</a>
+      </li>
+    </ul>
+
+  </li>
+  <li class="nav-item nav-dropdown" appNavDropdown>
+    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Sale</a>
+    <ul class="nav-dropdown-items">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/sale/Salechickeggbillview']"><i class="icon-star"></i>Create Bill</a>
+      </li>
+
+    </ul>
+  </li>-->
+
+        <li class="nav-item nav-dropdown" appNavDropdown>
+          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Reports</a>
+          <ul class="nav-dropdown-items">
+            <!--<li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Stockdetailview']"><i class="icon-star"></i> Productwise Stock</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerbookingoutstandingview']"><i class="icon-star"></i> Booking Outstanding</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerbilloutstandingview']"><i class="icon-star"></i> Bill Outstanding</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Supplierbilloutstandingview']"><i class="icon-star"></i> Supplier Outstanding</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Supplierledgerview']"><i class="icon-star"></i> Supplier Ledger</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerledgerview']"><i class="icon-star"></i> Customer Ledger</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Datewiseinwardview']"><i class="icon-star"></i> Datewise Inward</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Datewiseoutwardview']"><i class="icon-star"></i> Datewise Outward</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Datewiseexpencesview']"><i class="icon-star"></i> Datewise Expences</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Datewisepurchasereturnview']"><i class="icon-star"></i> Datewise Purchase Return</a>
+      </li>-->
+          </ul>
+        </li>
+
+        <!--<li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/Farmerinwardview']"><i class="icon-star"></i> Farmer Inward</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="icon-star"></i> Farmer Outward</a>
+  </li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillview']"><i class="icon-star"></i> Purchase Bill </a>
+            </li>
+
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillreturnview']"><i class="icon-star"></i> Purchase Bill Return</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/purchase/Farmerinwardview']"><i class="icon-star"></i> Farmer Inward</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="icon-star"></i> Farmer Outward</a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="nav-item nav-dropdown" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Booking</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/bookingmaster/Bookingview']"><i class="icon-star"></i> Booking Order</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/bookingmaster/Bookingcancelview']"><i class="icon-star"></i> Booking Cancel</a>
-            </li>
-
           </ul>
         </li>
 
@@ -424,6 +535,26 @@
 
           </ul>
         </li>
+        <li class="nav-item nav-dropdown" appNavDropdown>
+          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Report</a>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i>Day Closer Report</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i>Datewise Booking </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i>Datewise Purchase</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i>Datewise sales</a>
+            </li>
+
+
+
+          </ul>
+        </li>
 
         <li class="nav-item nav-dropdown" appNavDropdown>
           <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Reports</a>
@@ -437,145 +568,37 @@
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerbilloutstandingview']"><i class="icon-star"></i> Bill Outstanding</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Supplierbilloutstandingview']"><i class="icon-star"></i> Supplier Outstanding</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Supplierledgerview']"><i class="icon-star"></i> Supplier Ledger</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerledgerview']"><i class="icon-star"></i> Customer Ledger</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Datewiseinwardview']"><i class="icon-star"></i> Datewise Inward</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Datewiseoutwardview']"><i class="icon-star"></i> Datewise Outward</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Datewiseexpencesview']"><i class="icon-star"></i> Datewise Expences</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Datewisepurchasereturnview']"><i class="icon-star"></i> Datewise Purchase Return</a>
-            </li>
           </ul>
         </li>
 
-        <!--<li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/Farmerinwardview']"><i class="icon-star"></i> Farmer Inward</a>
-        </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/Farmeroutwardview']"><i class="icon-star"></i> Farmer Outward</a>
-        </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillview']"><i class="icon-star"></i> Purchase Bill </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/Purchasebillreturnview']"><i class="icon-star"></i> Purchase Bill Return</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="nav-item nav-dropdown" appNavDropdown>
-                <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Account</a>
-                <ul class="nav-dropdown-items">
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Salesreceiptview']"><i class="icon-star"></i> Sales Receipt</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Purchasepaymentview']"><i class="icon-star"></i> Purchase Payment</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Purchasereturnreceiptview']"><i class="icon-star"></i> Debit Note</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Employeeadvanceview']"><i class="icon-star"></i> Employee Advance</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Officeexpencedetails']"><i class="icon-star"></i> Office Expences</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/account/Incomedetails']"><i class="icon-star"></i> Income Detail</a>
-                  </li>
-                </ul>
-
-              </li>
-              <li class="nav-item nav-dropdown" appNavDropdown>
-                <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Sale</a>
-                <ul class="nav-dropdown-items">
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/sale/Salechickeggbillview']"><i class="icon-star"></i>Create Bill</a>
-                  </li>
-
-                </ul>
-              </li>
-              <li class="nav-item nav-dropdown" appNavDropdown>
-                <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Report</a>
-                <ul class="nav-dropdown-items">
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i>Day Closer Report</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i>Datewise Booking </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i>Datewise Purchase</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i>Datewise sales</a>
-                  </li>
-
-
-
-                </ul>
-              </li>
-
-              <li class="nav-item nav-dropdown" appNavDropdown>
-                <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Reports</a>
-                <ul class="nav-dropdown-items">
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Stockdetailview']"><i class="icon-star"></i> Productwise Stock</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerbookingoutstandingview']"><i class="icon-star"></i> Booking Outstanding</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/report/Customerbilloutstandingview']"><i class="icon-star"></i> Bill Outstanding</a>
-                  </li>
-                </ul>
-              </li>
-
-
-              <!--<li class="nav-item nav-dropdown" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Pages</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i> Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/register']"><i class="icon-star"></i> Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/404']"><i class="icon-star"></i> Error 404</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/500']"><i class="icon-star"></i> Error 500</a>
-            </li>
-
-          </ul>
-        </li>-->
         <!--<li class="nav-item nav-dropdown" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Acconut</a>
-          <ul class="nav-dropdown-items">
+    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Pages</a>
+    <ul class="nav-dropdown-items">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i> Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/register']"><i class="icon-star"></i> Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/404']"><i class="icon-star"></i> Error 404</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/500']"><i class="icon-star"></i> Error 500</a>
+      </li>
 
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['account/Salesreceiptview']"><i class="icon-star"></i>Sales Receipt </a>
-            </li>
-          </ul>
-        </li>-->
+    </ul>
+  </li>-->
+        <!--<li class="nav-item nav-dropdown" appNavDropdown>
+    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i>Acconut</a>
+    <ul class="nav-dropdown-items">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['account/Salesreceiptview']"><i class="icon-star"></i>Sales Receipt </a>
+      </li>
+    </ul>
+  </li>-->
       </ul>
     </nav>
   </div>
@@ -850,6 +873,6 @@
 </div>
 
 <footer class="app-footer" align="center">
-  <a href="http://www.chintamanisoftsolutions.com">Shree   Solution</a> &copy; 2019.
+  <a href="http://www.chintamanisoftsolutions.com">Shree Chintamani Soft Solution</a> &copy; 2019.
   <!--<span class="float-right">Powered by <a href="http://SM-Corporation.io">SM-Corporation</a></span>-->
 </footer>

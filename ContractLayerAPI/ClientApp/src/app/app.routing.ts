@@ -219,6 +219,12 @@ export const routes: Routes = [
             loadChildren: './master/schemepayment-view/schemepayment.view.module#SchemePaymentViewModule'
             , canActivate: [AuthGuard]
           },
+
+          {
+            path: 'Beneficieryview',
+            loadChildren: './master/beneficiery-view/beneficiery.view.module#BeneficieryViewModule'
+            , canActivate: [AuthGuard]
+          },
         ]
       },
 
@@ -386,7 +392,6 @@ export const routes: Routes = [
           },
         ]
       },
-
       
 
       //{
